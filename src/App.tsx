@@ -1,12 +1,12 @@
 import React from 'react';
-import MyRouter from "./router";
 import {BrowserRouter} from "react-router-dom";
+import CMSLayout from "./components/layout/CMSLayout";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <MyRouter></MyRouter>
+        <CMSLayout></CMSLayout>
       </div>
     </BrowserRouter>
   );

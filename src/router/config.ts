@@ -13,12 +13,14 @@
  * @date 2020-7-19 22:00
  */
 export interface MenuRouterConfig {
+  key: string;
   path: string;
   title: string;
   icon?: string;
   component?: string;
   query?: string;
   isAuthRequired?: boolean;
+  children?: MenuRouterConfig[];
 }
 
 
@@ -39,14 +41,23 @@ const routerConfig: {
 } = {
   menus: [
     {
-      component: "ProblemManage",
-      title: "题目管理",
-      path: "/problems_manage"
-    },
-    {
-      component: "UserManage",
-      title: "用户管理",
-      path: "/user_manage"
+      key: "/cms/problem_manage",
+      title: "题目&题目集",
+      path: "/cms/problem_manage",
+      children: [
+        {
+          key: "/cms/problem_manage/problems",
+          component: "ProblemManage",
+          title: "题目管理",
+          path: "/cms/problem_manage",
+        },
+         {
+          key: "/cms/problem_manage/problem_sets",
+          component: "ProblemSetManage",
+          title: "题目集管理",
+          path: "/cms/problem_manage/problem_sets",
+        },
+      ]
     }
   ],
   common: []

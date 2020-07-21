@@ -12,8 +12,8 @@
  */
 import React from "react";
 import routerConfig, {MenuRouterConfig} from "./config";
-import AllComponents from '../components/index';
-import {Route, Switch} from "react-router-dom";
+import AllComponents from '../pages';
+import {Redirect, Route, Switch} from "react-router-dom";
 
 
 interface MyRouterProps {
@@ -25,14 +25,25 @@ const MyRouter: React.FunctionComponent<MyRouterProps> = () => {
 
   // methods
   const generateMenus = (base: MenuRouterConfig) => {
-    // 后者优先
-    const Component = base.component && AllComponents[base.component];
-    return (
-      <Route
-        key={base.path}
-        path={base.path}
-        children={Component}/>
-    )
+    const route = (r: MenuRouterConfig) => {
+      const Component = r.component && AllComponents[r.component];
+      return (
+        <Route
+          key={r.path}
+          exact
+          path={r.path}
+          render={(props) => {
+            return (<Component {...props} />)
+          }}/>
+      );
+    }
+
+    const subRoute = (r: MenuRouterConfig) => {
+      return r.children && r.children.map(subMenu => {
+        return route(subMenu);
+      })
+    }
+    return base.component ? route(base) : subRoute(base);
   }
 
   const createRoute: any = (key: string) => {
@@ -48,6 +59,7 @@ const MyRouter: React.FunctionComponent<MyRouterProps> = () => {
   return (
     <Switch>
       {res}
+      <Route render={() => <Redirect to="/404"/>}/>
     </Switch>
   );
 }
