@@ -21,3 +21,16 @@ export function getProblemById(problemId: string) {
     }
   )
 }
+
+
+export function getProblems(start: number, count: number) {
+  return request.get(
+    "/problem/get_problems",
+    {
+      params: {
+        start: start,
+        count: count
+      }
+    }
+  )
+}

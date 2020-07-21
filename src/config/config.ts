@@ -7,4 +7,4 @@
  */
 
 export const TIME_OUT = 5000;
-export const BASE_URL = "https://httpbin.org";
+export const BASE_URL = "http://localhost:8080";
