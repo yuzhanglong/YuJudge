@@ -1,0 +1,46 @@
+.cms-problem-editor-part {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.cms-problem-editor-part-danger {
+  color: #ff4d4f;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+
+.cms-problem-item-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.cms-problem-item-description {
+  padding-top: 6px;
+}
+
+.cms-problem-editor-tip {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cms-problem-item-begin {
+  padding-top: 8px;
+}
+
+.cms-problem-editor-test-case-card-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 550px;
+  height: auto;
+}
+
+.cms-problem-editor-test-case-card {
+  width: 250px;
+}
+
+.cms-problem-editor-test-case-counter {
+  font-weight: bold;
+  color: #a7a3a3;
+}
