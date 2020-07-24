@@ -51,12 +51,18 @@ const routerConfig: {
           title: "题目管理",
           path: "/cms/problem_manage",
         },
-         {
+        {
           key: "/cms/problem_manage/problem_sets",
           component: "ProblemSetManage",
           title: "题目集管理",
           path: "/cms/problem_manage/problem_sets",
         },
+        {
+          key: "/cms/problem_manage/problems/edit",
+          component: "ProblemEdit",
+          title: "题目编辑",
+          path: "/cms/problem_manage/problems/edit/:id",
+        }
       ]
     }
   ],

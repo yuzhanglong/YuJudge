@@ -11,7 +11,7 @@ import request, {REQUEST_TYPES} from "./request";
 /**
  * @author yuzhanglong
  * @description 通过id来获取problem的基本信息
- * @date 22020-7-19 13:10:27
+ * @date 2020-7-19 13:10:27
  */
 export function getProblemById(problemId: string) {
   return request.get(
@@ -22,15 +22,48 @@ export function getProblemById(problemId: string) {
   )
 }
 
-
+/**
+ * @author yuzhanglong
+ * @description 分页获取多个problem
+ * @date 2020-7-19
+ */
 export function getProblems(start: number, count: number) {
   return request.get(
     "/problem/get_problems",
     {
+      method: REQUEST_TYPES.GET,
       params: {
         start: start,
         count: count
       }
+    }
+  )
+}
+
+/**
+ * @author yuzhanglong
+ * @description 获取problem的详细信息
+ * @date 2020-7-23
+ */
+export function getProblemDetailedById(problemId: number) {
+  return request.get(
+    "/problem/get_problem_detailed_by_id/" + problemId,
+    {
+      method: REQUEST_TYPES.GET
+    }
+  )
+}
+
+/**
+ * @author yuzhanglong
+ * @description 获取problem的一个或多个解决方案
+ * @date 2020-7-23 23:02
+ */
+export function getSolutionByProblemId(problemId: number) {
+  return request.get(
+    "/problem/get_solutions/" + problemId,
+    {
+      method: REQUEST_TYPES.GET
     }
   )
 }

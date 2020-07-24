@@ -1,7 +1,7 @@
 import {Breadcrumb as AntdBreadcrump} from "antd";
 import React from "react";
 import {withRouter} from "react-router";
-import { RouteComponentProps } from "react-router-dom";
+import {RouteComponentProps} from "react-router-dom";
 
 interface BreadcrumbProps {
 
