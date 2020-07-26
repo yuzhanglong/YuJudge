@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import ProblemEditor from "../../components/problemEditor/problemEditor";
+import ProblemEditor from "../../components/problemEditor/ProblemEditor";
 import {RouteComponentProps} from "react-router-dom";
 import {getProblemDetailedById, getSolutionByProblemId} from "../../network/problemRequests";
 import {Problem, ProblemTestCase} from "../../models/problem";

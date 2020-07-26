@@ -1,5 +1,5 @@
 import React from "react";
-import ProblemTable from "../../components/problemTable/problemTable";
+import ProblemTable from "../../components/problemTable/ProblemTable";
 import {RouteComponentProps} from "react-router-dom";
 
 

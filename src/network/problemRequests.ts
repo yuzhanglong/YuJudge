@@ -67,3 +67,17 @@ export function getSolutionByProblemId(problemId: number) {
     }
   )
 }
+
+/**
+ * @author yuzhanglong
+ * @description 关闭某个problem
+ * @date 2020-7-26 08:27
+ */
+export function closeProblem(problemId: number) {
+  return request.get(
+    "/problem/close_problem/" + problemId,
+    {
+      method: REQUEST_TYPES.GET
+    }
+  )
+}
