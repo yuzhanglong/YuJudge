@@ -32,7 +32,21 @@ export interface Problem {
  */
 export interface ProblemTestCase {
   id?: number;
-  stdin?: string;
+  stdIn?: string;
   expectedStdOut?: string;
   description?: string;
+}
+
+
+/**
+ * @author yuzhanglong
+ * @description 问题限制
+ * @date 2020-7-23 22:56
+ */
+export interface ProblemLimitation {
+  timeLimit?: number;
+  memoryLimit?: number;
+  cpuTimeLimit?: number;
+  outputLimit?: number;
+  allowedLanguage: string[];
 }

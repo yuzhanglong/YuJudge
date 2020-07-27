@@ -7,6 +7,7 @@
  */
 
 import request, {REQUEST_TYPES} from "./request";
+import {ProblemLimitation, ProblemTestCase} from "../models/problem";
 
 /**
  * @author yuzhanglong
@@ -78,6 +79,37 @@ export function closeProblem(problemId: number) {
     "/problem/close_problem/" + problemId,
     {
       method: REQUEST_TYPES.GET
+    }
+  )
+}
+
+/**
+ * @author yuzhanglong
+ * @description 设置限制
+ * @date 2020-7-27 17:42:17
+ */
+export function setLimitations(problemId: number, limitation: ProblemLimitation) {
+  return request.post(
+    "/problem/set_limitation/" + problemId,
+    limitation,
+    {
+      method: REQUEST_TYPES.GET
+    }
+  )
+}
+
+/**
+ * @author yuzhanglong
+ * @description 添加解决方案
+ * @date 2020-7-27 17:42:51
+ */
+
+export function createSolution(problemId: number, solution: ProblemTestCase) {
+  return request.post(
+    "/problem/create_solution/" + problemId,
+    solution,
+    {
+      method: REQUEST_TYPES.POST
     }
   )
 }

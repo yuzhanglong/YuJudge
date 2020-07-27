@@ -33,7 +33,7 @@ axios.interceptors.request.use(config => {
 request.interceptors.response.use(response => {
   return response.data;
 }, err => {
-  return err;
+  return Promise.reject(err.response.data);
 })
 
 export default request;

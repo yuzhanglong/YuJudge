@@ -18,6 +18,7 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
     console.log(res);
   }
 
+
   return (
     <div className={"cms-problem-editor-basic-info-wrap"}>
       <div className={"cms-problem-editor-basic-info-form"}>

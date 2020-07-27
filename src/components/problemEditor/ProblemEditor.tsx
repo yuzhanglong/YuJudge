@@ -13,7 +13,6 @@ interface ProblemEditorProps {
 }
 
 const ProblemEditor: React.FunctionComponent<ProblemEditorProps> = (props) => {
-
   return (
     <>
       <Card title="问题编辑">
