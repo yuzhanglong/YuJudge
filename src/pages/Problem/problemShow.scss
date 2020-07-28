@@ -1,19 +1,34 @@
 .problem-show-code-mirror {
   background-color: #a7a3a3;
+
+}
+
+.cm-s-default {
+  height: 74vh;
 }
 
 .problem-show-content-wrap {
-
+  height: 80vh;
+  overflow-y: scroll;
 }
 
 .problem-show {
   display: flex;
   width: 100%;
   min-width: 900px;
-  height: 100vh;
   flex-direction: column;
+}
+
+.problem-show-content-wrap::-webkit-scrollbar {
+  width: 10px;
+  height: 1px;
 }
 
 .problem-show-code-operation-wrap {
   padding-bottom: 20px;
+  padding-top: 17px;
+}
+
+.problem-tool-bar-wrap {
+  padding-top: 20px;
 }
