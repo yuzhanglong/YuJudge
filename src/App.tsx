@@ -1,12 +1,28 @@
 import React from 'react';
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, Switch, Route} from "react-router-dom";
 import CMSLayout from "./components/layout/CMSLayout";
+import ProblemShow from "./pages/Problem/ProblemShow";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <CMSLayout></CMSLayout>
+        <Switch>
+          <Route
+            key={"435345"}
+            path={"/cms"}
+            exact>
+            {"cms"}
+            <CMSLayout></CMSLayout>
+          </Route>
+          <Route
+            key={"problem"}
+            path={"/problem/:id"}
+            exact
+            render={(props) => {
+              return (<ProblemShow {...props}></ProblemShow>)
+          }}/>
+        </Switch>
       </div>
     </BrowserRouter>
   );

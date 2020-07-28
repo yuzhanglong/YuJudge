@@ -41,7 +41,6 @@ const ProblemEdit: React.FunctionComponent<ProblemEditProps & RouteComponentProp
 
   // 添加一个testcase
   const addTestCase = () => {
-    console.log(tmpTestCase);
     if (problemId && tmpTestCase) {
       createSolution(problemId, tmpTestCase)
         .then(() => {

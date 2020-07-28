@@ -1,0 +1,19 @@
+.problem-show-code-mirror {
+  background-color: #a7a3a3;
+}
+
+.problem-show-content-wrap {
+
+}
+
+.problem-show {
+  display: flex;
+  width: 100%;
+  min-width: 900px;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.problem-show-code-operation-wrap {
+  padding-bottom: 20px;
+}

@@ -8,7 +8,7 @@ import MyRouter from "../../router";
 const {Header, Content, Sider} = Layout;
 
 
-const CMSLayout: React.FunctionComponent = () => {
+const CMSLayout: React.FunctionComponent = (props) => {
   return (
     <Layout>
       <Header className="header">
@@ -36,7 +36,7 @@ const CMSLayout: React.FunctionComponent = () => {
               margin: 0,
               minHeight: "82vh",
             }}>
-            <MyRouter></MyRouter>
+            <MyRouter {...props}></MyRouter>
           </Content>
         </Layout>
       </Layout>
