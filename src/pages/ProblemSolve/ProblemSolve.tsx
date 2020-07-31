@@ -21,15 +21,25 @@ const ProblemSolve: React.FunctionComponent<ProblemShowProps & RouteComponentPro
   const params: any = props.match.params;
   const problemId: number = params.id;
 
+
+  // 当前problem
   const [problem, setProblem] = useState<Problem>({});
+  // 代码内容
   const [codeContent, setCodeContent] = useState("");
+  // 语言选择器中活跃的语言
   const [activeLanguage, setActiveLanguage] = useState();
+  // 提交表格
   const [submissions, setSubmissions] = useState([]);
+  // 总的提交数目
   const [submissionCount, setSubmissionCount] = useState(1);
+  // 当前活跃的页码
+  const [activePage, setActivePage] = useState(1);
+
 
   useEffect(() => {
     getProblemData(problemId);
     getProblemSubmission(problemId, 1);
+    refleshSubmissionDataTimely().then(r => {});
   }, [problemId]);
 
   const getProblemData = (problemId: number) => {
@@ -54,6 +64,15 @@ const ProblemSolve: React.FunctionComponent<ProblemShowProps & RouteComponentPro
       })
   }
 
+  const refleshSubmissionDataTimely = () => {
+    window.clearInterval();
+    return new Promise(() => {
+      setInterval(() => {
+        getProblemSubmission(problemId, activePage);
+      }, 4000)
+    })
+  }
+
 
   // 编辑器文字发生改变
   const onEditorChange = (value: string) => {
@@ -71,11 +90,15 @@ const ProblemSolve: React.FunctionComponent<ProblemShowProps & RouteComponentPro
     // 发送提交请求
     submitCode(submission).then(() => {
       message.success("提交成功~");
-    })
+      getProblemSubmission(problemId, activePage);
+    });
   }
 
+  // 用户切换页码
   const onPaginationChange = (currentPage: number) => {
+    setActivePage(currentPage);
     getProblemSubmission(problemId, currentPage);
+    refleshSubmissionDataTimely().then(() => {});
   }
 
   // 清空按钮被点击
@@ -115,7 +138,9 @@ const ProblemSolve: React.FunctionComponent<ProblemShowProps & RouteComponentPro
                 </Tabs.TabPane>
                 <Tabs.TabPane tab={<span><OrderedListOutlined/>提交记录</span>} key="submission">
                   <div className={"problem-show-content-wrap"}>
-                    <SubmissionTable submissions={submissions} total={submissionCount}
+                    <SubmissionTable submissions={submissions}
+                                     activePage={activePage}
+                                     total={submissionCount}
                                      onPageChange={onPaginationChange}/>
                   </div>
                 </Tabs.TabPane>

@@ -9,6 +9,7 @@ import {TablePaginationConfig} from "antd/lib/table/interface";
 interface SubmissionTableProps {
   submissions: any[];
   total: number;
+  activePage: number;
   onPageChange?: (currentPage: number) => void;
 }
 
@@ -20,12 +21,12 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
 
   // 渲染时间信息
   const renderTimeCost = (timeCost: number) => {
-    return <div>{timeCost} ms</div>
+    return <div>{timeCost ? timeCost : "--"} ms</div>
   }
 
   // 渲染内存信息
   const renderMemoryCost = (memoryCost: number) => {
-    return <div>{memoryCost} kb</div>
+    return <div>{memoryCost ? memoryCost : "--"} kb</div>
   }
 
   // 获取判题结果标签颜色
@@ -42,6 +43,8 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
       case JudgeConditionEnum.TIME_LIMIT_EXCEEDED:
         return "#d4b106";
       case JudgeConditionEnum.PENDING:
+        return "#8c8c8c";
+      case JudgeConditionEnum.WAITING:
         return "#8c8c8c";
     }
   }
@@ -60,7 +63,9 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
       case JudgeConditionEnum.MEMORY_LIMIT_EXCEED:
         return "MEMORY LIMIT EXCEED";
       case JudgeConditionEnum.TIME_LIMIT_EXCEEDED:
-        return "TIME LIMIT EXCEEDED"
+        return "TIME LIMIT EXCEEDED";
+      case JudgeConditionEnum.WAITING:
+        return "WAITING";
     }
   }
 
@@ -80,7 +85,6 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
 
   // 当用户刷新页码时
   const refreshPagination = (event: TablePaginationConfig) => {
-    console.log(event.current);
     if (props.onPageChange) {
       props.onPageChange(event.current ? event.current : 1);
     }
@@ -91,7 +95,7 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
            rowKey={"id"}
            size="small"
            pagination={
-             {total: props.total, defaultPageSize: 15}
+             {total: props.total, defaultPageSize: 15, current:props.activePage}
            } onChange={refreshPagination}>
       <Column title={"提交时间"} align={"center"}
               dataIndex={"createTime"}
