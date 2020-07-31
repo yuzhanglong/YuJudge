@@ -95,7 +95,7 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
            rowKey={"id"}
            size="small"
            pagination={
-             {total: props.total, defaultPageSize: 15, current:props.activePage}
+             {total: props.total, defaultPageSize: 15, current: props.activePage}
            } onChange={refreshPagination}>
       <Column title={"提交时间"} align={"center"}
               dataIndex={"createTime"}

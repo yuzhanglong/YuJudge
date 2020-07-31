@@ -8,7 +8,7 @@ import Column from "antd/lib/table/Column";
 
 interface ProblemTableProps {
   isShowCreateTime?: boolean;
-  isShowtags?: boolean;
+  isShowTags?: boolean;
   isShowOperations?: boolean;
   onProblemEdit?: (problemId: number) => void;
 }
@@ -73,8 +73,7 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
   }, []);
 
   return (
-    <Table className={"cms_proble_pable"}
-           dataSource={problems}
+    <Table dataSource={problems}
            rowKey={"id"}
            loading={isLoading}
            pagination={
@@ -86,7 +85,7 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
               dataIndex={"name"}
               key={"number"}
               width={150}/>
-      {props.isShowtags &&
+      {props.isShowTags &&
       <Column title={"标签"}
               dataIndex={"characterTags"}
               key={"number"}
@@ -111,7 +110,7 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
 ProblemTable.defaultProps = {
   isShowCreateTime: true,
   isShowOperations: true,
-  isShowtags: true
+  isShowTags: true
 }
 
 export default ProblemTable;

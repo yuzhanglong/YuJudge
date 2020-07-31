@@ -34,12 +34,14 @@ const ProblemSolve: React.FunctionComponent<ProblemShowProps & RouteComponentPro
   const [submissionCount, setSubmissionCount] = useState(1);
   // 当前活跃的页码
   const [activePage, setActivePage] = useState(1);
+  // 当前轮询任务的id
+  const [requestTask, setRequestTask] = useState();
 
 
   useEffect(() => {
     getProblemData(problemId);
     getProblemSubmission(problemId, 1);
-    refleshSubmissionDataTimely().then(r => {});
+    renewSubmissionDataTimely(1).then(() => {});
   }, [problemId]);
 
   const getProblemData = (problemId: number) => {
@@ -64,12 +66,15 @@ const ProblemSolve: React.FunctionComponent<ProblemShowProps & RouteComponentPro
       })
   }
 
-  const refleshSubmissionDataTimely = () => {
-    window.clearInterval();
+  const renewSubmissionDataTimely = (activePage: number) => {
+    if (requestTask) {
+      window.clearInterval(requestTask);
+    }
     return new Promise(() => {
-      setInterval(() => {
+      const id = setInterval(() => {
         getProblemSubmission(problemId, activePage);
       }, 4000)
+      setRequestTask(id);
     })
   }
 
@@ -90,15 +95,18 @@ const ProblemSolve: React.FunctionComponent<ProblemShowProps & RouteComponentPro
     // 发送提交请求
     submitCode(submission).then(() => {
       message.success("提交成功~");
-      getProblemSubmission(problemId, activePage);
+      // 提交时切回第一页，用户可以立刻查看提交状态
+      onPaginationChange(1);
     });
   }
 
   // 用户切换页码
   const onPaginationChange = (currentPage: number) => {
     setActivePage(currentPage);
+    // 立刻刷新一次
     getProblemSubmission(problemId, currentPage);
-    refleshSubmissionDataTimely().then(() => {});
+    renewSubmissionDataTimely(currentPage).then(() => {
+    });
   }
 
   // 清空按钮被点击

@@ -5,7 +5,7 @@ import {Col, Input, Row} from "antd";
 
 interface MarkdownEditorProps {
   content?: string;
-  minheight?: string;
+  minHeight?: string;
   onChange?: (value: string) => void
 }
 

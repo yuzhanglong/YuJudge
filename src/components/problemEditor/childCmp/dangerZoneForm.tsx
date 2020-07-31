@@ -12,7 +12,7 @@ const DangerZoneForm: React.FunctionComponent<DangerZoneFormProps> = (props) => 
   const onProblemClose = () => {
     if (props.problem.id) {
       closeProblem(props.problem.id)
-        .then(res => {
+        .then(() => {
           window.location.reload();
         })
     }

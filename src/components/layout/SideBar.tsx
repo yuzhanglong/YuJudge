@@ -6,7 +6,7 @@ import SubMenu from "antd/lib/menu/SubMenu";
 import {Link} from "react-router-dom";
 
 
-const renderMemuItems = (item: MenuRouterConfig[]) => {
+const renderMenuItems = (item: MenuRouterConfig[]) => {
   return (
     item.map(menuItem => {
       return (
@@ -27,7 +27,7 @@ const renderSideBarSubMenus = (item: MenuRouterConfig[]) => {
     item.map(subMenu => {
       return (
         <SubMenu title={subMenu.title} key={subMenu.key}>
-          {renderMemuItems(subMenu.children || [])}
+          {renderMenuItems(subMenu.children || [])}
         </SubMenu>
       )
     })

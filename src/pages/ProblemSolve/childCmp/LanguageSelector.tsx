@@ -11,7 +11,7 @@ interface LanguageSelectorProps {
 const LanguageSelector: React.FunctionComponent<LanguageSelectorProps> = (props) => {
   const [selectLanguage, setSelectLanguage] = useState<any>();
 
-  const [languageTipVisiable, setLanguageTipVisiable] = useState<boolean>(false);
+  const [languageTipVisible, setLanguageTipVisible] = useState<boolean>(false);
 
   const renderSelector = (allowedLanguage: string[]) => {
     return allowedLanguage.map(res => {
@@ -26,7 +26,7 @@ const LanguageSelector: React.FunctionComponent<LanguageSelectorProps> = (props)
   }
 
   const onLanguageSelectorTipButtonClick = () => {
-    setLanguageTipVisiable(true);
+    setLanguageTipVisible(true);
   }
 
   const onSelectorChange = (value: string) => {
@@ -47,8 +47,8 @@ const LanguageSelector: React.FunctionComponent<LanguageSelectorProps> = (props)
       </Select>
       <Modal
         title="语言提示"
-        visible={languageTipVisiable}
-        onCancel={() => setLanguageTipVisiable(false)}
+        visible={languageTipVisible}
+        onCancel={() => setLanguageTipVisible(false)}
         footer={null}>
         <LanguageTip language={selectLanguage}></LanguageTip>
       </Modal>
