@@ -6,5 +6,11 @@
  * Email: yuzl1123@163.com
  */
 
-export const TIME_OUT = 5000;
-export const BASE_URL = "http://localhost:8080";
+// request的响应时间最大值
+export const TIME_OUT: number = 5000;
+
+// 服务器的baseUrl
+export const BASE_URL: string = "http://localhost:8080";
+
+// 提交界面中单页的数据量
+export const SUBMISSION_SINGLE_PAGE_SIZE: number = 15;

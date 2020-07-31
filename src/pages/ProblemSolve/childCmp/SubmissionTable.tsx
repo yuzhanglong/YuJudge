@@ -2,10 +2,14 @@ import React from "react";
 import {Table, Tag} from "antd";
 import Column from "antd/lib/table/Column";
 import {timestampToDateTime} from "../../../utils/DateTimeUtil";
+import {JudgeConditionEnum} from "../../../core/enumerations/JudgeConditionEnum";
+import {SyncOutlined} from '@ant-design/icons';
+import {TablePaginationConfig} from "antd/lib/table/interface";
 
 interface SubmissionTableProps {
   submissions: any[];
   total: number;
+  onPageChange?: (currentPage: number) => void;
 }
 
 const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) => {
@@ -24,15 +28,62 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
     return <div>{memoryCost} kb</div>
   }
 
+  // 获取判题结果标签颜色
+  const getJudgeConditionColor = (condition: string) => {
+    switch (condition) {
+      case JudgeConditionEnum.ACCEPT:
+        return "#52c41a";
+      case JudgeConditionEnum.COMPILE_ERROR:
+        return "#9254de";
+      case JudgeConditionEnum.WRONG_ANSWER:
+        return "#ff4d4f";
+      case JudgeConditionEnum.MEMORY_LIMIT_EXCEED:
+        return "#2f54eb";
+      case JudgeConditionEnum.TIME_LIMIT_EXCEEDED:
+        return "#d4b106";
+      case JudgeConditionEnum.PENDING:
+        return "#8c8c8c";
+    }
+  }
+
+  // 获取判题结果标签名称
+  const getJudgeConditionTagName = (condition: string) => {
+    switch (condition) {
+      case JudgeConditionEnum.ACCEPT:
+        return "ACCEPT";
+      case JudgeConditionEnum.COMPILE_ERROR:
+        return "COMPILE ERROR";
+      case JudgeConditionEnum.WRONG_ANSWER:
+        return "WRONG ANSWER";
+      case JudgeConditionEnum.PENDING:
+        return "PENDING";
+      case JudgeConditionEnum.MEMORY_LIMIT_EXCEED:
+        return "MEMORY LIMIT EXCEED";
+      case JudgeConditionEnum.TIME_LIMIT_EXCEEDED:
+        return "TIME LIMIT EXCEEDED"
+    }
+  }
+
+
   // 渲染判题结果标签
   const renderJudgeCondition = (condition: string) => {
     return (
       <div>
-        <Tag color="#87d068" className={"judge-condition-tag-wrap"}>
-          {condition}
+        <Tag color={getJudgeConditionColor(condition)}
+             icon={condition === JudgeConditionEnum.PENDING ? (<SyncOutlined spin/>) : null}
+             className={"judge-condition-tag-wrap"}>
+          {getJudgeConditionTagName(condition)}
         </Tag>
       </div>
     )
+  }
+
+  // 当用户刷新页码时
+  const refreshPagination = (event: TablePaginationConfig) => {
+    console.log(event.current);
+    if (props.onPageChange) {
+      props.onPageChange(event.current ? event.current : 1);
+    }
   }
 
   return (
@@ -41,7 +92,7 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
            size="small"
            pagination={
              {total: props.total, defaultPageSize: 15}
-           }>
+           } onChange={refreshPagination}>
       <Column title={"提交时间"} align={"center"}
               dataIndex={"createTime"}
               key={"createTime"}

@@ -11,6 +11,7 @@ import {FormOutlined, ExperimentOutlined, OrderedListOutlined} from '@ant-design
 import {getSubmissionByProblemId, submitCode} from "../../network/submissionRequest";
 import {Submission} from "../../models/submission";
 import SubmissionTable from "./childCmp/SubmissionTable";
+import {SUBMISSION_SINGLE_PAGE_SIZE} from "../../config/config";
 
 interface ProblemShowProps {
 
@@ -28,7 +29,7 @@ const ProblemSolve: React.FunctionComponent<ProblemShowProps & RouteComponentPro
 
   useEffect(() => {
     getProblemData(problemId);
-    getProblemSubmission(problemId);
+    getProblemSubmission(problemId, 1);
   }, [problemId]);
 
   const getProblemData = (problemId: number) => {
@@ -42,11 +43,11 @@ const ProblemSolve: React.FunctionComponent<ProblemShowProps & RouteComponentPro
       })
   }
 
-  const getProblemSubmission = (problemId: number) => {
-    getSubmissionByProblemId(0, 10, problemId)
+  const getProblemSubmission = (problemId: number, page: number) => {
+    getSubmissionByProblemId(page - 1, SUBMISSION_SINGLE_PAGE_SIZE, problemId)
       .then(res => {
         setSubmissions(res.data.items);
-        setSubmissionCount(res.data.count);
+        setSubmissionCount(res.data.total);
       })
       .catch(() => {
         message.error("获取提交内容失败");
@@ -71,6 +72,10 @@ const ProblemSolve: React.FunctionComponent<ProblemShowProps & RouteComponentPro
     submitCode(submission).then(() => {
       message.success("提交成功~");
     })
+  }
+
+  const onPaginationChange = (currentPage: number) => {
+    getProblemSubmission(problemId, currentPage);
   }
 
   // 清空按钮被点击
@@ -110,9 +115,8 @@ const ProblemSolve: React.FunctionComponent<ProblemShowProps & RouteComponentPro
                 </Tabs.TabPane>
                 <Tabs.TabPane tab={<span><OrderedListOutlined/>提交记录</span>} key="submission">
                   <div className={"problem-show-content-wrap"}>
-                    <SubmissionTable submissions={submissions}
-                                     total={submissionCount}>
-                    </SubmissionTable>
+                    <SubmissionTable submissions={submissions} total={submissionCount}
+                                     onPageChange={onPaginationChange}/>
                   </div>
                 </Tabs.TabPane>
               </Tabs>
