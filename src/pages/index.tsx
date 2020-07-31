@@ -6,9 +6,9 @@
  * Email: yuzl1123@163.com
  */
 
-import ProblemSetManage from "./ProblemSetManage/problemSetManage";
-import ProblemManage from "./ProblemManage/ProblemManage";
-import ProblemEdit from "./ProblemEdit/ProblemEdit";
+import ProblemSetManage from "./problemSetManage/problemSetManage";
+import ProblemManage from "./problemManage/ProblemManage";
+import ProblemEdit from "./ProblemEdit/problemEdit";
 
 export default {
   ProblemManage: ProblemManage,

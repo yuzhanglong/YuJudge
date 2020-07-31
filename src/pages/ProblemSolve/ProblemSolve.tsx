@@ -8,16 +8,28 @@ import {getProblemDetailedById} from "../../network/problemRequests";
 import LanguageSelector from "./childCmp/LanguageSelector";
 import SubmitToolBar from "../../components/submitToolBar/SubmitToolBar";
 import {FormOutlined, ExperimentOutlined, OrderedListOutlined} from '@ant-design/icons';
+import {getSubmissionByProblemId, submitCode} from "../../network/submissionRequest";
+import {Submission} from "../../models/submission";
+import SubmissionTable from "./childCmp/SubmissionTable";
 
 interface ProblemShowProps {
 
 }
 
-const ProblemShow: React.FunctionComponent<ProblemShowProps & RouteComponentProps> = (props) => {
+const ProblemSolve: React.FunctionComponent<ProblemShowProps & RouteComponentProps> = (props) => {
   const params: any = props.match.params;
   const problemId: number = params.id;
 
   const [problem, setProblem] = useState<Problem>({});
+  const [codeContent, setCodeContent] = useState("");
+  const [activeLanguage, setActiveLanguage] = useState();
+  const [submissions, setSubmissions] = useState([]);
+  const [submissionCount, setSubmissionCount] = useState(1);
+
+  useEffect(() => {
+    getProblemData(problemId);
+    getProblemSubmission(problemId);
+  }, [problemId]);
 
   const getProblemData = (problemId: number) => {
     getProblemDetailedById(problemId)
@@ -26,13 +38,46 @@ const ProblemShow: React.FunctionComponent<ProblemShowProps & RouteComponentProp
         setProblem(p);
       })
       .catch(() => {
-        message.error("这个问题不存在")
+        message.error("这个问题不存在");
       })
   }
 
-  useEffect(() => {
-    getProblemData(problemId);
-  }, [problemId]);
+  const getProblemSubmission = (problemId: number) => {
+    getSubmissionByProblemId(0, 10, problemId)
+      .then(res => {
+        setSubmissions(res.data.items);
+        setSubmissionCount(res.data.count);
+      })
+      .catch(() => {
+        message.error("获取提交内容失败");
+      })
+  }
+
+
+  // 编辑器文字发生改变
+  const onEditorChange = (value: string) => {
+    setCodeContent(value);
+  }
+
+  // 提交按钮被点击
+  const onSubmitButtonClick = () => {
+    let submission: Submission = {
+      problemId: problem.id,
+      codeContent: codeContent,
+      language: activeLanguage,
+      judgePreference: "ACM"
+    }
+    // 发送提交请求
+    submitCode(submission).then(() => {
+      message.success("提交成功~");
+    })
+  }
+
+  // 清空按钮被点击
+  const onClearButtonClick = () => {
+    setCodeContent("");
+    message.success("代码区已清空~");
+  }
 
   return (
     <div className={"problem-show"}>
@@ -65,7 +110,9 @@ const ProblemShow: React.FunctionComponent<ProblemShowProps & RouteComponentProp
                 </Tabs.TabPane>
                 <Tabs.TabPane tab={<span><OrderedListOutlined/>提交记录</span>} key="submission">
                   <div className={"problem-show-content-wrap"}>
-                    提交记录区域
+                    <SubmissionTable submissions={submissions}
+                                     total={submissionCount}>
+                    </SubmissionTable>
                   </div>
                 </Tabs.TabPane>
               </Tabs>
@@ -77,16 +124,22 @@ const ProblemShow: React.FunctionComponent<ProblemShowProps & RouteComponentProp
               <div className={"problem-show-code-operation-wrap"}>
                 <Row>
                   <LanguageSelector
-                    onLanguageChange={(res) => console.warn(res)}
+                    onLanguageChange={(res) => setActiveLanguage(res)}
                     allowedLanguage={problem.allowedLanguage ? problem.allowedLanguage : []}/>
                 </Row>
               </div>
               <CodeMirror
-                value=''
+                value={codeContent}
                 options={{lineNumbers: true}}
-                className={"problem-show-code-mirror"}/>
+                className={"problem-show-code-mirror"}
+                onChange={
+                  (editor, data, value) => onEditorChange(value)
+                }/>
               <div className={"problem-tool-bar-wrap"}>
-                <SubmitToolBar></SubmitToolBar>
+                <SubmitToolBar onSubmit={onSubmitButtonClick}
+                               onClear={onClearButtonClick}
+                               isButtonActive={codeContent !== ""}>
+                </SubmitToolBar>
               </div>
             </Card>
           </Col>
@@ -96,4 +149,4 @@ const ProblemShow: React.FunctionComponent<ProblemShowProps & RouteComponentProp
   )
 }
 
-export default ProblemShow;
+export default ProblemSolve;

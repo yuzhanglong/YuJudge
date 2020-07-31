@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import CMSLayout from "./components/layout/CMSLayout";
-import ProblemShow from "./pages/Problem/ProblemShow";
+import ProblemSolve from "./pages/ProblemSolve/ProblemSolve";
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
             path={"/problem/:id"}
             exact
             render={(props) => {
-              return (<ProblemShow {...props}></ProblemShow>)
+              return (<ProblemSolve {...props}></ProblemSolve>)
           }}/>
         </Switch>
       </div>

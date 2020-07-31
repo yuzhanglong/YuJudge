@@ -41,18 +41,17 @@ const LanguageSelector: React.FunctionComponent<LanguageSelectorProps> = (props)
               size={"small"} disabled={!selectLanguage}
               onClick={onLanguageSelectorTipButtonClick}>
       </Button>
-      <Select placeholder={"请选择"}
-              style={{width: 120, paddingLeft: 10}}
+      <Select style={{width: 120, paddingLeft: 10}} placeholder={"请选择"}
               size={"small"} onChange={onSelectorChange}>
         {renderSelector(props.allowedLanguage)}
       </Select>
       <Modal
-          title="语言提示"
-          visible={languageTipVisiable}
-          onCancel={() => setLanguageTipVisiable(false)}
-          footer={null}>
-          <LanguageTip language={selectLanguage}></LanguageTip>
-        </Modal>
+        title="语言提示"
+        visible={languageTipVisiable}
+        onCancel={() => setLanguageTipVisiable(false)}
+        footer={null}>
+        <LanguageTip language={selectLanguage}></LanguageTip>
+      </Modal>
     </div>
   )
 }
