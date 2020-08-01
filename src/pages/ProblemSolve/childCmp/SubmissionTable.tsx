@@ -11,6 +11,7 @@ interface SubmissionTableProps {
   total: number;
   activePage: number;
   onPageChange?: (currentPage: number) => void;
+  onSubmissionTagClick?: (detail: any) => void;
 }
 
 const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) => {
@@ -46,6 +47,8 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
         return "#8c8c8c";
       case JudgeConditionEnum.WAITING:
         return "#8c8c8c";
+      case JudgeConditionEnum.SEGMENTATION_FAULT:
+        return "#08979c";
     }
   }
 
@@ -66,15 +69,18 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
         return "TIME LIMIT EXCEEDED";
       case JudgeConditionEnum.WAITING:
         return "WAITING";
+      case JudgeConditionEnum.SEGMENTATION_FAULT:
+        return "SEGMENTATION FAULT";
     }
   }
 
 
   // 渲染判题结果标签
-  const renderJudgeCondition = (condition: string) => {
+  const renderJudgeCondition = (condition: string, detail: any) => {
     return (
       <div>
         <Tag color={getJudgeConditionColor(condition)}
+             onClick={() => onSeeSubmissionTagClick(detail)}
              icon={condition === JudgeConditionEnum.PENDING ? (<SyncOutlined spin/>) : null}
              className={"judge-condition-tag-wrap"}>
           {getJudgeConditionTagName(condition)}
@@ -90,13 +96,20 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
     }
   }
 
+  const onSeeSubmissionTagClick = (detail: any) => {
+    if (props.onSubmissionTagClick) {
+      props.onSubmissionTagClick(detail);
+    }
+  }
+
   return (
     <Table dataSource={props.submissions}
            rowKey={"id"}
            size="small"
            pagination={
              {total: props.total, defaultPageSize: 15, current: props.activePage}
-           } onChange={refreshPagination}>
+           }
+           onChange={refreshPagination}>
       <Column title={"提交时间"} align={"center"}
               dataIndex={"createTime"}
               key={"createTime"}

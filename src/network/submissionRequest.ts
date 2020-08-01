@@ -38,3 +38,15 @@ export function getSubmissionByProblemId(start: number, count: number, problemId
     }
   )
 }
+
+export function getSubmissionById(submissionId: number) {
+  return request.get(
+    "/submission/get_submission_detail",
+    {
+      params: {
+        submissionId: submissionId
+      },
+      method: REQUEST_TYPES.GET
+    }
+  )
+}

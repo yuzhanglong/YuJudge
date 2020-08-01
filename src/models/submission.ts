@@ -11,4 +11,30 @@ export interface Submission {
   codeContent: string;
   language: string;
   judgePreference: string;
+  createTime?: number;
+  judgeCondition?: string;
+  memoryCost?: number;
+  timeCost?: number;
+}
+
+export interface JudgeResultForSingleTestCase {
+  realTimeCost?: number,
+  memoryCost?: number,
+  cpuTimeCost?: number,
+  condition?: number,
+  stdinPath?: string,
+  stdoutPath?: string,
+  stderrPath?: string,
+  message?: string;
+}
+
+export interface JudgeResult {
+  submissionId: number;
+  judgeEndTime: number;
+  extraInfo: string[];
+  judgeResults: JudgeResultForSingleTestCase[];
+}
+
+export interface SubmissionDetail extends Submission {
+  judgeResult: JudgeResult;
 }

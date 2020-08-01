@@ -8,10 +8,11 @@ import {getProblemDetailedById} from "../../network/problemRequests";
 import LanguageSelector from "./childCmp/LanguageSelector";
 import SubmitToolBar from "../../components/submitToolBar/SubmitToolBar";
 import {FormOutlined, ExperimentOutlined, OrderedListOutlined} from '@ant-design/icons';
-import {getSubmissionByProblemId, submitCode} from "../../network/submissionRequest";
+import {getSubmissionById, getSubmissionByProblemId, submitCode} from "../../network/submissionRequest";
 import {Submission} from "../../models/submission";
 import SubmissionTable from "./childCmp/SubmissionTable";
 import {SUBMISSION_SINGLE_PAGE_SIZE} from "../../config/config";
+import SubmissionDetailModal from "./childCmp/SubmissionDetailModal";
 
 interface ProblemShowProps {
 
@@ -36,14 +37,20 @@ const ProblemSolve: React.FunctionComponent<ProblemShowProps & RouteComponentPro
   const [activePage, setActivePage] = useState(1);
   // 当前轮询任务的id
   const [requestTask, setRequestTask] = useState();
+  // 提交详情是否可视
+  const [isSubmissionDetailVisiable, setIsSubmissionIsVisiable] = useState(false);
+  // 选中的提交细节内容
+  const [activeSubmission, setActiveSubmission] = useState();
 
 
   useEffect(() => {
     getProblemData(problemId);
     getProblemSubmission(problemId, 1);
-    renewSubmissionDataTimely(1).then(() => {});
+    renewSubmissionDataTimely(1).then(() => {
+    });
   }, [problemId]);
 
+  // 获取问题数据
   const getProblemData = (problemId: number) => {
     getProblemDetailedById(problemId)
       .then(res => {
@@ -55,6 +62,7 @@ const ProblemSolve: React.FunctionComponent<ProblemShowProps & RouteComponentPro
       })
   }
 
+  // 分页获取当前问题下的所有提交
   const getProblemSubmission = (problemId: number, page: number) => {
     getSubmissionByProblemId(page - 1, SUBMISSION_SINGLE_PAGE_SIZE, problemId)
       .then(res => {
@@ -66,6 +74,7 @@ const ProblemSolve: React.FunctionComponent<ProblemShowProps & RouteComponentPro
       })
   }
 
+  // 实时更新提交
   const renewSubmissionDataTimely = (activePage: number) => {
     if (requestTask) {
       window.clearInterval(requestTask);
@@ -77,7 +86,6 @@ const ProblemSolve: React.FunctionComponent<ProblemShowProps & RouteComponentPro
       setRequestTask(id);
     })
   }
-
 
   // 编辑器文字发生改变
   const onEditorChange = (value: string) => {
@@ -115,6 +123,24 @@ const ProblemSolve: React.FunctionComponent<ProblemShowProps & RouteComponentPro
     message.success("代码区已清空~");
   }
 
+  // 展示submission细节信息
+  const showSubmissionDetail = (event: any) => {
+    const submissionId: number = event.id;
+    getSubmissionDetail(submissionId);
+    setIsSubmissionIsVisiable(true);
+  }
+
+  // 获取提交细节内容
+  const getSubmissionDetail = (submissionId: number) => {
+    getSubmissionById(submissionId)
+      .then(res => {
+        setActiveSubmission(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
   return (
     <div className={"problem-show"}>
       <Layout>
@@ -149,7 +175,12 @@ const ProblemSolve: React.FunctionComponent<ProblemShowProps & RouteComponentPro
                     <SubmissionTable submissions={submissions}
                                      activePage={activePage}
                                      total={submissionCount}
-                                     onPageChange={onPaginationChange}/>
+                                     onPageChange={onPaginationChange}
+                                     onSubmissionTagClick={showSubmissionDetail}/>
+                    <SubmissionDetailModal isVisible={isSubmissionDetailVisiable}
+                                           onClose={() => setIsSubmissionIsVisiable(false)}
+                                           submission={activeSubmission}
+                                           problemName={problem.name ? problem.name: ""}/>
                   </div>
                 </Tabs.TabPane>
               </Tabs>
