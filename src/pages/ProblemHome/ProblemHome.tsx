@@ -19,9 +19,10 @@ import {FormOutlined, ExperimentOutlined, OrderedListOutlined} from '@ant-design
 import {getSubmissionById, getSubmissionByProblemId, submitCode} from "../../network/submissionRequest";
 import {Submission} from "../../models/submission";
 import SubmissionTable from "./childCmp/SubmissionTable";
-import {SUBMISSION_SINGLE_PAGE_SIZE} from "../../config/config";
+import {SUBMISSION_REQUEST_TASK_TIME, SUBMISSION_SINGLE_PAGE_SIZE} from "../../config/config";
 import SubmissionDetailModal from "./childCmp/SubmissionDetailModal";
 import CommonMenu from "../../components/commonMenu/CommonMenu";
+import {getCode, saveCode} from "../../utils/dataPersistence";
 
 interface ProblemShowProps {
 
@@ -31,8 +32,6 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
 
   // 首页页号
   const PAGE_BEGIN: number = 1;
-  // 查看当前提交轮询任务间隔时间，单位为毫秒
-  const SUBMISSION_REQUEST_TASK_TIME = 4000;
   // 默认判题偏好
   const DEFAULT_JUDGE_PREFERENCE = "ACM";
 
@@ -62,6 +61,7 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
 
   useEffect(() => {
     getProblemData(problemId);
+    showSavedCode();
     getProblemSubmission(problemId, PAGE_BEGIN);
     renewSubmissionDataTimely(PAGE_BEGIN).then(() => {
     });
@@ -163,6 +163,20 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
     }
   }
 
+  // 保存按钮被点击
+  const onCodeSave = () => {
+    saveCode(problemId.toString(), codeContent);
+    message.success("代码已保存～");
+  }
+
+  // 展示之前保存的代码
+  const showSavedCode = () => {
+    const code = getCode(problemId.toString());
+    if (code) {
+      setCodeContent(code);
+    }
+  }
+
   return (
     <div className={"problem-show"}>
       <Layout>
@@ -220,7 +234,8 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
                 <SubmitToolBar
                   onSubmit={onSubmitButtonClick}
                   onClear={onClearButtonClick}
-                  isButtonActive={codeContent !== ""}/>
+                  isButtonActive={codeContent !== ""}
+                  onSave={() => onCodeSave()}/>
               </div>
             </Card>
           </Col>

@@ -18,10 +18,11 @@ export const JUDGE_CONDITION_COLORS: { [key: string]: string; } = {
   [JudgeConditionEnum.TIME_LIMIT_EXCEEDED]: "#d4b106",
   [JudgeConditionEnum.PENDING]: "#8c8c8c",
   [JudgeConditionEnum.WAITING]: "#8c8c8c",
-  [JudgeConditionEnum.SEGMENTATION_FAULT]: "#08979c"
+  [JudgeConditionEnum.SEGMENTATION_FAULT]: "#08979c",
+  [JudgeConditionEnum.RUNTIME_ERROR]: "#2347d2"
 }
 
-export const JUDGE_CONDITION_TAG_NAMES : { [key: string]: string; } = {
+export const JUDGE_CONDITION_TAG_NAMES: { [key: string]: string; } = {
   [JudgeConditionEnum.ACCEPT]: "ACCEPT",
   [JudgeConditionEnum.COMPILE_ERROR]: "COMPILE ERROR",
   [JudgeConditionEnum.WRONG_ANSWER]: "WRONG ANSWER",
@@ -29,5 +30,6 @@ export const JUDGE_CONDITION_TAG_NAMES : { [key: string]: string; } = {
   [JudgeConditionEnum.TIME_LIMIT_EXCEEDED]: "TIME LIMIT EXCEEDED",
   [JudgeConditionEnum.PENDING]: "PENDING",
   [JudgeConditionEnum.WAITING]: "WAITING",
-  [JudgeConditionEnum.SEGMENTATION_FAULT]: "SEGMENTATION FAULT"
+  [JudgeConditionEnum.SEGMENTATION_FAULT]: "SEGMENTATION FAULT",
+  [JudgeConditionEnum.RUNTIME_ERROR]: "RUNTIME ERROR"
 }

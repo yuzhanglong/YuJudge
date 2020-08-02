@@ -14,3 +14,6 @@ export const BASE_URL: string = "http://localhost:8080";
 
 // 提交界面中单页的数据量
 export const SUBMISSION_SINGLE_PAGE_SIZE: number = 15;
+
+// 查看当前提交轮询任务间隔时间，单位为毫秒
+export const SUBMISSION_REQUEST_TASK_TIME = 4000;
