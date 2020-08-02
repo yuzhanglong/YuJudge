@@ -1,9 +1,15 @@
 /*
- * File: JudgeConditionEnum.ts
- * Description: 判题状态的枚举类
- * Created: 2020-7-31 21:39:40
+ * File: enumerations.ts
+ * Description: 项目枚举数据
+ * Created: 2020-8-2 20:58
  * Author: yuzhanglong
  * Email: yuzl1123@163.com
+ */
+
+/**
+ * @author yuzhanglong
+ * @description 判题状态
+ * @date 2020-8-2 8:49
  */
 export enum JudgeConditionEnum {
   PENDING = "PENDING",
@@ -14,4 +20,16 @@ export enum JudgeConditionEnum {
   TIME_LIMIT_EXCEEDED = "TIME_LIMIT_EXCEEDED",
   WAITING = "WAITING",
   SEGMENTATION_FAULT = "SEGMENTATION_FAULT"
+}
+
+/**
+ * @author yuzhanglong
+ * @description 语言类型
+ * @date 2020-8-1
+ */
+export enum LanguageTypeEnum {
+  C = "C",
+  C_PLUS_PLUS = "C_PLUS_PLUS",
+  JAVA = "JAVA",
+  PYTHON = "PYTHON",
 }

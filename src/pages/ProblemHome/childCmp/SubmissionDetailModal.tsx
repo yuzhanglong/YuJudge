@@ -13,6 +13,7 @@ interface SubmissionDetailModalProps {
 }
 
 const SubmissionDetailModal: React.FunctionComponent<SubmissionDetailModalProps> = (props) => {
+
   // 问题创建时间
   const renderCreateTime = (timeStamp: number | undefined) => {
     if (timeStamp === undefined) return;
@@ -23,6 +24,7 @@ const SubmissionDetailModal: React.FunctionComponent<SubmissionDetailModalProps>
     )
   }
 
+  // 渲染编译器输出内容
   const renderCompilerStdout = (submission: SubmissionDetail) => {
     // judgeResult不存在
     if (!submission.judgeResult) {
@@ -36,13 +38,26 @@ const SubmissionDetailModal: React.FunctionComponent<SubmissionDetailModalProps>
     if (!submission.judgeResult.extraInfo.length) {
       compilerStdOut = "编译器没有输出O(∩_∩)O~";
     } else {
-      for (let i = 0; i < submission.judgeResult.extraInfo.length; i++) {
-        compilerStdOut += submission.judgeResult.extraInfo[i];
-        if (i !== submission.judgeResult.extraInfo.length - 1) compilerStdOut += "\n";
+      const size = submission.judgeResult.extraInfo.length;
+      for (let i = 0; i < size; i++) {
+        const info = submission.judgeResult.extraInfo[i];
+        i === size - 1 ? (compilerStdOut += info) : (compilerStdOut += info + "\n");
       }
     }
-    return (<TextArea value={compilerStdOut} style={{height: 100, backgroundColor: "#f5f5f5"}}></TextArea>)
+
+
+    return (
+      <TextArea
+        value={compilerStdOut}
+        style={{
+          height: 100,
+          backgroundColor: "#f5f5f5"
+        }}>
+      </TextArea>
+    )
   }
+
+
   return (
     <div className={"submission-detail-modal"}>
       <Modal title="查看提交"
@@ -100,7 +115,10 @@ SubmissionDetailModal.defaultProps = {
     language: "",
     problemId: 0,
     judgeResult: {
-      extraInfo: [], judgeEndTime: 0, judgeResults: [], submissionId: 0
+      extraInfo: [],
+      judgeEndTime: 0,
+      judgeResults: [],
+      submissionId: 0
     }
   }
 }

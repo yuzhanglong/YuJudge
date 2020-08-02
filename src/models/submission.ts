@@ -6,7 +6,15 @@
  * Email: yuzl1123@163.com
  */
 
+import {JudgeConditionEnum} from "../common/enumerations";
+
+/**
+ * @author yuzhanglong
+ * @description 用户提交
+ * @date 2020-8-2 8:51
+ */
 export interface Submission {
+  id?: number;
   problemId?: number;
   codeContent: string;
   language: string;
@@ -21,7 +29,7 @@ export interface JudgeResultForSingleTestCase {
   realTimeCost?: number,
   memoryCost?: number,
   cpuTimeCost?: number,
-  condition?: number,
+  condition?: JudgeConditionEnum,
   stdinPath?: string,
   stdoutPath?: string,
   stderrPath?: string,

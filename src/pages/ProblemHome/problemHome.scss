@@ -2,6 +2,11 @@
   background-color: #a7a3a3;
 }
 
+.problem-show-code-operation-wrap {
+  padding-bottom: 20px;
+  padding-top: 17px;
+}
+
 .cm-s-default {
   height: 74vh;
 }
@@ -23,11 +28,6 @@
   height: 1px;
 }
 
-.problem-show-code-operation-wrap {
-  padding-bottom: 20px;
-  padding-top: 17px;
-}
-
 .problem-tool-bar-wrap {
   padding-top: 20px;
 }
@@ -40,10 +40,6 @@
   height: 300px;
   width: 760px;
   overflow: auto;
-}
-
-.submission-detail-modal {
-
 }
 
 .compiler-std-out-show {
