@@ -2,12 +2,12 @@ import React from "react";
 import {Table, Tag} from "antd";
 import Column from "antd/lib/table/Column";
 import {timestampToDateTime} from "../../../utils/DateTimeUtil";
-import {SyncOutlined} from '@ant-design/icons';
 import {TablePaginationConfig} from "antd/lib/table/interface";
 import {JudgeConditionEnum} from "../../../common/enumerations";
 import {JUDGE_CONDITION_COLORS, JUDGE_CONDITION_TAG_NAMES} from "../../../common/judgeCondition";
 import {PROGRAM_LANGUAGE_NAME} from "../../../common/programLanguage";
 import {SUBMISSION_SINGLE_PAGE_SIZE} from "../../../config/config";
+import classNames from "classnames";
 
 interface SubmissionTableProps {
   submissions: any[];
@@ -46,12 +46,15 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
 
   // 渲染判题结果标签
   const renderJudgeCondition = (condition: JudgeConditionEnum, detail: any) => {
+    const isLoading = (condition === JudgeConditionEnum.WAITING || condition === JudgeConditionEnum.PENDING)
+    const className = classNames("judge-condition-tag-wrap", {
+      "judge-condition-tag-wrap-loading": isLoading
+    })
     return (
       <div>
         <Tag color={getJudgeConditionColor(condition)}
              onClick={() => onSeeSubmissionTagClick(detail)}
-             icon={condition === JudgeConditionEnum.PENDING ? (<SyncOutlined spin/>) : null}
-             className={"judge-condition-tag-wrap"}>
+             className={className}>
           {getJudgeConditionTagName(condition)}
         </Tag>
       </div>

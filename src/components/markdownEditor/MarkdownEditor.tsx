@@ -34,10 +34,13 @@ const MarkdownEditor: React.FunctionComponent<MarkdownEditorProps> = (props) => 
             value={props.content}/>
         </Col>
         <Col span={12}>
-          <ReactMarkdown source={markdownValue}
-                         className={"markdown-show"}
-                         escapeHtml={false}
-                         renderers={{code: CodeBlock}}>
+          <ReactMarkdown
+            source={markdownValue}
+            className={"markdown-show"}
+            escapeHtml={true}
+            renderers={{
+              code: CodeBlock
+            }}>
           </ReactMarkdown>
         </Col>
       </Row>

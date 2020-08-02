@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 
 interface CodeBlockProps {
   setRef?: string;
@@ -7,9 +8,11 @@ interface CodeBlockProps {
 }
 
 const CodeBlock: React.FunctionComponent<CodeBlockProps> = (props) => {
+  console.log(props);
+  const classnames = classNames(`language-${props.language}`, "markdown-editor-code-content");
   return (
     <pre>
-        <code ref={props.setRef} className={`language-${props.language}`}>
+        <code ref={props.setRef} className={classnames}>
           {props.value}
         </code>
     </pre>

@@ -65,6 +65,7 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
     getProblemSubmission(problemId, PAGE_BEGIN);
     renewSubmissionDataTimely(PAGE_BEGIN).then(() => {
     });
+    // eslint-disable-next-line
   }, [problemId]);
 
   // 获取问题数据
