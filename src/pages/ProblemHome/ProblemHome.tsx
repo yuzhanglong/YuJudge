@@ -1,5 +1,5 @@
 /*
- * File: ProblemHome.tsx
+ * File: problemHome.tsx
  * Description: 问题首页，包括提交区域、题解区域、代码区等
  * Created: 2020-8-2 9:51
  * Author: yuzhanglong
@@ -7,7 +7,7 @@
  */
 
 import React, {useEffect, useState} from "react";
-import {Col, Layout, message, Row, Card, Tabs} from "antd";
+import {Card, Col, Layout, message, Row, Tabs} from "antd";
 import {UnControlled as CodeMirror} from 'react-codemirror2'
 import ReactMarkdown from "react-markdown";
 import {RouteComponentProps} from "react-router-dom";
@@ -15,7 +15,7 @@ import {Problem} from "../../models/problem";
 import {getProblemDetailedById} from "../../network/problemRequests";
 import LanguageSelector from "./childCmp/LanguageSelector";
 import SubmitToolBar from "../../components/submitToolBar/SubmitToolBar";
-import {FormOutlined, ExperimentOutlined, OrderedListOutlined} from '@ant-design/icons';
+import {ExperimentOutlined, FormOutlined, OrderedListOutlined} from '@ant-design/icons';
 import {getSubmissionById, getSubmissionByProblemId, submitCode} from "../../network/submissionRequest";
 import {Submission} from "../../models/submission";
 import SubmissionTable from "./childCmp/SubmissionTable";
@@ -23,6 +23,7 @@ import {SUBMISSION_REQUEST_TASK_TIME, SUBMISSION_SINGLE_PAGE_SIZE} from "../../c
 import SubmissionDetailModal from "./childCmp/SubmissionDetailModal";
 import CommonMenu from "../../components/commonMenu/CommonMenu";
 import {getCode, saveCode} from "../../utils/dataPersistence";
+import {ProblemHoneTabKey} from "../../common/enumerations";
 
 interface ProblemShowProps {
 
@@ -57,6 +58,8 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
   const [isSubmissionDetailVisible, setIsSubmissionIsVisible] = useState(false);
   // 选中的提交细节内容
   const [activeSubmission, setActiveSubmission] = useState();
+  // 选中的左侧导航的key
+  const [activeProblemTabKey, setActiveProblemTabKey] = useState(ProblemHoneTabKey.PROBLEM);
 
 
   useEffect(() => {
@@ -121,7 +124,8 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
     // 发送提交请求
     submitCode(submission).then(() => {
       message.success("提交成功~");
-      // 提交时切回第一页，用户可以立刻查看提交状态
+      // 提交时tab跳转到提交页面，同时内部的表单切回第一页，用户可以立刻查看提交状态
+      setActiveProblemTabKey(ProblemHoneTabKey.SUBMISSION);
       onPaginationChange(PAGE_BEGIN);
     });
   }
@@ -184,18 +188,24 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
         <Row>
           <Col span={12}>
             <Card>
-              <Tabs defaultActiveKey="1">
-                <Tabs.TabPane tab={<span><FormOutlined/>问题</span>} key="problem">
+              <Tabs activeKey={activeProblemTabKey} onChange={(key: any) => setActiveProblemTabKey(key)}>
+                <Tabs.TabPane
+                  tab={<span><FormOutlined/>问题</span>}
+                  key={ProblemHoneTabKey.PROBLEM}>
                   <div className={"problem-show-content-wrap"}>
                     <ReactMarkdown source={problem.content}></ReactMarkdown>
                   </div>
                 </Tabs.TabPane>
-                <Tabs.TabPane tab={<span><ExperimentOutlined/>题解</span>} key="solutions">
+                <Tabs.TabPane
+                  tab={<span><ExperimentOutlined/>题解</span>}
+                  key={ProblemHoneTabKey.SOLUTION}>
                   <div className={"problem-show-content-wrap"}>
                     题解区域
                   </div>
                 </Tabs.TabPane>
-                <Tabs.TabPane tab={<span><OrderedListOutlined/>提交记录</span>} key="submission">
+                <Tabs.TabPane
+                  tab={<span><OrderedListOutlined/>提交记录</span>}
+                  key={ProblemHoneTabKey.SUBMISSION}>
                   <div className={"problem-show-content-wrap"}>
                     <SubmissionTable
                       submissions={submissions}

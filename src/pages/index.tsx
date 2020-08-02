@@ -8,7 +8,7 @@
 
 import ProblemSetManage from "./problemSetManage/problemSetManage";
 import ProblemManage from "./problemManage/ProblemManage";
-import ProblemEdit from "./ProblemEdit/problemEdit";
+import ProblemEdit from "./problemEdit/problemEdit";
 
 export default {
   ProblemManage: ProblemManage,

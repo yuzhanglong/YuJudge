@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import CMSLayout from "./components/layout/CMSLayout";
-import ProblemHome from "./pages/ProblemHome/ProblemHome";
+import ProblemHome from "./pages/problemHome/ProblemHome";
 import zhCN from 'antd/es/locale/zh_CN';
 import {ConfigProvider} from "antd";
 

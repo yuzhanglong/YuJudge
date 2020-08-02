@@ -18,6 +18,7 @@ interface SubmissionTableProps {
 }
 
 const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) => {
+
   // 问题创建时间
   const renderCreateTime = (timeStamp: number) => {
     return (<div>{timestampToDateTime(timeStamp)}</div>)

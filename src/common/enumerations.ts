@@ -6,11 +6,7 @@
  * Email: yuzl1123@163.com
  */
 
-/**
- * @author yuzhanglong
- * @description 判题状态
- * @date 2020-8-2 8:49
- */
+// 判题状态
 export enum JudgeConditionEnum {
   PENDING = "PENDING",
   ACCEPT = "ACCEPT",
@@ -23,14 +19,17 @@ export enum JudgeConditionEnum {
   RUNTIME_ERROR = "RUNTIME_ERROR"
 }
 
-/**
- * @author yuzhanglong
- * @description 语言类型
- * @date 2020-8-1
- */
+// 语言类型
 export enum LanguageTypeEnum {
   C = "C",
   C_PLUS_PLUS = "C_PLUS_PLUS",
   JAVA = "JAVA",
   PYTHON = "PYTHON",
+}
+
+// problemHome页面左侧导航的key
+export enum ProblemHoneTabKey {
+  PROBLEM = "problem",
+  SOLUTION = "solutions",
+  SUBMISSION = "submission",
 }
