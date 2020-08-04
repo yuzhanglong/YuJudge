@@ -7,6 +7,8 @@
  */
 
 // 保存用户代码，其中key为problem对应的id，value为代码内容
+import {TOKEN} from "../config/config";
+
 export const saveCode = (problemId: string, code: string) => {
   window.localStorage.setItem(problemId, code);
 }
@@ -14,4 +16,9 @@ export const saveCode = (problemId: string, code: string) => {
 // 通过problemId，获取用户保存的代码
 export const getCode = (problemId: string): string | null => {
   return window.localStorage.getItem(problemId);
+}
+
+// 存储token
+export const setToken = (token: string) => {
+  window.localStorage.setItem(TOKEN, token);
 }

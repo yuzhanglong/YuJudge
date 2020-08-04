@@ -17,3 +17,6 @@ export const SUBMISSION_SINGLE_PAGE_SIZE: number = 15;
 
 // 查看当前提交轮询任务间隔时间，单位为毫秒
 export const SUBMISSION_REQUEST_TASK_TIME = 4000;
+
+// TOKEN 存储键
+export const TOKEN = "token";

@@ -14,6 +14,7 @@ interface LoginFormProps {
   onConfirm?: (val: any) => void;
   validateRequired?: boolean;
   checkCode?: string;
+  onCheckCodeClick?: () => void;
 }
 
 const LoginForm: React.FunctionComponent<LoginFormProps> = (props) => {
@@ -27,6 +28,12 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = (props) => {
     }
   }
 
+  // 验证码被按下
+  const onCheckCodeClick = () => {
+    if (props.onCheckCodeClick) {
+      props.onCheckCodeClick();
+    }
+  }
 
   return (
     <Form
@@ -61,6 +68,11 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = (props) => {
           placeholder="请输入验证码"
         />
       </Form.Item>}
+      <div className={"check-code-image-wrap"} onClick={() => onCheckCodeClick()}>
+        <img src={props.checkCode}
+             alt={"checkCode"}/>
+      </div>
+
 
       <Form.Item
         shouldUpdate={true}>

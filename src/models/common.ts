@@ -8,36 +8,25 @@
 
 import {AxiosResponse} from "axios";
 
-/**
- * @author yuzhanglong
- * @description 服务端基础响应内容
- * 包括：
- * code -- 错误码
- * message -- 信息
- * request -- 请求的url地址
- * @date 2020-8-2 8:49
- */
+// 服务端基础响应内容
+
 export interface BaseResponse extends AxiosResponse {
+  // 错误码
   code?: string;
+  //信息
   message?: string;
+  // 请求的url地址
   request?: string | null;
 }
 
 
-/**
- * @author yuzhanglong
- * @description 带有分页请求的响应
- * @date 2020-8-2 8:49
- */
+// 带有分页请求的响应
+
 export interface PaginationResponse extends BaseResponse {
   data: Pagination;
 }
 
-/**
- * @author yuzhanglong
- * @description 分页响应的基本信息
- * @date 2020-8-2 8:51
- */
+// 分页响应的基本信息
 export interface Pagination {
   count?: number;
   page?: number;
