@@ -7,7 +7,7 @@
  */
 
 import React from "react";
-import {Button, Form, Input} from "antd";
+import {Button, Col, Form, Input, Row} from "antd";
 import {CheckCircleOutlined, LockOutlined, UserOutlined} from "@ant-design/icons/lib/icons";
 import classNames from "classnames";
 
@@ -98,18 +98,30 @@ const RegisterForm: React.FunctionComponent<registerFormProps> = (props) => {
         />
       </Form.Item>
 
-      {props.checkCode && <Form.Item
-        rules={[{required: props.validateRequired, message: '请输入验证码!'}]}
-        name="checkCodeContent">
-        <Input
-          prefix={<CheckCircleOutlined/>}
-          placeholder="请输入验证码"
-        />
-      </Form.Item>}
-      <div className={"check-code-image-wrap"} onClick={() => onCheckCodeClick()}>
-        <img src={props.checkCode}
-             alt={"checkCode"}/>
-      </div>
+
+      {
+        props.checkCode && <Form.Item>
+          <Row>
+            <Col span={15}>
+              <Form.Item
+                className={"check-code-form-item"}
+                rules={[{required: props.validateRequired, message: '请输入验证码!'}]}
+                name="checkCodeContent">
+                <Input
+                  prefix={<CheckCircleOutlined/>}
+                  placeholder="请输入验证码"
+                />
+              </Form.Item>
+            </Col>
+            <Col span={9}>
+              <img
+                src={props.checkCode}
+                alt={"checkCode"}
+                onClick={() => onCheckCodeClick()}/>
+            </Col>
+          </Row>
+        </Form.Item>
+      }
 
       <Form.Item
         shouldUpdate={true}>

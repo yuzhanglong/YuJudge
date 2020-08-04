@@ -13,5 +13,5 @@ import ProblemEdit from "./problemEdit/problemEdit";
 export default {
   ProblemManage: ProblemManage,
   ProblemSetManage: ProblemSetManage,
-  ProblemEdit:ProblemEdit
+  ProblemEdit: ProblemEdit
 } as any;

@@ -10,10 +10,13 @@ import React from "react";
 import {Button} from "antd";
 
 interface MainPartProps {
-
+  onMainButtonClick?: () => void;
+  onSubButtonClick?: () => void;
+  mainButtonText?: string;
+  subButtonText?: string;
 }
 
-const MainPart: React.FunctionComponent<MainPartProps> = () => {
+const MainPart: React.FunctionComponent<MainPartProps> = (props) => {
   return (
     <div className={"main-part"}>
       <div className={"main-part-content-wrap"}>
@@ -27,10 +30,19 @@ const MainPart: React.FunctionComponent<MainPartProps> = () => {
             all work and no play makes jack a dull boy
             all work and no play makes jack a dull boy
           </p>
-          <Button size="large" type="primary" className={"main-part-button register"}>
-            注册
+          <Button
+            size="large"
+            type="primary"
+            className={"main-part-button register"}
+            onClick={() => props.onMainButtonClick ? props.onMainButtonClick() : null}>
+            {props.mainButtonText}
           </Button>
-          <Button size="large" className={"main-part-button"}>登录</Button>
+          <Button
+            size="large"
+            className={"main-part-button"}
+            onClick={() => props.onSubButtonClick ? props.onSubButtonClick() : null}>
+            {props.subButtonText}
+          </Button>
         </div>
         <div className={"main-part-illustration"}>
           <img alt={"codeTyping"} src={"http://cdn.yuzzl.top/codeTyping.svg"}
@@ -39,6 +51,11 @@ const MainPart: React.FunctionComponent<MainPartProps> = () => {
       </div>
     </div>
   )
+}
+
+MainPart.defaultProps = {
+  mainButtonText: "注册",
+  subButtonText: "登录"
 }
 
 export default MainPart;

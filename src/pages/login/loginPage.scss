@@ -4,6 +4,7 @@
 
 .login-page {
   display: flex;
+  justify-content: center;
 }
 
 .login-area-title-main {
@@ -12,7 +13,7 @@
 }
 
 .login-form {
-  width: 350px;
+  width: 380px;
 }
 
 .login-area-title {
@@ -20,3 +21,11 @@
   justify-content: space-between;
   line-height: 75px;
 }
+
+.login {
+  width: 1050px;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 100px;
+}
+

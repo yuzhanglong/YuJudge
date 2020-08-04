@@ -12,7 +12,7 @@ import LoginForm from "../../components/loginForm/LoginForm";
 import {getCheckCodeInfo, login, register} from "../../network/userRequest";
 import {CheckCodeData, LoginFormData, LoginResponseData, RegisterFormData} from "../../models/user";
 import {BaseResponse} from "../../models/common";
-import {Button, message} from "antd";
+import {Button, Card, message} from "antd";
 import {setToken} from "../../utils/dataPersistence";
 import RegisterForm from "../../components/registerForm/RegisterForm";
 
@@ -20,7 +20,7 @@ interface LoginProps {
 
 }
 
-const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = () => {
+const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = (props) => {
 
   // 涉及的表单
   enum formType {
@@ -101,43 +101,46 @@ const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = () => {
 
   return (
     <div className={"login-page"}>
-      <div className={"login-page-image-wrap"}>
-        <img
-          src={"http://cdn.yuzzl.top/confirmation.svg"}
-          alt={"confirmation"}
-          className={"login-page-image"}/>
-      </div>
-      <div className={"login-page-login-area"}>
-        <div className={"login-area-title"}>
-          <div className={"login-area-title-main"}>
-            {activeForm === formType.LOGIN ? "用户登录" : "用户注册"}
-          </div>
-          <div className={"register-link"}>
-            <Button type={"link"} onClick={() => showRegisterForm()}>
-              {activeForm === formType.LOGIN ? "没有账号? 点我注册" : "去登录"}
-            </Button>
-          </div>
+      <div className={"login"}>
+        <div className={"login-page-image-wrap"}>
+          <img
+            src={"http://cdn.yuzzl.top/confirmation.svg"}
+            alt={"confirmation"}
+            className={"login-page-image"}/>
         </div>
-
-        <div className={"login-area-form"}>
-          {
-            activeForm === formType.LOGIN &&
-            <LoginForm
-              checkCode={checkCodeInfo?.image}
-              validateRequired onConfirm={onLogin}
-              onCheckCodeClick={resetCheckCode}
-              className={"login-form"}>
-            </LoginForm>
-          }
-          {
-            activeForm === formType.REGISTER &&
-            <RegisterForm
-              checkCode={checkCodeInfo?.image}
-              validateRequired onConfirm={onRegister}
-              onCheckCodeClick={resetCheckCode}
-              className={"login-form"}>
-            </RegisterForm>
-          }
+        <div className={"login-page-login-area"}>
+          <Card>
+            <div className={"login-area-title"}>
+              <div className={"login-area-title-main"}>
+                {activeForm === formType.LOGIN ? "用户登录" : "用户注册"}
+              </div>
+              <div className={"register-link"}>
+                <Button type={"link"} onClick={() => showRegisterForm()}>
+                  {activeForm === formType.LOGIN ? "没有账号? 点我注册" : "去登录"}
+                </Button>
+              </div>
+            </div>
+            <div className={"login-area-form"}>
+              {
+                activeForm === formType.LOGIN &&
+                <LoginForm
+                  checkCode={checkCodeInfo?.image}
+                  validateRequired onConfirm={onLogin}
+                  onCheckCodeClick={resetCheckCode}
+                  className={"login-form"}>
+                </LoginForm>
+              }
+              {
+                activeForm === formType.REGISTER &&
+                <RegisterForm
+                  checkCode={checkCodeInfo?.image}
+                  validateRequired onConfirm={onRegister}
+                  onCheckCodeClick={resetCheckCode}
+                  className={"login-form"}>
+                </RegisterForm>
+              }
+            </div>
+          </Card>
         </div>
       </div>
     </div>

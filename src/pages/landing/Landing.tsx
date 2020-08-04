@@ -1,3 +1,12 @@
+/*
+ * File: Landing.tsx
+ * Description: 项目着陆页
+ * Created: 2020-08-04 23:32:33
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+
 import React from "react";
 import {RouteComponentProps} from "react-router-dom";
 import LandingHeader from "./childCmp/LandingHeader";
@@ -9,7 +18,16 @@ interface LandingProps {
 
 }
 
-const Landing: React.FunctionComponent<LandingProps & RouteComponentProps> = () => {
+const Landing: React.FunctionComponent<LandingProps & RouteComponentProps> = (props) => {
+  // 前往登录页面
+  const gotoLoginPage = () => {
+    props.history.push("/login");
+  }
+
+  // 前往注册界面
+  const gotoRegister = () => {
+    props.history.push("/login");
+  }
   return (
     <div className={"landing-page"}>
       <div className={"landing"}>
@@ -17,7 +35,10 @@ const Landing: React.FunctionComponent<LandingProps & RouteComponentProps> = () 
           <LandingHeader></LandingHeader>
         </div>
         <div className={"landing-item"}>
-          <MainPart></MainPart>
+          <MainPart
+            onMainButtonClick={() => gotoLoginPage()}
+            onSubButtonClick={() => gotoRegister()}>
+          </MainPart>
         </div>
         <div className={"landing-item"}>
           <Feautres></Feautres>
