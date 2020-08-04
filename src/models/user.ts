@@ -27,3 +27,11 @@ export interface LoginResponseData {
   accessToken: string;
   expiresIn: number;
 }
+
+// 注册表单
+export interface RegisterFormData {
+  nickname: string;
+  password: string;
+  checkCodeContent: string;
+  checkCodeKey: string | null;
+}

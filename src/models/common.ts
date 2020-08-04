@@ -9,7 +9,6 @@
 import {AxiosResponse} from "axios";
 
 // 服务端基础响应内容
-
 export interface BaseResponse extends AxiosResponse {
   // 错误码
   code?: string;
@@ -21,7 +20,6 @@ export interface BaseResponse extends AxiosResponse {
 
 
 // 带有分页请求的响应
-
 export interface PaginationResponse extends BaseResponse {
   data: Pagination;
 }

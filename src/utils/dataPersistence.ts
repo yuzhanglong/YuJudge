@@ -6,9 +6,10 @@
  * Email: yuzl1123@163.com
  */
 
-// 保存用户代码，其中key为problem对应的id，value为代码内容
+
 import {TOKEN} from "../config/config";
 
+// 保存用户代码，其中key为problem对应的id，value为代码内容
 export const saveCode = (problemId: string, code: string) => {
   window.localStorage.setItem(problemId, code);
 }

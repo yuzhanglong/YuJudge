@@ -5,7 +5,6 @@ import ProblemHome from "./pages/problemHome/ProblemHome";
 import zhCN from 'antd/es/locale/zh_CN';
 import {ConfigProvider} from "antd";
 import Login from './pages/login/Login';
-import Register from './pages/register/Register';
 import Landing from "./pages/landing/Landing";
 
 function App() {
@@ -34,13 +33,6 @@ function App() {
               exact
               render={(props) => {
                 return (<Login {...props}></Login>)
-              }}/>
-            <Route
-              key={"register"}
-              path={"/register"}
-              exact
-              render={(props) => {
-                return (<Register {...props}></Register>)
               }}/>
             <Route
               key={"landing"}

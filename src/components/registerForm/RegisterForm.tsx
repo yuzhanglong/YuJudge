@@ -1,17 +1,17 @@
 /*
- * File: LoginForm.tsx
- * Description: 登录页面表单
- * Created: 2020-08-04 18:07:22
+ * File: RegisterForm.tsx
+ * Description: 注册表单组件
+ * Created: 2020-08-04 20:23:28
  * Author: yuzhanglong
  * Email: yuzl1123@163.com
  */
 
 import React from "react";
 import {Button, Form, Input} from "antd";
-import {UserOutlined, LockOutlined, CheckCircleOutlined} from "@ant-design/icons/lib/icons";
+import {CheckCircleOutlined, LockOutlined, UserOutlined} from "@ant-design/icons/lib/icons";
 import classNames from "classnames";
 
-interface LoginFormProps {
+interface registerFormProps {
   onConfirm?: (val: any) => void;
   validateRequired?: boolean;
   checkCode?: string;
@@ -19,14 +19,14 @@ interface LoginFormProps {
   className?: string;
 }
 
-const LoginForm: React.FunctionComponent<LoginFormProps> = (props) => {
+const RegisterForm: React.FunctionComponent<registerFormProps> = (props) => {
 
-  // 表单数据
   const [form] = Form.useForm();
   const className = classNames(props.className);
 
-  // 登录按钮被按下
-  const onLoginConfirmed = (values: any) => {
+
+  // 注册按钮被按下
+  const onRegisterConfirmed = (values: any) => {
     if (props.onConfirm) {
       props.onConfirm(values);
     }
@@ -39,12 +39,28 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = (props) => {
     }
   }
 
+  // 验证两次密码输入是否相同
+  const isPasswordSame = (): boolean => {
+    const p1 = form.getFieldValue("password");
+    const p2 = form.getFieldValue("passwordAgain");
+    return p1 === p2;
+  }
+
+  // 两次密码是否相同的验证器
+  const samePasswordValidator = (): Promise<void> => {
+    if (isPasswordSame()) {
+      return Promise.resolve();
+    }
+    return Promise.reject('两次密码输入不相同');
+  }
+
   return (
     <Form
       className={className}
       layout="horizontal"
-      form={form} size={"large"}
-      onFinish={onLoginConfirmed}>
+      form={form}
+      size={"large"}
+      onFinish={onRegisterConfirmed}>
       <Form.Item
         rules={[{required: props.validateRequired, message: '请输入用户名!'}]}
         name="nickname">
@@ -60,6 +76,25 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = (props) => {
           prefix={<LockOutlined/>}
           type="password"
           placeholder="请输入密码"
+        />
+      </Form.Item>
+
+      <Form.Item
+        rules={
+          [
+            {required: props.validateRequired, message: '请重复输入一遍密码!'},
+            {
+              required: true,
+              message: '两次密码输入不相同!',
+              validator: samePasswordValidator
+            }
+          ]
+        }
+        name="passwordAgain">
+        <Input
+          prefix={<LockOutlined/>}
+          type="password"
+          placeholder="请重复输入密码"
         />
       </Form.Item>
 
@@ -82,8 +117,8 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = (props) => {
           <Button
             type="primary"
             htmlType="submit"
-            className={"login-form-button"}>
-            登录
+            className={"register-form-button"}>
+            注册
           </Button>
         )}
       </Form.Item>
@@ -91,8 +126,4 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = (props) => {
   )
 }
 
-LoginForm.defaultProps = {
-  validateRequired: false
-}
-
-export default LoginForm;
+export default RegisterForm;

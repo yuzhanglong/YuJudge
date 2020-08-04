@@ -1,16 +1,22 @@
 .login-page-image {
-  width: 800px;
+  width: 600px;
 }
 
 .login-page {
   display: flex;
 }
 
-.login-area-title {
-  font-size: 40px;
+.login-area-title-main {
+  font-size: 30px;
   font-weight: bold;
 }
 
-.login-area-form {
-  max-width: 250px;
+.login-form {
+  width: 350px;
+}
+
+.login-area-title {
+  display: flex;
+  justify-content: space-between;
+  line-height: 75px;
 }

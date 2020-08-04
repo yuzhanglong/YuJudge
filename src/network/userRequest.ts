@@ -9,7 +9,7 @@
 
 // 获取验证码相关信息
 import request, {REQUEST_TYPES} from "./request";
-import {LoginFormData} from "../models/user";
+import {LoginFormData, RegisterFormData} from "../models/user";
 
 export const getCheckCodeInfo = () => {
   return request.get(
@@ -26,6 +26,17 @@ export const login = (loginFormData: LoginFormData) => {
   return request.post(
     "/user/login",
     loginFormData,
+    {
+      method: REQUEST_TYPES.POST
+    }
+  )
+}
+
+// 用户注册
+export const register = (registerFormData: RegisterFormData) => {
+  return request.post(
+    "/user/register",
+    registerFormData,
     {
       method: REQUEST_TYPES.POST
     }
