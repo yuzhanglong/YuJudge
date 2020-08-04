@@ -9,12 +9,9 @@
 import request, {REQUEST_TYPES} from "./request";
 import {ProblemLimitation, ProblemTestCase} from "../models/problem";
 
-/**
- * @author yuzhanglong
- * @description 通过id来获取problem的基本信息
- * @date 2020-7-19 13:10:27
- */
-export function getProblemById(problemId: string) {
+
+// 通过id来获取problem的基本信息
+export const getProblemById = (problemId: string) => {
   return request.get(
     "/problem/get_problem_by_id/" + problemId,
     {
@@ -23,12 +20,9 @@ export function getProblemById(problemId: string) {
   )
 }
 
-/**
- * @author yuzhanglong
- * @description 分页获取多个problem
- * @date 2020-7-19
- */
-export function getProblems(start: number, count: number) {
+
+// 分页获取多个problem
+export const getProblems = (start: number, count: number) => {
   return request.get(
     "/problem/get_problems",
     {
@@ -41,12 +35,9 @@ export function getProblems(start: number, count: number) {
   )
 }
 
-/**
- * @author yuzhanglong
- * @description 获取problem的详细信息
- * @date 2020-7-23
- */
-export function getProblemDetailedById(problemId: number) {
+
+// 获取problem的详细信息
+export const getProblemDetailedById = (problemId: number) => {
   return request.get(
     "/problem/get_problem_detailed_by_id/" + problemId,
     {
@@ -55,11 +46,8 @@ export function getProblemDetailedById(problemId: number) {
   )
 }
 
-/**
- * @author yuzhanglong
- * @description 获取problem的一个或多个解决方案
- * @date 2020-7-23 23:02
- */
+
+// 获取problem的一个或多个解决方案
 export function getSolutionByProblemId(problemId: number) {
   return request.get(
     "/problem/get_solutions/" + problemId,
@@ -69,12 +57,9 @@ export function getSolutionByProblemId(problemId: number) {
   )
 }
 
-/**
- * @author yuzhanglong
- * @description 关闭某个problem
- * @date 2020-7-26 08:27
- */
-export function closeProblem(problemId: number) {
+
+// 关闭某个problem
+export const closeProblem = (problemId: number) => {
   return request.get(
     "/problem/close_problem/" + problemId,
     {
@@ -83,12 +68,9 @@ export function closeProblem(problemId: number) {
   )
 }
 
-/**
- * @author yuzhanglong
- * @description 设置限制
- * @date 2020-7-27 17:42:17
- */
-export function setLimitations(problemId: number, limitation: ProblemLimitation) {
+
+// 设置限制
+export const setLimitations = (problemId: number, limitation: ProblemLimitation) => {
   return request.post(
     "/problem/set_limitation/" + problemId,
     limitation,
@@ -98,13 +80,9 @@ export function setLimitations(problemId: number, limitation: ProblemLimitation)
   )
 }
 
-/**
- * @author yuzhanglong
- * @description 添加解决方案
- * @date 2020-7-27 17:42:51
- */
 
-export function createSolution(problemId: number, solution: ProblemTestCase) {
+// 添加解决方案
+export const createSolution = (problemId: number, solution: ProblemTestCase) => {
   return request.post(
     "/problem/create_solution/" + problemId,
     solution,

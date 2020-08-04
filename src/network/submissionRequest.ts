@@ -9,12 +9,8 @@
 import request, {REQUEST_TYPES} from "./request";
 import {Submission} from "../models/submission";
 
-/**
- * @author yuzhanglong
- * @description 提交用户代码
- * @date 2020-7-31 13:34:42
- */
-export function submitCode(submission: Submission) {
+// 提交代码
+export const submitCode = (submission: Submission) => {
   return request.post(
     "/submission/submit_code",
     submission,
@@ -25,7 +21,8 @@ export function submitCode(submission: Submission) {
 }
 
 
-export function getSubmissionByProblemId(start: number, count: number, problemId: number) {
+// 通过problemId获取提交
+export const getSubmissionByProblemId = (start: number, count: number, problemId: number) => {
   return request.get(
     "/submission/get_submissions",
     {
@@ -39,7 +36,9 @@ export function getSubmissionByProblemId(start: number, count: number, problemId
   )
 }
 
-export function getSubmissionById(submissionId: number) {
+
+// 获取某个提交的详细信息
+export const getSubmissionById = (submissionId: number) => {
   return request.get(
     "/submission/get_submission_detail",
     {
