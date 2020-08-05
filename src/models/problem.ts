@@ -7,11 +7,7 @@
  */
 
 
-/**
- * @author yuzhanglong
- * @description 问题problem 类型
- * @date 2020-7-23 22:55
- */
+// 问题类型
 export interface Problem {
   id?: number;
   createTime?: number;
@@ -25,24 +21,17 @@ export interface Problem {
   closed?: boolean;
 }
 
-/**
- * @author yuzhanglong
- * @description problem的测试样例
- * @date 2020-7-23 22:56
- */
+
+// 问题的测试样例
 export interface ProblemTestCase {
   id?: number;
-  stdIn?: string;
-  expectedStdOut?: string;
+  stdIn?: string | null;
+  expectedStdOut?: string | null;
   description?: string;
 }
 
 
-/**
- * @author yuzhanglong
- * @description 问题限制
- * @date 2020-7-23 22:56
- */
+// 问题限制
 export interface ProblemLimitation {
   timeLimit?: number;
   memoryLimit?: number;

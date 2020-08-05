@@ -32,3 +32,8 @@ export interface Pagination {
   totalPage?: number;
   items?: any;
 }
+
+// 上传凭证响应
+export interface UploadTokenData {
+  uploadToken: string;
+}

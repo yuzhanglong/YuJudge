@@ -20,3 +20,9 @@ export const SUBMISSION_REQUEST_TASK_TIME = 4000;
 
 // TOKEN 存储键
 export const TOKEN = "token";
+
+// 文件上传baseUrl
+export const UPLOAD_SERVER_BASE_URL = "http://up-z2.qiniup.com";
+
+// 文件下载路径
+export const DOWNLOAD_SERVER_BASE_URL = "http://cdn.yuzzl.top";

@@ -1,13 +1,16 @@
+/*
+ * File: ProblemManage.tsx
+ * Description: problem管理页面
+ * Created: 2020-08-05 18:26:51
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+
 import React from "react";
 import ProblemTable from "../../components/problemTable/ProblemTable";
 import {RouteComponentProps} from "react-router-dom";
 
-
-/**
- * @author yuzhanglong
- * @description problems的管理界面
- * @date 2020-7-23 18:51
- */
 
 const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
   // 跳转编辑界面
@@ -16,7 +19,7 @@ const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
   }
 
   return (
-    <ProblemTable onProblemEdit={gotoEditProblem}></ProblemTable>
+    <ProblemTable onProblemEdit={gotoEditProblem}/>
   )
 }
 
