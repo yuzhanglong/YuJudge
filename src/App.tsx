@@ -1,47 +1,24 @@
+/*
+ * File: App.tsx
+ * Description: 项目入口
+ * Created: 2020-08-05 11:53:29
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+
 import React from 'react';
-import {BrowserRouter, Switch, Route} from "react-router-dom";
-import CMSLayout from "./components/layout/CMSLayout";
-import ProblemHome from "./pages/problemHome/ProblemHome";
+import {BrowserRouter} from "react-router-dom";
 import zhCN from 'antd/es/locale/zh_CN';
 import {ConfigProvider} from "antd";
-import Login from './pages/login/Login';
-import Landing from "./pages/landing/Landing";
+import MyRouter from "./router/MyRouter";
 
 function App() {
   return (
     <BrowserRouter>
       <ConfigProvider locale={zhCN}>
         <div className="App">
-          <Switch>
-            <Route
-              key={"435345"}
-              path={"/cms"}
-              exact>
-              {"cms"}
-              <CMSLayout></CMSLayout>
-            </Route>
-            <Route
-              key={"problem"}
-              path={"/problem/:id"}
-              exact
-              render={(props) => {
-                return (<ProblemHome {...props}></ProblemHome>)
-              }}/>
-            <Route
-              key={"login"}
-              path={"/login"}
-              exact
-              render={(props) => {
-                return (<Login {...props}></Login>)
-              }}/>
-            <Route
-              key={"landing"}
-              path={"/"}
-              exact
-              render={(props) => {
-                return (<Landing {...props}></Landing>)
-              }}/>
-          </Switch>
+          <MyRouter></MyRouter>
         </div>
       </ConfigProvider>
     </BrowserRouter>

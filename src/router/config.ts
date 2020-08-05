@@ -7,11 +7,7 @@
  */
 
 
-/**
- * @author yuzhanglong
- * @description CMS后台使用，将路由和侧边栏关联
- * @date 2020-7-19 22:00
- */
+// cms目录菜单路由配置
 export interface MenuRouterConfig {
   key: string;
   path: string;
@@ -24,11 +20,7 @@ export interface MenuRouterConfig {
 }
 
 
-/**
- * @author yuzhanglong
- * @description 一般路由配置
- * @date 2020-7-19 22:00
- */
+// 一般页面路由配置
 export interface CommonRouterConfig extends MenuRouterConfig {
 
 }
@@ -66,7 +58,20 @@ const routerConfig: {
       ]
     }
   ],
-  common: []
+  common: [
+    {
+      key: "/landing",
+      component: "Landing",
+      title: "用户登录",
+      path: "/",
+    },
+    {
+      key: "/login",
+      component: "Login",
+      title: "用户登录",
+      path: "/login",
+    }
+  ]
 }
 
 export default routerConfig;

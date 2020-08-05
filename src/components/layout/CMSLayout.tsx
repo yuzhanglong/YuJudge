@@ -3,12 +3,15 @@ import {Layout, Menu} from "antd";
 import SideBar from "./SideBar";
 import routerConfig from "../../router/config";
 import Breadcrumb from "./Breadcrumb";
-import MyRouter from "../../router";
+import {RouteComponentProps} from "react-router-dom";
 
 const {Header, Content, Sider} = Layout;
 
+interface CMSLayoutProps {
+  cmsRoutes: any;
+}
 
-const CMSLayout: React.FunctionComponent = (props) => {
+const CMSLayout: React.FunctionComponent<CMSLayoutProps & RouteComponentProps> = (props) => {
   return (
     <Layout>
       <Header className="header">
@@ -22,8 +25,10 @@ const CMSLayout: React.FunctionComponent = (props) => {
             mode="inline"
             defaultSelectedKeys={['1']}
             defaultOpenKeys={['sub1']}
-            style={{height: '100%',
-              borderRight: 0}}>
+            style={{
+              height: '100%',
+              borderRight: 0
+            }}>
           </SideBar>
         </Sider>
 
@@ -36,7 +41,7 @@ const CMSLayout: React.FunctionComponent = (props) => {
               margin: 0,
               minHeight: "82vh",
             }}>
-            <MyRouter {...props}></MyRouter>
+            {props.cmsRoutes}
           </Content>
         </Layout>
       </Layout>
