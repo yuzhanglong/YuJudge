@@ -1,16 +1,19 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {timestampToDateTime} from "../../utils/DateTimeUtil";
 import {Button, Table, Tag} from "antd";
 import {Problem} from "../../models/problem";
-import {getProblems} from "../../network/problemRequests";
-import {BaseResponse} from "../../models/common";
 import Column from "antd/lib/table/Column";
+import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from "../../config/config";
+import {TablePaginationConfig} from "antd/lib/table/interface";
 
 interface ProblemTableProps {
   isShowCreateTime?: boolean;
   isShowTags?: boolean;
   isShowOperations?: boolean;
   onProblemEdit?: (problemId: number) => void;
+  problems: Problem[];
+  totalPage?: number;
+  onPageChange?: (page: number) => void;
 }
 
 
@@ -25,13 +28,15 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
     if (tags == null) return null;
     return (
       <div>
-        {tags.map((tag) => {
-          return (
-            <Tag color={"#409eff"} key={tag}>
-              {tag}
-            </Tag>
-          );
-        })}
+        {
+          tags.map((tag) => {
+            return (
+              <Tag color={"#409eff"} key={tag}>
+                {tag}
+              </Tag>
+            );
+          })
+        }
       </div>
     )
   }
@@ -56,29 +61,21 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
     )
   }
 
-  // states, data
-  const [problems, setProblems] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [totalPage, setTotalPage] = useState(1);
-
-  // 请求problem
-  useEffect(() => {
-    setIsLoading(true);
-    getProblems(0, 10)
-      .then((res: BaseResponse) => {
-        setTotalPage(res.data.totalPage);
-        setProblems(res.data.items);
-        setIsLoading(false);
-      })
-  }, []);
+  // 当页码改变时
+  const onPageChange = (event: TablePaginationConfig) => {
+    if (props.onPageChange && event.current) {
+      props.onPageChange(event.current);
+    }
+  }
 
   return (
-    <Table dataSource={problems}
+    <Table dataSource={props.problems}
            rowKey={"id"}
-           loading={isLoading}
-           pagination={
-             {total: totalPage * 10, defaultPageSize: 10}
-           }>
+           pagination={{
+             total: (props.totalPage || 1) * SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE,
+             defaultPageSize: SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE
+           }}
+           onChange={(e: TablePaginationConfig) => onPageChange(e)}>
       <Column title={"题号"} dataIndex={"id"}
               key={"number"} width={150}/>
       <Column title={"问题名称"}
@@ -110,7 +107,8 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
 ProblemTable.defaultProps = {
   isShowCreateTime: true,
   isShowOperations: true,
-  isShowTags: true
+  isShowTags: true,
+  totalPage: PAGE_BEGIN
 }
 
 export default ProblemTable;

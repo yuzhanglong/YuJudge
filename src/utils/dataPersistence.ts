@@ -7,7 +7,7 @@
  */
 
 
-import {TOKEN} from "../config/config";
+import {TOKEN_KEY} from "../config/config";
 
 // 保存用户代码，其中key为problem对应的id，value为代码内容
 export const saveCode = (problemId: string, code: string) => {
@@ -21,5 +21,5 @@ export const getCode = (problemId: string): string | null => {
 
 // 存储token
 export const setToken = (token: string) => {
-  window.localStorage.setItem(TOKEN, token);
+  window.localStorage.setItem(TOKEN_KEY, token);
 }

@@ -91,3 +91,15 @@ export const createSolution = (problemId: number, solution: ProblemTestCase) => 
     }
   )
 }
+
+// 获取近期problems
+export const getRecentProblems = (size: number) => {
+  return request.get(
+    "/problem/get_recent_problem",
+    {
+      params: {
+        size: size
+      }
+    }
+  )
+}

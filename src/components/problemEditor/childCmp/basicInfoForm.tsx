@@ -29,7 +29,7 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
             <Input/>
           </Form.Item>
           <Form.Item label="内容">
-            <MarkdownEditor onChange={onMarkdownChange}></MarkdownEditor>
+            <MarkdownEditor onChange={onMarkdownChange}/>
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit">
