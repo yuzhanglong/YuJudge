@@ -5,6 +5,7 @@ import {Problem} from "../../models/problem";
 import Column from "antd/lib/table/Column";
 import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from "../../config/config";
 import {TablePaginationConfig} from "antd/lib/table/interface";
+import {SizeType} from "antd/lib/config-provider/SizeContext";
 
 interface ProblemTableProps {
   isShowCreateTime?: boolean;
@@ -14,6 +15,8 @@ interface ProblemTableProps {
   problems: Problem[];
   totalPage?: number;
   onPageChange?: (page: number) => void;
+  tableSize?: SizeType;
+  showPagination?: boolean;
 }
 
 
@@ -21,6 +24,12 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
   // 问题创建时间
   const renderCreateTime = (timeStamp: number) => {
     return (<div>{timestampToDateTime(timeStamp)}</div>)
+  }
+
+  // 分页配置
+  const paginationProp: TablePaginationConfig = {
+    total: (props.totalPage || 1) * SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE,
+    defaultPageSize: SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE
   }
 
   // 渲染标签
@@ -71,11 +80,9 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
   return (
     <Table dataSource={props.problems}
            rowKey={"id"}
-           pagination={{
-             total: (props.totalPage || 1) * SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE,
-             defaultPageSize: SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE
-           }}
-           onChange={(e: TablePaginationConfig) => onPageChange(e)}>
+           pagination={props.showPagination ? paginationProp : false}
+           onChange={(e: TablePaginationConfig) => onPageChange(e)}
+           size={props.tableSize}>
       <Column title={"题号"} dataIndex={"id"}
               key={"number"} width={150}/>
       <Column title={"问题名称"}
@@ -108,7 +115,9 @@ ProblemTable.defaultProps = {
   isShowCreateTime: true,
   isShowOperations: true,
   isShowTags: true,
-  totalPage: PAGE_BEGIN
+  totalPage: PAGE_BEGIN,
+  tableSize: undefined,
+  showPagination: true
 }
 
 export default ProblemTable;

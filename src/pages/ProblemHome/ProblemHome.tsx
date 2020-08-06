@@ -19,7 +19,7 @@ import {ExperimentOutlined, FormOutlined, OrderedListOutlined} from '@ant-design
 import {getSubmissionById, getSubmissionByProblemId, submitCode} from "../../network/submissionRequest";
 import {Submission} from "../../models/submission";
 import SubmissionTable from "./childCmp/SubmissionTable";
-import {SUBMISSION_REQUEST_TASK_TIME, SUBMISSION_SINGLE_PAGE_SIZE} from "../../config/config";
+import {PAGE_BEGIN, SUBMISSION_REQUEST_TASK_TIME, SUBMISSION_SINGLE_PAGE_SIZE} from "../../config/config";
 import SubmissionDetailModal from "./childCmp/SubmissionDetailModal";
 import CommonMenu from "../../components/commonMenu/CommonMenu";
 import {getCode, saveCode} from "../../utils/dataPersistence";
@@ -31,8 +31,6 @@ interface ProblemShowProps {
 
 const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProps> = (props) => {
 
-  // 首页页号
-  const PAGE_BEGIN: number = 1;
   // 默认判题偏好
   const DEFAULT_JUDGE_PREFERENCE = "ACM";
 

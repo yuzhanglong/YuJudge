@@ -9,6 +9,7 @@
 import React from "react";
 import {Card, Col, Row} from "antd";
 import {DashOutlined} from "@ant-design/icons/lib";
+import LineChart from "../../../components/charts/LineChart";
 
 interface ChartGroupProps {
 
@@ -27,7 +28,7 @@ const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
               <DashOutlined/>
             }>
             <div className={"chart-wrap"}>
-
+              <LineChart></LineChart>
             </div>
           </Card>
         </Col>
@@ -41,7 +42,7 @@ const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
               <DashOutlined/>
             }>
             <div className={"chart-wrap"}>
-
+              <LineChart></LineChart>
             </div>
           </Card>
         </Col>
@@ -55,7 +56,7 @@ const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
               <DashOutlined/>
             }>
             <div className={"chart-wrap"}>
-
+              <LineChart></LineChart>
             </div>
           </Card>
         </Col>
