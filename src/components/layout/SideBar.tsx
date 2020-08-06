@@ -24,12 +24,22 @@ const renderMenuItems = (item: MenuRouterConfig[]) => {
 //TODO:对路由地址末尾query的处理
 const renderSideBarSubMenus = (item: MenuRouterConfig[]) => {
   return (
-    item.map(subMenu => {
-      return (
-        <SubMenu title={subMenu.title} key={subMenu.key}>
-          {renderMenuItems(subMenu.children || [])}
-        </SubMenu>
-      )
+    item.map((subMenu: any) => {
+      if (subMenu.children?.length > 0) {
+        return (
+          <SubMenu title={subMenu.title} key={subMenu.key}>
+            {renderMenuItems(subMenu.children || [])}
+          </SubMenu>
+        )
+      } else {
+        return (
+          <Menu.Item title={subMenu.title} key={subMenu.key}>
+            <Link to={subMenu.path}>
+              <span className="nav-text">{subMenu.title}</span>
+            </Link>
+          </Menu.Item>
+        )
+      }
     })
   );
 }

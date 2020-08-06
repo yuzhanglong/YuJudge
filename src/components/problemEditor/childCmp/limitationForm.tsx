@@ -15,35 +15,35 @@ const LimitationForm: React.FunctionComponent<LimitationFormProps> = (props) => 
   };
   return (
     <div className={"initial-form-wrap"}>
-      <Form form={form} onFinish={onFinish}>
+      <Form form={form} onFinish={onFinish} initialValues={props.problem}>
         <Form.Item label="时间限制" name={"timeLimit"}>
-          <Input placeholder="input placeholder"/>
+          <Input placeholder="请设置时间限制"/>
         </Form.Item>
         <Form.Item label="内存限制" name={"memoryLimit"}>
-          <Input placeholder="input placeholder"/>
+          <Input placeholder="请设置内存限制"/>
         </Form.Item>
         <Form.Item label="输出限制" name={"outputLimit"}>
-          <Input placeholder="input placeholder"/>
+          <Input placeholder="请设置输出限制"/>
         </Form.Item>
         <Form.Item name="language" label="语言限制">
           <Checkbox.Group>
             <Row>
-              <Col span={10}>
+              <Col span={12}>
                 <Checkbox value="C" style={{lineHeight: '32px'}}>
                   C
                 </Checkbox>
               </Col>
-              <Col span={10}>
+              <Col span={12}>
                 <Checkbox value="C++" style={{lineHeight: '32px'}}>
                   C++
                 </Checkbox>
               </Col>
-              <Col span={10}>
+              <Col span={12}>
                 <Checkbox value="JAVA" style={{lineHeight: '32px'}}>
                   JAVA
                 </Checkbox>
               </Col>
-              <Col span={10}>
+              <Col span={12}>
                 <Checkbox value="PYTHON" style={{lineHeight: '32px'}}>
                   PYTHON
                 </Checkbox>
@@ -55,6 +55,7 @@ const LimitationForm: React.FunctionComponent<LimitationFormProps> = (props) => 
           <Button type="primary" htmlType="submit">更新上述限制</Button>
         </Form.Item>
       </Form>
+
     </div>
   )
 }

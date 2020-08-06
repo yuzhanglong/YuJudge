@@ -33,6 +33,12 @@ const routerConfig: {
 } = {
   menus: [
     {
+      key: "/cms/dashboard",
+      component: "Dashboard",
+      title: "控制台",
+      path: "/cms/dashboard",
+    },
+    {
       key: "/cms/problem_manage",
       title: "题目&题目集",
       path: "/cms/problem_manage",

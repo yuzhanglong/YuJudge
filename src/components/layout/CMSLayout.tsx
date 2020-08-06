@@ -19,7 +19,10 @@ const CMSLayout: React.FunctionComponent<CMSLayoutProps & RouteComponentProps> =
         </Menu>
       </Header>
       <Layout>
-        <Sider width={200} className="site-layout-background">
+        <Sider
+          width={230}
+          className="site-layout-background"
+          theme="dark">
           <SideBar
             menus={routerConfig.menus}
             mode="inline"

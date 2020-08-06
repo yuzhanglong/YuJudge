@@ -62,7 +62,7 @@ const TestCaseModal: React.FunctionComponent<TestCaseModalProps> = (props) => {
     createSolution(props.problemId, addSolutionForm)
       .then(() => {
         message.success("创建成功～");
-        props.onCancel();
+        props.onConfirmed();
       })
   }
 

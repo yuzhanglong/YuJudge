@@ -70,11 +70,18 @@ const ProblemEdit: React.FunctionComponent<ProblemEditProps & RouteComponentProp
       })
   }, [problemId]);
 
+
+  // 测试样例添加cg
+  const onTestCaseAddSuccess = () => {
+    setIsShowAddSolutionModal(false);
+    window.location.reload();
+  }
+
   return (
     <div className={"problem-edit-page"}>
       <TestCaseModal
         problemId={problemId}
-        onConfirmed={() => setIsShowAddSolutionModal(false)}
+        onConfirmed={() => onTestCaseAddSuccess()}
         onCancel={() => setIsShowAddSolutionModal(false)}
         isShow={isShowAddSolutionModal}
         uploadToken={uploadToken}/>

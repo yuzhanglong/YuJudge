@@ -11,11 +11,13 @@ import ProblemManage from "./problemManage/ProblemManage";
 import ProblemEdit from "./problemEdit/problemEdit";
 import Login from "./login/Login";
 import Landing from "./landing/Landing";
+import Dashboard from "./dashboard/Dashboard";
 
 export default {
   ProblemManage: ProblemManage,
   ProblemSetManage: ProblemSetManage,
   ProblemEdit: ProblemEdit,
   Login: Login,
-  Landing: Landing
+  Landing: Landing,
+  Dashboard: Dashboard
 } as any;
