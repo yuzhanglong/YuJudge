@@ -1,7 +1,7 @@
 import React from "react";
 import {Table, Tag} from "antd";
 import Column from "antd/lib/table/Column";
-import {timestampToDateTime} from "../../../utils/DateTimeUtil";
+import {timestampToDateTime} from "../../../utils/dateTime";
 import {TablePaginationConfig} from "antd/lib/table/interface";
 import {JudgeConditionEnum} from "../../../common/enumerations";
 import {JUDGE_CONDITION_COLORS, JUDGE_CONDITION_TAG_NAMES} from "../../../common/judgeCondition";

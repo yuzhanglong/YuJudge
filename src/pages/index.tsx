@@ -12,6 +12,7 @@ import ProblemEdit from "./problemEdit/problemEdit";
 import Login from "./login/Login";
 import Landing from "./landing/Landing";
 import Dashboard from "./dashboard/Dashboard";
+import ProblemHome from "./problemHome/ProblemHome";
 
 export default {
   ProblemManage: ProblemManage,
@@ -19,5 +20,6 @@ export default {
   ProblemEdit: ProblemEdit,
   Login: Login,
   Landing: Landing,
-  Dashboard: Dashboard
+  Dashboard: Dashboard,
+  ProblemHome: ProblemHome
 } as any;

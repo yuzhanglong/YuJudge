@@ -76,7 +76,13 @@ const routerConfig: {
       component: "Login",
       title: "用户登录",
       path: "/login",
-    }
+    },
+    {
+      key: "/problem/:id",
+      component: "ProblemHome",
+      title: "问题首页",
+      path: "/problem/:id",
+    },
   ]
 }
 

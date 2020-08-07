@@ -8,6 +8,7 @@
 
 import request, {REQUEST_TYPES} from "./request";
 import {Submission} from "../models/submission";
+import {getToken} from "../utils/dataPersistence";
 
 // 提交代码
 export const submitCode = (submission: Submission) => {
@@ -15,7 +16,10 @@ export const submitCode = (submission: Submission) => {
     "/submission/submit_code",
     submission,
     {
-      method: REQUEST_TYPES.POST
+      method: REQUEST_TYPES.POST,
+      headers: {
+        Authorization: getToken()
+      }
     }
   )
 }
@@ -46,6 +50,21 @@ export const getSubmissionById = (submissionId: number) => {
         submissionId: submissionId
       },
       method: REQUEST_TYPES.GET
+    }
+  )
+}
+
+// 获取近期提交统计
+export const getRecentSubmission = (date: number) => {
+  return request.get(
+    "/submission/get_user_recent_submission",
+    {
+      params: {
+        days: date
+      },
+      headers: {
+        "Authorization": getToken()
+      }
     }
   )
 }

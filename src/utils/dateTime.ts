@@ -1,5 +1,5 @@
 /*
- * File: DateTimeUtil.ts
+ * File: dateTime.ts
  * Description: 时间处理工具
  * Created: 2020/7/21
  * Author: yuzhanglong

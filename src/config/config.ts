@@ -27,8 +27,11 @@ export const UPLOAD_SERVER_BASE_URL: string = "http://up-z2.qiniup.com";
 // 文件下载路径
 export const DOWNLOAD_SERVER_BASE_URL: string = "http://cdn.yuzzl.top";
 
-// 控制台最近题目的shuliang
+// 控制台最近题目的数量
 export const RECENT_PROBLEM_IN_DASHBOARD_AMOUNT: number = 8;
+
+// 控制台个人近期提交的天数
+export const RECENT_SUBMISSION_DATES_IN_DASHBOARD_AMOUNT: number = 7;
 
 // 分页表格组件的首页页号
 export const PAGE_BEGIN: number = 1;

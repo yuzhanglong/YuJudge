@@ -1,5 +1,5 @@
 import React from "react";
-import {timestampToDateTime} from "../../utils/DateTimeUtil";
+import {timestampToDateTime} from "../../utils/dateTime";
 import {Button, Table, Tag} from "antd";
 import {Problem} from "../../models/problem";
 import Column from "antd/lib/table/Column";

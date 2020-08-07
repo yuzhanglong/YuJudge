@@ -10,12 +10,23 @@ import React from "react";
 import {Card, Col, Row} from "antd";
 import {DashOutlined} from "@ant-design/icons/lib";
 import LineChart from "../../../components/charts/LineChart";
+import ColumnChart from "../../../components/charts/ColumnChart";
 
 interface ChartGroupProps {
-
+  recentSubmission: any[];
 }
 
 const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
+  const generateUserSubmissionData = () => {
+    return props.recentSubmission.map((res) => {
+      const d = new Date(res.time);
+      return {
+        date: d.getMonth() + 1 + "." + d.getDate(),
+        totalAmount: res.totalAmount,
+        acAmount: res.acAmount
+      }
+    })
+  }
   return (
     <div>
       <Row justify={"space-between"} gutter={25}>
@@ -23,12 +34,16 @@ const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
           <Card
             hoverable
             type="inner"
-            title="我的提交"
+            title="近七日提交"
             extra={
               <DashOutlined/>
             }>
             <div className={"chart-wrap"}>
-              <LineChart></LineChart>
+              <ColumnChart
+                xKey={"date"}
+                xKeyDesc={"日期"}
+                yKey={"totalAmount"}
+                yKeyDesc={"提交数"} data={generateUserSubmissionData()}/>
             </div>
           </Card>
         </Col>
@@ -36,7 +51,7 @@ const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
         <Col span={8}>
           <Card
             type="inner"
-            title="24小时提交"
+            title="个人数据"
             hoverable
             extra={
               <DashOutlined/>
@@ -51,7 +66,7 @@ const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
           <Card
             hoverable
             type="inner"
-            title="题目活跃度"
+            title="全站24小时提交"
             extra={
               <DashOutlined/>
             }>

@@ -8,6 +8,7 @@
 
 import React from "react";
 import {Line} from "@ant-design/charts";
+import {ColumnConfig} from "@ant-design/charts/es/column";
 
 interface LineChartProps {
 
@@ -22,10 +23,11 @@ const LineChart: React.FunctionComponent<LineChartProps> = (props) => {
     {year: '1995', value: 4.9},
     {year: '1996', value: 6},
   ];
-  const config = {
+  const config: ColumnConfig = {
     data,
+    forceFit: true,
     xField: 'year',
-    yField: 'value',
+    yField: 'value'
   };
   return <Line {...config} height={300} width={350}/>;
 }

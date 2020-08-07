@@ -23,3 +23,8 @@ export const getCode = (problemId: string): string | null => {
 export const setToken = (token: string) => {
   window.localStorage.setItem(TOKEN_KEY, token);
 }
+
+// 获取token
+export const getToken = () => {
+  return window.localStorage.getItem(TOKEN_KEY);
+}

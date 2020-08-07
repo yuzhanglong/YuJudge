@@ -2,7 +2,7 @@ import React from "react";
 import {Modal, Descriptions} from "antd";
 import {SubmissionDetail} from "../../../models/submission";
 import ReactMarkdown from "react-markdown";
-import {timestampToDateTime} from "../../../utils/DateTimeUtil";
+import {timestampToDateTime} from "../../../utils/dateTime";
 import TextArea from "antd/es/input/TextArea";
 
 interface SubmissionDetailModalProps {
