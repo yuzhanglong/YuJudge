@@ -33,6 +33,9 @@ export const RECENT_PROBLEM_IN_DASHBOARD_AMOUNT: number = 8;
 // 控制台个人近期提交的天数
 export const RECENT_SUBMISSION_DATES_IN_DASHBOARD_AMOUNT: number = 7;
 
+// 控制台活跃用户个数
+export const RECENT_ACTIVE_USER_IN_DASHBOARD_AMOUNT: number = 7;
+
 // 分页表格组件的首页页号
 export const PAGE_BEGIN: number = 1;
 

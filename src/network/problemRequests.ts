@@ -8,7 +8,6 @@
 
 import request, {REQUEST_TYPES} from "./request";
 import {ProblemLimitation, ProblemTestCase} from "../models/problem";
-import {getToken} from "../utils/dataPersistence";
 
 
 // 通过id来获取problem的基本信息

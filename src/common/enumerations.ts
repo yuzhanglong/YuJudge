@@ -28,8 +28,16 @@ export enum LanguageTypeEnum {
 }
 
 // problemHome页面左侧导航的key
-export enum ProblemHoneTabKey {
+export enum ProblemHoneTabKeyEnum {
   PROBLEM = "problem",
   SOLUTION = "solutions",
   SUBMISSION = "submission",
+}
+
+// 排名颜色
+export enum RankingColor {
+  RANKING_FIRST = "#f5222d",
+  RANKING_SECOND = "#ff7a45",
+  RANKING_THIRD = "#ffa940",
+  RANKING_DEFAULT = "#8c8c8c"
 }

@@ -35,3 +35,12 @@ export interface RegisterFormData {
   checkCodeContent: string;
   checkCodeKey: string | null;
 }
+
+// 用户信息
+export interface UserInfo {
+  nickname: string,
+  email: string,
+  avatar: string,
+  acAmount: number,
+  submissionAmount: number
+}

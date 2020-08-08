@@ -23,7 +23,6 @@ interface ColumnChartProps {
 }
 
 const ColumnChart: React.FunctionComponent<ColumnChartProps> = (props) => {
-  console.log(props.data);
   const config: ColumnConfig = {
     data: props.data,
     forceFit: props.forceFit,

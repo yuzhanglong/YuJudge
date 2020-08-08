@@ -7,10 +7,12 @@
  */
 
 
-// 获取验证码相关信息
 import request, {REQUEST_TYPES} from "./request";
 import {LoginFormData, RegisterFormData} from "../models/user";
+import {getToken} from "../utils/dataPersistence";
 
+
+// 获取验证码相关信息
 export const getCheckCodeInfo = () => {
   return request.get(
     "/user/get_check_code",
@@ -39,6 +41,33 @@ export const register = (registerFormData: RegisterFormData) => {
     registerFormData,
     {
       method: REQUEST_TYPES.POST
+    }
+  )
+}
+
+// 获取活跃用户
+export const getActiveUserInfo = (userAmount: number) => {
+  return request.get(
+    "/user/get_active_user",
+    {
+      headers: {
+        Authorization: getToken()
+      },
+      params: {
+        amount: userAmount
+      }
+    }
+  )
+}
+
+// 获取用户信息
+export const getUserInfo = () => {
+  return request.get(
+    "/user/get_user_info",
+    {
+      headers: {
+        Authorization: getToken()
+      },
     }
   )
 }

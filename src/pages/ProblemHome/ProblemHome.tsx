@@ -23,7 +23,7 @@ import {PAGE_BEGIN, SUBMISSION_REQUEST_TASK_TIME, SUBMISSION_SINGLE_PAGE_SIZE} f
 import SubmissionDetailModal from "./childCmp/SubmissionDetailModal";
 import CommonMenu from "../../components/commonMenu/CommonMenu";
 import {getCode, saveCode} from "../../utils/dataPersistence";
-import {ProblemHoneTabKey} from "../../common/enumerations";
+import {ProblemHoneTabKeyEnum} from "../../common/enumerations";
 
 interface ProblemShowProps {
 
@@ -57,7 +57,7 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
   // 选中的提交细节内容
   const [activeSubmission, setActiveSubmission] = useState();
   // 选中的左侧导航的key
-  const [activeProblemTabKey, setActiveProblemTabKey] = useState(ProblemHoneTabKey.PROBLEM);
+  const [activeProblemTabKey, setActiveProblemTabKey] = useState(ProblemHoneTabKeyEnum.PROBLEM);
 
 
   useEffect(() => {
@@ -123,7 +123,7 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
     submitCode(submission).then(() => {
       message.success("提交成功~");
       // 提交时tab跳转到提交页面，同时内部的表单切回第一页，用户可以立刻查看提交状态
-      setActiveProblemTabKey(ProblemHoneTabKey.SUBMISSION);
+      setActiveProblemTabKey(ProblemHoneTabKeyEnum.SUBMISSION);
       onPaginationChange(PAGE_BEGIN);
     });
   }
@@ -189,21 +189,21 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
               <Tabs activeKey={activeProblemTabKey} onChange={(key: any) => setActiveProblemTabKey(key)}>
                 <Tabs.TabPane
                   tab={<span><FormOutlined/>问题</span>}
-                  key={ProblemHoneTabKey.PROBLEM}>
+                  key={ProblemHoneTabKeyEnum.PROBLEM}>
                   <div className={"problem-show-content-wrap"}>
                     <ReactMarkdown source={problem.content}></ReactMarkdown>
                   </div>
                 </Tabs.TabPane>
                 <Tabs.TabPane
                   tab={<span><ExperimentOutlined/>题解</span>}
-                  key={ProblemHoneTabKey.SOLUTION}>
+                  key={ProblemHoneTabKeyEnum.SOLUTION}>
                   <div className={"problem-show-content-wrap"}>
                     题解区域
                   </div>
                 </Tabs.TabPane>
                 <Tabs.TabPane
                   tab={<span><OrderedListOutlined/>提交记录</span>}
-                  key={ProblemHoneTabKey.SUBMISSION}>
+                  key={ProblemHoneTabKeyEnum.SUBMISSION}>
                   <div className={"problem-show-content-wrap"}>
                     <SubmissionTable
                       submissions={submissions}

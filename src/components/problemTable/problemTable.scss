@@ -1,0 +1,15 @@
+$ranking-first: #f5222d;
+$ranking-second: #ff7a45;
+$ranking-third: #ffa940;
+
+.user-table-ranking-1 {
+  background-color: $ranking-first;
+}
+
+.user-table-ranking-2 {
+  background-color: $ranking-second;
+}
+
+.user-table-ranking-3 {
+  background-color: $ranking-third;
+}
