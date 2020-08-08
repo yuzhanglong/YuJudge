@@ -4,6 +4,7 @@ import React from "react";
 import {MenuProps} from "antd/lib/menu";
 import SubMenu from "antd/lib/menu/SubMenu";
 import {Link} from "react-router-dom";
+import AllComponents from "../../pages";
 
 
 const renderMenuItems = (item: MenuRouterConfig[]) => {
@@ -24,16 +25,17 @@ const renderMenuItems = (item: MenuRouterConfig[]) => {
 //TODO:对路由地址末尾query的处理
 const renderSideBarSubMenus = (item: MenuRouterConfig[]) => {
   return (
-    item.map((subMenu: any) => {
-      if (subMenu.children?.length > 0) {
+    item.map((subMenu: MenuRouterConfig) => {
+      const MenuIcon = subMenu.icon && AllComponents[subMenu.icon];
+      if (subMenu.children && subMenu.children.length > 0) {
         return (
-          <SubMenu title={subMenu.title} key={subMenu.key}>
+          <SubMenu title={subMenu.title} key={subMenu.key} icon={subMenu.icon ? <MenuIcon/> : null}>
             {renderMenuItems(subMenu.children || [])}
           </SubMenu>
         )
       } else {
         return (
-          <Menu.Item title={subMenu.title} key={subMenu.key}>
+          <Menu.Item title={subMenu.title} key={subMenu.key} icon={subMenu.icon ? <MenuIcon/> : null}>
             <Link to={subMenu.path}>
               <span className="nav-text">{subMenu.title}</span>
             </Link>

@@ -8,6 +8,10 @@
 
 
 // cms目录菜单路由配置
+import {CMS_MENUS} from "./cmsMenu";
+import {COMMON_MENUS} from "./commonMenu";
+
+// 目录路由配置
 export interface MenuRouterConfig {
   key: string;
   path: string;
@@ -32,57 +36,10 @@ const routerConfig: {
   [index: string]: any;
 } = {
   menus: [
-    {
-      key: "/cms/dashboard",
-      component: "Dashboard",
-      title: "控制台",
-      path: "/cms/dashboard",
-    },
-    {
-      key: "/cms/problem_manage",
-      title: "题目&题目集",
-      path: "/cms/problem_manage",
-      children: [
-        {
-          key: "/cms/problem_manage/problems",
-          component: "ProblemManage",
-          title: "题目管理",
-          path: "/cms/problem_manage",
-        },
-        {
-          key: "/cms/problem_manage/problem_sets",
-          component: "ProblemSetManage",
-          title: "题目集管理",
-          path: "/cms/problem_manage/problem_sets",
-        },
-        {
-          key: "/cms/problem_manage/problems/edit",
-          component: "ProblemEdit",
-          title: "题目编辑",
-          path: "/cms/problem_manage/problems/edit/:id",
-        }
-      ]
-    }
+    ...CMS_MENUS
   ],
   common: [
-    {
-      key: "/landing",
-      component: "Landing",
-      title: "用户登录",
-      path: "/",
-    },
-    {
-      key: "/login",
-      component: "Login",
-      title: "用户登录",
-      path: "/login",
-    },
-    {
-      key: "/problem/:id",
-      component: "ProblemHome",
-      title: "问题首页",
-      path: "/problem/:id",
-    },
+    ...COMMON_MENUS
   ]
 }
 

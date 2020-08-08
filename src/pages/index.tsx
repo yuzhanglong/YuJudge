@@ -13,6 +13,13 @@ import Login from "./login/Login";
 import Landing from "./landing/Landing";
 import Dashboard from "./dashboard/Dashboard";
 import ProblemHome from "./problemHome/ProblemHome";
+import {
+  DashboardOutlined,
+  UserOutlined,
+  ProfileOutlined,
+  CloudServerOutlined,
+  SettingOutlined
+} from "@ant-design/icons/lib";
 
 export default {
   ProblemManage: ProblemManage,
@@ -21,5 +28,10 @@ export default {
   Login: Login,
   Landing: Landing,
   Dashboard: Dashboard,
-  ProblemHome: ProblemHome
+  ProblemHome: ProblemHome,
+  DashboardOutlined: DashboardOutlined,
+  UserOutlined: UserOutlined,
+  ProfileOutlined: ProfileOutlined,
+  CloudServerOutlined: CloudServerOutlined,
+  SettingOutlined: SettingOutlined
 } as any;
