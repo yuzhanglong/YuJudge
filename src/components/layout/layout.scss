@@ -1,0 +1,53 @@
+$header-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.05);
+
+.layout-logo {
+  height: 30px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 15px;
+}
+
+.site-layout-header {
+  background-color: #ffffff;
+
+  padding: 0;
+  z-index: 666;
+  box-shadow: $header-box-shadow;
+}
+
+.site-layout-header-content {
+
+}
+
+.site-layout-content {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.site-layout-header-content-menu {
+
+}
+
+.header-operaion-icon-wrap {
+  font-size: 25px;
+}
+
+.site-layout-header-content {
+  display: flex;
+  width: 150px;
+  height: 60px;
+  justify-content: space-between;
+  align-items: center;
+  float: right;
+  padding-right: 30px;
+}
+
+.header-operaion-user-wrap {
+  display: flex;
+  align-items: center;
+  height: 60px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}

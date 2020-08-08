@@ -1,11 +1,13 @@
 import React from "react";
-import {Layout, Menu} from "antd";
+import {Affix, Layout} from "antd";
 import SideBar from "./SideBar";
 import routerConfig from "../../router/config";
 import Breadcrumb from "./Breadcrumb";
 import {RouteComponentProps} from "react-router-dom";
+import CMSHeader from "./CMSHeader";
 
-const {Header, Content, Sider} = Layout;
+
+const {Content, Sider} = Layout;
 
 interface CMSLayoutProps {
   cmsRoutes: any;
@@ -13,40 +15,34 @@ interface CMSLayoutProps {
 
 const CMSLayout: React.FunctionComponent<CMSLayoutProps & RouteComponentProps> = (props) => {
   return (
-    <Layout>
-      <Header className="header">
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-        </Menu>
-      </Header>
-      <Layout>
-        <Sider
-          width={230}
-          className="site-layout-background"
-          theme="dark">
-          <SideBar
-            menus={routerConfig.menus}
-            mode="inline"
-            defaultSelectedKeys={['1']}
-            defaultOpenKeys={['sub1']}
-            style={{
-              height: '100%',
-              borderRight: 0
-            }}>
-          </SideBar>
-        </Sider>
-
-        <Layout style={{padding: '0 24px 24px'}}>
+    <Layout style={{minHeight: '100vh'}}>
+      <Sider
+        width={230}
+        theme="dark" style={{
+        height: '100vh',
+        position: 'fixed',
+        left: 0,
+      }}>
+        <div className="layout-logo"/>
+        <SideBar
+          menus={routerConfig.menus} theme={"dark"}
+          mode="inline"
+          defaultSelectedKeys={['1']}
+          defaultOpenKeys={['sub1']}
+          style={{
+            height: '100%',
+            borderRight: 0
+          }}>
+        </SideBar>
+      </Sider>
+      <Layout className="site-layout" style={{marginLeft: 230}}>
+        <Affix offsetTop={0}>
+          <CMSHeader></CMSHeader>
+        </Affix>
+        <Content className={"site-layout-content"}>
           <Breadcrumb></Breadcrumb>
-          <Content
-            className="site-layout-background"
-            style={{
-              padding: 24,
-              margin: 0,
-              minHeight: "82vh",
-            }}>
-            {props.cmsRoutes}
-          </Content>
-        </Layout>
+          {props.cmsRoutes}
+        </Content>
       </Layout>
     </Layout>
   )
