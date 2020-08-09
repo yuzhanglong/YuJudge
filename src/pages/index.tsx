@@ -6,7 +6,7 @@
  * Email: yuzl1123@163.com
  */
 
-import ProblemSetManage from "./problemSetManage/problemSetManage";
+import ProblemSetManage from "./problemSetManage/ProblemSetManage";
 import ProblemManage from "./problemManage/ProblemManage";
 import ProblemEdit from "./problemEdit/problemEdit";
 import Login from "./login/Login";

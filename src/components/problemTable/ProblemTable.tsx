@@ -17,6 +17,7 @@ interface ProblemTableProps {
   onPageChange?: (page: number) => void;
   tableSize?: SizeType;
   showPagination?: boolean;
+  isLoading?: boolean;
 }
 
 
@@ -80,6 +81,7 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
   return (
     <Table dataSource={props.problems}
            rowKey={"id"}
+           loading={props.isLoading}
            pagination={props.showPagination ? paginationProp : false}
            onChange={(e: TablePaginationConfig) => onPageChange(e)}
            size={props.tableSize}>
@@ -117,7 +119,8 @@ ProblemTable.defaultProps = {
   isShowTags: true,
   totalPage: PAGE_BEGIN,
   tableSize: undefined,
-  showPagination: true
+  showPagination: true,
+  isLoading: false
 }
 
 export default ProblemTable;
