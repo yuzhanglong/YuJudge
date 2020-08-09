@@ -9,20 +9,32 @@ import ProblemSetToolBar from "./childCmp/ProblemSetToolBar";
 import {Moment} from 'moment';
 
 const ProblemSetManage: React.FunctionComponent = () => {
+  // 当前展示的题目集
   const [problemSets, setProblemSets] = useState<ProblemSet[]>([]);
+
+  // 分页对象基本信息
   const [paginationInfo, setPaginationInfo] = useState<Pagination>();
+
+  // 是否只展示活跃的题目集
   const [isOnlyShowActiveProblemSets, setIsOnlyShowActiveProblemSets] = useState<boolean>(false);
+
+  // 是否等待状态中
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  // 是否展示编辑表单
   const [isShowEditForm, setIsShowEditForm] = useState<boolean>(false);
 
+  // 搜索关键词
+  const [searchValue, setSearchValue] = useState<string | null>(null);
+
   useEffect(() => {
-    getProblemSetsInfo(PAGE_BEGIN - 1, false);
+    getProblemSetsInfo(PAGE_BEGIN - 1, null, false);
   }, []);
 
   // 获取题目集信息，其中的isLimit代表是否仅展示活跃的题目集
-  const getProblemSetsInfo = (start: number, isLimit: boolean) => {
+  const getProblemSetsInfo = (start: number, search: string | null, isLimit: boolean) => {
     setIsLoading(true);
-    getProblemSets(start, SINGLE_PAGE_SIZE_IN_PROBLEM_SET_MANAGE, isLimit)
+    getProblemSets(start, SINGLE_PAGE_SIZE_IN_PROBLEM_SET_MANAGE, search, isLimit)
       .then((res) => {
         const pagination: Pagination = res.data;
         setProblemSets(pagination.items);
@@ -38,7 +50,7 @@ const ProblemSetManage: React.FunctionComponent = () => {
   // 用户点击只显示活跃题目集时
   const onProblemSetsLimitationChange = (checked: boolean) => {
     setIsOnlyShowActiveProblemSets(checked);
-    getProblemSetsInfo(PAGE_BEGIN - 1, checked);
+    getProblemSetsInfo(PAGE_BEGIN - 1, searchValue, checked);
   }
 
   // 创建题目集
@@ -64,17 +76,24 @@ const ProblemSetManage: React.FunctionComponent = () => {
 
   // 当页码发生改变
   const onPageChange = (page: number) => {
-    getProblemSetsInfo(page - 1, isOnlyShowActiveProblemSets);
+    getProblemSetsInfo(page - 1, searchValue, isOnlyShowActiveProblemSets);
+  }
+
+  // 关键字搜索
+  const onSearchButtonClick = (value: string) => {
+    setSearchValue(value);
+    getProblemSetsInfo(0, value, false);
   }
 
   return (
     <div>
       <div className={"problem-set-tool-bar-wrap"}>
         <ProblemSetToolBar
-          onSwitchChange={onProblemSetsLimitationChange}
+          onCheckBoxChange={onProblemSetsLimitationChange}
           showModal={isShowEditForm} onFormFinish={formData => onCreateProblemSet(formData)}
           onCreateButtonClick={() => setIsShowEditForm(true)}
-          onCancel={() => setIsShowEditForm(false)}/>
+          onCancel={() => setIsShowEditForm(false)}
+          onSearch={onSearchButtonClick}/>
       </div>
       <ProblemSetTable
         isLoading={isLoading}

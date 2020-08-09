@@ -36,8 +36,9 @@ const CMSLayout: React.FunctionComponent<CMSLayoutProps & RouteComponentProps> =
         </SideBar>
       </Sider>
       <Layout className="site-layout" style={{marginLeft: 230}}>
+        {/*TODO:这里会报warning，需要处理*/}
         <Affix offsetTop={0}>
-          <CMSHeader></CMSHeader>
+          <CMSHeader/>
         </Affix>
         <Content className={"site-layout-content"}>
           <Breadcrumb></Breadcrumb>

@@ -13,7 +13,7 @@ import {getToken} from "../utils/dataPersistence";
 
 
 // 获取题目集信息，其中的isLimit代表是否仅展示活跃的题目集
-export const getProblemSets = (start: number, count: number, limit: boolean) => {
+export const getProblemSets = (start: number, count: number, search: string | null, limit: boolean) => {
   return request.get(
     "/problem_set/get_problem_sets",
     {
@@ -21,7 +21,8 @@ export const getProblemSets = (start: number, count: number, limit: boolean) => 
       params: {
         start: start,
         count: count,
-        limit: limit
+        limit: limit,
+        search: search
       }
     }
   )

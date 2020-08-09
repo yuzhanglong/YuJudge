@@ -7,16 +7,18 @@
  */
 
 import React from "react";
-import {Button, Col, DatePicker, Form, Input, Modal, Row, Space, Switch} from "antd";
+import {Button, Checkbox, Col, DatePicker, Form, Input, Modal, Row, Space} from "antd";
+import Search from "antd/es/input/Search";
 
 const {RangePicker} = DatePicker;
 
 interface ProblemSetManageToolsProps {
-  onSwitchChange?: (checked: boolean) => void;
+  onCheckBoxChange?: (checked: boolean) => void;
   showModal?: boolean;
   onCreateButtonClick?: () => void;
   onCancel?: () => void;
   onFormFinish?: (formData: any) => void;
+  onSearch?: (search: string) => void;
 }
 
 const ProblemSetToolBar: React.FunctionComponent<ProblemSetManageToolsProps> = (props) => {
@@ -29,22 +31,44 @@ const ProblemSetToolBar: React.FunctionComponent<ProblemSetManageToolsProps> = (
     }
   }
 
+  // 多选框改变
+  const onCheckBoxChange = (e: any) => {
+    if (props.onCheckBoxChange) {
+      props.onCheckBoxChange(e.target.checked);
+    }
+  }
+
+  // 搜索按钮被按下
+  const onSearchButtonClick = (value: string) => {
+    if (props.onSearch) {
+      props.onSearch(value);
+    }
+  }
+
   return (
     <div>
       <Row align={"middle"} justify={"space-between"}>
         <Col>
-          <Space>
-            只显示活跃题目集:
-            <Switch
-              defaultChecked={false}
-              onChange={props.onSwitchChange}/>
+          <Search
+            placeholder="搜索题目集"
+            onSearch={value => onSearchButtonClick(value)}
+            style={{width: 200}}
+          />
+          <Space style={{paddingLeft: 20}}>
+            <Checkbox
+              onChange={(e) => onCheckBoxChange(e)}
+              defaultChecked={false}>
+              只显示活跃题目集
+            </Checkbox>
           </Space>
         </Col>
+
         <Col>
           <Button type={"primary"} onClick={props.onCreateButtonClick}>
             创建题目集
           </Button>
         </Col>
+
       </Row>
       <Modal
         visible={props.showModal}
