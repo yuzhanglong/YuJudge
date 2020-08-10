@@ -14,6 +14,12 @@ interface CMSLayoutProps {
   commonRoutes: any;
 }
 
+
+const Header = React.forwardRef(((props, ref) => (
+  <CMSHeader {...props} {...ref}/>
+)))
+
+
 const CMSLayout: React.FunctionComponent<CMSLayoutProps & RouteComponentProps> = (props) => {
   return (
     <Layout style={{minHeight: '100vh'}}>
@@ -26,7 +32,8 @@ const CMSLayout: React.FunctionComponent<CMSLayoutProps & RouteComponentProps> =
       }}>
         <div className="layout-logo"/>
         <SideBar
-          menus={routerConfig.menus} theme={"dark"}
+          menus={routerConfig.menus}
+          theme={"dark"}
           mode="inline"
           defaultSelectedKeys={['1']}
           defaultOpenKeys={['sub1']}
@@ -39,7 +46,7 @@ const CMSLayout: React.FunctionComponent<CMSLayoutProps & RouteComponentProps> =
       <Layout className="site-layout" style={{marginLeft: 230}}>
         {/*TODO:这里会报warning，需要处理*/}
         <Affix offsetTop={0}>
-          <CMSHeader/>
+          <Header></Header>
         </Affix>
         <Content className={"site-layout-content"}>
           <Breadcrumb></Breadcrumb>

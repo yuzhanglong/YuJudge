@@ -7,7 +7,7 @@
  */
 
 import React from "react";
-import {Button, Card, Divider} from "antd";
+import {Button, Card} from "antd";
 import ProblemTable from "../../../components/problemTable/ProblemTable";
 import {Problem} from "../../../models/problem";
 import {RouteComponentProps} from "react-router-dom";
