@@ -26,5 +26,5 @@ export const COMMON_MENUS: MenuRouterConfig[] = [
     component: "ProblemHome",
     title: "问题首页",
     path: "/problem/:id",
-  },
+  }
 ]

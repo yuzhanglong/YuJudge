@@ -1,5 +1,5 @@
 import React from "react";
-import EditorTip from "./editorTip";
+import EditorTip from "../../editorTip/editorTip";
 import {Button, Divider} from "antd";
 import {closeProblem} from "../../../network/problemRequests";
 import {Problem} from "../../../models/problem";

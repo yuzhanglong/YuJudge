@@ -21,6 +21,7 @@ export interface MenuRouterConfig {
   query?: string;
   isAuthRequired?: boolean;
   children?: MenuRouterConfig[];
+  isShowInMenu?: boolean;
 }
 
 

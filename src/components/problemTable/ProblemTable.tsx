@@ -18,6 +18,7 @@ interface ProblemTableProps {
   tableSize?: SizeType;
   showPagination?: boolean;
   isLoading?: boolean;
+  isShowCheckBoxGroup?: boolean;
 }
 
 
@@ -78,13 +79,25 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
     }
   }
 
+  // 表左侧多选框配置
+  const rowSelection = {
+    onChange: (selectedRowKeys: any, selectedRows: any) => {
+      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+    },
+  };
+
   return (
     <Table dataSource={props.problems}
            rowKey={"id"}
            loading={props.isLoading}
            pagination={props.showPagination ? paginationProp : false}
            onChange={(e: TablePaginationConfig) => onPageChange(e)}
-           size={props.tableSize}>
+           size={props.tableSize}
+           rowSelection={
+             props.isShowCheckBoxGroup ? {
+               type: "checkbox",
+               ...rowSelection,
+             } : undefined}>
       <Column title={"题号"} dataIndex={"id"}
               key={"number"} width={150}/>
       <Column title={"问题名称"}
@@ -120,7 +133,8 @@ ProblemTable.defaultProps = {
   totalPage: PAGE_BEGIN,
   tableSize: undefined,
   showPagination: true,
-  isLoading: false
+  isLoading: false,
+  isShowCheckBoxGroup: false
 }
 
 export default ProblemTable;

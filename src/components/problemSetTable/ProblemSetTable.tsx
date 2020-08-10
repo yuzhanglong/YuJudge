@@ -23,6 +23,7 @@ interface ProblemSetTableProps {
   onPageChange?: (page: number) => void;
   tableSize?: SizeType;
   isLoading?: boolean;
+  onEditButtonClick: (id: number) => void;
 }
 
 const ProblemSetTable: React.FunctionComponent<ProblemSetTableProps> = (props) => {
@@ -52,7 +53,7 @@ const ProblemSetTable: React.FunctionComponent<ProblemSetTableProps> = (props) =
   // 渲染操作相关
   const renderOperations = (content: any) => {
     return (
-      <Button type="link">
+      <Button type="link" onClick={() => props.onEditButtonClick(content.id)}>
         编辑题目集
       </Button>
     )

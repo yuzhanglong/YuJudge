@@ -10,13 +10,13 @@ import AllComponents from "../../pages";
 const renderMenuItems = (item: MenuRouterConfig[]) => {
   return (
     item.map(menuItem => {
-      return (
+      return menuItem.isShowInMenu ? (
         <Menu.Item key={menuItem.key}>
           <Link to={menuItem.path}>
             <span className="nav-text">{menuItem.title}</span>
           </Link>
         </Menu.Item>
-      )
+      ) : null
     })
   )
 }
@@ -27,6 +27,9 @@ const renderSideBarSubMenus = (item: MenuRouterConfig[]) => {
   return (
     item.map((subMenu: MenuRouterConfig) => {
       const MenuIcon = subMenu.icon && AllComponents[subMenu.icon];
+      if (!subMenu.isShowInMenu) {
+        return null;
+      }
       if (subMenu.children && subMenu.children.length > 0) {
         return (
           <SubMenu title={subMenu.title} key={subMenu.key} icon={subMenu.icon ? <MenuIcon/> : null}>

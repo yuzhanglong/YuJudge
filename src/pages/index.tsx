@@ -20,6 +20,7 @@ import {
   CloudServerOutlined,
   SettingOutlined
 } from "@ant-design/icons/lib";
+import ProblemSetEdit from "./problemSetEdit/ProblemSetEdit";
 
 export default {
   ProblemManage: ProblemManage,
@@ -33,5 +34,6 @@ export default {
   UserOutlined: UserOutlined,
   ProfileOutlined: ProfileOutlined,
   CloudServerOutlined: CloudServerOutlined,
-  SettingOutlined: SettingOutlined
+  SettingOutlined: SettingOutlined,
+  ProblemSetEdit: ProblemSetEdit
 } as any;

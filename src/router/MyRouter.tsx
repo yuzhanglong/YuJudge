@@ -66,7 +66,12 @@ const MyRouter: React.FunctionComponent<MyRouterProps> = () => {
         key={"cms"}
         path={"/cms"}
         render={(props: any) => {
-          return (<CMSLayout {...props} cmsRoutes={createRouteByKey("menus")}/>)
+          return (
+            <CMSLayout
+              {...props}
+              cmsRoutes={createRouteByKey("menus")}
+              commonRoutes={createRouteByKey("common")}/>
+          )
         }}/>
       <Route render={() => <Redirect to="/404"/>}/>
     </Switch>

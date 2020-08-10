@@ -41,3 +41,15 @@ export const createProblemSet = (problemSet: ProblemSet) => {
     }
   )
 }
+
+// 获取某个problemSet下所有problem
+export const getProblemSetProblems = (problemSetId: number) => {
+  return request.get(
+    "/problem_set/get_problem_set_problems/" + problemSetId,
+    {
+      headers: {
+        Authorization: getToken()
+      }
+    }
+  )
+}

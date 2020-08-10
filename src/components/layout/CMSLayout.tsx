@@ -11,6 +11,7 @@ const {Content, Sider} = Layout;
 
 interface CMSLayoutProps {
   cmsRoutes: any;
+  commonRoutes: any;
 }
 
 const CMSLayout: React.FunctionComponent<CMSLayoutProps & RouteComponentProps> = (props) => {
@@ -43,6 +44,7 @@ const CMSLayout: React.FunctionComponent<CMSLayoutProps & RouteComponentProps> =
         <Content className={"site-layout-content"}>
           <Breadcrumb></Breadcrumb>
           {props.cmsRoutes}
+          {props.commonRoutes}
         </Content>
       </Layout>
     </Layout>

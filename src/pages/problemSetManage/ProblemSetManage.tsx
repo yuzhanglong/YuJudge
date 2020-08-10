@@ -7,8 +7,10 @@ import ProblemSetTable from "../../components/problemSetTable/ProblemSetTable";
 import {Pagination} from "../../models/common";
 import ProblemSetToolBar from "./childCmp/ProblemSetToolBar";
 import {Moment} from 'moment';
+import {RouteComponentProps} from "react-router-dom";
+import {PaginationState} from "../../states/pagination";
 
-const ProblemSetManage: React.FunctionComponent = () => {
+const ProblemSetManage: React.FunctionComponent<RouteComponentProps> = (props) => {
   // 当前展示的题目集
   const [problemSets, setProblemSets] = useState<ProblemSet[]>([]);
 
@@ -26,6 +28,7 @@ const ProblemSetManage: React.FunctionComponent = () => {
 
   // 搜索关键词
   const [searchValue, setSearchValue] = useState<string | null>(null);
+
 
   useEffect(() => {
     getProblemSetsInfo(PAGE_BEGIN - 1, null, false);
@@ -85,20 +88,28 @@ const ProblemSetManage: React.FunctionComponent = () => {
     getProblemSetsInfo(0, value, false);
   }
 
+  // 编辑题目集按钮被单击，我们准备执行跳转
+  const onProblemEdit = (id: number) => {
+    props.history.push(`/cms/problem_manage/problem_sets/edit/${id}`)
+  }
+
   return (
     <div>
       <div className={"problem-set-tool-bar-wrap"}>
         <ProblemSetToolBar
           onCheckBoxChange={onProblemSetsLimitationChange}
-          showModal={isShowEditForm} onFormFinish={formData => onCreateProblemSet(formData)}
+          showModal={isShowEditForm}
+          onFormFinish={formData => onCreateProblemSet(formData)}
           onCreateButtonClick={() => setIsShowEditForm(true)}
           onCancel={() => setIsShowEditForm(false)}
           onSearch={onSearchButtonClick}/>
       </div>
       <ProblemSetTable
+        onEditButtonClick={onProblemEdit}
         isLoading={isLoading}
         problemSets={problemSets}
-        totalPage={paginationInfo?.totalPage} onPageChange={onPageChange}/>
+        totalPage={paginationInfo?.totalPage}
+        onPageChange={onPageChange}/>
     </div>
   )
 }
