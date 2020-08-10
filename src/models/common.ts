@@ -37,3 +37,14 @@ export interface Pagination {
 export interface UploadTokenData {
   uploadToken: string;
 }
+
+
+export interface PaginationRequest {
+  start: number;
+  count: number;
+}
+
+export interface ProblemSetPaginationRequest extends PaginationRequest {
+  limit: boolean,
+  search: string | null
+}

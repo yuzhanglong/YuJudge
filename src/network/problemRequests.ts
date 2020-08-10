@@ -8,6 +8,7 @@
 
 import request, {REQUEST_TYPES} from "./request";
 import {ProblemLimitation, ProblemTestCase} from "../models/problem";
+import {PaginationRequest} from "../models/common";
 
 
 // 通过id来获取problem的基本信息
@@ -22,15 +23,12 @@ export const getProblemById = (problemId: string) => {
 
 
 // 分页获取多个problem
-export const getProblems = (start: number, count: number) => {
+export const getProblems = (requestParams: PaginationRequest) => {
   return request.get(
     "/problem/get_problems",
     {
       method: REQUEST_TYPES.GET,
-      params: {
-        start: start,
-        count: count
-      }
+      params: requestParams
     }
   )
 }

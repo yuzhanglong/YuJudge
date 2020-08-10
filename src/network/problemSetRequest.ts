@@ -10,20 +10,16 @@
 import request, {REQUEST_TYPES} from "./request";
 import {ProblemSet} from "../models/problemSet";
 import {getToken} from "../utils/dataPersistence";
+import {ProblemSetPaginationRequest} from "../models/common";
 
 
 // 获取题目集信息，其中的isLimit代表是否仅展示活跃的题目集
-export const getProblemSets = (start: number, count: number, search: string | null, limit: boolean) => {
+export const getProblemSets = (requestParams: ProblemSetPaginationRequest) => {
   return request.get(
     "/problem_set/get_problem_sets",
     {
       method: REQUEST_TYPES.GET,
-      params: {
-        start: start,
-        count: count,
-        limit: limit,
-        search: search
-      }
+      params: requestParams
     }
   )
 }
