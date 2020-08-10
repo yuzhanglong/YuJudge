@@ -19,10 +19,13 @@ interface ProblemTableProps {
   showPagination?: boolean;
   isLoading?: boolean;
   isShowCheckBoxGroup?: boolean;
+  onSelectionSelected?: (ids: number[]) => void;
+  otherOperations?: (props: any) => React.ReactNode;
 }
 
 
 const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
+
   // 问题创建时间
   const renderCreateTime = (timeStamp: number) => {
     return (<div>{timestampToDateTime(timeStamp)}</div>)
@@ -65,10 +68,17 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
   // 渲染操作相关
   const renderOperations = (content: any) => {
     return (
-      <Button type="link"
-              onClick={() => onEditButtonClick(content)}>
-        编辑问题
-      </Button>
+      <div>
+        <Button
+          type="link"
+          onClick={() => onEditButtonClick(content)}>
+          编辑问题
+        </Button>
+        {
+          props.otherOperations &&
+          props.otherOperations(content)
+        }
+      </div>
     )
   }
 
@@ -81,8 +91,10 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
 
   // 表左侧多选框配置
   const rowSelection = {
-    onChange: (selectedRowKeys: any, selectedRows: any) => {
-      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+    onChange: (selectedRowKeys: any) => {
+      if (props.onSelectionSelected) {
+        props.onSelectionSelected(selectedRowKeys);
+      }
     },
   };
 

@@ -16,6 +16,7 @@ import EditorTip from "../../../components/editorTip/editorTip";
 interface ProblemSetEditorProps {
   problems: Problem[];
   onProblemAdd: () => void;
+  onRemoveFormProblemSet: (problemId: number) => void;
 }
 
 const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteComponentProps> = (props) => {
@@ -25,6 +26,12 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
     props.history.push(`/cms/problem_manage/problems/edit/${problemId}`)
   }
 
+  // 移除按钮被点击
+  const onRemoveButtonClick = (content: any) => {
+    const problemId = content.id;
+    props.onRemoveFormProblemSet(problemId);
+  }
+
   return (
     <Card title={"题目集编辑"}>
       <Card
@@ -32,6 +39,7 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
         style={{marginTop: 10}}
         title={<div className={"cms-problem-editor-part"}>基本信息</div>}>
       </Card>
+
       <Card
         type="inner"
         style={{marginTop: 10}}
@@ -41,9 +49,15 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
             添加已有问题
           </Button>
         }>
-        <ProblemTable problems={props.problems} onProblemEdit={gotoEditProblem}/>
-
+        <ProblemTable
+          problems={props.problems} onProblemEdit={gotoEditProblem}
+          otherOperations={(content: any) => (
+            <Button type={"link"} danger onClick={() => onRemoveButtonClick(content)}>
+              从题目集中移除
+            </Button>
+          )}/>
       </Card>
+
       <Card
         type="inner"
         style={{marginTop: 10}}

@@ -1,6 +1,6 @@
 import {useState} from "react";
-import {Pagination, PaginationResponse} from "../models/common";
 import {AxiosResponse} from "axios";
+import {Pagination, PaginationResponse} from "../models/pagination";
 
 
 export const usePaginationState = <T>(

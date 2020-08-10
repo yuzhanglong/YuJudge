@@ -11,17 +11,17 @@ import React, {useEffect} from "react";
 import ProblemTable from "../../components/problemTable/ProblemTable";
 import {RouteComponentProps} from "react-router-dom";
 import {getProblems} from "../../network/problemRequests";
-import {PaginationRequest} from "../../models/common";
 import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from "../../config/config";
 import {usePaginationState} from "../../hooks/pagination";
+import {ProblemPaginationRequest} from "../../models/pagination";
 
 
 const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
   // 分页对象
-  const problemPagination = usePaginationState(PAGE_BEGIN - 1, getProblems)
+  const problemPagination = usePaginationState<ProblemPaginationRequest>(PAGE_BEGIN - 1, getProblems)
 
   useEffect(() => {
-    getProblemsData(0, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE);
+    getProblemsData(0, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE, null);
   }, [])
 
   // 跳转编辑界面
@@ -30,17 +30,18 @@ const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
   }
 
   // 请求problem数据
-  const getProblemsData = (start: number, count: number) => {
-    const params: PaginationRequest = {
+  const getProblemsData = (start: number, count: number, search: string | null) => {
+    const params: ProblemPaginationRequest = {
       start: start,
-      count: count
+      count: count,
+      search: search
     }
     problemPagination.changeCurrentPage(params);
   }
 
   // 页码发生改变，请求新的数据
   const onPageChange = (page: number) => {
-    getProblemsData(page - 1, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE);
+    getProblemsData(page - 1, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE, null);
   }
 
   return (

@@ -24,6 +24,7 @@ interface ProblemSetTableProps {
   tableSize?: SizeType;
   isLoading?: boolean;
   onEditButtonClick: (id: number) => void;
+  otherOperations?: React.ReactNode;
 }
 
 const ProblemSetTable: React.FunctionComponent<ProblemSetTableProps> = (props) => {
@@ -53,9 +54,13 @@ const ProblemSetTable: React.FunctionComponent<ProblemSetTableProps> = (props) =
   // 渲染操作相关
   const renderOperations = (content: any) => {
     return (
-      <Button type="link" onClick={() => props.onEditButtonClick(content.id)}>
-        编辑题目集
-      </Button>
+      <div>
+        <Button type="link" onClick={() => props.onEditButtonClick(content.id)}>
+          编辑题目集
+        </Button>
+        {props.otherOperations}
+      </div>
+
     )
   }
 

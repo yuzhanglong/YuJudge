@@ -4,11 +4,11 @@ import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_SET_MANAGE} from "../../config/c
 import {message} from "antd";
 import {ProblemSet} from "../../models/problemSet";
 import ProblemSetTable from "../../components/problemSetTable/ProblemSetTable";
-import {ProblemSetPaginationRequest} from "../../models/common";
 import ProblemSetToolBar from "./childCmp/ProblemSetToolBar";
 import {Moment} from 'moment';
 import {RouteComponentProps} from "react-router-dom";
 import {usePaginationState} from "../../hooks/pagination";
+import {ProblemSetPaginationRequest} from "../../models/pagination";
 
 
 const ProblemSetManage: React.FunctionComponent<RouteComponentProps> = (props) => {

@@ -19,32 +19,7 @@ export interface BaseResponse extends AxiosResponse {
 }
 
 
-// 带有分页请求的响应
-export interface PaginationResponse extends BaseResponse {
-  data: Pagination;
-}
-
-// 分页响应的基本信息
-export interface Pagination {
-  count?: number;
-  page?: number;
-  total?: number;
-  totalPage?: number;
-  items?: any;
-}
-
 // 上传凭证响应
 export interface UploadTokenData {
   uploadToken: string;
-}
-
-
-export interface PaginationRequest {
-  start: number;
-  count: number;
-}
-
-export interface ProblemSetPaginationRequest extends PaginationRequest {
-  limit: boolean,
-  search: string | null
 }
