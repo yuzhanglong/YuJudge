@@ -79,6 +79,8 @@ const ProblemSetEdit: React.FunctionComponent<ProblemSetEditProps & RouteCompone
     <div>
       <ProblemSetEditor
         {...props}
+        onPageChange={getProblemSetProblemData}
+        problemSetProblemsTotalPage={problemSetProblemPagination.paginationInfo.totalPage || 1}
         problems={problemSetProblemPagination.items}
         onProblemAdd={() => setAddProblemModalVisiable(true)}
         onRemoveFormProblemSet={onRemoveFormProblemSet}/>

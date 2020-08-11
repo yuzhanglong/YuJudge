@@ -12,6 +12,9 @@ import {Problem} from "../../../models/problem";
 import {Button, Col, message, Modal, Row} from "antd";
 import Search from "antd/es/input/Search";
 import {updateProblemSetProblems} from "../../../network/problemSetRequest";
+import confirm from "antd/es/modal/confirm";
+import {ExclamationCircleOutlined} from "@ant-design/icons/lib";
+import {ADD_PROBLEM_MAX_SHOW} from "../../../config/config";
 
 interface AddProblemProps {
   problems: Problem[];
@@ -53,6 +56,42 @@ const AddProblem: React.FunctionComponent<AddProblemProps> = (props) => {
     props.onProblemPageChange(val);
   }
 
+  // 用户添加确认
+  const onAddProblemConfirm = () => {
+    confirm({
+      title: '以下题目将被添加至题目集:',
+      icon: <ExclamationCircleOutlined/>,
+      content: (<div>{getAddConfirmContent()}</div>),
+      okText: '确定',
+      okType: 'primary',
+      cancelText: '取消',
+      onOk() {
+        onAddConfirm();
+      },
+      onCancel() {
+        console.log('Cancel');
+      },
+    })
+  }
+
+  // 获取用户添加确认的确认文本
+  const getAddConfirmContent = () => {
+    const len = selectedRowIds.length;
+    const finalArr = selectedRowIds.slice(0, ADD_PROBLEM_MAX_SHOW);
+    // 是否超出可以显示的个数？对于超出的部分，我们不会显示，而是用<p>等{len}个题目</p>来告知用户
+    const isOutMax: boolean = len > finalArr.length;
+    return (
+      <div style={{paddingTop: 13}}>
+        {finalArr.map(res => {
+          return <p>{res}</p>
+        })}
+        {isOutMax && <p>等{len}个题目</p>}
+      </div>
+
+    );
+  }
+
+
   return (
     <Modal
       visible={props.isVisiable}
@@ -74,7 +113,7 @@ const AddProblem: React.FunctionComponent<AddProblemProps> = (props) => {
         <Col>
           <Button
             type={"primary"}
-            onClick={() => onAddConfirm()}>
+            onClick={() => onAddProblemConfirm()} disabled={!selectedRowIds.length}>
             添加选中项至题目集
           </Button>
         </Col>

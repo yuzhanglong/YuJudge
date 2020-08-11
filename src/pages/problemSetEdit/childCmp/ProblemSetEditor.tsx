@@ -7,7 +7,7 @@
  */
 
 import React from "react";
-import {Button, Card} from "antd";
+import {Button, Card, Popconfirm} from "antd";
 import ProblemTable from "../../../components/problemTable/ProblemTable";
 import {Problem} from "../../../models/problem";
 import {RouteComponentProps} from "react-router-dom";
@@ -17,6 +17,8 @@ interface ProblemSetEditorProps {
   problems: Problem[];
   onProblemAdd: () => void;
   onRemoveFormProblemSet: (problemId: number) => void;
+  problemSetProblemsTotalPage: number;
+  onPageChange: (n: number) => void;
 }
 
 const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteComponentProps> = (props) => {
@@ -50,11 +52,20 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
           </Button>
         }>
         <ProblemTable
+          totalPage={props.problemSetProblemsTotalPage}
+          onPageChange={props.onPageChange}
           problems={props.problems} onProblemEdit={gotoEditProblem}
           otherOperations={(content: any) => (
-            <Button type={"link"} danger onClick={() => onRemoveButtonClick(content)}>
-              从题目集中移除
-            </Button>
+            <Popconfirm
+              title="你确定要从题目集中移除这个题目吗"
+              okText="确定"
+              cancelText="取消"
+              onConfirm={() => onRemoveButtonClick(content)}>
+              <Button type={"link"} danger>
+                从题目集中移除
+              </Button>
+            </Popconfirm>
+
           )}/>
       </Card>
 

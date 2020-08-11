@@ -44,3 +44,6 @@ export const SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE = 10;
 
 // 题目集表格单页长度
 export const SINGLE_PAGE_SIZE_IN_PROBLEM_SET_MANAGE = 10;
+
+// 题目集添加题目时，交互时需要告知用户的内容个数
+export const ADD_PROBLEM_MAX_SHOW = 5
