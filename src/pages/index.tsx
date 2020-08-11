@@ -21,6 +21,10 @@ import {
   SettingOutlined
 } from "@ant-design/icons/lib";
 import ProblemSetEdit from "./problemSetEdit/ProblemSetEdit";
+import ProblemSetLayout from "../components/layout/problemSet/ProblemSetLayout";
+import ScoreBoard from "./scoreBoard/ScoreBoard";
+import ProblemSetProblems from "./ProblemSetProblems/ProblemSetProblems";
+import ProblemSetHome from "./problemSetHome/ProblemSetHome";
 
 export default {
   ProblemManage: ProblemManage,
@@ -35,5 +39,9 @@ export default {
   ProfileOutlined: ProfileOutlined,
   CloudServerOutlined: CloudServerOutlined,
   SettingOutlined: SettingOutlined,
-  ProblemSetEdit: ProblemSetEdit
+  ProblemSetEdit: ProblemSetEdit,
+  ProblemSetLayout: ProblemSetLayout,
+  ScoreBoard: ScoreBoard,
+  ProblemSetProblems: ProblemSetProblems,
+  ProblemSetHome: ProblemSetHome
 } as any;

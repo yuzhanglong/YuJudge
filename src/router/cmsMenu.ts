@@ -60,7 +60,6 @@ export const CMS_MENUS: MenuRouterConfig[] = [
         path: "/cms/problem_manage/problem_sets/edit/:id",
         isShowInMenu: false
       },
-
     ]
   },
   {

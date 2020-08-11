@@ -15,7 +15,7 @@ import React from "react";
 import routerConfig, {MenuRouterConfig} from "./config";
 import AllComponents from '../pages';
 import {Redirect, Route, Switch} from "react-router-dom";
-import CMSLayout from "../components/layout/CMSLayout";
+import CMSLayout from "../components/layout/cms/CMSLayout";
 
 
 interface MyRouterProps {
@@ -26,15 +26,18 @@ const MyRouter: React.FunctionComponent<MyRouterProps> = () => {
 
   // 通过路由配置来 生成侧边栏路由
   const generateMenus = (base: MenuRouterConfig) => {
+
+    // 单个路由
     const route = (r: MenuRouterConfig) => {
       const Component = r.component && AllComponents[r.component];
       return (
         <Route
           key={r.path}
-          exact
+          exact={r.children == null}
           path={r.path}
           render={(props) => {
-            return (<Component {...props} />)
+            return r.children ? (
+              <Component {...props} children={subRoute(r)}/>) : (<Component {...props}/>)
           }}/>
       );
     }
@@ -45,6 +48,7 @@ const MyRouter: React.FunctionComponent<MyRouterProps> = () => {
         return route(subMenu);
       })
     }
+
     return base.component ? route(base) : subRoute(base);
   }
 
@@ -69,8 +73,12 @@ const MyRouter: React.FunctionComponent<MyRouterProps> = () => {
           return (
             <CMSLayout
               {...props}
-              cmsRoutes={createRouteByKey("menus")}
-              commonRoutes={createRouteByKey("common")}/>
+              children={
+                <div>
+                  {createRouteByKey("menus")}
+                  {createRouteByKey("common")}
+                </div>
+              }/>
           )
         }}/>
       <Route render={() => <Redirect to="/404"/>}/>

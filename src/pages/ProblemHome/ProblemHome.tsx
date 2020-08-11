@@ -21,7 +21,7 @@ import {Submission} from "../../models/submission";
 import SubmissionTable from "./childCmp/SubmissionTable";
 import {PAGE_BEGIN, SUBMISSION_REQUEST_TASK_TIME, SUBMISSION_SINGLE_PAGE_SIZE} from "../../config/config";
 import SubmissionDetailModal from "./childCmp/SubmissionDetailModal";
-import CommonMenu from "../../components/commonMenu/CommonMenu";
+import CommonMenu from "../../components/layout/problemSet/childCmp/CommonMenu";
 import {getCode, saveCode} from "../../utils/dataPersistence";
 import {ProblemHoneTabKeyEnum} from "../../common/enumerations";
 
@@ -35,7 +35,7 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
   const DEFAULT_JUDGE_PREFERENCE = "ACM";
 
   const params: any = props.match.params;
-  const problemId: number = params.id;
+  const problemId: number = params.problemId;
 
 
   // 当前problem
@@ -182,7 +182,6 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
   return (
     <div className={"problem-show"}>
       <Layout>
-        <CommonMenu/>
         <Row>
           <Col span={12}>
             <Card>

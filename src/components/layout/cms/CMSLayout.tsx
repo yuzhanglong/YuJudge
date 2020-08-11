@@ -1,17 +1,16 @@
 import React from "react";
 import {Affix, Layout} from "antd";
-import SideBar from "./SideBar";
-import routerConfig from "../../router/config";
-import Breadcrumb from "./Breadcrumb";
+import SideBar from "./childCmp/SideBar";
+import routerConfig from "../../../router/config";
+import Breadcrumb from "./childCmp/Breadcrumb";
 import {RouteComponentProps} from "react-router-dom";
-import CMSHeader from "./CMSHeader";
+import CMSHeader from "./childCmp/CMSHeader";
 
 
 const {Content, Sider} = Layout;
 
 interface CMSLayoutProps {
-  cmsRoutes: any;
-  commonRoutes: any;
+  children: React.ReactNode;
 }
 
 
@@ -50,8 +49,7 @@ const CMSLayout: React.FunctionComponent<CMSLayoutProps & RouteComponentProps> =
         </Affix>
         <Content className={"site-layout-content"}>
           <Breadcrumb></Breadcrumb>
-          {props.cmsRoutes}
-          {props.commonRoutes}
+          {props.children}
         </Content>
       </Layout>
     </Layout>

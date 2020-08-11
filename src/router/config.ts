@@ -32,8 +32,8 @@ export interface CommonRouterConfig extends MenuRouterConfig {
 
 // 路由配置
 const routerConfig: {
-  menus: MenuRouterConfig[] | [],
-  common: CommonRouterConfig[] | [],
+  menus: MenuRouterConfig[],
+  common: CommonRouterConfig[],
   [index: string]: any;
 } = {
   menus: [

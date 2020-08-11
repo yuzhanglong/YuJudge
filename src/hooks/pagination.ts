@@ -1,3 +1,11 @@
+/*
+ * File: pagination.ts
+ * Description: 分页相关的自定义hooks
+ * Created: 2020-08-11 13:00:33
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
 import {useState} from "react";
 import {AxiosResponse} from "axios";
 import {Pagination, PaginationResponse} from "../models/pagination";
