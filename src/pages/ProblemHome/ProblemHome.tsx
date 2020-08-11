@@ -21,7 +21,6 @@ import {Submission} from "../../models/submission";
 import SubmissionTable from "./childCmp/SubmissionTable";
 import {PAGE_BEGIN, SUBMISSION_REQUEST_TASK_TIME, SUBMISSION_SINGLE_PAGE_SIZE} from "../../config/config";
 import SubmissionDetailModal from "./childCmp/SubmissionDetailModal";
-import CommonMenu from "../../components/layout/problemSet/childCmp/CommonMenu";
 import {getCode, saveCode} from "../../utils/dataPersistence";
 import {ProblemHoneTabKeyEnum} from "../../common/enumerations";
 

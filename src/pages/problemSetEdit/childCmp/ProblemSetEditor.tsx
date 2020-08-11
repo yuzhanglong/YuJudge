@@ -54,7 +54,8 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
         <ProblemTable
           totalPage={props.problemSetProblemsTotalPage}
           onPageChange={props.onPageChange}
-          problems={props.problems} onProblemEdit={gotoEditProblem}
+          problems={props.problems}
+          onProblemEdit={gotoEditProblem}
           otherOperations={(content: any) => (
             <Popconfirm
               title="你确定要从题目集中移除这个题目吗"

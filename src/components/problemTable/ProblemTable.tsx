@@ -1,4 +1,13 @@
-import React from "react";
+/*
+ * File: ProblemTable.tsx
+ * Description: problem的表格组件
+ * Created: 2020-08-08 18:10:52
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+
+import React, {useState} from "react";
 import {timestampToDateTime} from "../../utils/dateTime";
 import {Button, Table, Tag} from "antd";
 import {Problem} from "../../models/problem";
@@ -6,6 +15,7 @@ import Column from "antd/lib/table/Column";
 import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from "../../config/config";
 import {TablePaginationConfig} from "antd/lib/table/interface";
 import {SizeType} from "antd/lib/config-provider/SizeContext";
+import {tenDecimalToTwentySixDecimal} from "../../utils/math";
 
 interface ProblemTableProps {
   isShowCreateTime?: boolean;
@@ -21,10 +31,13 @@ interface ProblemTableProps {
   isShowCheckBoxGroup?: boolean;
   onSelectionSelected?: (ids: number[]) => void;
   otherOperations?: (props: any) => React.ReactNode;
+  isShowProblemOrder?: boolean;
+  showEditButton?: boolean;
 }
 
 
 const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
+  const [currentPage, setCurrentPage] = useState<number>(PAGE_BEGIN - 1);
 
   // 问题创建时间
   const renderCreateTime = (timeStamp: number) => {
@@ -39,7 +52,7 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
 
   // 渲染标签
   const renderTags = (tags: string[]) => {
-    if (tags == null) return null;
+    if (tags == null) return <div>此题目没有标签</div>
     return (
       <div>
         {
@@ -69,11 +82,12 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
   const renderOperations = (content: any) => {
     return (
       <div>
-        <Button
-          type="link"
-          onClick={() => onEditButtonClick(content)}>
-          编辑问题
-        </Button>
+        {
+          props.showEditButton && <Button
+            type="link"
+            onClick={() => onEditButtonClick(content)}>
+            编辑问题
+          </Button>}
         {
           props.otherOperations &&
           props.otherOperations(content)
@@ -85,6 +99,7 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
   // 当页码改变时
   const onPageChange = (event: TablePaginationConfig) => {
     if (props.onPageChange && event.current) {
+      setCurrentPage(event.current - 1);
       props.onPageChange(event.current);
     }
   }
@@ -98,6 +113,12 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
     },
   };
 
+  // 渲染题号(order)
+  const renderProblemOrder = (value: any, record: any, index: number) => {
+    const finalIndex = (currentPage * SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE) + (index + 1);
+    return <div>{tenDecimalToTwentySixDecimal(finalIndex)}</div>
+  }
+
   return (
     <Table dataSource={props.problems}
            rowKey={"id"}
@@ -110,7 +131,10 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
                type: "checkbox",
                ...rowSelection,
              } : undefined}>
-      <Column title={"题号"} dataIndex={"id"}
+      <Column title={"序号"} width={150}
+              render={renderProblemOrder}/>
+
+      <Column title={"题目ID"} dataIndex={"id"}
               key={"number"} width={150}/>
       <Column title={"问题名称"}
               dataIndex={"name"}
@@ -121,7 +145,7 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
               dataIndex={"characterTags"}
               key={"number"}
               width={250}
-              render={renderTags}/>}
+              render={(value: any) => renderTags(value)}/>}
       {props.isShowCreateTime &&
       <Column title={"创建时间"}
               dataIndex={"createTime"}
@@ -146,7 +170,9 @@ ProblemTable.defaultProps = {
   tableSize: undefined,
   showPagination: true,
   isLoading: false,
-  isShowCheckBoxGroup: false
+  isShowCheckBoxGroup: false,
+  isShowProblemOrder: false,
+  showEditButton: true
 }
 
 export default ProblemTable;

@@ -14,6 +14,7 @@ import {getProblems} from "../../network/problemRequests";
 import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from "../../config/config";
 import {usePaginationState} from "../../hooks/pagination";
 import {ProblemPaginationRequest} from "../../models/pagination";
+import {message} from "antd";
 
 
 const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
@@ -36,7 +37,10 @@ const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
       count: count,
       search: search
     }
-    problemPagination.changeCurrentPage(params);
+    problemPagination.changeCurrentPage(params)
+      .catch((err) => {
+        message.error(err.message);
+      });
   }
 
   // 页码发生改变，请求新的数据

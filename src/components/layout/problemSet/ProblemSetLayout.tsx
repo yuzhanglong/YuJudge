@@ -7,7 +7,7 @@
  */
 
 import React from "react";
-import {Layout} from "antd";
+import {Affix, Layout} from "antd";
 import CommonMenu from "./childCmp/CommonMenu";
 import {RouteComponentProps} from "react-router-dom";
 
@@ -15,10 +15,17 @@ interface ProblemLayoutProps {
   children: React.ReactNode;
 }
 
+const Header = React.forwardRef(((props: any, ref: any) => (
+  <CommonMenu {...props} {...ref}/>
+)))
+
+
 const ProblemSetLayout: React.FunctionComponent<ProblemLayoutProps & RouteComponentProps> = (props) => {
   return (
     <Layout>
-      <CommonMenu {...props}/>
+      <Affix offsetTop={0}>
+        <Header {...props}/>
+      </Affix>
       {props.children}
     </Layout>
   )

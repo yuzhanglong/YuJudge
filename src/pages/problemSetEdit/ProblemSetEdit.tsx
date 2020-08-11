@@ -15,6 +15,7 @@ import {usePaginationState} from "../../hooks/pagination";
 import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from "../../config/config";
 import {getProblems} from "../../network/problemRequests";
 import {ProblemPaginationRequest, ProblemSetProblemPaginationRequest} from "../../models/pagination";
+import {message} from "antd";
 
 interface ProblemSetEditProps {
 
@@ -48,6 +49,8 @@ const ProblemSetEdit: React.FunctionComponent<ProblemSetEditProps & RouteCompone
       start: start,
       count: SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE,
       search: search
+    }).catch((err) => {
+      message.error(err.message);
     });
   }
 
@@ -57,7 +60,9 @@ const ProblemSetEdit: React.FunctionComponent<ProblemSetEditProps & RouteCompone
       start: start,
       count: SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE,
       problemSetId: problemSetId
-    })
+    }).catch((err) => {
+      message.error(err.message);
+    });
   }
 
   const onSerachConfirm = (value: string) => {
@@ -79,7 +84,7 @@ const ProblemSetEdit: React.FunctionComponent<ProblemSetEditProps & RouteCompone
     <div>
       <ProblemSetEditor
         {...props}
-        onPageChange={getProblemSetProblemData}
+        onPageChange={(val) => getProblemSetProblemData(val - 1)}
         problemSetProblemsTotalPage={problemSetProblemPagination.paginationInfo.totalPage || 1}
         problems={problemSetProblemPagination.items}
         onProblemAdd={() => setAddProblemModalVisiable(true)}

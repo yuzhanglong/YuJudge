@@ -8,7 +8,7 @@
 
 import {useState} from "react";
 import {AxiosResponse} from "axios";
-import {Pagination, PaginationResponse} from "../models/pagination";
+import {Pagination} from "../models/pagination";
 
 
 export const usePaginationState = <T>(
@@ -26,20 +26,21 @@ export const usePaginationState = <T>(
   });
 
   // 当页码被改变
-  const changeCurrentPage = (params: T) => {
+  const changeCurrentPage = async (params: T): Promise<any> => {
     setIsLoading(true);
-    requestMethod(params)
-      .then((response: PaginationResponse) => {
-        const data: Pagination = response.data;
-        setPaginationInfo(data);
-        setCurrentPage(data.page || 0);
-        setItems(data.items);
-        setIsLoading(false);
-      })
-      .catch(() => {
-        setIsLoading(false);
-        //TODO:异常处理
-      })
+    try {
+      const response = await requestMethod(params);
+      const data: Pagination = response.data;
+      setPaginationInfo(data);
+      setCurrentPage(data.page || 0);
+      setItems(data.items);
+      setIsLoading(false);
+      return Promise.resolve();
+    } catch (e) {
+      setIsLoading(false);
+      //TODO:异常处理
+      return Promise.reject(e);
+    }
   }
 
   return {

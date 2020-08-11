@@ -38,7 +38,10 @@ const ProblemSetManage: React.FunctionComponent<RouteComponentProps> = (props) =
       search: search,
       limit: isLimit
     }
-    paginationState.changeCurrentPage(requestParams);
+    paginationState.changeCurrentPage(requestParams).catch((err) => {
+      message.error(err.message);
+    });
+    ;
   }
 
   // 用户点击只显示活跃题目集时

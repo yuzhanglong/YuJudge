@@ -7,6 +7,7 @@
  */
 
 import React from "react";
+import {Card} from "antd";
 
 interface ScoreBoardProps {
 
@@ -14,8 +15,10 @@ interface ScoreBoardProps {
 
 const ScoreBoard: React.FunctionComponent<ScoreBoardProps> = (props) => {
   return (
-    <div>
-      ScoreBoard
+    <div className={"problem-set-home"}>
+      <Card title={"记分板"} headStyle={{textAlign: "center"}}>
+
+      </Card>
     </div>
   )
 }
