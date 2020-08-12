@@ -6,7 +6,7 @@
  * Email: yuzl1123@163.com
  */
 
-export function timestampToDateTime(timestamp: number): string {
+export const timestampToDateTime = (timestamp: number): string => {
   let time = new Date(timestamp);
   return time.toLocaleString();
 }

@@ -75,3 +75,14 @@ export const removeProblemFormProblemSet = (problemSetId: number, problemId: num
     }
   )
 }
+
+
+// 获取题目集信息
+export const getProblemSetInfo = (problemSetId: number) => {
+  return request.get(
+    "/problem_set/get_problem_set/" + problemSetId,
+    {
+      params: {}
+    }
+  )
+}

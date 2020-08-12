@@ -16,4 +16,7 @@ export interface ProblemSet {
   startTime?: number;
   createTime?: number;
   id?: number;
+  judgePreference?: string;
+  allowedLanguage?: string[];
+  condition?: string;
 }

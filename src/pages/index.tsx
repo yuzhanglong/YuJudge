@@ -23,7 +23,7 @@ import {
 import ProblemSetEdit from "./problemSetEdit/ProblemSetEdit";
 import ProblemSetLayout from "../components/layout/problemSet/ProblemSetLayout";
 import ScoreBoard from "./scoreBoard/ScoreBoard";
-import ProblemSetProblems from "./ProblemSetProblems/ProblemSetProblems";
+import ProblemSetProblems from "./problemSetProblems/ProblemSetProblems";
 import ProblemSetHome from "./problemSetHome/ProblemSetHome";
 
 export default {

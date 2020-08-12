@@ -35,9 +35,22 @@ export enum ProblemHoneTabKeyEnum {
 }
 
 // 排名颜色
-export enum RankingColor {
+export enum RankingColorEnum {
   RANKING_FIRST = "#f5222d",
   RANKING_SECOND = "#ff7a45",
   RANKING_THIRD = "#ffa940",
   RANKING_DEFAULT = "#8c8c8c"
+}
+
+
+// 判题状态
+export enum ProblemSetConditionEnum {
+  // 运行中
+  RUNNING = "RUNNING",
+
+  // 已截止,
+  CLOSED = "CLOSED",
+
+  // 未开始
+  NOT_STARTED = "NOT_STARTED"
 }

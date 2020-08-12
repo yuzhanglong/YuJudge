@@ -10,7 +10,7 @@ import React from "react";
 import {UserInfo} from "../../models/user";
 import {Badge, Table} from "antd";
 import Column from "antd/lib/table/Column";
-import {RankingColor} from "../../common/enumerations";
+import {RankingColorEnum} from "../../common/enumerations";
 
 interface UserTableProps {
   userInfo: UserInfo[];
@@ -35,13 +35,13 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
   const getRanking = (index: number) => {
     switch (index) {
       case 1:
-        return RankingColor.RANKING_FIRST;
+        return RankingColorEnum.RANKING_FIRST;
       case 2:
-        return RankingColor.RANKING_SECOND;
+        return RankingColorEnum.RANKING_SECOND;
       case 3:
-        return RankingColor.RANKING_THIRD;
+        return RankingColorEnum.RANKING_THIRD;
       default:
-        return RankingColor.RANKING_DEFAULT;
+        return RankingColorEnum.RANKING_DEFAULT;
     }
   }
 
