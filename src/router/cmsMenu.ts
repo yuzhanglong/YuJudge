@@ -59,7 +59,7 @@ export const CMS_MENUS: MenuRouterConfig[] = [
         title: "题目集编辑",
         path: "/cms/problem_manage/problem_sets/edit/:id",
         isShowInMenu: false
-      },
+      }
     ]
   },
   {

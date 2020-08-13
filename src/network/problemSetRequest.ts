@@ -81,8 +81,16 @@ export const removeProblemFormProblemSet = (problemSetId: number, problemId: num
 export const getProblemSetInfo = (problemSetId: number) => {
   return request.get(
     "/problem_set/get_problem_set/" + problemSetId,
+  )
+}
+
+export const getProblemSetScoreBoard = (problemSetId: number) => {
+  return request.get(
+    "/problem_set/get_score_board/" + problemSetId,
     {
-      params: {}
+      headers: {
+        Authorization: getToken()
+      }
     }
   )
 }

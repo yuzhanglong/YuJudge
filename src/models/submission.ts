@@ -7,12 +7,9 @@
  */
 
 import {JudgeConditionEnum} from "../common/enumerations";
+import {UserInfo} from "./user";
 
-/**
- * @author yuzhanglong
- * @description 用户提交
- * @date 2020-8-2 8:51
- */
+// 一次提交
 export interface Submission {
   id?: number;
   problemId?: number;
@@ -23,8 +20,11 @@ export interface Submission {
   judgeCondition?: string;
   memoryCost?: number;
   timeCost?: number;
+  problemSetId?: number;
+  creator?: UserInfo;
 }
 
+// 某次测试样例的判题结果
 export interface JudgeResultForSingleTestCase {
   realTimeCost?: number,
   memoryCost?: number,
@@ -36,6 +36,7 @@ export interface JudgeResultForSingleTestCase {
   message?: string;
 }
 
+// 判题结果
 export interface JudgeResult {
   submissionId: number;
   judgeEndTime: number;
@@ -43,6 +44,25 @@ export interface JudgeResult {
   judgeResults: JudgeResultForSingleTestCase[];
 }
 
+// 提交细节信息
 export interface SubmissionDetail extends Submission {
   judgeResult: JudgeResult;
+}
+
+// 记分板单条项目、单题的统计情况
+export interface ScoreBoardSolutionInfo {
+  problemId: number;
+  tryAmount: number;
+  isAccepted: boolean;
+}
+
+// 记分板单条项目
+export interface ScoreBoardItem {
+  solutionInfo: ScoreBoardSolutionInfo[];
+  teamInfo: UserInfo;
+}
+
+// 记分板内容
+export interface ScoreBoardInfo {
+  participants: ScoreBoardItem[];
 }

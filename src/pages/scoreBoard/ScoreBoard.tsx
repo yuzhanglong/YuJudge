@@ -6,18 +6,45 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Card} from "antd";
+import React, {useEffect, useState} from "react";
+import {Card, message} from "antd";
+import {RouteComponentProps} from "react-router-dom";
+import {getProblemSetScoreBoard} from "../../network/problemSetRequest";
+import {ScoreBoardInfo} from "../../models/submission";
+import ScoreBoardTable from "../../components/scoreBoardTable/ScoreBoardTable";
 
 interface ScoreBoardProps {
 
 }
 
-const ScoreBoard: React.FunctionComponent<ScoreBoardProps> = (props) => {
+const ScoreBoard: React.FunctionComponent<ScoreBoardProps & RouteComponentProps> = (props) => {
+  const params: any = props.match.params;
+
+  const [scoreBoardInfo, setScoreBoardInfo] = useState<ScoreBoardInfo>({participants: []});
+
+  useEffect(() => {
+    getScoreBoardInfo();
+  }, []);
+
+  const getScoreBoardInfo = () => {
+    getProblemSetScoreBoard(params.problemSetId)
+      .then(res => {
+        setScoreBoardInfo(res.data);
+      })
+      .catch(() => {
+        message.error("记分板信息获取失败");
+      })
+  }
+
   return (
     <div className={"problem-set-home"}>
-      <Card title={"记分板"} headStyle={{textAlign: "center"}}>
+      <Card title={"记分板"} headStyle={{textAlign: "center"}} bodyStyle={{
+        display: "flex",
+        justifyContent: "center",
+        minWidth: 1000
+      }}>
 
+        <ScoreBoardTable scoreBoardItems={scoreBoardInfo.participants}></ScoreBoardTable>
       </Card>
     </div>
   )

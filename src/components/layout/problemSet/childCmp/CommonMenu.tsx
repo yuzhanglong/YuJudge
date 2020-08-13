@@ -17,6 +17,7 @@ interface CommonMenuProps {
 const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps> = (props) => {
   const params: any = props.match.params;
   const problemSetId: number | null = params.problemSetId;
+  // TODO: 注意这里的标签激活状态, 需要路由的附加信息来判断当前的路由是哪个标签
   return (
     <div>
       <Menu mode="horizontal" className={"problem-set-layout-menu"}>

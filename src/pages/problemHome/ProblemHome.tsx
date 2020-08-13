@@ -64,7 +64,8 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
     showSavedCode();
     getProblemSubmission(problemId, PAGE_BEGIN);
     renewSubmissionDataTimely(PAGE_BEGIN).then(() => {
-    });
+      //TODO: FIX 页面销毁时，轮询无法销毁
+    })
     // eslint-disable-next-line
   }, [problemId]);
 
@@ -116,7 +117,8 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
       problemId: problem.id,
       codeContent: codeContent,
       language: activeLanguage,
-      judgePreference: DEFAULT_JUDGE_PREFERENCE
+      judgePreference: DEFAULT_JUDGE_PREFERENCE,
+      problemSetId: params.problemSetId
     }
     // 发送提交请求
     submitCode(submission).then(() => {
@@ -160,6 +162,7 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
   // 移除当前活跃的轮询任务
   const deleteCurrentRequestTask = () => {
     if (requestTask) {
+      console.log(requestTask);
       window.clearInterval(requestTask);
     }
   }

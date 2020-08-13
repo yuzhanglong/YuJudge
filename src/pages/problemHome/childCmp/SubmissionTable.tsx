@@ -8,9 +8,11 @@ import {JUDGE_CONDITION_COLORS, JUDGE_CONDITION_TAG_NAMES} from "../../../common
 import {PROGRAM_LANGUAGE_NAME} from "../../../common/programLanguage";
 import {SUBMISSION_SINGLE_PAGE_SIZE} from "../../../config/config";
 import classNames from "classnames";
+import {Submission} from "../../../models/submission";
+import {UserInfo} from "../../../models/user";
 
 interface SubmissionTableProps {
-  submissions: any[];
+  submissions: Submission[];
   total: number;
   activePage: number;
   onPageChange?: (currentPage: number) => void;
@@ -42,6 +44,10 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
   // 获取判题结果标签名称
   const getJudgeConditionTagName = (condition: JudgeConditionEnum) => {
     return JUDGE_CONDITION_TAG_NAMES[condition];
+  }
+
+  const renderCreator = (creator: UserInfo) => {
+    return <div>{creator.nickname}</div>
   }
 
 
@@ -122,6 +128,12 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
         key={"memoryCost"}
         width={150}
         render={renderMemoryCost}/>
+      <Column
+        title={"提交用户"} align={"center"}
+        dataIndex={"creator"}
+        key={"creator"}
+        width={150}
+        render={renderCreator}/>
     </Table>
   )
 }
