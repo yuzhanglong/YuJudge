@@ -9,6 +9,7 @@ import {Moment} from 'moment';
 import {RouteComponentProps} from "react-router-dom";
 import {usePaginationState} from "../../hooks/pagination";
 import {ProblemSetPaginationRequest} from "../../models/pagination";
+import {dateRangeMomentArrayToTimeStampArray} from "../../utils/dateTime";
 
 
 const ProblemSetManage: React.FunctionComponent<RouteComponentProps> = (props) => {
@@ -52,14 +53,12 @@ const ProblemSetManage: React.FunctionComponent<RouteComponentProps> = (props) =
 
   // 创建题目集
   const onCreateProblemSet = (formData: any) => {
-    const startTime: Moment = formData.timeRange[0];
-    const endTime: Moment = formData.timeRange[1];
-
+    const rangeTmp = dateRangeMomentArrayToTimeStampArray(formData.timeRange);
     const problemSet: ProblemSet = {
       name: formData.name,
       description: formData.description,
-      startTime: startTime.toDate().getTime(),
-      deadline: endTime.toDate().getTime()
+      startTime: rangeTmp[0].getTime(),
+      deadline: rangeTmp[1].getTime()
     }
 
     createProblemSet(problemSet)

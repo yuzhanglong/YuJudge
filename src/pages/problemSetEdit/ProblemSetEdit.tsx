@@ -9,19 +9,22 @@
 import React, {useEffect, useState} from "react";
 import {RouteComponentProps} from "react-router-dom";
 import ProblemSetEditor from "./childCmp/ProblemSetEditor";
-import {getProblemSetProblems, removeProblemFormProblemSet} from "../../network/problemSetRequest";
+import {getProblemSetInfo, getProblemSetProblems, removeProblemFormProblemSet} from "../../network/problemSetRequest";
 import AddProblem from "./childCmp/AddProblem";
 import {usePaginationState} from "../../hooks/pagination";
 import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from "../../config/config";
 import {getProblems} from "../../network/problemRequests";
 import {ProblemPaginationRequest, ProblemSetProblemPaginationRequest} from "../../models/pagination";
 import {message} from "antd";
+import {ProblemSet} from "../../models/problemSet";
 
 interface ProblemSetEditProps {
 
 }
 
 const ProblemSetEdit: React.FunctionComponent<ProblemSetEditProps & RouteComponentProps> = (props) => {
+  // 当前题目集信息
+  const [problemSetInfo, setProblemSetInfo] = useState<ProblemSet>({});
 
   // 题目集problem分页对象
   const problemSetProblemPagination = usePaginationState<ProblemSetProblemPaginationRequest>(PAGE_BEGIN - 1, getProblemSetProblems);
@@ -41,20 +44,32 @@ const ProblemSetEdit: React.FunctionComponent<ProblemSetEditProps & RouteCompone
   useEffect(() => {
     getProblemsData(PAGE_BEGIN - 1, searchContent);
     getProblemSetProblemData(PAGE_BEGIN - 1);
+    getProblemSetData();
+    // eslint-disable-next-line
   }, [problemSetId]);
 
-
-  const getProblemsData = (start: number, search: string | null) => {
-    totalProblemPagination.changeCurrentPage({
-      start: start,
-      count: SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE,
-      search: search
-    }).catch((err) => {
-      message.error(err.message);
-    });
+  // 获取当前题目集信息
+  const getProblemSetData = () => {
+    getProblemSetInfo(problemSetId)
+      .then(res => {
+        setProblemSetInfo(res.data);
+      })
   }
 
+  // 获取题目信息，用来为题目集添加题目
+  const getProblemsData = (start: number, search: string | null) => {
+    totalProblemPagination
+      .changeCurrentPage({
+        start: start,
+        count: SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE,
+        search: search
+      })
+      .catch((err) => {
+        message.error(err.message);
+      });
+  }
 
+  // 获取题目集已有题目信息
   const getProblemSetProblemData = (start: number) => {
     problemSetProblemPagination.changeCurrentPage({
       start: start,
@@ -65,6 +80,7 @@ const ProblemSetEdit: React.FunctionComponent<ProblemSetEditProps & RouteCompone
     });
   }
 
+  // 搜索确认
   const onSerachConfirm = (value: string) => {
     setSearchContent(value);
     getProblemsData(0, value);
@@ -76,7 +92,7 @@ const ProblemSetEdit: React.FunctionComponent<ProblemSetEditProps & RouteCompone
       .then(() => {
         getProblemsData(PAGE_BEGIN - 1, searchContent);
         window.location.reload();
-      })
+      });
   }
 
 
@@ -84,6 +100,7 @@ const ProblemSetEdit: React.FunctionComponent<ProblemSetEditProps & RouteCompone
     <div>
       <ProblemSetEditor
         {...props}
+        problemSet={problemSetInfo}
         onPageChange={(val) => getProblemSetProblemData(val - 1)}
         problemSetProblemsTotalPage={problemSetProblemPagination.paginationInfo.totalPage || 1}
         problems={problemSetProblemPagination.items}

@@ -23,6 +23,7 @@ const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
 
   useEffect(() => {
     getProblemsData(0, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE, null);
+    // eslint-disable-next-line
   }, [])
 
   // 跳转编辑界面
@@ -36,7 +37,7 @@ const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
       start: start,
       count: count,
       search: search
-    }
+    };
     problemPagination.changeCurrentPage(params)
       .catch((err) => {
         message.error(err.message);

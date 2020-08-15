@@ -7,14 +7,19 @@
  */
 
 import React from "react";
-import {Button, Card, Popconfirm} from "antd";
+import {Button, Card, message, Popconfirm} from "antd";
 import ProblemTable from "../../../components/problemTable/ProblemTable";
 import {Problem} from "../../../models/problem";
 import {RouteComponentProps} from "react-router-dom";
 import EditorTip from "../../../components/editorTip/editorTip";
+import BasicInfoEditor from "./BasicInfoEditor";
+import {ProblemSet} from "../../../models/problemSet";
+import {dateRangeMomentArrayToTimeStampArray} from "../../../utils/dateTime";
+import {updateProblemSetBasicInfo} from "../../../network/problemSetRequest";
 
 interface ProblemSetEditorProps {
   problems: Problem[];
+  problemSet: ProblemSet;
   onProblemAdd: () => void;
   onRemoveFormProblemSet: (problemId: number) => void;
   problemSetProblemsTotalPage: number;
@@ -34,12 +39,38 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
     props.onRemoveFormProblemSet(problemId);
   }
 
+  // 编辑确认
+  const onEditConfirm = (formData: any) => {
+    if (formData) {
+      const rangeTmp = dateRangeMomentArrayToTimeStampArray(formData.timeRange);
+      const problemSet: ProblemSet = {
+        name: formData.name,
+        description: formData.description,
+        startTime: rangeTmp[0].getTime(),
+        deadline: rangeTmp[1].getTime(),
+        id: props.problemSet.id
+      }
+      updateProblemSetBasicInfo(problemSet).then(() => {
+        message.success("编辑成功");
+      }).catch(err => {
+        console.log(err);
+      })
+    }
+  }
+
   return (
     <Card title={"题目集编辑"}>
       <Card
         type="inner"
         style={{marginTop: 10}}
-        title={<div className={"cms-problem-editor-part"}>基本信息</div>}>
+        title={
+          <div className={"cms-problem-editor-part"}>
+            基本信息
+          </div>
+        }>
+        <BasicInfoEditor
+          problemSet={props.problemSet}
+          onEditConfirm={onEditConfirm}/>
       </Card>
 
       <Card
@@ -52,6 +83,7 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
           </Button>
         }>
         <ProblemTable
+          tableSize={'small'}
           totalPage={props.problemSetProblemsTotalPage}
           onPageChange={props.onPageChange}
           problems={props.problems}

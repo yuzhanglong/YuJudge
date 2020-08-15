@@ -94,3 +94,16 @@ export const getProblemSetScoreBoard = (problemSetId: number) => {
     }
   )
 }
+
+// 更新题目集的基本信息
+export const updateProblemSetBasicInfo = (problemSet: ProblemSet) => {
+  return request.put(
+    "/problem_set/update_problem_set_basic_info/" + problemSet.id,
+    problemSet,
+    {
+      headers: {
+        Authorization: getToken()
+      }
+    }
+  )
+}
