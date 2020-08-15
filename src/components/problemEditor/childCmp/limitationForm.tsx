@@ -1,18 +1,36 @@
-import React from "react";
-import {Form, Input, Checkbox, Row, Col, Button} from "antd";
+/*
+ * File: limitationForm.tsx
+ * Description: 题目限制相关表单编辑组件
+ * Created: 2020-08-15 15:02:16
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+import React, {useEffect} from "react";
+import {Form, Input, Button, message} from "antd";
 import {Problem} from "../../../models/problem";
+import {editProblemLimitation} from "../../../network/problemRequests";
 
 interface LimitationFormProps {
   onConfirmed?: () => void;
-  problem?: Problem;
+  problem: Problem;
 }
 
 const LimitationForm: React.FunctionComponent<LimitationFormProps> = (props) => {
   const [form] = Form.useForm();
 
-  const onFinish = (values: any) => {
-    console.log(values);
+  useEffect(() => {
+    form.setFieldsValue(props.problem);
+  }, [form, props.problem]);
+
+  const onFinish = (values: Problem) => {
+    values.id = props.problem.id;
+    editProblemLimitation(values)
+      .then(() => {
+        message.success("编辑成功～");
+      });
   };
+
   return (
     <div className={"initial-form-wrap"}>
       <Form form={form} onFinish={onFinish} initialValues={props.problem}>
@@ -25,37 +43,12 @@ const LimitationForm: React.FunctionComponent<LimitationFormProps> = (props) => 
         <Form.Item label="输出限制" name={"outputLimit"}>
           <Input placeholder="请设置输出限制"/>
         </Form.Item>
-        <Form.Item name="language" label="语言限制">
-          <Checkbox.Group>
-            <Row>
-              <Col span={12}>
-                <Checkbox value="C" style={{lineHeight: '32px'}}>
-                  C
-                </Checkbox>
-              </Col>
-              <Col span={12}>
-                <Checkbox value="C++" style={{lineHeight: '32px'}}>
-                  C++
-                </Checkbox>
-              </Col>
-              <Col span={12}>
-                <Checkbox value="JAVA" style={{lineHeight: '32px'}}>
-                  JAVA
-                </Checkbox>
-              </Col>
-              <Col span={12}>
-                <Checkbox value="PYTHON" style={{lineHeight: '32px'}}>
-                  PYTHON
-                </Checkbox>
-              </Col>
-            </Row>
-          </Checkbox.Group>
-        </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit">更新上述限制</Button>
+          <Button type="primary" htmlType="submit">
+            更新上述限制
+          </Button>
         </Form.Item>
       </Form>
-
     </div>
   )
 }

@@ -20,12 +20,19 @@ interface ScoreBoardProps {
 const ScoreBoard: React.FunctionComponent<ScoreBoardProps & RouteComponentProps> = (props) => {
   const params: any = props.match.params;
 
-  const [scoreBoardInfo, setScoreBoardInfo] = useState<ScoreBoardInfo>({participants: []});
-
   useEffect(() => {
     getScoreBoardInfo();
   }, []);
 
+  // 记分板数据
+  const [scoreBoardInfo, setScoreBoardInfo] = useState<ScoreBoardInfo>({
+      frozen: false,
+      participants: [],
+      problemAmount: 0
+    }
+  );
+
+  // 获取记分板数据
   const getScoreBoardInfo = () => {
     getProblemSetScoreBoard(params.problemSetId)
       .then(res => {
@@ -38,13 +45,18 @@ const ScoreBoard: React.FunctionComponent<ScoreBoardProps & RouteComponentProps>
 
   return (
     <div className={"problem-set-home"}>
-      <Card title={"记分板"} headStyle={{textAlign: "center"}} bodyStyle={{
-        display: "flex",
-        justifyContent: "center",
-        minWidth: 1000
-      }}>
-
-        <ScoreBoardTable scoreBoardItems={scoreBoardInfo.participants}></ScoreBoardTable>
+      <Card
+        title={"记分板"}
+        headStyle={{textAlign: "center"}}
+        bodyStyle={{
+          display: "flex",
+          justifyContent: "center",
+          minWidth: 1000
+        }}>
+        <ScoreBoardTable
+          scoreBoardItems={scoreBoardInfo.participants}
+          problemAmount={scoreBoardInfo.problemAmount}>
+        </ScoreBoardTable>
       </Card>
     </div>
   )

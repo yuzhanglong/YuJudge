@@ -8,7 +8,6 @@ interface CodeBlockProps {
 }
 
 const CodeBlock: React.FunctionComponent<CodeBlockProps> = (props) => {
-  console.log(props);
   const classnames = classNames(`language-${props.language}`, "markdown-editor-code-content");
   return (
     <pre>

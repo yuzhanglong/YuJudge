@@ -21,21 +21,23 @@ interface ProblemEditProps {
 
 }
 
-
 const ProblemEdit: React.FunctionComponent<ProblemEditProps & RouteComponentProps> = (props) => {
   const params: any = props.match.params;
   const problemId: number = params.id;
 
-
   // 当前问题
   const [problem, setProblem] = useState<Problem>({});
+
   // 问题的解决方案
   const [solutions, setSolutions] = useState<ProblemTestCase[]>([]);
+
   // 是否展示添加解决方案的对话框
   const [isShowAddSolutionModal, setIsShowAddSolutionModal] = useState(false);
+
   // 上传凭证
   const [uploadToken, setUploadToken] = useState<string>("");
 
+  // problem相关请求的综合，使用promise all 封装
   const getProblemRequiredData = (problemId: number) => {
     return Promise.all([
       getProblemDetailedById(problemId),
@@ -43,9 +45,21 @@ const ProblemEdit: React.FunctionComponent<ProblemEditProps & RouteComponentProp
     ]);
   }
 
-  // 准备添加testcase
+  // 准备添加testCase
   const onTestCaseWillBeAdded = () => {
     setIsShowAddSolutionModal(true);
+  }
+
+  // 获取上传凭证
+  const getUploadTokenData = () => {
+    getUploadToken()
+      .then(res => {
+        const resp: UploadTokenData = res.data;
+        setUploadToken(resp.uploadToken);
+      })
+      .catch(() => {
+        message.error("获取上传凭证失败");
+      })
   }
 
   useEffect(() => {
@@ -58,16 +72,7 @@ const ProblemEdit: React.FunctionComponent<ProblemEditProps & RouteComponentProp
         const solutionList: ProblemTestCase[] = res[1].data;
         setSolutions(solutionList);
       })
-
-    // 获取上传凭证
-    getUploadToken()
-      .then(res => {
-        const resp: UploadTokenData = res.data;
-        setUploadToken(resp.uploadToken);
-      })
-      .catch(() => {
-        message.error("获取上传凭证失败");
-      })
+    getUploadTokenData();
   }, [problemId]);
 
 

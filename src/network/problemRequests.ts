@@ -7,8 +7,9 @@
  */
 
 import request, {REQUEST_TYPES} from "./request";
-import {ProblemLimitation, ProblemTestCase} from "../models/problem";
+import {Problem, ProblemLimitation, ProblemTestCase} from "../models/problem";
 import {ProblemPaginationRequest} from "../models/pagination";
+import {getToken} from "../utils/dataPersistence";
 
 
 // 通过id来获取problem的基本信息
@@ -97,6 +98,32 @@ export const getRecentProblems = (size: number) => {
     {
       params: {
         size: size
+      }
+    }
+  )
+}
+
+// 编辑problem基本信息
+export const editProblemBasicInfo = (problem: Problem) => {
+  return request.put(
+    "/problem/edit_problem/" + problem.id,
+    problem,
+    {
+      headers: {
+        Authorization: getToken()
+      }
+    }
+  )
+}
+
+// 编辑problem限制信息
+export const editProblemLimitation = (problem: Problem) => {
+  return request.put(
+    "/problem/set_limitation/" + problem.id,
+    problem,
+    {
+      headers: {
+        Authorization: getToken()
       }
     }
   )

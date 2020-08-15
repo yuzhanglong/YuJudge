@@ -16,22 +16,16 @@ import classNames from "classnames";
 
 interface ScoreBoardTableProps {
   scoreBoardItems: ScoreBoardItem[];
+  problemAmount: number;
 }
 
 const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) => {
 
-  // 获取问题数量
-  const getProblemAmount = () => {
-    if (props.scoreBoardItems) {
-      return props.scoreBoardItems.length;
-    }
-    return 0;
-  }
-
   const renderRowInfo = (value: ScoreBoardSolutionInfo, record: any, index: number) => {
     const cellClassnames = classNames("problem-cell", {
       "accept": value.isAccepted,
-      "wrong-answer": !value.isAccepted && value.tryAmount > 0
+      "wrong-answer": !value.isAccepted && value.tryAmount > 0,
+      "accept-first": value.isFirstAc
     })
     return (
       <div key={index} className={cellClassnames}>
@@ -39,9 +33,10 @@ const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) =
           value.tryAmount > 0 &&
           <div>
             <div style={{
-              fontWeight: "bold"
+              fontWeight: "bold",
+              height: 24
             }}>
-              {66}
+              {value.timeCost !== 0 ? value.timeCost : " "}
             </div>
             <div>
               {getTryAmount(value.tryAmount)}
@@ -60,7 +55,7 @@ const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) =
 
   const renderColumns = () => {
     let res = [];
-    for (let i = 0; i < getProblemAmount(); i++) {
+    for (let i = 0; i < props.problemAmount; i++) {
       res.push(
         <Column
           key={i}
@@ -89,9 +84,28 @@ const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) =
         bordered
         rowKey={"rank"}
         dataSource={props.scoreBoardItems}>
-        <Column title={"排名"} dataIndex={"rank"} align={"center"} width={80}/>
-        <Column title={"用户/队伍"} dataIndex={"teamInfo"} render={renderTeamInfo} align={"center"} width={160}/>
-        <Column title={"AC"} dataIndex={"totalAcAmount"} render={renderAcAmount} align={"center"} width={50}/>
+        <Column
+          title={"排名"}
+          align={"center"}
+          width={80}
+          render={(value: any, record: any, index: number) => index + 1}/>
+        <Column
+          title={"用户/队伍"}
+          dataIndex={"teamInfo"}
+          render={renderTeamInfo}
+          align={"center"}
+          width={160}/>
+        <Column
+          title={"AC"}
+          dataIndex={"totalAcAmount"}
+          render={renderAcAmount}
+          align={"center"}
+          width={50}/>
+        <Column
+          title={"罚时"}
+          dataIndex={"totalTimePenalty"}
+          align={"center"}
+          width={80}/>
         {renderColumns()}
       </Table>}
     </div>

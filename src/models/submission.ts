@@ -54,6 +54,8 @@ export interface ScoreBoardSolutionInfo {
   problemId: number;
   tryAmount: number;
   isAccepted: boolean;
+  timeCost: number;
+  isFirstAc: boolean;
 }
 
 // 记分板单条项目
@@ -65,4 +67,6 @@ export interface ScoreBoardItem {
 // 记分板内容
 export interface ScoreBoardInfo {
   participants: ScoreBoardItem[];
+  problemAmount: number;
+  frozen: boolean;
 }

@@ -13,7 +13,6 @@ interface ProblemEditorProps {
 }
 
 const ProblemEditor: React.FunctionComponent<ProblemEditorProps> = (props) => {
-  console.log(props.problem);
   return (
     <>
       <Card title="问题编辑">
@@ -21,7 +20,7 @@ const ProblemEditor: React.FunctionComponent<ProblemEditorProps> = (props) => {
           type="inner"
           style={{marginTop: 10}}
           title={<div className={"cms-problem-editor-part"}>基本信息</div>}>
-          <BasicInfoForm problem={props.problem}></BasicInfoForm>
+          <BasicInfoForm problem={props.problem}/>
         </Card>
         <Card
           type="inner"
