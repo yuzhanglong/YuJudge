@@ -63,6 +63,7 @@ export const updateProblemSetProblems = (problemSetId: number, problems: number[
   )
 }
 
+
 // 从题目集中移除某个题目
 export const removeProblemFormProblemSet = (problemSetId: number, problemId: number) => {
   return request.delete(
@@ -84,6 +85,7 @@ export const getProblemSetInfo = (problemSetId: number) => {
   )
 }
 
+// 获取题目集记分板信息
 export const getProblemSetScoreBoard = (problemSetId: number) => {
   return request.get(
     "/problem_set/get_score_board/" + problemSetId,

@@ -10,6 +10,7 @@
 import request, {REQUEST_TYPES} from "./request";
 import {LoginFormData, RegisterFormData} from "../models/user";
 import {getToken} from "../utils/dataPersistence";
+import {UsersPaginationRequest} from "../models/pagination";
 
 
 // 获取验证码相关信息
@@ -68,6 +69,23 @@ export const getUserInfo = () => {
       headers: {
         Authorization: getToken()
       },
+    }
+  )
+}
+
+// 分页获取多个用户信息
+export const getUsers = (params: UsersPaginationRequest) => {
+  return request.get(
+    "/user/get_users",
+    {
+      headers: {
+        Authorization: getToken()
+      },
+      params: {
+        start: params.start,
+        count: params.count,
+        scope: params.scope
+      }
     }
   )
 }

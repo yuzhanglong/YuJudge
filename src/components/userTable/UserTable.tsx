@@ -8,14 +8,21 @@
 
 import React from "react";
 import {UserInfo} from "../../models/user";
-import {Badge, Table} from "antd";
+import {Badge, Table, Tag} from "antd";
 import Column from "antd/lib/table/Column";
-import {RankingColorEnum} from "../../common/enumerations";
+import {RankingColorEnum, USER_SCOPE_TAG_NAME} from "../../common/enumerations";
+import {TablePaginationConfig} from "antd/lib/table/interface";
+import {Pagination} from "../../models/pagination";
 
 interface UserTableProps {
   userInfo: UserInfo[];
-  showPagination?: boolean;
+  pagination?: Pagination;
   showRanking?: boolean;
+  operations?: (props: any) => React.ReactNode;
+  showScope?: boolean;
+  showEmail?: boolean;
+  isLoading?: boolean;
+  onPageChange?: (page: number) => void;
 }
 
 const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
@@ -26,7 +33,9 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
     }
     return (
       <div>
-        <Badge count={index + 1} style={rankingstyle}/>
+        <Badge
+          count={index + 1}
+          style={rankingstyle}/>
       </div>
     )
   }
@@ -45,11 +54,45 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
     }
   }
 
+  // 渲染操作列
+  const renderOperations = (content: any) => {
+    return (
+      <div>
+        {props.operations ? props.operations(content) : null}
+      </div>
+    )
+  }
+
+  // 分页配置
+  const paginationProp: TablePaginationConfig = {
+    total: (props.pagination?.totalPage || 1) * (props.pagination?.count || 10),
+    defaultPageSize: props.pagination?.count || 10
+  }
+
+  // 渲染身份信息
+  const renderScope = (content: string) => {
+    return (
+      <div>
+        <Tag color="geekblue">
+          {USER_SCOPE_TAG_NAME[content]}
+        </Tag>
+      </div>
+    )
+  }
+
+  // 页码改变
+  const onPageChange = (event: TablePaginationConfig) => {
+    if (props.onPageChange && event.current) {
+      props.onPageChange(event.current);
+    }
+  }
+
   return (
     <Table
       dataSource={props.userInfo}
       rowKey={"nickname"}
-      pagination={false}>
+      pagination={props.pagination ? paginationProp : false}
+      onChange={(e: TablePaginationConfig) => onPageChange(e)}>
       {
         props.showRanking && <Column
           title={"排名"}
@@ -58,19 +101,41 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
       <Column
         title={"用户名"}
         dataIndex={"nickname"}/>
+      {
+        props.showScope &&
+        <Column
+          title={"身份"}
+          dataIndex={"scope"}
+          render={renderScope}/>
+      }
+      {
+        props.showEmail &&
+        <Column
+          title={"邮箱"}
+          dataIndex={"email"}/>
+      }
       <Column
         title={"ac数量"}
         dataIndex={"acAmount"}/>
       <Column
         title={"提交数量"}
         dataIndex={"submissionAmount"}/>
+      {
+        props.operations &&
+        <Column
+          align={"center"}
+          title={"操作"}
+          render={renderOperations}/>
+      }
     </Table>
   )
 }
 
 UserTable.defaultProps = {
-  showPagination: false,
-  showRanking: true
+  showRanking: true,
+  showScope: false,
+  showEmail: false,
+  isLoading: false
 }
 
 export default UserTable;

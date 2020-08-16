@@ -42,5 +42,10 @@ export interface ProblemSetProblemPaginationRequest extends PaginationRequest {
 
 // 题目分页请求
 export interface ProblemPaginationRequest extends PaginationRequest {
-  search: string | null
+  search: string | null;
+}
+
+// 用户信息分页请求
+export interface UsersPaginationRequest extends PaginationRequest {
+  scope: string | null;
 }

@@ -46,4 +46,7 @@ export const SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE = 10;
 export const SINGLE_PAGE_SIZE_IN_PROBLEM_SET_MANAGE = 10;
 
 // 题目集添加题目时，交互时需要告知用户的内容个数
-export const ADD_PROBLEM_MAX_SHOW = 5
+export const ADD_PROBLEM_MAX_SHOW = 5;
+
+// 用户管理界面每一页的个数
+export const SINGLE_PAGE_SIZE_IN_USER_MANAGE = 10;

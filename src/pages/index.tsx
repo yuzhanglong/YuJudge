@@ -25,6 +25,8 @@ import ProblemSetLayout from "../components/layout/problemSet/ProblemSetLayout";
 import ScoreBoard from "./scoreBoard/ScoreBoard";
 import ProblemSetProblems from "./problemSetProblems/ProblemSetProblems";
 import ProblemSetHome from "./problemSetHome/ProblemSetHome";
+import UserGroupManage from "./userGroupManage/UserGroupManage";
+import UserManage from "./userManage/UserManage";
 
 export default {
   ProblemManage: ProblemManage,
@@ -43,5 +45,7 @@ export default {
   ProblemSetLayout: ProblemSetLayout,
   ScoreBoard: ScoreBoard,
   ProblemSetProblems: ProblemSetProblems,
-  ProblemSetHome: ProblemSetHome
+  ProblemSetHome: ProblemSetHome,
+  UserGroupManage: UserGroupManage,
+  UserManage: UserManage
 } as any;
