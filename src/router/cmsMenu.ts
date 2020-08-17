@@ -8,6 +8,8 @@
 
 
 import {MenuRouterConfig} from "./config";
+import {CMS_USERS_MENU} from "./cmsUserMenu";
+import {CMS_PROBLEM_AND_PROBLEM_SET_MENU} from "./cmsProblemMenu";
 
 export const CMS_MENUS: MenuRouterConfig[] = [
   {
@@ -18,55 +20,14 @@ export const CMS_MENUS: MenuRouterConfig[] = [
     icon: "DashboardOutlined",
     isShowInMenu: true
   },
+  CMS_USERS_MENU,
+  CMS_PROBLEM_AND_PROBLEM_SET_MENU,
   {
-    key: "/cms/users",
-    title: "用户管理",
-    path: "/cms/users",
-    icon: "UserOutlined",
-    isShowInMenu: true
-  },
-  {
-    key: "/cms/problem_manage",
-    title: "题目&题目集",
-    path: "/cms/problem_manage",
-    icon: "ProfileOutlined",
-    isShowInMenu: true,
-    children: [
-      {
-        key: "/cms/problem_manage/problems",
-        component: "ProblemManage",
-        title: "题目管理",
-        path: "/cms/problem_manage",
-        isShowInMenu: true
-      },
-      {
-        key: "/cms/problem_manage/problem_sets",
-        component: "ProblemSetManage",
-        title: "题目集管理",
-        path: "/cms/problem_manage/problem_sets",
-        isShowInMenu: true
-      },
-      {
-        key: "/cms/problem_manage/problems/edit",
-        component: "ProblemEdit",
-        title: "题目编辑",
-        path: "/cms/problem_manage/problems/edit/:id",
-        isShowInMenu: false
-      },
-      {
-        key: "/cms/problem_manage/problem_sets/edit",
-        component: "ProblemSetEdit",
-        title: "题目集编辑",
-        path: "/cms/problem_manage/problem_sets/edit/:id",
-        isShowInMenu: false
-      }
-    ]
-  },
-  {
-    key: "/cms/judge_server",
-    title: "判题机管理",
-    path: "/cms/judge_server",
+    key: "/cms/judge_hosts",
+    title: "判题机",
+    path: "/cms/judge_hosts",
     icon: "CloudServerOutlined",
+    component: "JudgeHostManage",
     isShowInMenu: true
   },
   {

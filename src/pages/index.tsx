@@ -27,6 +27,8 @@ import ProblemSetProblems from "./problemSetProblems/ProblemSetProblems";
 import ProblemSetHome from "./problemSetHome/ProblemSetHome";
 import UserGroupManage from "./userGroupManage/UserGroupManage";
 import UserManage from "./userManage/UserManage";
+import JudgeHostInspect from "./judgeHostInspect/JudgeHostInspect";
+import JudgeHostManage from "./judgeHostManage/JudgeHostManage";
 
 export default {
   ProblemManage: ProblemManage,
@@ -47,5 +49,7 @@ export default {
   ProblemSetProblems: ProblemSetProblems,
   ProblemSetHome: ProblemSetHome,
   UserGroupManage: UserGroupManage,
-  UserManage: UserManage
+  UserManage: UserManage,
+  JudgeHostInspect: JudgeHostInspect,
+  JudgeHostManage: JudgeHostManage
 } as any;

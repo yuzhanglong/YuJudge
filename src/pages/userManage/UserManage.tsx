@@ -39,7 +39,6 @@ const UserManage: React.FunctionComponent<UserManageProps> = (props) => {
       count: SINGLE_PAGE_SIZE_IN_USER_MANAGE,
       scope: scope !== UserScope.ALL_USERS ? scope : null
     };
-    console.log(requestBody);
     usersPaginations.changeCurrentPage(requestBody)
       .then(() => {
       })
