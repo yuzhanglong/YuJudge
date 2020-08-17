@@ -6,8 +6,23 @@
  * Email: yuzl1123@163.com
  */
 
+// 判题机信息
 export interface JudgeHostInfo {
   active: boolean;
   address: string;
   name: string;
+  condition: JudgeHostCondition;
+}
+
+// 判题机状态
+export interface JudgeHostCondition {
+  workPath: string;
+  scriptPath: string;
+  resolutionPath: string;
+  port: number;
+  workingAmount: number;
+  cpuCoreAmount: number;
+  memoryCostPercentage: number;
+  cpuCostPercentage: number;
+  queueAmount: number;
 }

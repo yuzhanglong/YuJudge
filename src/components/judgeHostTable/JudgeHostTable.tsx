@@ -8,7 +8,7 @@
 
 
 import React from "react";
-import {JudgeHostInfo} from "../../models/judgeHost";
+import {JudgeHostCondition, JudgeHostInfo} from "../../models/judgeHost";
 import {Table, Tag} from "antd";
 import Column from "antd/lib/table/Column";
 
@@ -22,7 +22,7 @@ const JudgeHostTable: React.FunctionComponent<JudgeHostTable> = (props) => {
   // 渲染状态
   const renderCondition = (isActive: boolean) => {
     return (
-      <Tag color="green">
+      <Tag color={isActive ? "green" : "red"}>
         {isActive ? "运行中" : "已停止"}
       </Tag>
     )
@@ -37,6 +37,38 @@ const JudgeHostTable: React.FunctionComponent<JudgeHostTable> = (props) => {
     )
   }
 
+  // 渲染cpu消耗百分比
+  const renderCpuCostPercentage = (value: JudgeHostCondition) => {
+    return (
+      <div>
+        {value.cpuCostPercentage !== null ? value.cpuCostPercentage + "%" : "---"}
+      </div>
+    )
+  }
+
+  // 渲染cpu消耗百分比
+  const renderMemoryCostPercentage = (value: JudgeHostCondition) => {
+    return (
+      <div>
+        {value.memoryCostPercentage !== null ? value.memoryCostPercentage + "%" : "---"}
+      </div>
+    )
+  }
+
+  // 渲染当前判题个数数量
+  const renderWorkingAmount = (value: JudgeHostCondition) => {
+    return (
+      <div>{value.workingAmount !== null ? value.workingAmount : "---"}</div>
+    )
+  }
+
+  // 渲染cpu核心数
+  const renderCpuCoreAmount = (value: JudgeHostCondition) => {
+    return (
+      <div>{value.cpuCoreAmount !== null ? value.cpuCoreAmount : "---"}</div>
+    )
+  }
+
   return (
     <Table dataSource={props.judgeHosts}>
       <Column
@@ -44,19 +76,34 @@ const JudgeHostTable: React.FunctionComponent<JudgeHostTable> = (props) => {
         dataIndex={"active"}
         key={"active"}
         render={renderCondition}
-        width={250}/>
+        width={100}/>
       <Column
         title={"名称"}
         dataIndex={"name"}
-        key={"name"}/>
+        align={"center"}
+        key={"name"} width={250}/>
+      <Column
+        title={"cpu核心数"}
+        dataIndex={"condition"}
+        key={"cpu-core"}
+        align={"center"}
+        render={renderCpuCoreAmount}/>
+      <Column
+        title={"当前判题个数"}
+        align={"center"}
+        dataIndex={"condition"}
+        key={"currentWorking"}
+        render={renderWorkingAmount}/>
       <Column
         title={"cpu消耗"}
-        dataIndex={"cpu"}
-        key={"put"}/>
+        align={"center"}
+        dataIndex={"condition"}
+        key={"cpu"} render={renderCpuCostPercentage}/>
       <Column
+        align={"center"}
         title={"内存消耗"}
-        dataIndex={"memory"}
-        key={"memory"}/>
+        dataIndex={"condition"}
+        key={"memory"} render={renderMemoryCostPercentage}/>
       {
         props.operations &&
         <Column
