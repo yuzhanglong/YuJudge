@@ -70,7 +70,7 @@ const JudgeHostTable: React.FunctionComponent<JudgeHostTable> = (props) => {
   }
 
   return (
-    <Table dataSource={props.judgeHosts}>
+    <Table dataSource={props.judgeHosts} rowKey={"id"}>
       <Column
         title={"状态"}
         dataIndex={"active"}
@@ -81,7 +81,8 @@ const JudgeHostTable: React.FunctionComponent<JudgeHostTable> = (props) => {
         title={"名称"}
         dataIndex={"name"}
         align={"center"}
-        key={"name"} width={250}/>
+        key={"name"}
+        width={250}/>
       <Column
         title={"cpu核心数"}
         dataIndex={"condition"}

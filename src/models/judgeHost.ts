@@ -8,10 +8,12 @@
 
 // 判题机信息
 export interface JudgeHostInfo {
+  id: number;
   active: boolean;
   address: string;
   name: string;
   condition: JudgeHostCondition;
+  createTime: number;
 }
 
 // 判题机状态

@@ -20,3 +20,14 @@ export const getJudgeHostsInfo = () => {
     }
   )
 }
+
+export const getJudgeHostInfoById = (judgeHostId: number) => {
+  return request.get(
+    "/judge_host/get_judge_host_by_id/" + judgeHostId,
+    {
+      headers: {
+        Authorization: getToken()
+      }
+    }
+  )
+}

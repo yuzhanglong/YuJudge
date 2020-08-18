@@ -10,6 +10,7 @@
 import {MenuRouterConfig} from "./config";
 import {CMS_USERS_MENU} from "./cmsUserMenu";
 import {CMS_PROBLEM_AND_PROBLEM_SET_MENU} from "./cmsProblemMenu";
+import {JUDGE_HOST_MANAGE_MENU} from "./cmsJudgeHostMenu";
 
 export const CMS_MENUS: MenuRouterConfig[] = [
   {
@@ -22,14 +23,7 @@ export const CMS_MENUS: MenuRouterConfig[] = [
   },
   CMS_USERS_MENU,
   CMS_PROBLEM_AND_PROBLEM_SET_MENU,
-  {
-    key: "/cms/judge_hosts",
-    title: "判题机",
-    path: "/cms/judge_hosts",
-    icon: "CloudServerOutlined",
-    component: "JudgeHostManage",
-    isShowInMenu: true
-  },
+  ...JUDGE_HOST_MANAGE_MENU,
   {
     key: "/cms/settings",
     title: "设置",

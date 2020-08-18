@@ -11,12 +11,13 @@ import {Button, Card} from "antd";
 import {getJudgeHostsInfo} from "../../network/judgeHostRequest";
 import {JudgeHostInfo} from "../../models/judgeHost";
 import JudgeHostTable from "../../components/judgeHostTable/JudgeHostTable";
+import {RouteComponentProps} from "react-router-dom";
 
 interface JudgeServerManageProps {
 
 }
 
-const JudgeHostManage: React.FunctionComponent<JudgeServerManageProps> = (props) => {
+const JudgeHostManage: React.FunctionComponent<JudgeServerManageProps & RouteComponentProps> = (props) => {
 
   // 所有的判题服务器信息
   const [judgeHostsInfo, setJudgeHostInfo] = useState<JudgeHostInfo[]>([]);
@@ -34,14 +35,19 @@ const JudgeHostManage: React.FunctionComponent<JudgeServerManageProps> = (props)
   }
 
   // 渲染操作
-  const renderOperations = (value: any) => {
+  const renderOperations = (value: JudgeHostInfo) => {
     return (
       <div>
-        <Button type={"link"}>
+        <Button type={"link"} onClick={() => onSeeDetailButtonClick(value.id)}>
           查看详情
         </Button>
       </div>
     )
+  }
+
+  // 查看详情按钮被单击
+  const onSeeDetailButtonClick = (judgeHostId: number) => {
+    props.history.push(`/cms/judge_hosts/inspect/${judgeHostId}`)
   }
 
   return (
