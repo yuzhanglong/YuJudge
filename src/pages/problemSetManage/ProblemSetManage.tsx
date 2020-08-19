@@ -5,7 +5,6 @@ import {message} from "antd";
 import {ProblemSet} from "../../models/problemSet";
 import ProblemSetTable from "../../components/problemSetTable/ProblemSetTable";
 import ProblemSetToolBar from "./childCmp/ProblemSetToolBar";
-import {Moment} from 'moment';
 import {RouteComponentProps} from "react-router-dom";
 import {usePaginationState} from "../../hooks/pagination";
 import {ProblemSetPaginationRequest} from "../../models/pagination";
@@ -28,6 +27,7 @@ const ProblemSetManage: React.FunctionComponent<RouteComponentProps> = (props) =
 
   useEffect(() => {
     getProblemSetsInfo(PAGE_BEGIN - 1, null, false);
+    // eslint-disable-next-line
   }, []);
 
 
@@ -39,10 +39,10 @@ const ProblemSetManage: React.FunctionComponent<RouteComponentProps> = (props) =
       search: search,
       limit: isLimit
     }
-    paginationState.changeCurrentPage(requestParams).catch((err) => {
-      message.error(err.message);
-    });
-    ;
+    paginationState.changeCurrentPage(requestParams)
+      .catch((err) => {
+        message.error(err.message);
+      });
   }
 
   // 用户点击只显示活跃题目集时

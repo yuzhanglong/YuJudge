@@ -6,10 +6,12 @@
  * Email: yuzl1123@163.com
  */
 
-// 获取题目集信息
+
 import request from "./request";
 import {getToken} from "../utils/dataPersistence";
 
+
+// 获取所有的判题机信息
 export const getJudgeHostsInfo = () => {
   return request.get(
     "/judge_host/get_judge_hosts_info",
@@ -21,12 +23,28 @@ export const getJudgeHostsInfo = () => {
   )
 }
 
+
+// 通过id获取某个判题机信息
 export const getJudgeHostInfoById = (judgeHostId: number) => {
   return request.get(
     "/judge_host/get_judge_host_by_id/" + judgeHostId,
     {
       headers: {
         Authorization: getToken()
+      }
+    }
+  )
+}
+
+// 获取某个判题机的统计信息
+export const countJudgeHostSubmissionInfo = (timeBegin: string, timeEnd: string, judgeHostId: number) => {
+  return request.get(
+    "/judge_host/count_judge_host_submission",
+    {
+      params: {
+        begin: timeBegin,
+        end: timeEnd,
+        judgeHostId: judgeHostId
       }
     }
   )

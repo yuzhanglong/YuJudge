@@ -26,16 +26,17 @@ const ProblemSetProblems: React.FunctionComponent<ProblemSetProblemsProps & Rout
   const problemSetProblemPagination = usePaginationState<ProblemSetProblemPaginationRequest>(PAGE_BEGIN - 1, getProblemSetProblems);
 
   useEffect(() => {
-    getProblemSetProblemData(PAGE_BEGIN - 1);
-  }, []);
+    getProblemSetProblemData(params.problemSetId, PAGE_BEGIN - 1);
+    // eslint-disable-next-line
+  }, [params.problemSetId]);
 
   // 获取题目集所有题目
-  const getProblemSetProblemData = (start: number) => {
+  const getProblemSetProblemData = (problemSetId:number, start: number) => {
     problemSetProblemPagination
       .changeCurrentPage({
         start: start,
         count: SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE,
-        problemSetId: params.problemSetId
+        problemSetId: problemSetId
       })
       .catch((err) => {
         message.error(err.message);
@@ -62,7 +63,7 @@ const ProblemSetProblems: React.FunctionComponent<ProblemSetProblemsProps & Rout
           problems={problemSetProblemPagination.items}
           isShowOperations
           showEditButton={false}
-          onPageChange={(val: number) => getProblemSetProblemData(val - 1)}
+          onPageChange={(val: number) => getProblemSetProblemData(params.problemSetId, val - 1)}
           totalPage={problemSetProblemPagination.paginationInfo.totalPage}
           otherOperations={(content: any) => {
             return (

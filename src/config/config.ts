@@ -50,3 +50,6 @@ export const ADD_PROBLEM_MAX_SHOW = 5;
 
 // 用户管理界面每一页的个数
 export const SINGLE_PAGE_SIZE_IN_USER_MANAGE = 10;
+
+// 默认日期格式化
+export const DEFAULT_DATE_TIME_FORMAT = "YYYY-MM-DD HH:mm:ss";

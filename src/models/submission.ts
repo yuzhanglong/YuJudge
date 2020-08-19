@@ -72,3 +72,10 @@ export interface ScoreBoardInfo {
   problemAmount: number;
   frozen: boolean;
 }
+
+// 提交统计信息
+export interface SubmissionCountInfo {
+  time: number;
+  hour: number;
+  submissionAmount: number;
+}

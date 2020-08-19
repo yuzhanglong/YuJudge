@@ -91,7 +91,7 @@ const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
               <DashOutlined/>
             }>
             <div className={"chart-wrap"}>
-              <LineChart></LineChart>
+              <LineChart data={[]} xKey={"tmp"} yKey={"tmp2"}></LineChart>
             </div>
           </Card>
         </Col>

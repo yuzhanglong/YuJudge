@@ -8,28 +8,103 @@
 
 import React from "react";
 import {Line} from "@ant-design/charts";
-import {ColumnConfig} from "@ant-design/charts/es/column";
+import {ITitle} from "@antv/g2plot/lib/interface/config";
+import {DEFAULT_DATE_TIME_FORMAT} from "../../config/config";
+import {LineConfig as G2plotProps} from "@antv/g2plot/lib/plots/line";
 
 interface LineChartProps {
-
+  data: any[];
+  xKey: string;
+  yKey: string;
+  yDescription?: string;
+  xDescription?: string;
+  title?: string;
+  isTime?: boolean;
 }
 
 const LineChart: React.FunctionComponent<LineChartProps> = (props) => {
-  const data = [
-    {year: '1991', value: 3},
-    {year: '1992', value: 4},
-    {year: '1993', value: 3.5},
-    {year: '1994', value: 5},
-    {year: '1995', value: 4.9},
-    {year: '1996', value: 6},
-  ];
-  const config: ColumnConfig = {
-    data,
+  const config: G2plotProps = {
+    data: props.data,
     forceFit: true,
-    xField: 'year',
-    yField: 'value'
+    xField: props.xKey,
+    yField: props.yKey,
+    smooth: true,
+    tooltip: {
+      visible: true,
+      shared: true,
+      showCrosshairs: true,
+      crosshairs: {
+        type: 'y'
+      },
+      offset: 20,
+      formatter: (key: any, value: number) => {
+        return {
+          name: props.yDescription || "",
+          value: value
+        }
+      }
+    },
+    yAxis: {
+      visible: true,
+      grid: {
+        visible: true,
+      },
+      line: {
+        visible: false,
+      },
+      tickLine: {
+        visible: false,
+      },
+      label: {
+        visible: true,
+        autoRotate: true,
+        autoHide: true,
+      },
+      title: {
+        visible: false,
+        offset: 12,
+        text: props.yDescription
+      },
+    },
+    xAxis: {
+      visible: true,
+      grid: {
+        visible: false,
+      },
+      line: {
+        visible: true
+      },
+      tickLine: {
+        visible: false,
+      },
+      label: {
+        visible: true,
+        autoRotate: true,
+        autoHide: true,
+      },
+      title: {
+        visible: false,
+        offset: 12,
+      },
+      type: props.isTime ? "time" : "linear",
+      mask: props.isTime ? DEFAULT_DATE_TIME_FORMAT : undefined
+    }
   };
-  return <Line {...config} height={300} width={350}/>;
+
+  const titleProps: ITitle = {
+    visible: false,
+    alignTo: 'left',
+    text: props.title || "",
+    style: {
+      fontSize: 18,
+      fill: 'black',
+    }
+  }
+  return <Line {...config} height={300} width={350} title={titleProps}/>;
+}
+
+LineChart.defaultProps = {
+  isTime: false
 }
 
 export default LineChart;

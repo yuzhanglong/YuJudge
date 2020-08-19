@@ -10,9 +10,14 @@ import React, {useEffect, useState} from "react";
 import {Badge, Card} from "antd";
 import {RouteComponentProps} from "react-router-dom";
 import {JudgeHostInfo} from "../../models/judgeHost";
-import {getJudgeHostInfoById} from "../../network/judgeHostRequest";
+import {countJudgeHostSubmissionInfo, getJudgeHostInfoById} from "../../network/judgeHostRequest";
 import BasicInfo from "./childCmp/BasicInfo";
 import CurrentCondition from "./childCmp/CurrentCondition";
+import SubmissionCount from "../../components/submissionCount/SubmissionCount";
+import {SubmissionCountInfo} from "../../models/submission";
+import {getDateRangeMomentArray} from "../../utils/dateTime";
+import {DEFAULT_DATE_TIME_FORMAT} from "../../config/config";
+import moment from "moment";
 
 interface JudgeHostInspectProps {
 
@@ -22,6 +27,7 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
   const params: any = props.match.params;
   const judgeHostId: number = params.judgeHostId;
 
+  // 判题机信息
   const [judgeHostInfo, setJudgeHostInfo] = useState<JudgeHostInfo>({
     active: false, address: "", condition: {
       cpuCoreAmount: 0,
@@ -40,8 +46,12 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
     name: ""
   });
 
+  // 判题机数据统计
+  const [judgeHostSubmissionCounts, setJudgeHostSubmissionCounts] = useState<SubmissionCountInfo[]>([]);
+
   useEffect(() => {
     getJudgeHostInfo(judgeHostId);
+    getSubmissionCountsData();
   }, [judgeHostId]);
 
   // 获取并保存判题机相关信息
@@ -80,6 +90,25 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
     return judgeHostInfo?.active ? "processing" : "warning";
   }
 
+  // 获取判题机提交统计信息
+  const getSubmissionCountsData = (begin?: string, end?: string) => {
+    let b = begin || moment().subtract(1, 'days').format(DEFAULT_DATE_TIME_FORMAT);
+    let e = end || moment().format(DEFAULT_DATE_TIME_FORMAT);
+    console.log(moment().format(DEFAULT_DATE_TIME_FORMAT));
+    countJudgeHostSubmissionInfo(b, e, params.judgeHostId)
+      .then(res => {
+        setJudgeHostSubmissionCounts(res.data.items);
+      })
+  }
+
+  // 获取初始时间
+  const initDay = () => {
+    let now = new Date();
+    let before = new Date();
+    before.setDate(now.getDate() - 1);
+    return getDateRangeMomentArray(before.getTime(), now.getTime());
+  }
+
   return (
     <Card title={judgeHostInfo ? judgeHostInfo.name : "加载中"} extra={renderCardExtra()}>
       <Card
@@ -97,7 +126,10 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
         <CurrentCondition judgeHostInfo={judgeHostInfo}/>
       </Card>
       <Card title={"数据统计"}>
-
+        <SubmissionCount
+          submissionCounts={judgeHostSubmissionCounts}
+          initialTimeRange={initDay()}
+          onPickerChange={(res) => getSubmissionCountsData(res[0], res[1])}/>
       </Card>
     </Card>
   )
