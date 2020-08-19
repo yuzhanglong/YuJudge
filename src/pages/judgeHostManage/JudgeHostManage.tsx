@@ -7,7 +7,7 @@
  */
 
 import React, {useEffect, useState} from "react";
-import {Button, Card} from "antd";
+import {Badge, Button, Card} from "antd";
 import {getJudgeHostsInfo} from "../../network/judgeHostRequest";
 import {JudgeHostInfo} from "../../models/judgeHost";
 import JudgeHostTable from "../../components/judgeHostTable/JudgeHostTable";
@@ -49,6 +49,9 @@ const JudgeHostManage: React.FunctionComponent<JudgeServerManageProps & RouteCom
   const onSeeDetailButtonClick = (judgeHostId: number) => {
     props.history.push(`/cms/judge_hosts/inspect/${judgeHostId}`)
   }
+
+
+
 
   return (
     <Card title={"全部判题机"}>

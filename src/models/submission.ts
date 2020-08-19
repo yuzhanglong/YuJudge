@@ -8,6 +8,7 @@
 
 import {JudgeConditionEnum} from "../common/enumerations";
 import {UserInfo} from "./user";
+import {JudgeHostInfo} from "./judgeHost";
 
 // 一次提交
 export interface Submission {
@@ -47,6 +48,7 @@ export interface JudgeResult {
 // 提交细节信息
 export interface SubmissionDetail extends Submission {
   judgeResult: JudgeResult;
+  judgeHost?: JudgeHostInfo;
 }
 
 // 记分板单条项目、单题的统计情况

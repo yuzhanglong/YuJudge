@@ -34,6 +34,7 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
       workPath: "",
       workingAmount: 0
     },
+    connection: false,
     createTime: 0,
     id: 0,
     name: ""
@@ -54,10 +55,29 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
   // 渲染卡片右侧信息
   const renderCardExtra = () => {
     return (
-      <Badge
-        status={judgeHostInfo?.active ? "processing" : "warning"}
-        text={judgeHostInfo?.active ? "运行中" : "已停止"}/>
+      <div>
+        <Badge
+          status={getConditionBadgeStatus()}
+          text={getConditionDescription()}/>
+      </div>
+
     )
+  }
+
+  // 获取判题机状态描述
+  const getConditionDescription = () => {
+    if (!judgeHostInfo.connection) {
+      return "无连接";
+    }
+    return judgeHostInfo?.active ? "运行中" : "已暂停";
+  }
+
+  // 获取判题机状态描述颜色
+  const getConditionBadgeStatus = () => {
+    if (!judgeHostInfo.connection) {
+      return "error";
+    }
+    return judgeHostInfo?.active ? "processing" : "warning";
   }
 
   return (
@@ -74,10 +94,10 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
         style={{
           marginBottom: 20
         }}>
-
+        <CurrentCondition judgeHostInfo={judgeHostInfo}/>
       </Card>
       <Card title={"数据统计"}>
-        <CurrentCondition judgeHostInfo={judgeHostInfo}/>
+
       </Card>
     </Card>
   )

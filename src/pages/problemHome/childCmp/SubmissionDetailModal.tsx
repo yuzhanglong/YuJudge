@@ -85,8 +85,12 @@ const SubmissionDetailModal: React.FunctionComponent<SubmissionDetailModalProps>
             {props.submission.memoryCost}
           </Descriptions.Item>
           <Descriptions.Item label={"编译器"}
-                             span={2}>
+                             span={1}>
             {props.submission.language}
+          </Descriptions.Item>
+          <Descriptions.Item label={"判题机"}
+                             span={1}>
+            {props.submission.judgeHost?.name}
           </Descriptions.Item>
 
           <Descriptions.Item label={"用户代码"}

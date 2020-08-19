@@ -20,10 +20,10 @@ interface JudgeHostTable {
 const JudgeHostTable: React.FunctionComponent<JudgeHostTable> = (props) => {
 
   // 渲染状态
-  const renderCondition = (isActive: boolean) => {
+  const renderCondition = (value: JudgeHostInfo) => {
     return (
-      <Tag color={isActive ? "green" : "red"}>
-        {isActive ? "运行中" : "已停止"}
+      <Tag color={getConditionBadgeStatus(value)}>
+        {getConditionDescription(value)}
       </Tag>
     )
   }
@@ -69,11 +69,27 @@ const JudgeHostTable: React.FunctionComponent<JudgeHostTable> = (props) => {
     )
   }
 
+
+  // 获取判题机状态描述
+  const getConditionDescription = (value: JudgeHostInfo) => {
+    if (!value.connection) {
+      return "无连接";
+    }
+    return value?.active ? "运行中" : "已暂停";
+  }
+
+  // 获取判题机状态描述颜色
+  const getConditionBadgeStatus = (value: JudgeHostInfo) => {
+    if (!value.connection) {
+      return "red";
+    }
+    return value?.active ? "green" : "yellow";
+  }
+
   return (
     <Table dataSource={props.judgeHosts} rowKey={"id"}>
       <Column
         title={"状态"}
-        dataIndex={"active"}
         key={"active"}
         render={renderCondition}
         width={100}/>

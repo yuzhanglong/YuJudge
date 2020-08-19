@@ -23,8 +23,8 @@ const ProblemSetHome: React.FunctionComponent<ProblemSetHomeProps & RouteCompone
   const problemSetId: number = params.problemSetId;
 
   useEffect(() => {
-    getProblemSetData();
-  }, []);
+    getProblemSetData(problemSetId);
+  }, [problemSetId]);
 
   // 题目集基本信息
   const [problemSetInfo, setProblemSetInfo] = useState<ProblemSet>({
@@ -39,7 +39,7 @@ const ProblemSetHome: React.FunctionComponent<ProblemSetHomeProps & RouteCompone
   });
 
   // 获取题目集信息
-  const getProblemSetData = () => {
+  const getProblemSetData = (problemSetId: number) => {
     getProblemSetInfo(problemSetId)
       .then(res => {
         setProblemSetInfo(res.data);

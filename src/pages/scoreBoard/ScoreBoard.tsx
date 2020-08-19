@@ -21,8 +21,8 @@ const ScoreBoard: React.FunctionComponent<ScoreBoardProps & RouteComponentProps>
   const params: any = props.match.params;
 
   useEffect(() => {
-    getScoreBoardInfo();
-  }, []);
+    getScoreBoardInfo(params.problemSetId);
+  }, [params.problemSetId]);
 
   // 记分板数据
   const [scoreBoardInfo, setScoreBoardInfo] = useState<ScoreBoardInfo>({
@@ -33,8 +33,8 @@ const ScoreBoard: React.FunctionComponent<ScoreBoardProps & RouteComponentProps>
   );
 
   // 获取记分板数据
-  const getScoreBoardInfo = () => {
-    getProblemSetScoreBoard(params.problemSetId)
+  const getScoreBoardInfo = (problemSetId: number) => {
+    getProblemSetScoreBoard(problemSetId)
       .then(res => {
         setScoreBoardInfo(res.data);
       })

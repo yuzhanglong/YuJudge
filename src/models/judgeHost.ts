@@ -14,6 +14,7 @@ export interface JudgeHostInfo {
   name: string;
   condition: JudgeHostCondition;
   createTime: number;
+  connection: boolean;
 }
 
 // 判题机状态

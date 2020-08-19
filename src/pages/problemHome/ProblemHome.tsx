@@ -23,6 +23,8 @@ import {PAGE_BEGIN, SUBMISSION_REQUEST_TASK_TIME, SUBMISSION_SINGLE_PAGE_SIZE} f
 import SubmissionDetailModal from "./childCmp/SubmissionDetailModal";
 import {getCode, saveCode} from "../../utils/dataPersistence";
 import {ProblemHoneTabKeyEnum} from "../../common/enumerations";
+import {getProblemSetInfo} from "../../network/problemSetRequest";
+import {ProblemSet} from "../../models/problemSet";
 
 interface ProblemShowProps {
 
@@ -35,6 +37,7 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
 
   const params: any = props.match.params;
   const problemId: number = params.problemId;
+  const problemSetId: number = params.problemSetId;
 
 
   // 当前problem
@@ -58,16 +61,28 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
   // 选中的左侧导航的key
   const [activeProblemTabKey, setActiveProblemTabKey] = useState(ProblemHoneTabKeyEnum.PROBLEM);
 
+  // 题目集基本信息
+  const [problemSetInfo, setProblemSetInfo] = useState<ProblemSet>();
+
 
   useEffect(() => {
     getProblemData(problemId);
+    getProblemSetData(problemSetId);
     showSavedCode();
     getProblemSubmission(problemId, PAGE_BEGIN);
     renewSubmissionDataTimely(PAGE_BEGIN).then(() => {
-      //TODO: FIX 页面销毁时，轮询无法销毁
+      //FIXME: 页面销毁时，轮询无法销毁
     })
     // eslint-disable-next-line
-  }, [problemId]);
+  }, [problemId, problemSetId]);
+
+  // 获取题目集信息
+  const getProblemSetData = (problemSetId: number) => {
+    getProblemSetInfo(problemSetId)
+      .then(res => {
+        setProblemSetInfo(res.data);
+      });
+  }
 
   // 获取问题数据
   const getProblemData = (problemId: number) => {
@@ -229,7 +244,7 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
                 <Row>
                   <LanguageSelector
                     onLanguageChange={(res) => setActiveLanguage(res)}
-                    allowedLanguage={problem.allowedLanguage ? problem.allowedLanguage : []}/>
+                    allowedLanguage={problemSetInfo?.allowedLanguage || []}/>
                 </Row>
               </div>
               <CodeMirror
