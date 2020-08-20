@@ -8,7 +8,7 @@
 
 import React from "react";
 import {Line} from "@ant-design/charts";
-import {ITitle} from "@antv/g2plot/lib/interface/config";
+import {GuideLineConfig, ITitle} from "@antv/g2plot/lib/interface/config";
 import {DEFAULT_DATE_TIME_FORMAT} from "../../config/config";
 import {LineConfig as G2plotProps} from "@antv/g2plot/lib/plots/line";
 
@@ -20,6 +20,8 @@ interface LineChartProps {
   xDescription?: string;
   title?: string;
   isTime?: boolean;
+  guideLine?: GuideLineConfig[];
+  seriesField?:string;
 }
 
 const LineChart: React.FunctionComponent<LineChartProps> = (props) => {
@@ -28,6 +30,7 @@ const LineChart: React.FunctionComponent<LineChartProps> = (props) => {
     forceFit: true,
     xField: props.xKey,
     yField: props.yKey,
+    seriesField: props.seriesField,
     smooth: true,
     tooltip: {
       visible: true,
@@ -88,7 +91,8 @@ const LineChart: React.FunctionComponent<LineChartProps> = (props) => {
       },
       type: props.isTime ? "time" : "linear",
       mask: props.isTime ? DEFAULT_DATE_TIME_FORMAT : undefined
-    }
+    },
+    guideLine: props.guideLine
   };
 
   const titleProps: ITitle = {
@@ -104,7 +108,8 @@ const LineChart: React.FunctionComponent<LineChartProps> = (props) => {
 }
 
 LineChart.defaultProps = {
-  isTime: false
+  isTime: false,
+  guideLine: []
 }
 
 export default LineChart;

@@ -36,6 +36,11 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
             <span className="nav-text">记分板</span>
           </Link>
         </Menu.Item>
+        <Menu.Item key="count" className={"problem-set-layout-menu-item"}>
+          <Link to={`/problem_set/${problemSetId}/count`}>
+            <span className="nav-text">数据统计</span>
+          </Link>
+        </Menu.Item>
       </Menu>
     </div>
   )

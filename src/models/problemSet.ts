@@ -20,3 +20,10 @@ export interface ProblemSet {
   allowedLanguage?: string[];
   condition?: string;
 }
+
+// 题目集散点
+export interface ProblemSetScatterItem {
+  judgeResult: string,
+  userNickName: string,
+  time: number;
+}

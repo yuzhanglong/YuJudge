@@ -7,12 +7,13 @@
  */
 
 import {MenuRouterConfig} from "./config";
+import {COMMON_PROBLEM_SET_MENU} from "./commonProblemSetMenu";
 
 export const COMMON_MENUS: MenuRouterConfig[] = [
   {
     key: "/landing",
     component: "Landing",
-    title: "用户登录",
+    title: "着陆页",
     path: "/",
   },
   {
@@ -21,36 +22,5 @@ export const COMMON_MENUS: MenuRouterConfig[] = [
     title: "用户登录",
     path: "/login",
   },
-  {
-    key: "/problem_set/:problemSetId",
-    component: "ProblemSetLayout",
-    title: "题目集",
-    path: "/problem_set/:problemSetId",
-    children: [
-      {
-        key: "/problem_set/:problemSetId/overview",
-        component: "ProblemSetHome",
-        title: "题目集概览",
-        path: "/problem_set/:problemSetId/overview",
-      },
-      {
-        key: "/problem_set/:problemSetId/problems",
-        component: "ProblemSetProblems",
-        title: "题目一览",
-        path: "/problem_set/:problemSetId/problems",
-      },
-      {
-        key: "/problem_set/:problemSetId/score_board",
-        component: "ScoreBoard",
-        title: "记分板",
-        path: "/problem_set/:problemSetId/score_board",
-      },
-      {
-        key: "/problem_set/:problemSetId/problem/:problemId",
-        component: "ProblemHome",
-        title: "问题",
-        path: "/problem_set/:problemSetId/problem/:problemId",
-      },
-    ]
-  }
+  COMMON_PROBLEM_SET_MENU
 ]

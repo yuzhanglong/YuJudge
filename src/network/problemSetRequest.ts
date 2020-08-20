@@ -109,3 +109,33 @@ export const updateProblemSetBasicInfo = (problemSet: ProblemSet) => {
     }
   )
 }
+
+// 获取某个题目集的统计信息
+export const countProblemSetSubmissionInfo = (problemSetId: number) => {
+  return request.get(
+    "/problem_set/count_problem_set_submission",
+    {
+      params: {
+        problemSetId: problemSetId
+      },
+      headers: {
+        Authorization: getToken()
+      }
+    }
+  )
+}
+
+// 获取某个题目集的统计信息
+export const countProblemSetScatter = (problemSetId: number) => {
+  return request.get(
+    "/problem_set/get_scatter",
+    {
+      params: {
+        problemSetId: problemSetId
+      },
+      headers: {
+        Authorization: getToken()
+      }
+    }
+  )
+}

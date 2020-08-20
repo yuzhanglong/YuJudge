@@ -12,29 +12,39 @@ import ChartGroup from "./childCmp/ChartGroup";
 import TableGroup from "./childCmp/TableGroup";
 import {getRecentProblems} from "../../network/problemRequests";
 import {
+  DEFAULT_DATE_TIME_FORMAT,
   RECENT_ACTIVE_USER_IN_DASHBOARD_AMOUNT,
   RECENT_PROBLEM_IN_DASHBOARD_AMOUNT,
   RECENT_SUBMISSION_DATES_IN_DASHBOARD_AMOUNT
 } from "../../config/config";
 import {Problem} from "../../models/problem";
-import {getRecentSubmission} from "../../network/submissionRequest";
+import {getRecentSubmission, getUserJudgeResultCount} from "../../network/submissionRequest";
 import {getActiveUserInfo, getUserInfo} from "../../network/userRequest";
+import moment from "moment";
+import {UserSubmissionCount} from "../../models/submission";
 
 interface DashboardProps {
 
 }
 
 const Dashboard: React.FunctionComponent<DashboardProps> = (props) => {
+  // 最新问题
   const [recentProblems, setRecentProblems] = useState<Problem[]>([]);
-  const [recentSubmissionCount, setRecentSubmissionCount] = useState([]);
+  // 近期提交统计
+  const [recentSubmissionCount, setRecentSubmissionCount] = useState<UserSubmissionCount[]>([]);
+  // 活跃用户
   const [activeUserInfo, setActiveUserInfo] = useState([]);
+  // 用户信息
   const [userInfo, setUserInfo] = useState();
+  // 用户提交统计
+  const [userJudgeResultCount, setUserJudgeResultCount] = useState();
 
   useEffect(() => {
     getRecentProblem();
     getRecentSubmissionCount();
     getRecentActiveUserInfo();
     getUserData();
+    getUserJudgeResults();
   }, []);
 
 
@@ -55,7 +65,13 @@ const Dashboard: React.FunctionComponent<DashboardProps> = (props) => {
 
   // 获取最近提交统计信息
   const getRecentSubmissionCount = () => {
-    getRecentSubmission(RECENT_SUBMISSION_DATES_IN_DASHBOARD_AMOUNT)
+    const end = moment().add(1, "days").format(DEFAULT_DATE_TIME_FORMAT);
+    // 默认提早七天
+    const start = moment().add(
+      RECENT_SUBMISSION_DATES_IN_DASHBOARD_AMOUNT * (-1),
+      "days").format(DEFAULT_DATE_TIME_FORMAT);
+
+    getRecentSubmission(start, end)
       .then(res => {
         setRecentSubmissionCount(res.data);
       })
@@ -69,6 +85,14 @@ const Dashboard: React.FunctionComponent<DashboardProps> = (props) => {
       })
   }
 
+  // 获取判题结果统计信息
+  const getUserJudgeResults = () => {
+    getUserJudgeResultCount()
+      .then(res => {
+        setUserJudgeResultCount(res.data);
+      })
+  }
+
   return (
     <div className={"dashboard"}>
       <div className={"dashboard-head"}>
@@ -76,6 +100,7 @@ const Dashboard: React.FunctionComponent<DashboardProps> = (props) => {
       </div>
       <div className={"dashboard-charts"}>
         <ChartGroup
+          judgeResultCount={userJudgeResultCount}
           recentSubmission={recentSubmissionCount}
           userInfo={userInfo}/>
       </div>

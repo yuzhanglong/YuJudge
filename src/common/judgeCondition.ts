@@ -35,3 +35,15 @@ export const JUDGE_CONDITION_TAG_NAMES: { [key: string]: string; } = {
   [JudgeConditionEnum.RUNTIME_ERROR]: "RUNTIME ERROR",
   [JudgeConditionEnum.UNKNOWN_ERROR]: "UNKNOWN ERROR"
 }
+
+
+export const JUDGE_CONDITION_TAG_NAMES_CHINESE: { [key: string]: string; } = {
+  [JudgeConditionEnum.ACCEPT]: "答案正确",
+  [JudgeConditionEnum.COMPILE_ERROR]: "编译错误",
+  [JudgeConditionEnum.WRONG_ANSWER]: "答案错误",
+  [JudgeConditionEnum.MEMORY_LIMIT_EXCEED]: "内存超限",
+  [JudgeConditionEnum.TIME_LIMIT_EXCEEDED]: "时间超限",
+  [JudgeConditionEnum.SEGMENTATION_FAULT]: "段错误",
+  [JudgeConditionEnum.RUNTIME_ERROR]: "运行错误",
+  [JudgeConditionEnum.UNKNOWN_ERROR]: "未知错误"
+}

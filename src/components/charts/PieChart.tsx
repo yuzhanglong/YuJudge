@@ -8,27 +8,34 @@
 
 import React from "react";
 import {Pie} from "@ant-design/charts";
-import {DataItem} from "@antv/g2plot/lib/interface/config";
+import {PieConfig as G2plotProps} from "@antv/g2plot/lib/plots/pie";
 import {PieConfig} from "@ant-design/charts/es/pie";
 
 interface PieChartProps {
-  data: DataItem[];
+  data: any[];
   forceFit?: boolean;
-  colorRender?: (e: string) => string;
+  colorRender?: string | string[] | {};
   height?: number;
+  colorField?: string;
+  angleField?: string;
 }
 
 const PieChart: React.FunctionComponent<PieChartProps> = (props) => {
   const config: PieConfig = {
     forceFit: props.forceFit,
-    radius: 0.8,
+    pixelRatio: 1,
     data: props.data,
-    angleField: 'value',
-    colorField: 'type',
-    color: (e: any) => props.colorRender ? props.colorRender(e) : undefined,
+    angleField: props.angleField || "key",
+    colorField: props.colorField || "value",
+    color: props.colorRender,
+    radius:1.0,
     label: {
       visible: false,
       type: 'inner',
+    },
+    legend: {
+      visible: true,
+      offsetX:10
     },
     height: props.height
   }

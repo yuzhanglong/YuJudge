@@ -7,23 +7,28 @@
  */
 
 import React from "react";
-import {Column} from "@ant-design/charts";
+import {Column, StackedColumn} from "@ant-design/charts";
+import {DataItem, LegendPosition} from "@antv/g2plot/lib/interface/config";
+import {StackedColumnConfig} from "@ant-design/charts/es/stackedColumn";
 import {ColumnConfig} from "@ant-design/charts/es/column";
-import {DataItem} from "@antv/g2plot/lib/interface/config";
 
 
 interface ColumnChartProps {
   data: DataItem[],
   xKey: string;
   yKey: string;
-  xKeyDesc: string;
-  yKeyDesc: string;
+  xKeyDesc?: string;
+  yKeyDesc?: string;
   height?: number;
   forceFit?: boolean;
+  isStack?: boolean;
+  stackField?: string;
+  legendPosition?: LegendPosition;
 }
 
 const ColumnChart: React.FunctionComponent<ColumnChartProps> = (props) => {
-  const config: ColumnConfig = {
+  const config: StackedColumnConfig & ColumnConfig = {
+    stackField: props.stackField || "",
     data: props.data,
     forceFit: props.forceFit,
     height: props.height,
@@ -42,16 +47,60 @@ const ColumnChart: React.FunctionComponent<ColumnChartProps> = (props) => {
       title: {
         visible: false
       }
+    },
+    legend: {
+      visible: true,
+      position: props.legendPosition,
+      flipPage: true
+    },
+    label: {
+      visible: true,
+      position: "top",
+      offsetX: 0,
+      offsetY: 0,
+      style: {
+        fill: 'rgba(0, 0, 0, 0.65)',
+        stroke: '#ffffff',
+        lineWidth: 2,
+      },
+      adjustColor: true,
+      adjustPosition: true
+    },
+    xAxis: {
+      visible: true,
+      grid: {
+        visible: false,
+      },
+      line: {
+        visible: true
+      },
+      tickLine: {
+        visible: false,
+      },
+      label: {
+        visible: true,
+        autoRotate: true,
+        autoHide: true
+      },
+      title: {
+        visible: props.xKeyDesc !== undefined,
+        offset: 12,
+      },
     }
   };
+
   return (
-    <Column {...config}/>
+    <div>
+      {props.isStack ? <StackedColumn {...config}/> : <Column {...config}/>}
+    </div>
   )
 }
 
 ColumnChart.defaultProps = {
   height: 300,
-  forceFit: true
+  forceFit: true,
+  isStack: false,
+  legendPosition: 'top-center'
 }
 
 export default ColumnChart;

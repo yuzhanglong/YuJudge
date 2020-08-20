@@ -79,3 +79,16 @@ export interface SubmissionCountInfo {
   hour: number;
   submissionAmount: number;
 }
+
+// 用户提交数据统计
+export interface UserSubmissionCount {
+  acceptAmount: number;
+  time: number;
+  totalAmount: number;
+}
+
+// 用户判题结果统计
+export interface UserJudgeResultCount {
+  amount: number;
+  type: string;
+}

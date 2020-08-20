@@ -54,14 +54,27 @@ export const getSubmissionById = (submissionId: number) => {
   )
 }
 
-// 获取近期提交统计
-export const getRecentSubmission = (date: number) => {
+// 获取某个时间区间内的提交统计
+export const getRecentSubmission = (begin: string, end: string) => {
   return request.get(
     "/submission/get_user_recent_submission",
     {
       params: {
-        days: date
+        begin: begin,
+        end: end
       },
+      headers: {
+        "Authorization": getToken()
+      }
+    }
+  )
+}
+
+// 用户判题结果统计
+export const getUserJudgeResultCount = () => {
+  return request.get(
+    "/submission/get_user_judge_result_count",
+    {
       headers: {
         "Authorization": getToken()
       }

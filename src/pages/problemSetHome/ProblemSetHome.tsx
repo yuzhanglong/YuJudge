@@ -38,6 +38,7 @@ const ProblemSetHome: React.FunctionComponent<ProblemSetHomeProps & RouteCompone
     judgePreference: "ACM"
   });
 
+
   // 获取题目集信息
   const getProblemSetData = (problemSetId: number) => {
     getProblemSetInfo(problemSetId)
@@ -50,6 +51,8 @@ const ProblemSetHome: React.FunctionComponent<ProblemSetHomeProps & RouteCompone
   const onOverViewProblemsButtonClick = () => {
     props.history.push(`/problem_set/${problemSetId}/problems`);
   }
+
+
 
   return (
     <div className={"problem-set-home"}>
@@ -76,6 +79,7 @@ const ProblemSetHome: React.FunctionComponent<ProblemSetHomeProps & RouteCompone
             </Button>
           </div>
         </div>
+
       </Card>
     </div>
   )
