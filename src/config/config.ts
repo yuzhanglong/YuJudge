@@ -53,3 +53,6 @@ export const SINGLE_PAGE_SIZE_IN_USER_MANAGE = 10;
 
 // 默认日期格式化
 export const DEFAULT_DATE_TIME_FORMAT = "YYYY-MM-DD HH:mm:ss";
+
+// 默认端口
+export const JUDGE_HOST_DEFAULT_PORT = 8080;

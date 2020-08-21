@@ -29,3 +29,10 @@ export interface JudgeHostCondition {
   cpuCostPercentage: number;
   queueAmount: number;
 }
+
+// 判题机创建
+export interface JudgeHostRequest {
+  name: string;
+  address: string;
+  port: number;
+}

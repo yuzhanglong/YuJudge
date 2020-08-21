@@ -9,6 +9,7 @@
 
 import request from "./request";
 import {getToken} from "../utils/dataPersistence";
+import {JudgeHostRequest} from "../models/judgeHost";
 
 
 // 获取所有的判题机信息
@@ -46,6 +47,18 @@ export const countJudgeHostSubmissionInfo = (timeBegin: string, timeEnd: string,
         end: timeEnd,
         judgeHostId: judgeHostId
       }
+    }
+  )
+}
+
+// 创建一个判题机
+export const createJudgeHost = (requestBody: JudgeHostRequest) => {
+  return request.put(
+    "/judge_host/create_judge_host",
+    {
+      name: requestBody.name,
+      address: requestBody.address,
+      port: requestBody.port
     }
   )
 }

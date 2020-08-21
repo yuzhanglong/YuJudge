@@ -7,11 +7,12 @@
  */
 
 import React, {useEffect, useState} from "react";
-import {Button, Card} from "antd";
-import {getJudgeHostsInfo} from "../../network/judgeHostRequest";
-import {JudgeHostInfo} from "../../models/judgeHost";
+import {Button, Card, message} from "antd";
+import {createJudgeHost, getJudgeHostsInfo} from "../../network/judgeHostRequest";
+import {JudgeHostInfo, JudgeHostRequest} from "../../models/judgeHost";
 import JudgeHostTable from "../../components/judgeHostTable/JudgeHostTable";
 import {RouteComponentProps} from "react-router-dom";
+import JudgeHostEditModal from "./childCmp/JudgeHostEditModal";
 
 interface JudgeServerManageProps {
 
@@ -21,6 +22,9 @@ const JudgeHostManage: React.FunctionComponent<JudgeServerManageProps & RouteCom
 
   // 所有的判题服务器信息
   const [judgeHostsInfo, setJudgeHostInfo] = useState<JudgeHostInfo[]>([]);
+
+  // 是否展示编辑对话框
+  const [editModalVisiable, setEditModalVisiable] = useState<boolean>(false);
 
   useEffect(() => {
     getJudgeHosts();
@@ -50,12 +54,37 @@ const JudgeHostManage: React.FunctionComponent<JudgeServerManageProps & RouteCom
     props.history.push(`/cms/judge_hosts/inspect/${judgeHostId}`)
   }
 
+  // 判题机表格卡片承载内容
+  const renderExtra = () => {
+    return (
+      <Button
+        type={"primary"}
+        size={"small"}
+        onClick={() => setEditModalVisiable(true)}>
+        新建判题机
+      </Button>
+    )
+  }
+
+  // 创建判题机请求
+  const createJudgeHostRequest = (value: JudgeHostRequest) => {
+    createJudgeHost(value).then(() => {
+      message.success("创建成功~");
+      setEditModalVisiable(false);
+      getJudgeHosts();
+    })
+  }
+
 
   return (
-    <Card title={"全部判题机"}>
+    <Card title={"全部判题机"} extra={renderExtra()}>
       <JudgeHostTable
         judgeHosts={judgeHostsInfo}
         operations={renderOperations}/>
+      <JudgeHostEditModal
+        isVisiable={editModalVisiable}
+        onCancel={() => setEditModalVisiable(false)}
+        onConfirm={(v) => createJudgeHostRequest(v)}/>
     </Card>
   )
 }
