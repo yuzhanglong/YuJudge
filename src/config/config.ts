@@ -56,3 +56,6 @@ export const DEFAULT_DATE_TIME_FORMAT = "YYYY-MM-DD HH:mm:ss";
 
 // 默认端口
 export const JUDGE_HOST_DEFAULT_PORT = 8080;
+
+// 判题机默认url方案
+export const JUDGE_HOST_DEGAULT_URL_SCHEME = "http";

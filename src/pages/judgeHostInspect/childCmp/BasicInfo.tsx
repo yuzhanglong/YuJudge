@@ -20,7 +20,7 @@ const BasicInfo: React.FunctionComponent<BasicInfoProps> = (props) => {
   return (
     <Descriptions bordered>
       <Descriptions.Item label="地址">
-        {getIpAddress(props.judgeHostInfo.address)}
+        {getIpAddress(props.judgeHostInfo.baseUrl)}
       </Descriptions.Item>
       <Descriptions.Item label="端口号">
         {props.judgeHostInfo?.condition.port}

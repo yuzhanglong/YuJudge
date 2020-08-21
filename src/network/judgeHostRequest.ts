@@ -57,7 +57,7 @@ export const createJudgeHost = (requestBody: JudgeHostRequest) => {
     "/judge_host/create_judge_host",
     {
       name: requestBody.name,
-      address: requestBody.address,
+      baseUrl: requestBody.baseUrl,
       port: requestBody.port
     }
   )

@@ -10,7 +10,7 @@
 export interface JudgeHostInfo {
   id: number;
   active: boolean;
-  address: string;
+  baseUrl: string;
   name: string;
   condition: JudgeHostCondition;
   createTime: number;
@@ -33,6 +33,6 @@ export interface JudgeHostCondition {
 // 判题机创建
 export interface JudgeHostRequest {
   name: string;
-  address: string;
+  baseUrl: string;
   port: number;
 }

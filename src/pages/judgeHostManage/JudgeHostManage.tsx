@@ -13,6 +13,7 @@ import {JudgeHostInfo, JudgeHostRequest} from "../../models/judgeHost";
 import JudgeHostTable from "../../components/judgeHostTable/JudgeHostTable";
 import {RouteComponentProps} from "react-router-dom";
 import JudgeHostEditModal from "./childCmp/JudgeHostEditModal";
+import {BaseResponse} from "../../models/common";
 
 interface JudgeServerManageProps {
 
@@ -68,11 +69,15 @@ const JudgeHostManage: React.FunctionComponent<JudgeServerManageProps & RouteCom
 
   // 创建判题机请求
   const createJudgeHostRequest = (value: JudgeHostRequest) => {
-    createJudgeHost(value).then(() => {
-      message.success("创建成功~");
-      setEditModalVisiable(false);
-      getJudgeHosts();
-    })
+    createJudgeHost(value)
+      .then(() => {
+        message.success("创建成功~");
+        setEditModalVisiable(false);
+        getJudgeHosts();
+      })
+      .catch((err: BaseResponse) => {
+        message.error(err.message);
+      })
   }
 
 

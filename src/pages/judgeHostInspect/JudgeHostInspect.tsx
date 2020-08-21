@@ -29,7 +29,7 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
 
   // 判题机信息
   const [judgeHostInfo, setJudgeHostInfo] = useState<JudgeHostInfo>({
-    active: false, address: "", condition: {
+    active: false, baseUrl: "", condition: {
       cpuCoreAmount: 0,
       cpuCostPercentage: 0,
       memoryCostPercentage: 0,

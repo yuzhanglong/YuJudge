@@ -15,14 +15,7 @@ export const getIpAddress = (raw: string) => {
 }
 
 // 判断是否ip地址
-export const isIpAddress = (strToCheck: string) => {
-  let reg = /^(\d+)\.(\d+)\.(\d+)\.(\d+)$/;
-  if (reg.test(strToCheck)) {
-    return parseInt(RegExp.$1) < 256 &&
-      parseInt(RegExp.$2) < 256 &&
-      parseInt(RegExp.$3) < 256 &&
-      parseInt(RegExp.$4) < 256;
-  } else {
-    return false;
-  }
+export const isUrlValidated = (strToCheck: string) => {
+  let reg = /(https?|ftp|file):\/\/[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]/;
+  return reg.test(strToCheck);
 }
