@@ -60,7 +60,6 @@ const ProblemSetTable: React.FunctionComponent<ProblemSetTableProps> = (props) =
         </Button>
         {props.otherOperations}
       </div>
-
     )
   }
 

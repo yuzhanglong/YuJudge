@@ -8,7 +8,6 @@
 
 import React from "react";
 import {Pie} from "@ant-design/charts";
-import {PieConfig as G2plotProps} from "@antv/g2plot/lib/plots/pie";
 import {PieConfig} from "@ant-design/charts/es/pie";
 
 interface PieChartProps {

@@ -10,12 +10,13 @@
 import React, {useEffect, useState} from "react";
 import ProblemEditor from "../../components/problemEditor/ProblemEditor";
 import {RouteComponentProps} from "react-router-dom";
-import {getProblemDetailedById, getSolutionByProblemId} from "../../network/problemRequests";
+import {deleteTestCase, getProblemDetailedById, getSolutionByProblemId} from "../../network/problemRequests";
 import {Problem, ProblemTestCase} from "../../models/problem";
-import {message} from "antd";
+import {message, Modal} from "antd";
 import TestCaseModal from "./childCmp/TestCaseModal";
 import {getUploadToken} from "../../network/common";
 import {UploadTokenData} from "../../models/common";
+import {ExclamationCircleOutlined} from "@ant-design/icons/lib";
 
 interface ProblemEditProps {
 
@@ -63,6 +64,12 @@ const ProblemEdit: React.FunctionComponent<ProblemEditProps & RouteComponentProp
   }
 
   useEffect(() => {
+    initProblemEditEnvironment();
+    // eslint-disable-next-line
+  }, [problemId]);
+
+  // 初始化页面信息
+  const initProblemEditEnvironment = () => {
     getProblemRequiredData(problemId)
       .then(res => {
         // 更新problems数据
@@ -73,13 +80,29 @@ const ProblemEdit: React.FunctionComponent<ProblemEditProps & RouteComponentProp
         setSolutions(solutionList);
       })
     getUploadTokenData();
-  }, [problemId]);
-
+  }
 
   // 测试样例添加cg
   const onTestCaseAddSuccess = () => {
     setIsShowAddSolutionModal(false);
     window.location.reload();
+  }
+
+  // 移除解决方案
+  const removeSolution = (value: number) => {
+    Modal.confirm({
+      title: '删除确认',
+      icon: <ExclamationCircleOutlined/>,
+      content: '您确定要删除这个测试点吗？',
+      onOk() {
+        deleteTestCase(value)
+          .then(() => {
+            message.success("删除成功~");
+            // 重新初始化数据
+            initProblemEditEnvironment();
+          })
+      }
+    })
   }
 
   return (
@@ -91,6 +114,7 @@ const ProblemEdit: React.FunctionComponent<ProblemEditProps & RouteComponentProp
         isShow={isShowAddSolutionModal}
         uploadToken={uploadToken}/>
       <ProblemEditor
+        onSolutionDelete={removeSolution}
         solutions={solutions ? solutions : []}
         problem={problem}
         onSolutionAdd={onTestCaseWillBeAdded}>

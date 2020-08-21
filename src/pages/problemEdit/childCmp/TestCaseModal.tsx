@@ -6,7 +6,7 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
+import React, {useEffect} from "react";
 import {Button, Form, Input, message, Modal, Upload} from "antd";
 import {UploadOutlined} from "@ant-design/icons/lib";
 import {DOWNLOAD_SERVER_BASE_URL, UPLOAD_SERVER_BASE_URL} from "../../../config/config";
@@ -20,6 +20,8 @@ interface TestCaseModalProps {
   onCancel: () => void;
   uploadToken?: string;
   problemId: number;
+  initalTestCase?: ProblemTestCase;
+
 }
 
 const TestCaseModal: React.FunctionComponent<TestCaseModalProps> = (props) => {
@@ -30,6 +32,13 @@ const TestCaseModal: React.FunctionComponent<TestCaseModalProps> = (props) => {
   }
 
   const [form] = Form.useForm();
+
+  useEffect(() => {
+    if (props.initalTestCase) {
+      form.setFieldsValue(props.initalTestCase);
+    }
+  }, [form, props.initalTestCase])
+
 
   // 构造上传表单
   const getUploadForm = (type: UPLOADER) => {
@@ -85,6 +94,8 @@ const TestCaseModal: React.FunctionComponent<TestCaseModalProps> = (props) => {
   return (
     <div>
       <Modal
+        destroyOnClose
+        maskClosable={false}
         title="添加解决方案"
         visible={props.isShow}
         onCancel={() => props.onCancel()}
@@ -95,12 +106,10 @@ const TestCaseModal: React.FunctionComponent<TestCaseModalProps> = (props) => {
           <Form.Item
             label="样例描述"
             name="description"
-            rules={[
-              {
-                required: true,
-                message: '请填写样例描述'
-              }
-            ]}>
+            rules={[{
+              required: true,
+              message: '请填写样例描述'
+            }]}>
             <Input/>
           </Form.Item>
           <Form.Item

@@ -13,7 +13,7 @@ import {Pagination} from "../models/pagination";
 
 export const usePaginationState = <T>(
   initPage: number,
-  requestMethod: (params: T) => Promise<AxiosResponse<any>>
+  requestMethod: (params: T) => Promise<AxiosResponse>
 ) => {
   const [currentPage, setCurrentPage] = useState<number>(initPage);
   const [items, setItems] = useState<any[]>([]);

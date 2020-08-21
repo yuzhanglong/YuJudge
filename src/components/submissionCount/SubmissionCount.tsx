@@ -13,7 +13,6 @@ import {Col, DatePicker, Row, Tag} from "antd";
 import {Moment} from "moment";
 import {DEFAULT_DATE_TIME_FORMAT} from "../../config/config";
 import moment from "moment";
-import {GuideLineConfig} from "@antv/g2plot/lib/interface/config";
 
 interface SubmissionCountProps {
   submissionCounts: SubmissionCountInfo[];

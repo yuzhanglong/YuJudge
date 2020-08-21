@@ -23,6 +23,7 @@ const LimitationForm: React.FunctionComponent<LimitationFormProps> = (props) => 
     form.setFieldsValue(props.problem);
   }, [form, props.problem]);
 
+  // 提交按钮被点击，最好是把值抛到父组件再执行请求，保证组件独立性
   const onFinish = (values: Problem) => {
     values.id = props.problem.id;
     editProblemLimitation(values)
@@ -32,19 +33,29 @@ const LimitationForm: React.FunctionComponent<LimitationFormProps> = (props) => 
   };
 
   return (
-    <div className={"initial-form-wrap"}>
+    <div className={"initial-form-wrap"} style={{
+      width: 450
+    }}>
       <Form form={form} onFinish={onFinish} initialValues={props.problem}>
-        <Form.Item label="时间限制" name={"timeLimit"}>
-          <Input placeholder="请设置时间限制"/>
+        <Form.Item label="时间限制" name={"timeLimit"} rules={[
+          {required: true, message: "请设置时间限制"}
+        ]}>
+          <Input placeholder="请设置时间限制" addonAfter={"ms"}/>
         </Form.Item>
-        <Form.Item label="内存限制" name={"memoryLimit"}>
-          <Input placeholder="请设置内存限制"/>
+        <Form.Item label="内存限制" name={"memoryLimit"} rules={[
+          {required: true, message: "请设置内存限制"}
+        ]}>
+          <Input placeholder="请设置内存限制" addonAfter={"KB"}/>
         </Form.Item>
-        <Form.Item label="输出限制" name={"outputLimit"}>
-          <Input placeholder="请设置输出限制"/>
+        <Form.Item label="输出限制" name={"outputLimit"} rules={[
+          {required: true, message: "请设置输出限制"}
+        ]}>
+          <Input placeholder="请设置输出限制" addonAfter={"Byte"}/>
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" style={{
+            marginTop: 13
+          }}>
             更新上述限制
           </Button>
         </Form.Item>

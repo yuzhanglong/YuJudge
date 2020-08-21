@@ -10,7 +10,7 @@
 import React from "react";
 import {UserJudgeResultCount} from "../../models/submission";
 import PieChart from "../charts/PieChart";
-import {JUDGE_CONDITION_COLORS, JUDGE_CONDITION_TAG_NAMES_CHINESE} from "../../common/judgeCondition";
+import {JUDGE_CONDITION_TAG_NAMES_CHINESE} from "../../common/judgeCondition";
 
 interface JudgeResultCountProps {
   resultCounts: UserJudgeResultCount[];

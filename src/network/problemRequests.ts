@@ -128,3 +128,15 @@ export const editProblemLimitation = (problem: Problem) => {
     }
   )
 }
+
+// 删除测试点记录
+export const deleteTestCase = (testCaseId: number) => {
+  return request.delete(
+    "/problem/delete_solution/" + testCaseId,
+    {
+      headers: {
+        Authorization: getToken()
+      }
+    }
+  )
+}
