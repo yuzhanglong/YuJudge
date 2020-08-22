@@ -10,9 +10,10 @@ import React from "react";
 import {UserInfo} from "../../models/user";
 import {Badge, Table, Tag} from "antd";
 import Column from "antd/lib/table/Column";
-import {RankingColorEnum, USER_SCOPE_TAG_NAME} from "../../common/enumerations";
+import {RankingColorEnum} from "../../common/enumerations";
 import {TablePaginationConfig} from "antd/lib/table/interface";
 import {Pagination} from "../../models/pagination";
+import {UserGroupInfo} from "../../models/UserGroup";
 
 interface UserTableProps {
   userInfo: UserInfo[];
@@ -70,14 +71,14 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
   }
 
   // 渲染身份信息
-  const renderScope = (content: string) => {
-    return (
-      <div>
+  const renderUserGroups = (content: UserGroupInfo[]) => {
+    return content.map(res => {
+      return (
         <Tag color="geekblue">
-          {USER_SCOPE_TAG_NAME[content]}
+          {res.description}
         </Tag>
-      </div>
-    )
+      )
+    })
   }
 
   // 页码改变
@@ -104,9 +105,9 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
       {
         props.showScope &&
         <Column
-          title={"身份"}
-          dataIndex={"scope"}
-          render={renderScope}/>
+          title={"所在用户组"}
+          dataIndex={"userGroups"}
+          render={renderUserGroups}/>
       }
       {
         props.showEmail &&
@@ -114,15 +115,10 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
           title={"邮箱"}
           dataIndex={"email"}/>
       }
-      <Column
-        title={"ac数量"}
-        dataIndex={"acAmount"}/>
-      <Column
-        title={"提交数量"}
-        dataIndex={"submissionAmount"}/>
       {
         props.operations &&
         <Column
+          width={300}
           align={"center"}
           title={"操作"}
           render={renderOperations}/>

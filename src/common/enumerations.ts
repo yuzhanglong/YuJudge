@@ -55,20 +55,3 @@ export enum ProblemSetConditionEnum {
   // 未开始
   NOT_STARTED = "NOT_STARTED"
 }
-
-// 用户权限组
-export enum UserScope {
-  ADMIN = "ADMIN",
-  MANAGER = "MANAGER",
-  COMMON = "COMMON",
-  TEMPORARY = "TEMPORARY",
-  ALL_USERS = "ALL_USERS"
-}
-
-// 用户权限名称
-export const USER_SCOPE_TAG_NAME: { [key: string]: string; } = {
-  [UserScope.ADMIN]: "系统管理员",
-  [UserScope.MANAGER]: "管理员",
-  [UserScope.TEMPORARY]: "临时用户",
-  [UserScope.COMMON]: "一般用户",
-}

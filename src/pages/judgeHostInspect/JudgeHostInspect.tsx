@@ -52,6 +52,7 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
   useEffect(() => {
     getJudgeHostInfo(judgeHostId);
     getSubmissionCountsData();
+    // eslint-disable-next-line
   }, [judgeHostId]);
 
   // 获取并保存判题机相关信息

@@ -83,8 +83,19 @@ export const getUsers = (params: UsersPaginationRequest) => {
       },
       params: {
         start: params.start,
-        count: params.count,
-        scope: params.scope
+        count: params.count
+      }
+    }
+  )
+}
+
+// 删除用户
+export const deleteUser = (userId: number) => {
+  return request.delete(
+    "/user/delete_user/" + userId,
+    {
+      headers: {
+        Authorization: getToken()
       }
     }
   )

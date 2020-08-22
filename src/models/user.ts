@@ -8,6 +8,8 @@
 
 
 // 验证码相关信息
+import {UserGroupInfo} from "./UserGroup";
+
 export interface CheckCodeData {
   image: string;
   key: string;
@@ -38,10 +40,11 @@ export interface RegisterFormData {
 
 // 用户信息
 export interface UserInfo {
+  id: number;
   nickname: string;
   email: string;
   avatar: string;
   acAmount: number;
   submissionAmount: number;
-  scope:string;
+  usergroups: UserGroupInfo[];
 }

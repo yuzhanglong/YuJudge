@@ -18,7 +18,7 @@ export enum REQUEST_TYPES {
 const request = axios.create({
   timeout: TIME_OUT,
   baseURL: BASE_URL
-})
+});
 
 axios.interceptors.request.use(config => {
   // TODO:
