@@ -20,6 +20,7 @@
     "classnames": "^2.2.6",
     "codemirror": "^5.55.0",
     "node-sass": "^4.14.1",
+    "rc-queue-anim": "^1.8.5",
     "react": "^16.13.1",
     "react-codemirror2": "^7.2.1",
     "react-dom": "^16.13.1",
