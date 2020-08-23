@@ -14,6 +14,9 @@ import {createUserGroup, deleteUserGroup, editUserGroup, getUserGroups} from "..
 import {ExclamationCircleOutlined, PlusOutlined} from "@ant-design/icons/lib";
 import {BaseResponse} from "../../models/common";
 import UserGroupEditModal from "./childCmp/UserGroupEditModal";
+import {PermissionInfo} from "../../models/permission";
+import {getPermissions} from "../../network/permissionRequest";
+import AuthorizeModal from "./childCmp/AuthorizeModal";
 
 interface UserGroupManageProps {
 
@@ -29,8 +32,18 @@ const UserGroupManage: React.FunctionComponent<UserGroupManageProps> = (props) =
   // 欲编辑的用户组信息
   const [userGroupInfoToEdit, setUserGroupInfoToEdit] = useState<UserGroupInfo | null>(null);
 
+  // 可供分配的权限
+  const [permissionToAllocate, setPermissionToAllocate] = useState<PermissionInfo[]>([]);
+
+  // 被选中的用户组
+  const [activeUserGroup, setActiveUserGroup] = useState<number | null>(null);
+
+  // 是否开启权限分配modal
+  const [isPermissionModalVisiable, setIsPermissionModalVisiable] = useState<boolean>(false);
+
   useEffect(() => {
     getUserGroupInfo();
+    getPermissionInfo();
   }, []);
 
   // 获取用户组信息
@@ -44,13 +57,16 @@ const UserGroupManage: React.FunctionComponent<UserGroupManageProps> = (props) =
   }
 
   // 渲染操作列
-  const renderOperations = (value: any) => {
+  const renderOperations = (value: UserGroupInfo) => {
     return (
       <div>
         <Button type={"link"} onClick={() => onEditButtonClick(value)}>
           编辑
         </Button>
-        <Button type={"link"}>
+        <Button type={"link"} onClick={() => {
+          setActiveUserGroup(value.id);
+          setIsPermissionModalVisiable(true);
+        }}>
           授权
         </Button>
         <Button type={"link"} danger onClick={() => onUserGroupDelete(value)}>
@@ -121,6 +137,16 @@ const UserGroupManage: React.FunctionComponent<UserGroupManageProps> = (props) =
     setUserGroupInfoToEdit(null);
   }
 
+  // 获取可供分配的权限
+  const getPermissionInfo = () => {
+    getPermissions()
+      .then(res => {
+        setPermissionToAllocate(res.data);
+      })
+      .catch(() => {
+      })
+  }
+
   return (
     <Card
       title={"用户组信息"}
@@ -142,6 +168,11 @@ const UserGroupManage: React.FunctionComponent<UserGroupManageProps> = (props) =
         onConfirm={(res: UserGroupInfo) => onCreateOrEditUserGroupConfirm(res)}
         isVisiable={isUserGroupVisiable}
         onCalcel={() => onEditFormDestroy()}/>
+      <AuthorizeModal
+        onCancle={() => setIsPermissionModalVisiable(false)}
+        totalPermissions={permissionToAllocate}
+        userGroupId={activeUserGroup}
+        isVisiable={isPermissionModalVisiable}/>
     </Card>
   )
 }

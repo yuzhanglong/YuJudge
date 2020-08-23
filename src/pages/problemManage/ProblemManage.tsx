@@ -14,7 +14,7 @@ import {getProblems} from "../../network/problemRequests";
 import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from "../../config/config";
 import {usePaginationState} from "../../hooks/pagination";
 import {ProblemPaginationRequest} from "../../models/pagination";
-import {message} from "antd";
+import {Card, message} from "antd";
 
 
 const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
@@ -50,11 +50,13 @@ const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
   }
 
   return (
-    <ProblemTable
-      onProblemEdit={gotoEditProblem}
-      problems={problemPagination.items}
-      totalPage={problemPagination.paginationInfo.totalPage}
-      onPageChange={onPageChange}/>
+    <Card title={"题目管理"}>
+      <ProblemTable
+        onProblemEdit={gotoEditProblem}
+        problems={problemPagination.items}
+        totalPage={problemPagination.paginationInfo.totalPage}
+        onPageChange={onPageChange}/>
+    </Card>
   )
 }
 

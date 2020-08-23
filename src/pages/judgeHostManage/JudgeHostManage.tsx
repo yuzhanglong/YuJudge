@@ -14,6 +14,7 @@ import JudgeHostTable from "../../components/judgeHostTable/JudgeHostTable";
 import {RouteComponentProps} from "react-router-dom";
 import JudgeHostEditModal from "./childCmp/JudgeHostEditModal";
 import {BaseResponse} from "../../models/common";
+import {PlusOutlined} from "@ant-design/icons/lib";
 
 interface JudgeServerManageProps {
 
@@ -60,8 +61,7 @@ const JudgeHostManage: React.FunctionComponent<JudgeServerManageProps & RouteCom
     return (
       <Button
         type={"primary"}
-        size={"small"}
-        onClick={() => setEditModalVisiable(true)}>
+        onClick={() => setEditModalVisiable(true)} icon={<PlusOutlined />}>
         新建判题机
       </Button>
     )

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {createProblemSet, getProblemSets} from "../../network/problemSetRequest";
 import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_SET_MANAGE} from "../../config/config";
-import {message} from "antd";
+import {Card, message} from "antd";
 import {ProblemSet} from "../../models/problemSet";
 import ProblemSetTable from "../../components/problemSetTable/ProblemSetTable";
 import ProblemSetToolBar from "./childCmp/ProblemSetToolBar";
@@ -87,7 +87,7 @@ const ProblemSetManage: React.FunctionComponent<RouteComponentProps> = (props) =
   }
 
   return (
-    <div>
+    <Card title={"题目集管理"}>
       <div className={"problem-set-tool-bar-wrap"}>
         <ProblemSetToolBar
           onCheckBoxChange={onProblemSetsLimitationChange}
@@ -103,7 +103,7 @@ const ProblemSetManage: React.FunctionComponent<RouteComponentProps> = (props) =
         problemSets={paginationState.items}
         totalPage={paginationState.paginationInfo.totalPage}
         onPageChange={onPageChange}/>
-    </div>
+    </Card>
   )
 }
 
