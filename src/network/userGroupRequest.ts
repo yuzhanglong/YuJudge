@@ -7,7 +7,7 @@
  */
 
 import request from "./request";
-import {getToken} from "../utils/dataPersistence";
+import {getTokenFromStorage} from "../utils/dataPersistence";
 import {UserGroupInfo} from "../models/UserGroup";
 
 // 获取所有用户组信息
@@ -16,7 +16,7 @@ export const getUserGroups = () => {
     "/user_group/get_user_groups",
     {
       headers: {
-        Authorization: getToken()
+        Authorization: getTokenFromStorage()
       }
     }
   )
@@ -28,7 +28,7 @@ export const deleteUserGroup = (groupId: number) => {
     "/user_group/delete_user_group/" + groupId,
     {
       headers: {
-        Authorization: getToken()
+        Authorization: getTokenFromStorage()
       }
     }
   )
@@ -44,7 +44,7 @@ export const createUserGroup = (userGroupInfo: UserGroupInfo) => {
     },
     {
       headers: {
-        Authorization: getToken()
+        Authorization: getTokenFromStorage()
       }
     }
   )
@@ -60,7 +60,7 @@ export const editUserGroup = (userGroupId: number, userGroupInfo: UserGroupInfo)
     },
     {
       headers: {
-        Authorization: getToken()
+        Authorization: getTokenFromStorage()
       }
     }
   )

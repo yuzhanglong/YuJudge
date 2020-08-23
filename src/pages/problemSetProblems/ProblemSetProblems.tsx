@@ -8,7 +8,7 @@
  */
 
 import React, {useEffect} from "react";
-import {usePaginationState} from "../../hooks/pagination";
+import {UsePaginationState} from "../../hooks/pagination";
 import {ProblemSetProblemPaginationRequest} from "../../models/pagination";
 import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from "../../config/config";
 import {getProblemSetProblems} from "../../network/problemSetRequest";
@@ -23,7 +23,7 @@ interface ProblemSetProblemsProps {
 const ProblemSetProblems: React.FunctionComponent<ProblemSetProblemsProps & RouteComponentProps> = (props) => {
   const params: any = props.match.params;
 
-  const problemSetProblemPagination = usePaginationState<ProblemSetProblemPaginationRequest>(PAGE_BEGIN - 1, getProblemSetProblems);
+  const problemSetProblemPagination = UsePaginationState<ProblemSetProblemPaginationRequest>(PAGE_BEGIN - 1, getProblemSetProblems);
 
   useEffect(() => {
     getProblemSetProblemData(params.problemSetId, PAGE_BEGIN - 1);

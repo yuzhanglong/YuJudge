@@ -8,7 +8,7 @@
 
 import request, {REQUEST_TYPES} from "./request";
 import {Submission} from "../models/submission";
-import {getToken} from "../utils/dataPersistence";
+import {getTokenFromStorage} from "../utils/dataPersistence";
 
 // 提交代码
 export const submitCode = (submission: Submission) => {
@@ -18,7 +18,7 @@ export const submitCode = (submission: Submission) => {
     {
       method: REQUEST_TYPES.POST,
       headers: {
-        Authorization: getToken()
+        Authorization: getTokenFromStorage()
       }
     }
   )
@@ -64,7 +64,7 @@ export const getRecentSubmission = (begin: string, end: string) => {
         end: end
       },
       headers: {
-        "Authorization": getToken()
+        "Authorization": getTokenFromStorage()
       }
     }
   )
@@ -76,7 +76,7 @@ export const getUserJudgeResultCount = () => {
     "/submission/get_user_judge_result_count",
     {
       headers: {
-        "Authorization": getToken()
+        "Authorization": getTokenFromStorage()
       }
     }
   )

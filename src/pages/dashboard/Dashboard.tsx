@@ -19,10 +19,10 @@ import {
 } from "../../config/config";
 import {Problem} from "../../models/problem";
 import {getRecentSubmission, getUserJudgeResultCount} from "../../network/submissionRequest";
-import {getActiveUserInfo, getUserInfo} from "../../network/userRequest";
+import {getActiveUserInfo} from "../../network/userRequest";
 import moment from "moment";
 import {UserSubmissionCount} from "../../models/submission";
-import UserTag from "../../components/userTag/UserTag";
+import {UserInfoState} from "../../hooks/userInfo";
 
 interface DashboardProps {
 
@@ -35,26 +35,17 @@ const Dashboard: React.FunctionComponent<DashboardProps> = (props) => {
   const [recentSubmissionCount, setRecentSubmissionCount] = useState<UserSubmissionCount[]>([]);
   // 活跃用户
   const [activeUserInfo, setActiveUserInfo] = useState([]);
-  // 用户信息
-  const [userInfo, setUserInfo] = useState();
   // 用户提交统计
   const [userJudgeResultCount, setUserJudgeResultCount] = useState();
+  // 用户信息
+  const userInfoState = UserInfoState();
 
   useEffect(() => {
     getRecentProblem();
     getRecentSubmissionCount();
     getRecentActiveUserInfo();
-    getUserData();
     getUserJudgeResults();
   }, []);
-
-
-  // 获取用户信息
-  const getUserData = () => {
-    getUserInfo().then(res => {
-      setUserInfo(res.data);
-    })
-  }
 
   // 获取最新问题
   const getRecentProblem = () => {
@@ -96,8 +87,6 @@ const Dashboard: React.FunctionComponent<DashboardProps> = (props) => {
 
   return (
     <div className={"dashboard"}>
-
-
       <div className={"dashboard-head"}>
         <HeadCardGroup></HeadCardGroup>
       </div>
@@ -105,7 +94,7 @@ const Dashboard: React.FunctionComponent<DashboardProps> = (props) => {
         <ChartGroup
           judgeResultCount={userJudgeResultCount}
           recentSubmission={recentSubmissionCount}
-          userInfo={userInfo}/>
+          userInfo={userInfoState.userInfo}/>
       </div>
       <div className={"dashboard-tables"}>
         <TableGroup

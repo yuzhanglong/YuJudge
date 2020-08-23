@@ -21,7 +21,7 @@ import {Submission} from "../../models/submission";
 import SubmissionTable from "./childCmp/SubmissionTable";
 import {PAGE_BEGIN, SUBMISSION_REQUEST_TASK_TIME, SUBMISSION_SINGLE_PAGE_SIZE} from "../../config/config";
 import SubmissionDetailModal from "./childCmp/SubmissionDetailModal";
-import {getCode, saveCode} from "../../utils/dataPersistence";
+import {getCodeFromStorage, saveCode} from "../../utils/dataPersistence";
 import {ProblemHoneTabKeyEnum} from "../../common/enumerations";
 import {getProblemSetInfo} from "../../network/problemSetRequest";
 import {ProblemSet} from "../../models/problemSet";
@@ -178,7 +178,7 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
 
   // 展示之前保存的代码
   const showSavedCode = (problemId: number) => {
-    const code = getCode(problemId.toString());
+    const code = getCodeFromStorage(problemId.toString());
     if (code) {
       setCodeContent(code);
     }

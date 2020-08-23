@@ -9,11 +9,11 @@
 import React, {useEffect, useState} from "react";
 import {RouteComponentProps} from "react-router-dom";
 import LoginForm from "../../components/loginForm/LoginForm";
-import {getCheckCodeInfo, login, register} from "../../network/userRequest";
+import {getCheckCodeInfo, getUserInfo, login, register} from "../../network/userRequest";
 import {CheckCodeData, LoginFormData, LoginResponseData, RegisterFormData} from "../../models/user";
 import {BaseResponse} from "../../models/common";
 import {Button, Card, message} from "antd";
-import {setToken} from "../../utils/dataPersistence";
+import {saveUserInfo, setToken} from "../../utils/dataPersistence";
 import RegisterForm from "../../components/registerForm/RegisterForm";
 
 interface LoginProps {
@@ -52,7 +52,11 @@ const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = (props)
       .then((res) => {
         const loginResponse: LoginResponseData = res.data;
         setToken(loginResponse.accessToken);
+        return getUserInfo();
+      })
+      .then((res: BaseResponse) => {
         message.success("登录成功～");
+        saveUserInfo(res.data);
         props.history.replace("/cms/dashboard");
       })
       .catch((err: BaseResponse) => {

@@ -8,22 +8,25 @@
 
 import React from "react";
 import UserTag from "../../../userTag/UserTag";
-import {UserInfo} from "../../../../models/user";
 import {RouteComponentProps} from "react-router-dom";
+import {UserInfoState} from "../../../../hooks/userInfo";
 
 
 interface HeaderProps {
-  userInfo: UserInfo | null;
+
 }
 
 const CMSHeader: React.FunctionComponent<HeaderProps & RouteComponentProps> = (props) => {
+  const userInfoState = UserInfoState();
+
   return (
     <div className="site-layout-header">
       <UserTag
         {...props}
-        avater={props.userInfo?.avatar}
-        userName={props.userInfo?.nickname}
-        description={props.userInfo?.userGroups ? props.userInfo?.userGroups[0].description : ""}/>
+        height={64}
+        avater={userInfoState.userInfo?.avatar}
+        userName={userInfoState.userInfo?.nickname}
+        description={userInfoState.userInfo?.userGroups ? userInfoState.userInfo?.userGroups[0].description : ""}/>
     </div>
   )
 }

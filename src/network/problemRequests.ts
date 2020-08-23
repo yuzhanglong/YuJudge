@@ -9,7 +9,7 @@
 import request, {REQUEST_TYPES} from "./request";
 import {Problem, ProblemLimitation, ProblemTestCase} from "../models/problem";
 import {ProblemPaginationRequest} from "../models/pagination";
-import {getToken} from "../utils/dataPersistence";
+import {getTokenFromStorage} from "../utils/dataPersistence";
 
 
 // 通过id来获取problem的基本信息
@@ -110,7 +110,7 @@ export const editProblemBasicInfo = (problem: Problem) => {
     problem,
     {
       headers: {
-        Authorization: getToken()
+        Authorization: getTokenFromStorage()
       }
     }
   )
@@ -123,7 +123,7 @@ export const editProblemLimitation = (problem: Problem) => {
     problem,
     {
       headers: {
-        Authorization: getToken()
+        Authorization: getTokenFromStorage()
       }
     }
   )
@@ -135,7 +135,7 @@ export const deleteTestCase = (testCaseId: number) => {
     "/problem/delete_solution/" + testCaseId,
     {
       headers: {
-        Authorization: getToken()
+        Authorization: getTokenFromStorage()
       }
     }
   )

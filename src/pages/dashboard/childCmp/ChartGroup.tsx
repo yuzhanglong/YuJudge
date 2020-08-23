@@ -18,7 +18,7 @@ import JudgeResultCount from "../../../components/judgeResultCount/JudgeResultCo
 interface ChartGroupProps {
   recentSubmission: UserSubmissionCount[];
   judgeResultCount: UserJudgeResultCount[];
-  userInfo: UserInfo;
+  userInfo: UserInfo | null;
 }
 
 const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {

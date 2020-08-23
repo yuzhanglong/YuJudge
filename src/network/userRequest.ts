@@ -9,7 +9,7 @@
 
 import request, {REQUEST_TYPES} from "./request";
 import {LoginFormData, RegisterFormData} from "../models/user";
-import {getToken} from "../utils/dataPersistence";
+import {getTokenFromStorage} from "../utils/dataPersistence";
 import {UsersPaginationRequest} from "../models/pagination";
 
 
@@ -52,7 +52,7 @@ export const getActiveUserInfo = (userAmount: number) => {
     "/user/get_active_user",
     {
       headers: {
-        Authorization: getToken()
+        Authorization: getTokenFromStorage()
       },
       params: {
         amount: userAmount
@@ -67,7 +67,7 @@ export const getUserInfo = () => {
     "/user/get_user_info",
     {
       headers: {
-        Authorization: getToken()
+        Authorization: getTokenFromStorage()
       },
     }
   )
@@ -79,7 +79,7 @@ export const getUsers = (params: UsersPaginationRequest) => {
     "/user/get_users",
     {
       headers: {
-        Authorization: getToken()
+        Authorization: getTokenFromStorage()
       },
       params: {
         start: params.start,
@@ -95,7 +95,7 @@ export const deleteUser = (userId: number) => {
     "/user/delete_user/" + userId,
     {
       headers: {
-        Authorization: getToken()
+        Authorization: getTokenFromStorage()
       }
     }
   )

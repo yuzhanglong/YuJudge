@@ -11,7 +11,7 @@ import {AxiosResponse} from "axios";
 import {Pagination} from "../models/pagination";
 
 
-export const usePaginationState = <T>(
+export const UsePaginationState = <T>(
   initPage: number,
   requestMethod: (params: T) => Promise<AxiosResponse>
 ) => {

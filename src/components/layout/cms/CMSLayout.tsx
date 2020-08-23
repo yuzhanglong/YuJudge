@@ -7,15 +7,13 @@
  */
 
 
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {Layout} from "antd";
 import SideBar from "./childCmp/SideBar";
 import routerConfig from "../../../router/config";
 import Breadcrumb from "./childCmp/Breadcrumb";
 import {RouteComponentProps} from "react-router-dom";
 import CMSHeader from "./childCmp/CMSHeader";
-import {UserInfo} from "../../../models/user";
-import {getUserInfo} from "../../../network/userRequest";
 
 const {Content, Sider} = Layout;
 
@@ -24,15 +22,6 @@ interface CMSLayoutProps {
 }
 
 const CMSLayout: React.FunctionComponent<CMSLayoutProps & RouteComponentProps> = (props) => {
-  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
-
-  useEffect(() => {
-    getUserInfo().then(res => {
-      setUserInfo(res.data);
-    })
-  }, []);
-
-
   return (
     <Layout style={{minHeight: '100vh'}}>
       <Sider
@@ -57,7 +46,7 @@ const CMSLayout: React.FunctionComponent<CMSLayoutProps & RouteComponentProps> =
         </SideBar>
       </Sider>
       <Layout className="site-layout" style={{marginLeft: 230}}>
-        <CMSHeader userInfo={userInfo} {...props}/>
+        <CMSHeader {...props}/>
         <Content className={"site-layout-content"}>
           <div key={"Breadcrumb"}>
             <Breadcrumb/>

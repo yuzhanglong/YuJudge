@@ -9,7 +9,7 @@
 
 import request, {REQUEST_TYPES} from "./request";
 import {ProblemSet} from "../models/problemSet";
-import {getToken} from "../utils/dataPersistence";
+import {getTokenFromStorage} from "../utils/dataPersistence";
 import {ProblemSetPaginationRequest, ProblemSetProblemPaginationRequest} from "../models/pagination";
 
 
@@ -32,7 +32,7 @@ export const createProblemSet = (problemSet: ProblemSet) => {
     problemSet,
     {
       headers: {
-        Authorization: getToken()
+        Authorization: getTokenFromStorage()
       }
     }
   )
@@ -44,7 +44,7 @@ export const getProblemSetProblems = (requestParams: ProblemSetProblemPagination
     "/problem_set/get_problem_set_problems/" + requestParams.problemSetId,
     {
       headers: {
-        Authorization: getToken()
+        Authorization: getTokenFromStorage()
       },
       params: requestParams
     }
@@ -91,7 +91,7 @@ export const getProblemSetScoreBoard = (problemSetId: number) => {
     "/problem_set/get_score_board/" + problemSetId,
     {
       headers: {
-        Authorization: getToken()
+        Authorization: getTokenFromStorage()
       }
     }
   )
@@ -104,7 +104,7 @@ export const updateProblemSetBasicInfo = (problemSet: ProblemSet) => {
     problemSet,
     {
       headers: {
-        Authorization: getToken()
+        Authorization: getTokenFromStorage()
       }
     }
   )
@@ -119,7 +119,7 @@ export const countProblemSetSubmissionInfo = (problemSetId: number) => {
         problemSetId: problemSetId
       },
       headers: {
-        Authorization: getToken()
+        Authorization: getTokenFromStorage()
       }
     }
   )
@@ -134,7 +134,7 @@ export const countProblemSetScatter = (problemSetId: number) => {
         problemSetId: problemSetId
       },
       headers: {
-        Authorization: getToken()
+        Authorization: getTokenFromStorage()
       }
     }
   )

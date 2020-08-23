@@ -12,14 +12,14 @@ import ProblemTable from "../../components/problemTable/ProblemTable";
 import {RouteComponentProps} from "react-router-dom";
 import {getProblems} from "../../network/problemRequests";
 import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from "../../config/config";
-import {usePaginationState} from "../../hooks/pagination";
+import {UsePaginationState} from "../../hooks/pagination";
 import {ProblemPaginationRequest} from "../../models/pagination";
 import {Card, message} from "antd";
 
 
 const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
   // 分页对象
-  const problemPagination = usePaginationState<ProblemPaginationRequest>(PAGE_BEGIN - 1, getProblems)
+  const problemPagination = UsePaginationState<ProblemPaginationRequest>(PAGE_BEGIN - 1, getProblems)
 
   useEffect(() => {
     getProblemsData(0, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE, null);

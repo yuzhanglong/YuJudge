@@ -10,7 +10,7 @@ import React, {useEffect} from "react";
 import {Button, Card, message, Modal} from "antd";
 import UserTable from "../../components/userTable/UserTable";
 import {deleteUser, getUsers} from "../../network/userRequest";
-import {usePaginationState} from "../../hooks/pagination";
+import {UsePaginationState} from "../../hooks/pagination";
 import {UsersPaginationRequest} from "../../models/pagination";
 import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_USER_MANAGE} from "../../config/config";
 import {UserInfo} from "../../models/user";
@@ -23,7 +23,7 @@ interface UserManageProps {
 
 const UserManage: React.FunctionComponent<UserManageProps> = (props) => {
   // 用户分页对象
-  const usersPaginations = usePaginationState<UsersPaginationRequest>(PAGE_BEGIN - 1, getUsers);
+  const usersPaginations = UsePaginationState<UsersPaginationRequest>(PAGE_BEGIN - 1, getUsers);
 
   useEffect(() => {
     getUserInfo(PAGE_BEGIN - 1);

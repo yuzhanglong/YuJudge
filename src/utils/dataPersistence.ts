@@ -7,7 +7,14 @@
  */
 
 
-import {TOKEN_KEY} from "../config/config";
+import {TOKEN_KEY, USER_INFO_KEY} from "../config/config";
+import {UserInfo} from "../models/user";
+
+
+// 清空localstorage
+export const clearStorage = () => {
+  window.localStorage.clear();
+}
 
 // 保存用户代码，其中key为problem对应的id，value为代码内容
 export const saveCode = (problemId: string, code: string) => {
@@ -15,7 +22,7 @@ export const saveCode = (problemId: string, code: string) => {
 }
 
 // 通过problemId，获取用户保存的代码
-export const getCode = (problemId: string): string | null => {
+export const getCodeFromStorage = (problemId: string): string | null => {
   return window.localStorage.getItem(problemId);
 }
 
@@ -25,11 +32,18 @@ export const setToken = (token: string) => {
 }
 
 // 获取token
-export const getToken = () => {
+export const getTokenFromStorage = () => {
   return window.localStorage.getItem(TOKEN_KEY);
 }
 
-// 删除token，一般在注销时调用
-export const removeToken = () => {
-  window.localStorage.clear();
+// 保存用户信息，一般在用户登录之后
+export const saveUserInfo = (userInfo: UserInfo) => {
+  const jsonData = JSON.stringify(userInfo);
+  window.localStorage.setItem(USER_INFO_KEY, jsonData);
+}
+
+// 获取用户信息
+export const getUserInfoFromStorage = (): UserInfo | null => {
+  const data = window.localStorage.getItem(USER_INFO_KEY);
+  return data ? JSON.parse(data) : null;
 }

@@ -8,7 +8,7 @@
 
 
 import request from "./request";
-import {getToken} from "../utils/dataPersistence";
+import {getTokenFromStorage} from "../utils/dataPersistence";
 import {JudgeHostRequest} from "../models/judgeHost";
 
 
@@ -18,7 +18,7 @@ export const getJudgeHostsInfo = () => {
     "/judge_host/get_judge_hosts_info",
     {
       headers: {
-        Authorization: getToken()
+        Authorization: getTokenFromStorage()
       }
     }
   )
@@ -31,7 +31,7 @@ export const getJudgeHostInfoById = (judgeHostId: number) => {
     "/judge_host/get_judge_host_by_id/" + judgeHostId,
     {
       headers: {
-        Authorization: getToken()
+        Authorization: getTokenFromStorage()
       }
     }
   )

@@ -6,7 +6,7 @@ import {ProblemSet} from "../../models/problemSet";
 import ProblemSetTable from "../../components/problemSetTable/ProblemSetTable";
 import ProblemSetToolBar from "./childCmp/ProblemSetToolBar";
 import {RouteComponentProps} from "react-router-dom";
-import {usePaginationState} from "../../hooks/pagination";
+import {UsePaginationState} from "../../hooks/pagination";
 import {ProblemSetPaginationRequest} from "../../models/pagination";
 import {dateRangeMomentArrayToTimeStampArray} from "../../utils/dateTime";
 
@@ -23,7 +23,7 @@ const ProblemSetManage: React.FunctionComponent<RouteComponentProps> = (props) =
   const [searchValue, setSearchValue] = useState<string | null>(null);
 
   // 分页state
-  const paginationState = usePaginationState<ProblemSetPaginationRequest>(PAGE_BEGIN - 1, getProblemSets);
+  const paginationState = UsePaginationState<ProblemSetPaginationRequest>(PAGE_BEGIN - 1, getProblemSets);
 
   useEffect(() => {
     getProblemSetsInfo(PAGE_BEGIN - 1, null, false);

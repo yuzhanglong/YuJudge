@@ -9,19 +9,20 @@
 
 import React from "react";
 import {Avatar, Dropdown, Menu, message} from "antd";
-import {removeToken} from "../../utils/dataPersistence";
+import {clearStorage} from "../../utils/dataPersistence";
 import {RouteComponentProps} from "react-router-dom";
 
 interface UserInfoProps {
   userName?: string;
   avater?: string;
   description?: string;
+  height: number;
 }
 
 const UserTag: React.FunctionComponent<UserInfoProps & RouteComponentProps> = (props) => {
   // 注销标签被单击
   const onLogOut = () => {
-    removeToken();
+    clearStorage();
     props.history.replace("/");
     message.success("您已成功退出");
   }
@@ -30,7 +31,7 @@ const UserTag: React.FunctionComponent<UserInfoProps & RouteComponentProps> = (p
     <Menu style={{
       width: 200,
       float: "right",
-      marginTop: 64
+      marginTop: props.height
     }}>
       <Menu.Item>
         <div>
@@ -57,7 +58,7 @@ const UserTag: React.FunctionComponent<UserInfoProps & RouteComponentProps> = (p
         <div style={{
           display: "flex",
           backgroundColor: "#ffffff",
-          height: 64,
+          height: props.height,
           width: 150,
           alignItems: "center",
           float: "right",

@@ -7,7 +7,7 @@
  */
 
 import request from "./request";
-import {getToken} from "../utils/dataPersistence";
+import {getTokenFromStorage} from "../utils/dataPersistence";
 
 
 // 获取可以分配的权限
@@ -16,7 +16,7 @@ export const getPermissions = () => {
     "/permission/get_permissions",
     {
       headers: {
-        Authorization: getToken()
+        Authorization: getTokenFromStorage()
       }
     }
   )
@@ -29,7 +29,7 @@ export const getPermissionByUserGroupId = (userGroupId: number) => {
     "/permission/get_permission_by_user_group/" + userGroupId,
     {
       headers: {
-        Authorization: getToken()
+        Authorization: getTokenFromStorage()
       }
     }
   )
@@ -44,7 +44,7 @@ export const updateUserGroupPermission = (userGroupId: number, permissions: stri
     },
     {
       headers: {
-        Authorization: getToken()
+        Authorization: getTokenFromStorage()
       }
     }
   )
