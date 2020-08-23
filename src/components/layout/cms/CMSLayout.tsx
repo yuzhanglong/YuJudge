@@ -1,12 +1,21 @@
-import React from "react";
-import {Affix, Layout} from "antd";
+/*
+ * File: CMSLayout.tsx
+ * Description: 后台cms的基础布局
+ * Created: 2020/8/23
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+
+import React, {useEffect, useState} from "react";
+import {Layout} from "antd";
 import SideBar from "./childCmp/SideBar";
 import routerConfig from "../../../router/config";
 import Breadcrumb from "./childCmp/Breadcrumb";
 import {RouteComponentProps} from "react-router-dom";
 import CMSHeader from "./childCmp/CMSHeader";
-import RcQueueAnim from "rc-queue-anim";
-
+import {UserInfo} from "../../../models/user";
+import {getUserInfo} from "../../../network/userRequest";
 
 const {Content, Sider} = Layout;
 
@@ -14,22 +23,26 @@ interface CMSLayoutProps {
   children: React.ReactNode;
 }
 
-
-const Header = React.forwardRef(((props, ref) => (
-  <CMSHeader {...props} {...ref}/>
-)))
-
-
 const CMSLayout: React.FunctionComponent<CMSLayoutProps & RouteComponentProps> = (props) => {
+  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
+
+  useEffect(() => {
+    getUserInfo().then(res => {
+      setUserInfo(res.data);
+    })
+  }, []);
+
+
   return (
     <Layout style={{minHeight: '100vh'}}>
       <Sider
         width={230}
-        theme="dark" style={{
-        height: '100vh',
-        position: 'fixed',
-        left: 0,
-      }}>
+        theme="dark"
+        style={{
+          height: '100vh',
+          position: 'fixed',
+          left: 0,
+        }}>
         <div className="layout-logo"/>
         <SideBar
           menus={routerConfig.menus}
@@ -44,16 +57,16 @@ const CMSLayout: React.FunctionComponent<CMSLayoutProps & RouteComponentProps> =
         </SideBar>
       </Sider>
       <Layout className="site-layout" style={{marginLeft: 230}}>
-        <Affix offsetTop={0}>
-          <Header></Header>
-        </Affix>
-        <Content className={"site-layout-content"} key={new Date().getTime()}>
-          <RcQueueAnim>
-            <Breadcrumb key={"Breadcrumb"}></Breadcrumb>
-            <div key={"content"}>
+        <CMSHeader userInfo={userInfo} {...props}/>
+        <Content className={"site-layout-content"}>
+          <div key={"Breadcrumb"}>
+            <Breadcrumb/>
+          </div>
+          <div>
+            <div>
               {props.children}
             </div>
-          </RcQueueAnim>
+          </div>
         </Content>
       </Layout>
     </Layout>

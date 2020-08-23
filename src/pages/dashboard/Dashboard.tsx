@@ -22,6 +22,7 @@ import {getRecentSubmission, getUserJudgeResultCount} from "../../network/submis
 import {getActiveUserInfo, getUserInfo} from "../../network/userRequest";
 import moment from "moment";
 import {UserSubmissionCount} from "../../models/submission";
+import UserTag from "../../components/userTag/UserTag";
 
 interface DashboardProps {
 
@@ -95,6 +96,8 @@ const Dashboard: React.FunctionComponent<DashboardProps> = (props) => {
 
   return (
     <div className={"dashboard"}>
+
+
       <div className={"dashboard-head"}>
         <HeadCardGroup></HeadCardGroup>
       </div>

@@ -53,6 +53,7 @@ const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = (props)
         const loginResponse: LoginResponseData = res.data;
         setToken(loginResponse.accessToken);
         message.success("登录成功～");
+        props.history.replace("/cms/dashboard");
       })
       .catch((err: BaseResponse) => {
         message.error(err.message);

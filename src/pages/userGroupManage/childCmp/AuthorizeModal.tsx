@@ -12,6 +12,7 @@ import {message, Modal, Transfer} from "antd";
 import {PermissionInfo} from "../../../models/permission";
 import {getPermissionByUserGroupId, updateUserGroupPermission} from "../../../network/permissionRequest";
 import {TransferItem} from "antd/es/transfer";
+import {BaseResponse} from "../../../models/common";
 
 interface AuthorizeModalProps {
   // 所有可供分配的permission
@@ -78,7 +79,8 @@ const AuthorizeModal: React.FunctionComponent<AuthorizeModalProps> = (props) => 
           message.success("授权成功~");
           props.onCancle();
         })
-        .catch(() => {
+        .catch((err:BaseResponse) => {
+          message.error(err.message);
         });
     }
   }

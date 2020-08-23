@@ -46,5 +46,5 @@ export interface UserInfo {
   avatar: string;
   acAmount: number;
   submissionAmount: number;
-  usergroups: UserGroupInfo[];
+  userGroups: UserGroupInfo[];
 }

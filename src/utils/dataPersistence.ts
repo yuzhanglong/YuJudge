@@ -28,3 +28,8 @@ export const setToken = (token: string) => {
 export const getToken = () => {
   return window.localStorage.getItem(TOKEN_KEY);
 }
+
+// 删除token，一般在注销时调用
+export const removeToken = () => {
+  window.localStorage.clear();
+}

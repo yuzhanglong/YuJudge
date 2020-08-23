@@ -7,29 +7,24 @@
  */
 
 import React from "react";
-import {BellTwoTone, UserOutlined} from "@ant-design/icons/lib";
-import {SettingTwoTone} from "@ant-design/icons/lib";
-import {Avatar, Layout} from "antd";
+import UserTag from "../../../userTag/UserTag";
+import {UserInfo} from "../../../../models/user";
+import {RouteComponentProps} from "react-router-dom";
+
 
 interface HeaderProps {
-
+  userInfo: UserInfo | null;
 }
 
-const CMSHeader: React.FunctionComponent<HeaderProps> = (props) => {
+const CMSHeader: React.FunctionComponent<HeaderProps & RouteComponentProps> = (props) => {
   return (
-    <Layout.Header className="site-layout-header">
-      <div className={"site-layout-header-content"}>
-        <div className={"header-operaion-icon-wrap"}>
-          <BellTwoTone/>
-        </div>
-        <div className={"header-operaion-icon-wrap"}>
-          <SettingTwoTone/>
-        </div>
-        <div className={"header-operaion-user-wrap"}>
-          <Avatar shape="square" size="large" icon={<UserOutlined/>}/>
-        </div>
-      </div>
-    </Layout.Header>
+    <div className="site-layout-header">
+      <UserTag
+        {...props}
+        avater={props.userInfo?.avatar}
+        userName={props.userInfo?.nickname}
+        description={props.userInfo?.userGroups ? props.userInfo?.userGroups[0].description : ""}/>
+    </div>
   )
 }
 

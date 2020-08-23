@@ -37,8 +37,10 @@ const UserManage: React.FunctionComponent<UserManageProps> = (props) => {
       count: SINGLE_PAGE_SIZE_IN_USER_MANAGE
     };
     usersPaginations.changeCurrentPage(requestBody)
-      .then(() => {
+      .catch((err: BaseResponse) => {
+        console.log(err);
       })
+
   }
 
   // 渲染表单操作项目

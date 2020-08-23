@@ -49,7 +49,7 @@ const UserGroupTable: React.FunctionComponent<UserGroupTableProps> = (props) => 
         key={"description"}
         align={"center"}
         width={300}
-        fixed
+        fixed={"right"}
         render={renderOperations}/>
       />
     </Table>

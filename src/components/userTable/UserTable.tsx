@@ -27,6 +27,7 @@ interface UserTableProps {
 }
 
 const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
+
   // 渲染用户排名相关信息
   const renderUserRanking = (index: number) => {
     const rankingstyle: React.CSSProperties = {
@@ -74,7 +75,7 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
   const renderUserGroups = (content: UserGroupInfo[]) => {
     return content.map(res => {
       return (
-        <Tag color="geekblue">
+        <Tag color="geekblue" key={res.id}>
           {res.description}
         </Tag>
       )
