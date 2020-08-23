@@ -45,22 +45,19 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
   // 代码内容
   const [codeContent, setCodeContent] = useState("");
   // 语言选择器中活跃的语言
-  const [activeLanguage, setActiveLanguage] = useState();
+  const [activeLanguage, setActiveLanguage] = useState<string>();
   // 提交表格
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   // 总的提交数目
   const [submissionCount, setSubmissionCount] = useState(1);
   // 当前活跃的页码
   const [activePage, setActivePage] = useState(1);
-  // 当前轮询任务的id
-  const [requestTask, setRequestTask] = useState();
   // 提交详情是否可视
   const [isSubmissionDetailVisible, setIsSubmissionIsVisible] = useState(false);
   // 选中的提交细节内容
   const [activeSubmission, setActiveSubmission] = useState();
   // 选中的左侧导航的key
   const [activeProblemTabKey, setActiveProblemTabKey] = useState(ProblemHoneTabKeyEnum.PROBLEM);
-
   // 题目集基本信息
   const [problemSetInfo, setProblemSetInfo] = useState<ProblemSet>();
 
@@ -68,19 +65,29 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
   useEffect(() => {
     getProblemData(problemId);
     getProblemSetData(problemSetId);
-    showSavedCode();
+    showSavedCode(problemId);
     getProblemSubmission(problemId, PAGE_BEGIN);
-    renewSubmissionDataTimely(PAGE_BEGIN).then(() => {
-      //FIXME: 页面销毁时，轮询无法销毁
-    })
-    // eslint-disable-next-line
   }, [problemId, problemSetId]);
+
+  // 管理轮询任务
+  useEffect(() => {
+    const id = setInterval(() => {
+      getProblemSubmission(problemId, activePage);
+    }, SUBMISSION_REQUEST_TASK_TIME);
+    return () => {
+      // 轮询任务id不能由useState管理，
+      // 否则组件销毁再来执行clearInterval会造成id为undefined的情况
+      clearInterval(id);
+    }
+  }, [activePage, problemId]);
 
   // 获取题目集信息
   const getProblemSetData = (problemSetId: number) => {
     getProblemSetInfo(problemSetId)
       .then(res => {
-        setProblemSetInfo(res.data);
+        const problemSet: ProblemSet = res.data;
+        setProblemSetInfo(problemSet);
+        setActiveLanguage(problemSet.allowedLanguage ? problemSet.allowedLanguage[0] : undefined);
       });
   }
 
@@ -105,20 +112,7 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
       })
       .catch(() => {
         message.error("获取提交内容失败");
-        // 请求失败则停止轮询
-        deleteCurrentRequestTask();
       })
-  }
-
-  // 实时更新提交
-  const renewSubmissionDataTimely = (activePage: number) => {
-    deleteCurrentRequestTask();
-    return new Promise(() => {
-      const id = setInterval(() => {
-        getProblemSubmission(problemId, activePage);
-      }, SUBMISSION_REQUEST_TASK_TIME)
-      setRequestTask(id);
-    })
   }
 
   // 编辑器文字发生改变
@@ -128,20 +122,23 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
 
   // 提交按钮被点击
   const onSubmitButtonClick = () => {
-    let submission: Submission = {
-      problemId: problem.id,
-      codeContent: codeContent,
-      language: activeLanguage,
-      judgePreference: DEFAULT_JUDGE_PREFERENCE,
-      problemSetId: params.problemSetId
+    // 保证选择了一项编程语言
+    if (activeLanguage) {
+      let submission: Submission = {
+        problemId: problem.id,
+        codeContent: codeContent,
+        language: activeLanguage,
+        judgePreference: DEFAULT_JUDGE_PREFERENCE,
+        problemSetId: params.problemSetId
+      }
+      // 发送提交请求
+      submitCode(submission).then(() => {
+        message.success("提交成功~");
+        // 提交时tab跳转到提交页面，同时内部的表单切回第一页，用户可以立刻查看提交状态
+        setActiveProblemTabKey(ProblemHoneTabKeyEnum.SUBMISSION);
+        onPaginationChange(PAGE_BEGIN);
+      });
     }
-    // 发送提交请求
-    submitCode(submission).then(() => {
-      message.success("提交成功~");
-      // 提交时tab跳转到提交页面，同时内部的表单切回第一页，用户可以立刻查看提交状态
-      setActiveProblemTabKey(ProblemHoneTabKeyEnum.SUBMISSION);
-      onPaginationChange(PAGE_BEGIN);
-    });
   }
 
   // 用户切换页码
@@ -149,8 +146,6 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
     setActivePage(currentPage);
     // 立刻刷新一次
     getProblemSubmission(problemId, currentPage);
-    renewSubmissionDataTimely(currentPage).then(() => {
-    });
   }
 
   // 清空按钮被点击
@@ -174,13 +169,6 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
       })
   }
 
-  // 移除当前活跃的轮询任务
-  const deleteCurrentRequestTask = () => {
-    if (requestTask) {
-      console.log(requestTask);
-      window.clearInterval(requestTask);
-    }
-  }
 
   // 保存按钮被点击
   const onCodeSave = () => {
@@ -189,7 +177,7 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
   }
 
   // 展示之前保存的代码
-  const showSavedCode = () => {
+  const showSavedCode = (problemId: number) => {
     const code = getCode(problemId.toString());
     if (code) {
       setCodeContent(code);

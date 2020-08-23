@@ -15,18 +15,19 @@ interface ProblemLayoutProps {
   children: React.ReactNode;
 }
 
-const Header = React.forwardRef(((props: any, ref: any) => (
-  <CommonMenu {...props} {...ref}/>
-)))
-
 
 const ProblemSetLayout: React.FunctionComponent<ProblemLayoutProps & RouteComponentProps> = (props) => {
   return (
     <Layout>
       <Affix offsetTop={0}>
-        <Header {...props}/>
+        <div>
+          <CommonMenu {...props}/>
+        </div>
       </Affix>
-      {props.children}
+      <div>
+        {props.children}
+      </div>
+
     </Layout>
   )
 }

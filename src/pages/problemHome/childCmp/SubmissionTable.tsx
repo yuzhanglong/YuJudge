@@ -95,7 +95,8 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
       pagination={{
         total: props.total,
         defaultPageSize: SUBMISSION_SINGLE_PAGE_SIZE,
-        current: props.activePage
+        current: props.activePage,
+        showSizeChanger: false
       }}
       onChange={refreshPagination}>
       <Column

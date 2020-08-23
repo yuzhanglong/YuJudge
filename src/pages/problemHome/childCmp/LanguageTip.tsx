@@ -4,14 +4,17 @@ import {C_PLUS_PLUS_NICK_NAME, PROGRAM_LANGUAGE_SCRIPT_CONTENT} from "../../../c
 
 
 interface LanguageTipProps {
-  language: LanguageTypeEnum
+  language?: string;
 }
 
 
 const LanguageTip: React.FunctionComponent<LanguageTipProps> = (props) => {
 
   // 渲染编程语言的执行脚本内容
-  const renderLanguageScript = (language: LanguageTypeEnum) => {
+  const renderLanguageScript = (language: string | undefined) => {
+    if (!language) {
+      return;
+    }
     return PROGRAM_LANGUAGE_SCRIPT_CONTENT[language];
   }
 

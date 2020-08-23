@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Button, Select, Modal} from "antd";
 import {InfoOutlined} from '@ant-design/icons';
 import LanguageTip from "./LanguageTip";
@@ -12,8 +12,18 @@ interface LanguageSelectorProps {
 
 const LanguageSelector: React.FunctionComponent<LanguageSelectorProps> = (props) => {
 
-  const [selectLanguage, setSelectLanguage] = useState<any>();
+  // 语言提示对话框是否可见
   const [languageTipVisible, setLanguageTipVisible] = useState<boolean>(false);
+  // 支持的语言
+  const [languages, setLanguages] = useState<string[]>([]);
+  // 当前选中的语言
+  const [currentLanguage, setCurrentLanguage] = useState<string | undefined>(undefined);
+
+
+  useEffect(() => {
+    setLanguages(props.allowedLanguage);
+    setCurrentLanguage(props.allowedLanguage.length ? props.allowedLanguage[0] : undefined);
+  }, [props.allowedLanguage]);
 
 
   // 语言提示按钮被按下
@@ -24,7 +34,7 @@ const LanguageSelector: React.FunctionComponent<LanguageSelectorProps> = (props)
   // 选择器内容发生改变
   const onSelectorChange = (value: string) => {
     props.onLanguageChange(value);
-    setSelectLanguage(value);
+    setCurrentLanguage(value);
   }
 
   // 渲染选择器组件
@@ -44,7 +54,8 @@ const LanguageSelector: React.FunctionComponent<LanguageSelectorProps> = (props)
     <div>
       <Button shape="circle"
               icon={<InfoOutlined/>}
-              size={"small"} disabled={!selectLanguage}
+              size={"small"}
+              disabled={!currentLanguage}
               onClick={onLanguageSelectorTipButtonClick}>
       </Button>
       <Select
@@ -52,16 +63,17 @@ const LanguageSelector: React.FunctionComponent<LanguageSelectorProps> = (props)
           width: 120,
           paddingLeft: 10
         }}
+        value={currentLanguage}
         placeholder={"请选择"}
         size={"small"} onChange={onSelectorChange}>
-        {renderSelector(props.allowedLanguage)}
+        {renderSelector(languages)}
       </Select>
       <Modal
         title="语言提示"
         visible={languageTipVisible}
         onCancel={() => setLanguageTipVisible(false)}
         footer={null}>
-        <LanguageTip language={selectLanguage}></LanguageTip>
+        <LanguageTip language={currentLanguage}/>
       </Modal>
     </div>
   )

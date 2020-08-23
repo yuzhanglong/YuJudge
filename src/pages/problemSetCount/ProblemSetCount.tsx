@@ -24,11 +24,11 @@ const ProblemSetCount: React.FunctionComponent<ProblemSetCountProps & RouteCompo
   const [problemSetSubmissionCounts, setProblemSetSubmissionCounts] = useState<SubmissionCountInfo[]>([]);
 
   useEffect(() => {
-    getProblemSetSubmissionCounts();
-  });
+    getProblemSetSubmissionCounts(problemSetId);
+  }, [problemSetId]);
 
   // 获取题目集提交状态
-  const getProblemSetSubmissionCounts = () => {
+  const getProblemSetSubmissionCounts = (problemSetId: number) => {
     countProblemSetSubmissionInfo(problemSetId)
       .then(res => {
         setProblemSetSubmissionCounts(res.data.items);
