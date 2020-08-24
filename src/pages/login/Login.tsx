@@ -57,7 +57,7 @@ const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = (props)
       .then((res: BaseResponse) => {
         message.success("登录成功～");
         saveUserInfo(res.data);
-        props.history.replace("/cms/dashboard");
+        props.history.replace("/common/home");
       })
       .catch((err: BaseResponse) => {
         message.error(err.message);

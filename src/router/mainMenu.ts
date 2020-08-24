@@ -10,40 +10,58 @@ import {MenuRouterConfig} from "./config";
 
 export const MAIN_MENU: MenuRouterConfig[] = [
   {
-    key: "/problem_set/:problemSetId",
+    key: "/common",
     component: "ProblemSetLayout",
     title: "题目集",
-    path: "/problem_set/:problemSetId",
+    path: "/common",
     children: [
+      {
+        key: "/home",
+        component: "Home",
+        title: "首页",
+        path: "/common/home",
+      },
+      {
+        key: "/profile",
+        component: "Profile",
+        title: "我的",
+        path: "/common/profile",
+      },
+      {
+        key: "/problem_sets",
+        component: "ProblemSets",
+        title: "题目集概览",
+        path: "/common/problem_sets",
+      },
       {
         key: "/problem_set/:problemSetId/overview",
         component: "ProblemSetHome",
         title: "题目集概览",
-        path: "/problem_set/:problemSetId/overview",
+        path: "/common/problem_set/:problemSetId/overview",
       },
       {
         key: "/problem_set/:problemSetId/problems",
         component: "ProblemSetProblems",
         title: "题目一览",
-        path: "/problem_set/:problemSetId/problems",
+        path: "/common/problem_set/:problemSetId/problems",
       },
       {
         key: "/problem_set/:problemSetId/score_board",
         component: "ScoreBoard",
         title: "记分板",
-        path: "/problem_set/:problemSetId/score_board",
+        path: "/common/problem_set/:problemSetId/score_board",
       },
       {
         key: "/problem_set/:problemSetId/count",
         component: "ProblemSetCount",
         title: "统计",
-        path: "/problem_set/:problemSetId/count",
+        path: "/common/problem_set/:problemSetId/count",
       },
       {
         key: "/problem_set/:problemSetId/problem/:problemId",
         component: "ProblemHome",
         title: "问题",
-        path: "/problem_set/:problemSetId/problem/:problemId",
+        path: "/common/problem_set/:problemSetId/problem/:problemId",
       },
     ]
   }]

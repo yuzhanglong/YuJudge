@@ -33,8 +33,7 @@ const PieChart: React.FunctionComponent<PieChartProps> = (props) => {
       type: 'inner',
     },
     legend: {
-      visible: true,
-      offsetX:10
+      visible: true
     },
     height: props.height
   }
@@ -46,7 +45,7 @@ const PieChart: React.FunctionComponent<PieChartProps> = (props) => {
 
 PieChart.defaultProps = {
   forceFit: true,
-  height: 300
+  height: 200
 }
 
 export default PieChart;

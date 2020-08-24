@@ -21,7 +21,7 @@ import {
   SettingOutlined
 } from "@ant-design/icons/lib";
 import ProblemSetEdit from "./problemSetEdit/ProblemSetEdit";
-import ProblemSetLayout from "../components/layout/problemSet/ProblemSetLayout";
+import Common from "../components/layout/problemSet/Common";
 import ScoreBoard from "./scoreBoard/ScoreBoard";
 import ProblemSetProblems from "./problemSetProblems/ProblemSetProblems";
 import ProblemSetHome from "./problemSetHome/ProblemSetHome";
@@ -32,6 +32,7 @@ import JudgeHostManage from "./judgeHostManage/JudgeHostManage";
 import ProblemSetCount from "./problemSetCount/ProblemSetCount";
 import Home from "./home/Home";
 import Profile from "./profile/Profile";
+import ProblemSets from "./problemSets/ProblemSets";
 
 export default {
   ProblemManage: ProblemManage,
@@ -47,7 +48,7 @@ export default {
   CloudServerOutlined: CloudServerOutlined,
   SettingOutlined: SettingOutlined,
   ProblemSetEdit: ProblemSetEdit,
-  ProblemSetLayout: ProblemSetLayout,
+  ProblemSetLayout: Common,
   ScoreBoard: ScoreBoard,
   ProblemSetProblems: ProblemSetProblems,
   ProblemSetHome: ProblemSetHome,
@@ -57,5 +58,6 @@ export default {
   JudgeHostManage: JudgeHostManage,
   ProblemSetCount: ProblemSetCount,
   Home: Home,
-  Profile: Profile
+  Profile: Profile,
+  ProblemSets: ProblemSets
 } as any;

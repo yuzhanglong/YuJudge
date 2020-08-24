@@ -15,6 +15,8 @@ import {SizeType} from "antd/lib/config-provider/SizeContext";
 import Column from "antd/lib/table/Column";
 import {timestampToDateTime} from "../../utils/dateTime";
 import {UserInfo} from "../../models/user";
+import {Link} from "react-router-dom";
+import {PROGRAM_LANGUAGE_NAME} from "../../common/programLanguage";
 
 interface ProblemSetTableProps {
   problemSets: ProblemSet[];
@@ -23,8 +25,9 @@ interface ProblemSetTableProps {
   onPageChange?: (page: number) => void;
   tableSize?: SizeType;
   isLoading?: boolean;
-  onEditButtonClick: (id: number) => void;
+  onEditButtonClick?: (id: number) => void;
   otherOperations?: React.ReactNode;
+  showOperations?: boolean;
 }
 
 const ProblemSetTable: React.FunctionComponent<ProblemSetTableProps> = (props) => {
@@ -55,12 +58,39 @@ const ProblemSetTable: React.FunctionComponent<ProblemSetTableProps> = (props) =
   const renderOperations = (content: any) => {
     return (
       <div>
-        <Button type="link" onClick={() => props.onEditButtonClick(content.id)}>
+        <Button
+          type="link"
+          onClick={() => props.onEditButtonClick ? props.onEditButtonClick(content.id) : null}>
           编辑题目集
         </Button>
         {props.otherOperations}
       </div>
     )
+  }
+
+  // 渲染题目集名称
+  const renderProblemSetName = (data: ProblemSet) => {
+    return (
+      <Link to={`/common/problem_set/${data.id}/overview`}>
+        {data.name}
+      </Link>
+    )
+  }
+
+  // 获取允许的编程语言信息
+  const getAllowedLanguageInfo = (languages: string[]) => {
+    if (languages) {
+      let res = "";
+      const len = languages.length;
+      for (let i = 0; i < len; i++) {
+        res = res + PROGRAM_LANGUAGE_NAME[languages[i]];
+        if (i < len - 1) {
+          res += " / ";
+        }
+      }
+      return res;
+    }
+    return "---";
   }
 
   return (
@@ -78,8 +108,12 @@ const ProblemSetTable: React.FunctionComponent<ProblemSetTableProps> = (props) =
           key={"id"}/>
         <Column
           title={"题目集名称"}
-          dataIndex={"name"}
-          key={"name"}/>
+          key={"name"}
+          render={renderProblemSetName}/>
+        <Column
+          title={"判题偏好"}
+          dataIndex={"judgePreference"}
+          key={"judgePreference"}/>
         <Column
           title={"开始时间"}
           dataIndex={"startTime"}
@@ -91,16 +125,24 @@ const ProblemSetTable: React.FunctionComponent<ProblemSetTableProps> = (props) =
           key={"deadline"}
           render={renderTime}/>
         <Column
+          title={"支持语言"}
+          dataIndex={"allowedLanguage"}
+          key={"allowedLanguage"}
+          render={getAllowedLanguageInfo}/>
+        <Column
           title={"创建者"}
           dataIndex={"creator"}
           key={"creator"}
           render={renderCreator}/>
-        <Column
-          title={"操作"}
-          key={"number"}
-          width={150}
-          render={renderOperations}
-          align={"center"}/>
+        {
+          props.showOperations &&
+          <Column
+            title={"操作"}
+            key={"number"}
+            width={150}
+            render={renderOperations}
+            align={"center"}/>
+        }
       </Table>
     </div>
   )
@@ -109,7 +151,8 @@ const ProblemSetTable: React.FunctionComponent<ProblemSetTableProps> = (props) =
 ProblemSetTable.defaultProps = {
   showPagination: true,
   tableSize: undefined,
-  isLoading: false
+  isLoading: false,
+  showOperations: true
 }
 
 export default ProblemSetTable;

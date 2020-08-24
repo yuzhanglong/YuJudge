@@ -21,6 +21,7 @@ interface ProblemSetHomeProps {
 const ProblemSetHome: React.FunctionComponent<ProblemSetHomeProps & RouteComponentProps> = (props) => {
   const params: any = props.match.params;
   const problemSetId: number = params.problemSetId;
+  console.log(params);
 
   useEffect(() => {
     getProblemSetData(problemSetId);
@@ -49,7 +50,7 @@ const ProblemSetHome: React.FunctionComponent<ProblemSetHomeProps & RouteCompone
 
   // 查看问题按钮被单击
   const onOverViewProblemsButtonClick = () => {
-    props.history.push(`/problem_set/${problemSetId}/problems`);
+    props.history.push(`/common/problem_set/${problemSetId}/problems`);
   }
 
 
@@ -67,7 +68,8 @@ const ProblemSetHome: React.FunctionComponent<ProblemSetHomeProps & RouteCompone
           alignItems: "center",
           justifyContent: "center"
         }}>
-          <ProblemSetDescription problemSetInfo={problemSetInfo}/>
+          <ProblemSetDescription
+            problemSetInfo={problemSetInfo}/>
           <div>
             <Button
               onClick={onOverViewProblemsButtonClick}

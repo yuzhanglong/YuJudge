@@ -46,7 +46,7 @@ const ProblemSetProblems: React.FunctionComponent<ProblemSetProblemsProps & Rout
   // 跳转到某个problem
   const onGotoProblemButtonClick = (content: any) => {
     const problemId = content.id;
-    props.history.push(`/problem_set/${params.problemSetId}/problem/${problemId}`);
+    props.history.push(`/common/problem_set/${params.problemSetId}/problem/${problemId}`);
   }
 
   return (

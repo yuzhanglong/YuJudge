@@ -17,10 +17,6 @@ interface CommonMenuProps {
 }
 
 const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps> = (props) => {
-  const params: any = props.match.params;
-  const problemSetId: number | null = params.problemSetId;
-  // TODO: 注意这里的标签激活状态, 需要路由的附加信息来判断当前的路由是哪个标签
-
   // 用户信息
   const userInfoState = UserInfoState();
 
@@ -28,30 +24,17 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
     <div>
       <Row justify={"space-between"} className={"problem-set-layout-menu"}>
         <Col>
-          <Menu mode="horizontal">
-            <Menu.Item key="home" className={"problem-set-layout-menu-item"}>
-              <Link to={`/home`}>
+          <Menu mode="horizontal" activeKey={props.location.pathname}>
+
+            <Menu.Item key="/common/home">
+              <Link to={`/common/home`}>
                 <span className="nav-text">首页</span>
               </Link>
             </Menu.Item>
-            <Menu.Item key="overview" className={"problem-set-layout-menu-item"}>
-              <Link to={`/problem_set/${problemSetId}/overview`}>
+
+            <Menu.Item key="/common/problem_sets">
+              <Link to={`/common/problem_sets`}>
                 <span className="nav-text">题目集</span>
-              </Link>
-            </Menu.Item>
-            <Menu.Item key="problems" className={"problem-set-layout-menu-item"}>
-              <Link to={`/problem_set/${problemSetId}/problems`}>
-                <span className="nav-text">所有题目</span>
-              </Link>
-            </Menu.Item>
-            <Menu.Item key="scoreBoard" className={"problem-set-layout-menu-item"}>
-              <Link to={`/problem_set/${problemSetId}/score_board`}>
-                <span className="nav-text">记分板</span>
-              </Link>
-            </Menu.Item>
-            <Menu.Item key="count" className={"problem-set-layout-menu-item"}>
-              <Link to={`/problem_set/${problemSetId}/count`}>
-                <span className="nav-text">数据统计</span>
               </Link>
             </Menu.Item>
           </Menu>

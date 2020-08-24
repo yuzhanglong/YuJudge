@@ -1,5 +1,5 @@
 /*
- * File: ProblemSetLayout.tsx
+ * File: Common.tsx
  * Description: 题目、题目集相关的外部布局，例如顶部的菜单栏
  * Created: 10:53 上午
  * Author: yuzhanglong
@@ -16,7 +16,7 @@ interface ProblemLayoutProps {
 }
 
 
-const ProblemSetLayout: React.FunctionComponent<ProblemLayoutProps & RouteComponentProps> = (props) => {
+const Common: React.FunctionComponent<ProblemLayoutProps & RouteComponentProps> = (props) => {
   return (
     <Layout>
       <Affix offsetTop={0}>
@@ -32,4 +32,4 @@ const ProblemSetLayout: React.FunctionComponent<ProblemLayoutProps & RouteCompon
   )
 }
 
-export default ProblemSetLayout;
+export default Common;

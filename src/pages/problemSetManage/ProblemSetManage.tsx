@@ -64,6 +64,8 @@ const ProblemSetManage: React.FunctionComponent<RouteComponentProps> = (props) =
     createProblemSet(problemSet)
       .then(() => {
         message.success("创建题目集成功~");
+        setIsShowEditForm(false);
+        onPageChange(PAGE_BEGIN);
       })
       .catch(() => {
         message.error("创建失败");

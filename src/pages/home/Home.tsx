@@ -10,10 +10,9 @@
 import React, {useEffect, useState} from "react";
 import UserCard from "../../components/userCard/UserCard";
 import {UserInfoState} from "../../hooks/userInfo";
-import {Affix, Card, Menu, Row, Table} from "antd";
+import {Card, Col, Divider, Row, Table} from "antd";
 import {getRecentSubmission, getUserJudgeResultCount} from "../../network/submissionRequest";
 import JudgeResultCount from "../../components/judgeResultCount/JudgeResultCount";
-import {DashOutlined} from "@ant-design/icons/lib";
 import ColumnChart from "../../components/charts/ColumnChart";
 import {UserSubmissionCount} from "../../models/submission";
 import moment from "moment";
@@ -87,79 +86,52 @@ const Home: React.FunctionComponent<HomeProps> = (props) => {
         backgroundColor: "#f0f2f5",
         minHeight: "100vh"
       }}>
-      <Affix offsetTop={0}>
-        <div className={"home-menu"}>
-          <Menu mode="horizontal" theme={"dark"}>
-            <Menu.Item key="mail">
-              Navigation One
-            </Menu.Item>
-            <Menu.Item key="app">
-              Navigation Two
-            </Menu.Item>
-          </Menu>
-        </div>
-      </Affix>
-      <div className={"home-user-info"} style={{
-        position: "fixed",
-        top: 66
-      }}>
-        {userInfoState.userInfo && <UserCard userInfo={userInfoState.userInfo} height={"90vh"}/>}
-      </div>
-
       <div className={"home-content"} style={{
-        marginLeft: 260,
         marginTop: 20,
-        width: "80vw",
-        display: "flex"
+        display: "flex",
+        justifyContent: "center"
       }}>
-        <div className={"home-content-public"} style={{
-          width: 900,
-          marginRight: 15
-        }}>
-          <Card title={"公告"}>
+        <div
+          className={"home-content-public"}
+          style={{
+            marginRight: 15,
+            width: 1000
+          }}>
+          <Card title={"公告"} style={{
+            marginBottom: 20
+          }}>
             <Table></Table>
+          </Card>
+          <Card title={"个人数据"}>
+            <Row>
+              <Col>
+                <div style={{
+                  width: 560
+                }}>
+                  <ColumnChart
+                    height={200}
+                    isStack
+                    stackField={"type"}
+                    xKey={"date"}
+                    yKey={"amount"}
+                    yKeyDesc={"提交数"}
+                    data={generateUserSubmissionData()}/>
+                </div>
+              </Col>
+              <Divider type={"vertical"} style={{height: 200}}/>
+              <Col>
+                <div style={{
+                  width: 350
+                }}>
+                  <JudgeResultCount
+                    resultCounts={userJudgeResultCount}/>
+                </div>
+              </Col>
+            </Row>
           </Card>
         </div>
         <div className={"home-content-user"}>
-          <Row>
-            <Card
-              style={{
-                width: 350,
-                marginBottom: 16
-              }}
-              hoverable
-              type="inner"
-              title="提交统计"
-              extra={
-                <DashOutlined/>
-              }>
-              <div>
-                <JudgeResultCount resultCounts={userJudgeResultCount}/>
-              </div>
-            </Card>
-          </Row>
-          <Row>
-            <Card
-              hoverable
-              type="inner"
-              title="近七日提交"
-              style={{
-                width: 350
-              }}
-              extra={
-                <DashOutlined/>
-              }>
-              <div>
-                <ColumnChart
-                  isStack
-                  stackField={"type"}
-                  xKey={"date"}
-                  yKey={"amount"}
-                  yKeyDesc={"提交数"}
-                  data={generateUserSubmissionData()}/>
-              </div>
-            </Card>
-          </Row>
+          {userInfoState.userInfo && <UserCard userInfo={userInfoState.userInfo} height={"90vh"}/>}
         </div>
       </div>
     </div>

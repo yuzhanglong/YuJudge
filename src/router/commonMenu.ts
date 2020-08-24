@@ -14,25 +14,13 @@ export const COMMON_MENUS: MenuRouterConfig[] = [
     key: "/landing",
     component: "Landing",
     title: "着陆页",
-    path: "/landing",
+    path: "/",
   },
   {
     key: "/login",
     component: "Login",
     title: "用户登录",
     path: "/login",
-  },
-  {
-    key: "/home",
-    component: "Home",
-    title: "首页",
-    path: "/home",
-  },
-  {
-    key: "/profile",
-    component: "Profile",
-    title: "我的",
-    path: "/profile",
   },
   ...MAIN_MENU
 ]
