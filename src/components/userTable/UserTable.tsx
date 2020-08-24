@@ -117,6 +117,18 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
           dataIndex={"email"}/>
       }
       {
+        props.showRanking &&
+        <Column
+          title={"提交数"}
+          dataIndex={"submissionAmount"}/>
+      }
+      {
+        props.showRanking &&
+        <Column
+          title={"AC数"}
+          dataIndex={"acAmount"}/>
+      }
+      {
         props.operations &&
         <Column
           width={300}

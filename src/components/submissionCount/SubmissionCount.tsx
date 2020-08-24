@@ -11,7 +11,7 @@ import {SubmissionCountInfo} from "../../models/submission";
 import LineChart from "../charts/LineChart";
 import {Col, DatePicker, Row, Tag} from "antd";
 import {Moment} from "moment";
-import {DEFAULT_DATE_TIME_FORMAT} from "../../config/config";
+import {DATE_TIME_FORMAT_BY_HOUR, DEFAULT_DATE_TIME_FORMAT} from "../../config/config";
 import moment from "moment";
 
 interface SubmissionCountProps {
@@ -20,6 +20,7 @@ interface SubmissionCountProps {
   showPicker?: boolean;
   onPickerChange?: (res: string[]) => void;
   title?: string;
+  mask?: string;
 }
 
 const SubmissionCount: React.FunctionComponent<SubmissionCountProps> = (props) => {
@@ -80,6 +81,7 @@ const SubmissionCount: React.FunctionComponent<SubmissionCountProps> = (props) =
 
       </Row>
       <LineChart
+        mask={DATE_TIME_FORMAT_BY_HOUR}
         isTime
         data={publishData()}
         xKey={"hour"}

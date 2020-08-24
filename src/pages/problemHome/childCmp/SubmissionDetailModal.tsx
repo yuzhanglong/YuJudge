@@ -4,6 +4,7 @@ import {SubmissionDetail} from "../../../models/submission";
 import ReactMarkdown from "react-markdown";
 import {timestampToDateTime} from "../../../utils/dateTime";
 import TextArea from "antd/es/input/TextArea";
+import ShowTestCase from "../../../components/showTestCase/ShowTestCase";
 
 interface SubmissionDetailModalProps {
   isVisible: boolean;
@@ -66,33 +67,33 @@ const SubmissionDetailModal: React.FunctionComponent<SubmissionDetailModalProps>
              footer={null}
              width={950}>
         <Descriptions bordered column={2} size={"small"}>
-          <Descriptions.Item label="提交时间">
+          <Descriptions.Item label="提交时间" span={1}>
             {renderCreateTime(props.submission.createTime)}
           </Descriptions.Item>
-          <Descriptions.Item label="判题状态">
+          <Descriptions.Item label="判题状态" span={1}>
             {props.submission.judgeCondition}
           </Descriptions.Item>
-          <Descriptions.Item label="判题偏好">
+          <Descriptions.Item label="判题偏好" span={1}>
             {props.submission.judgePreference}
           </Descriptions.Item>
-          <Descriptions.Item label="时间消耗">
+          <Descriptions.Item label="时间消耗" span={1}>
             {props.submission.timeCost ? props.submission.timeCost : "--"} ms
           </Descriptions.Item>
-          <Descriptions.Item label="内存消耗">
+          <Descriptions.Item label="内存消耗" span={1}>
             {props.submission.memoryCost ? props.submission.memoryCost : "--"} kb
-          </Descriptions.Item>
-          <Descriptions.Item label="内存消耗">
-            {props.submission.memoryCost}
           </Descriptions.Item>
           <Descriptions.Item label={"编译器"}
                              span={1}>
             {props.submission.language}
           </Descriptions.Item>
           <Descriptions.Item label={"判题机"}
-                             span={1}>
+                             span={2}>
             {props.submission.judgeHost?.name}
           </Descriptions.Item>
-
+          <Descriptions.Item label={"测试点"}
+                             span={2}>
+            {props.submission.judgeResult.judgeResults && <ShowTestCase testCases={props.submission.judgeResult.judgeResults}/>}
+          </Descriptions.Item>
           <Descriptions.Item label={"用户代码"}
                              span={2}>
             <ReactMarkdown source={"```\n" + props.submission.codeContent + "\n```"}

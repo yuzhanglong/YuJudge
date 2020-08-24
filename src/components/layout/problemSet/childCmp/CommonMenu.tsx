@@ -29,6 +29,11 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
       <Row justify={"space-between"} className={"problem-set-layout-menu"}>
         <Col>
           <Menu mode="horizontal">
+            <Menu.Item key="home" className={"problem-set-layout-menu-item"}>
+              <Link to={`/home`}>
+                <span className="nav-text">首页</span>
+              </Link>
+            </Menu.Item>
             <Menu.Item key="overview" className={"problem-set-layout-menu-item"}>
               <Link to={`/problem_set/${problemSetId}/overview`}>
                 <span className="nav-text">题目集</span>

@@ -27,6 +27,11 @@ const UserTag: React.FunctionComponent<UserInfoProps & RouteComponentProps> = (p
     message.success("您已成功退出");
   }
 
+  // 个人信息标签被单击
+  const onSeeProfile = () => {
+    props.history.push("/profile");
+  }
+
   const menu = (
     <Menu style={{
       width: 200,
@@ -34,14 +39,12 @@ const UserTag: React.FunctionComponent<UserInfoProps & RouteComponentProps> = (p
       marginTop: props.height
     }}>
       <Menu.Item>
-        <div>
+        <div onClick={() => onSeeProfile()}>
           个人信息
         </div>
       </Menu.Item>
       <Menu.Item>
-        <div onClick={() => {
-          onLogOut()
-        }}>
+        <div onClick={() => onLogOut()}>
           注销
         </div>
       </Menu.Item>
@@ -53,8 +56,7 @@ const UserTag: React.FunctionComponent<UserInfoProps & RouteComponentProps> = (p
       overlay={menu}
       placement={"bottomCenter"}
       trigger={['click']}>
-      <div onClick={() => {
-      }}>
+      <div>
         <div style={{
           display: "flex",
           backgroundColor: "#ffffff",
@@ -68,7 +70,6 @@ const UserTag: React.FunctionComponent<UserInfoProps & RouteComponentProps> = (p
             marginRight: 16
           }}>
             <Avatar
-              shape="square"
               size="large"
               src={props.avater}
               style={{

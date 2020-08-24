@@ -7,14 +7,14 @@
  */
 
 import {MenuRouterConfig} from "./config";
-import {COMMON_PROBLEM_SET_MENU} from "./commonProblemSetMenu";
+import {MAIN_MENU} from "./mainMenu";
 
 export const COMMON_MENUS: MenuRouterConfig[] = [
   {
     key: "/landing",
     component: "Landing",
     title: "着陆页",
-    path: "/",
+    path: "/landing",
   },
   {
     key: "/login",
@@ -22,5 +22,17 @@ export const COMMON_MENUS: MenuRouterConfig[] = [
     title: "用户登录",
     path: "/login",
   },
-  COMMON_PROBLEM_SET_MENU
+  {
+    key: "/home",
+    component: "Home",
+    title: "首页",
+    path: "/home",
+  },
+  {
+    key: "/profile",
+    component: "Profile",
+    title: "我的",
+    path: "/profile",
+  },
+  ...MAIN_MENU
 ]

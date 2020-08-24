@@ -9,22 +9,39 @@
 
 import {useEffect, useState} from "react";
 import {UserInfo} from "../models/user";
-import {clearStorage, getUserInfoFromStorage} from "../utils/dataPersistence";
+import {clearStorage, getUserInfoFromStorage, saveUserInfo} from "../utils/dataPersistence";
+import {getUserInfo} from "../network/userRequest";
 
 export const UserInfoState = () => {
   useEffect(() => {
-    setUserInfo(getUserInfoFromStorage());
+    fetchUserInfo();
   }, []);
 
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
+
+  // 获取用户信息
+  const fetchUserInfo = () => {
+    const data = getUserInfoFromStorage();
+    setUserInfo(data);
+  }
 
   // 移除用户
   const removeUserInfo = () => {
     clearStorage();
   }
 
+  // 重置用户
+  const resetUserInfo = () => {
+    clearStorage();
+    getUserInfo().then(res => {
+      saveUserInfo(res.data);
+      fetchUserInfo();
+    })
+  }
+
   return {
     userInfo,
-    removeUserInfo
+    removeUserInfo,
+    resetUserInfo
   }
 }

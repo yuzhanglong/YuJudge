@@ -21,7 +21,8 @@ interface LineChartProps {
   title?: string;
   isTime?: boolean;
   guideLine?: GuideLineConfig[];
-  seriesField?:string;
+  seriesField?: string;
+  mask?: string;
 }
 
 const LineChart: React.FunctionComponent<LineChartProps> = (props) => {
@@ -90,7 +91,7 @@ const LineChart: React.FunctionComponent<LineChartProps> = (props) => {
         offset: 12,
       },
       type: props.isTime ? "time" : "linear",
-      mask: props.isTime ? DEFAULT_DATE_TIME_FORMAT : undefined
+      mask: props.mask || (props.isTime ? DEFAULT_DATE_TIME_FORMAT : undefined)
     },
     guideLine: props.guideLine
   };

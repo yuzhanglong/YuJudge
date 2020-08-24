@@ -7,6 +7,7 @@
  */
 
 import {AxiosResponse} from "axios";
+import {SubmissionCountInfo} from "./submission";
 
 // 服务端基础响应内容
 export interface BaseResponse extends AxiosResponse {
@@ -22,4 +23,13 @@ export interface BaseResponse extends AxiosResponse {
 // 上传凭证响应
 export interface UploadTokenData {
   uploadToken: string;
+}
+
+export interface GlobalCount {
+  problemAmount: number;
+  problemSetAmount: number;
+  submissionAmount: number;
+  userAmount: number;
+  judgeHostAmount: number;
+  recentSubmission: SubmissionCountInfo[];
 }

@@ -15,9 +15,10 @@ import {
   FileTextTwoTone,
   SettingTwoTone
 } from "@ant-design/icons/lib";
+import {GlobalCount} from "../../../models/common";
 
 interface headCardGroupProps {
-
+  globalCount: GlobalCount;
 }
 
 const HeadCardGroup: React.FunctionComponent<headCardGroupProps> = (props) => {
@@ -28,19 +29,19 @@ const HeadCardGroup: React.FunctionComponent<headCardGroupProps> = (props) => {
           <HeadCardItem
             icon={<CalculatorTwoTone twoToneColor={"#2f54eb"}/>}
             topic={"问题总数"}
-            content={"10"}/>
+            content={props.globalCount.problemAmount.toString()}/>
         </Col>
         <Col span={6}>
           <HeadCardItem
             icon={<FileTextTwoTone twoToneColor={"#13c2c2"}/>}
             topic={"提交总数"}
-            content={"1025"}/>
+            content={props.globalCount.submissionAmount.toString()}/>
         </Col>
         <Col span={6}>
           <HeadCardItem
             icon={<ContactsTwoTone twoToneColor={"#1890ff"}/>}
             topic={"用户人数"}
-            content={"50"}/>
+            content={props.globalCount.userAmount.toString()}/>
         </Col>
         <Col span={6}>
           <HeadCardItem
@@ -48,11 +49,12 @@ const HeadCardGroup: React.FunctionComponent<headCardGroupProps> = (props) => {
               <SettingTwoTone twoToneColor={"#722ed1"}/>
             }
             topic={"判题核心"}
-            content={"2"}/>
+            content={props.globalCount.judgeHostAmount.toString()}/>
         </Col>
       </Row>
     </div>
   )
 }
+
 
 export default HeadCardGroup;

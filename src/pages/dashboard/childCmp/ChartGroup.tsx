@@ -9,16 +9,15 @@
 import React from "react";
 import {Card, Col, Row} from "antd";
 import {DashOutlined} from "@ant-design/icons/lib";
-import LineChart from "../../../components/charts/LineChart";
 import ColumnChart from "../../../components/charts/ColumnChart";
 import {UserInfo} from "../../../models/user";
-import {UserJudgeResultCount, UserSubmissionCount} from "../../../models/submission";
-import JudgeResultCount from "../../../components/judgeResultCount/JudgeResultCount";
+import {SubmissionCountInfo, UserSubmissionCount} from "../../../models/submission";
+import SubmissionCount from "../../../components/submissionCount/SubmissionCount";
 
 interface ChartGroupProps {
   recentSubmission: UserSubmissionCount[];
-  judgeResultCount: UserJudgeResultCount[];
   userInfo: UserInfo | null;
+  globalSubmissionCount: SubmissionCountInfo[];
 }
 
 const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
@@ -68,8 +67,7 @@ const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
             </div>
           </Card>
         </Col>
-
-        <Col span={8}>
+        <Col span={16}>
           <Card
             type="inner"
             title="全站24小时提交"
@@ -78,21 +76,9 @@ const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
               <DashOutlined/>
             }>
             <div className={"chart-wrap"}>
-              <LineChart data={[]} xKey={"tmp"} yKey={"tmp2"}/>
-            </div>
-          </Card>
-        </Col>
-
-        <Col span={8}>
-          <Card
-            hoverable
-            type="inner"
-            title="个人数据"
-            extra={
-              <DashOutlined/>
-            }>
-            <div className={"chart-wrap"}>
-              <JudgeResultCount resultCounts={props.judgeResultCount}/>
+              <SubmissionCount
+                submissionCounts={props.globalSubmissionCount}
+                showPicker={false}/>
             </div>
           </Card>
         </Col>

@@ -50,7 +50,7 @@ const TableGroup: React.FunctionComponent<DashboardTableGroupProps> = (props) =>
               <DashOutlined/>
             }>
             <div className={"table-wrap"}>
-              <UserTable userInfo={props.userInfo}/>
+              <UserTable userInfo={props.userInfo} showRanking/>
             </div>
           </Card>
         </Col>

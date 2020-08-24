@@ -9,6 +9,7 @@
 import React from "react";
 import {Button, Checkbox, Col, DatePicker, Form, Input, Modal, Row, Space} from "antd";
 import Search from "antd/es/input/Search";
+import {PlusOutlined} from "@ant-design/icons/lib";
 
 const {RangePicker} = DatePicker;
 
@@ -64,7 +65,10 @@ const ProblemSetToolBar: React.FunctionComponent<ProblemSetManageToolsProps> = (
         </Col>
 
         <Col>
-          <Button type={"primary"} onClick={props.onCreateButtonClick}>
+          <Button
+            type={"primary"}
+            onClick={props.onCreateButtonClick}
+            icon={<PlusOutlined />}>
             创建题目集
           </Button>
         </Col>

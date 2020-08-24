@@ -18,11 +18,13 @@ import {
   RECENT_SUBMISSION_DATES_IN_DASHBOARD_AMOUNT
 } from "../../config/config";
 import {Problem} from "../../models/problem";
-import {getRecentSubmission, getUserJudgeResultCount} from "../../network/submissionRequest";
+import {getRecentSubmission} from "../../network/submissionRequest";
 import {getActiveUserInfo} from "../../network/userRequest";
 import moment from "moment";
 import {UserSubmissionCount} from "../../models/submission";
 import {UserInfoState} from "../../hooks/userInfo";
+import {GlobalCount} from "../../models/common";
+import {getGlobalCount} from "../../network/common";
 
 interface DashboardProps {
 
@@ -35,20 +37,27 @@ const Dashboard: React.FunctionComponent<DashboardProps> = (props) => {
   const [recentSubmissionCount, setRecentSubmissionCount] = useState<UserSubmissionCount[]>([]);
   // 活跃用户
   const [activeUserInfo, setActiveUserInfo] = useState([]);
-  // 用户提交统计
-  const [userJudgeResultCount, setUserJudgeResultCount] = useState();
   // 用户信息
   const userInfoState = UserInfoState();
+  // 全局统计
+  const [globalCount, setGlobalCount] = useState<GlobalCount>({
+    judgeHostAmount: 0,
+    problemAmount: 0,
+    problemSetAmount: 0,
+    submissionAmount: 0,
+    userAmount: 0,
+    recentSubmission: []
+  });
 
   useEffect(() => {
-    getRecentProblem();
-    getRecentSubmissionCount();
-    getRecentActiveUserInfo();
-    getUserJudgeResults();
+    getAndSetRecentProblem();
+    getAndSetRecentSubmissionCount();
+    getAndSetRecentActiveUserInfo();
+    getAndSetGlobalCount();
   }, []);
 
   // 获取最新问题
-  const getRecentProblem = () => {
+  const getAndSetRecentProblem = () => {
     getRecentProblems(RECENT_PROBLEM_IN_DASHBOARD_AMOUNT)
       .then(res => {
         setRecentProblems(res.data);
@@ -56,7 +65,7 @@ const Dashboard: React.FunctionComponent<DashboardProps> = (props) => {
   }
 
   // 获取最近提交统计信息
-  const getRecentSubmissionCount = () => {
+  const getAndSetRecentSubmissionCount = () => {
     const end = moment().add(1, "days").format(DEFAULT_DATE_TIME_FORMAT);
     // 默认提早七天
     const start = moment().add(
@@ -70,29 +79,29 @@ const Dashboard: React.FunctionComponent<DashboardProps> = (props) => {
   }
 
   // 获取最近活跃用户
-  const getRecentActiveUserInfo = () => {
+  const getAndSetRecentActiveUserInfo = () => {
     getActiveUserInfo(RECENT_ACTIVE_USER_IN_DASHBOARD_AMOUNT)
       .then(res => {
         setActiveUserInfo(res.data);
       })
   }
 
-  // 获取判题结果统计信息
-  const getUserJudgeResults = () => {
-    getUserJudgeResultCount()
+  // 获取全局统计信息
+  const getAndSetGlobalCount = () => {
+    getGlobalCount()
       .then(res => {
-        setUserJudgeResultCount(res.data);
+        setGlobalCount(res.data);
       })
   }
 
   return (
     <div className={"dashboard"}>
       <div className={"dashboard-head"}>
-        <HeadCardGroup></HeadCardGroup>
+        <HeadCardGroup globalCount={globalCount}/>
       </div>
       <div className={"dashboard-charts"}>
         <ChartGroup
-          judgeResultCount={userJudgeResultCount}
+          globalSubmissionCount={globalCount.recentSubmission}
           recentSubmission={recentSubmissionCount}
           userInfo={userInfoState.userInfo}/>
       </div>

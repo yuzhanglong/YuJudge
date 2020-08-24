@@ -10,7 +10,7 @@
 import React from "react";
 import {UserJudgeResultCount} from "../../models/submission";
 import PieChart from "../charts/PieChart";
-import {JUDGE_CONDITION_TAG_NAMES_CHINESE} from "../../common/judgeCondition";
+import {JUDGE_CONDITION_SIMPLE_NAME} from "../../common/judgeCondition";
 
 interface JudgeResultCountProps {
   resultCounts: UserJudgeResultCount[];
@@ -22,7 +22,7 @@ const JudgeResultCount: React.FunctionComponent<JudgeResultCountProps> = (props)
   const publishResultCounts = () => {
     return props.resultCounts.map(res => {
       return {
-        type: JUDGE_CONDITION_TAG_NAMES_CHINESE[res.type],
+        type: JUDGE_CONDITION_SIMPLE_NAME[res.type],
         amount: res.amount
       }
     })

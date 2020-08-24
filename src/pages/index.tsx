@@ -30,6 +30,8 @@ import UserManage from "./userManage/UserManage";
 import JudgeHostInspect from "./judgeHostInspect/JudgeHostInspect";
 import JudgeHostManage from "./judgeHostManage/JudgeHostManage";
 import ProblemSetCount from "./problemSetCount/ProblemSetCount";
+import Home from "./home/Home";
+import Profile from "./profile/Profile";
 
 export default {
   ProblemManage: ProblemManage,
@@ -53,5 +55,7 @@ export default {
   UserManage: UserManage,
   JudgeHostInspect: JudgeHostInspect,
   JudgeHostManage: JudgeHostManage,
-  ProblemSetCount: ProblemSetCount
+  ProblemSetCount: ProblemSetCount,
+  Home: Home,
+  Profile: Profile
 } as any;

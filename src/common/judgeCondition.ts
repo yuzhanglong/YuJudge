@@ -47,3 +47,15 @@ export const JUDGE_CONDITION_TAG_NAMES_CHINESE: { [key: string]: string; } = {
   [JudgeConditionEnum.RUNTIME_ERROR]: "运行错误",
   [JudgeConditionEnum.UNKNOWN_ERROR]: "未知错误"
 }
+
+
+export const JUDGE_CONDITION_SIMPLE_NAME: { [key: string]: string; } = {
+  [JudgeConditionEnum.ACCEPT]: "AC",
+  [JudgeConditionEnum.COMPILE_ERROR]: "CE",
+  [JudgeConditionEnum.WRONG_ANSWER]: "WA",
+  [JudgeConditionEnum.MEMORY_LIMIT_EXCEED]: "MLE",
+  [JudgeConditionEnum.TIME_LIMIT_EXCEEDED]: "TLE",
+  [JudgeConditionEnum.SEGMENTATION_FAULT]: "SF",
+  [JudgeConditionEnum.RUNTIME_ERROR]: "RE",
+  [JudgeConditionEnum.UNKNOWN_ERROR]: "UKE"
+}

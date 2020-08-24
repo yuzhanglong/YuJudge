@@ -7,9 +7,9 @@
  */
 
 import request, {REQUEST_TYPES} from "./request";
+import {getTokenFromStorage} from "../utils/dataPersistence";
 
 // 获取上传凭证
-// 通过id来获取problem的基本信息
 export const getUploadToken = () => {
   return request.get(
     "/common/upload_token",
@@ -18,3 +18,17 @@ export const getUploadToken = () => {
     }
   )
 }
+
+// 获取全局统计信息
+export const getGlobalCount = () => {
+  return request.get(
+    "/common/get_global_count",
+    {
+      headers: {
+        Authorization: getTokenFromStorage()
+      }
+    }
+  )
+}
+
+
