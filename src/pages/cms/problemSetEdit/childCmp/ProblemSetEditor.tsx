@@ -16,6 +16,7 @@ import BasicInfoEditor from "./BasicInfoEditor";
 import {ProblemSet} from "../../../../models/problemSet";
 import {dateRangeMomentArrayToTimeStampArray} from "../../../../utils/dateTime";
 import {updateProblemSetBasicInfo} from "../../../../network/problemSetRequest";
+import RcQueueAnim from "rc-queue-anim";
 
 interface ProblemSetEditorProps {
   problems: Problem[];
@@ -60,60 +61,63 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
 
   return (
     <Card title={"题目集编辑"}>
-      <Card
-        type="inner"
-        style={{marginTop: 10}}
-        title={
-          <div className={"cms-problem-editor-part"}>
-            基本信息
-          </div>
-        }>
-        <BasicInfoEditor
-          problemSet={props.problemSet}
-          onEditConfirm={onEditConfirm}/>
-      </Card>
+      <RcQueueAnim>
+        <Card
+          key={"problem-editor"}
+          type="inner"
+          style={{marginTop: 10}}
+          title={
+            <div>
+              基本信息
+            </div>
+          }>
+          <BasicInfoEditor
+            problemSet={props.problemSet}
+            onEditConfirm={onEditConfirm}/>
+        </Card>
 
-      <Card
-        type="inner"
-        style={{marginTop: 10}}
-        title={<div className={"cms-problem-editor-part"}>拥有的题目</div>}
-        extra={
-          <Button type={"link"} onClick={() => props.onProblemAdd()}>
-            添加已有问题
-          </Button>
-        }>
-        <ProblemTable
-          tableSize={'small'}
-          totalPage={props.problemSetProblemsTotalPage}
-          onPageChange={props.onPageChange}
-          problems={props.problems}
-          onProblemEdit={gotoEditProblem}
-          otherOperations={(content: any) => (
-            <Popconfirm
-              title="你确定要从题目集中移除这个题目吗"
-              okText="确定"
-              cancelText="取消"
-              onConfirm={() => onRemoveButtonClick(content)}>
-              <Button type={"link"} danger>
-                从题目集中移除
-              </Button>
-            </Popconfirm>
+        <Card
+          type="inner"
+          style={{marginTop: 10}}
+          title={<div>拥有的题目</div>}
+          extra={
+            <Button type={"link"} onClick={() => props.onProblemAdd()}>
+              添加已有问题
+            </Button>
+          }>
+          <ProblemTable
+            tableSize={'small'}
+            totalPage={props.problemSetProblemsTotalPage}
+            onPageChange={props.onPageChange}
+            problems={props.problems}
+            onProblemEdit={gotoEditProblem}
+            otherOperations={(content: any) => (
+              <Popconfirm
+                title="你确定要从题目集中移除这个题目吗"
+                okText="确定"
+                cancelText="取消"
+                onConfirm={() => onRemoveButtonClick(content)}>
+                <Button type={"link"} danger>
+                  从题目集中移除
+                </Button>
+              </Popconfirm>
 
-          )}/>
-      </Card>
+            )}/>
+        </Card>
 
-      <Card
-        type="inner"
-        style={{marginTop: 10}}
-        title={<div className={"cms-problem-editor-part-danger"}>危险项</div>}>
-        <EditorTip
-          title={"删除这个题目集"}
-          content={"此操作不可恢复，注意: 与它相关联的题目不会被删除"}>
-          <Button danger>
-            删除
-          </Button>
-        </EditorTip>
-      </Card>
+        <Card
+          type="inner"
+          style={{marginTop: 10}}
+          title={<div>危险项</div>}>
+          <EditorTip
+            title={"删除这个题目集"}
+            content={"此操作不可恢复，注意: 与它相关联的题目不会被删除"}>
+            <Button danger>
+              删除
+            </Button>
+          </EditorTip>
+        </Card>
+      </RcQueueAnim>
     </Card>
   )
 }

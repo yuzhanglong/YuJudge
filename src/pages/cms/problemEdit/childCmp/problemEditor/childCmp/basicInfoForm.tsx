@@ -12,10 +12,10 @@ import {Problem} from "../../../../../../models/problem";
 import TagGroup from "../../../../../../components/tagGroup/TagGroup";
 import {editProblemBasicInfo} from "../../../../../../network/problemRequests";
 import style from "../../../problemEdit.module.scss";
-import {Editor, EditorState} from "react-draft-wysiwyg";
-import {convertToRaw} from "draft-js";
-import draftToMarkdown from "draftjs-to-markdown";
-
+import {Editor} from "react-draft-wysiwyg";
+import {ContentState, convertFromRaw, convertToRaw, EditorState} from "draft-js";
+import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
 interface BasicInfoFormProps {
   problem: Problem;
 }
@@ -34,6 +34,19 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
   }, [form, props.problem]);
 
 
+  useEffect(() => {
+    if (props.problem.content != null) {
+      const draft = htmlToDraft(props.problem.content);
+      if (draft) {
+        const contentState = ContentState.createFromBlockArray(draft.contentBlocks);
+        const editorState = EditorState.createWithContent(contentState);
+        setEditorState(editorState);
+      }
+
+    }
+  }, [props.problem])
+
+
   // 标签删除
   const onTagRemove = (index: number) => {
     let tmp = [];
@@ -45,7 +58,7 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
   // 保存修改
   const onSaveButtonClick = () => {
     if (editorState) {
-      const content = draftToMarkdown(convertToRaw(editorState.getCurrentContent()));
+      const content = draftToHtml(convertToRaw(editorState.getCurrentContent()));
       form.validateFields()
         .then(res => {
           let requestBody: Problem = {

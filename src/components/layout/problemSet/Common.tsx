@@ -10,6 +10,7 @@ import React from "react";
 import {Affix, Layout} from "antd";
 import CommonMenu from "./childCmp/CommonMenu";
 import {RouteComponentProps} from "react-router-dom";
+import RcQueueAnim from "rc-queue-anim";
 
 interface ProblemLayoutProps {
   children: React.ReactNode;
@@ -24,8 +25,12 @@ const Common: React.FunctionComponent<ProblemLayoutProps & RouteComponentProps> 
           <CommonMenu {...props}/>
         </div>
       </Affix>
-      <div>
-        {props.children}
+      <div key={new Date().getTime()}>
+        <RcQueueAnim type={"bottom"}>
+          <div key={"content"}>
+            {props.children}
+          </div>
+        </RcQueueAnim>
       </div>
 
     </Layout>

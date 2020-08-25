@@ -1800,6 +1800,13 @@
     "@types/react" "*"
     immutable "~3.7.4"
 
+"@types/draftjs-to-html@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.npm.taobao.org/@types/draftjs-to-html/download/@types/draftjs-to-html-0.8.0.tgz#17b1c3f19847710e52367277578a6c50e311c87a"
+  integrity sha1-F7HD8ZhHcQ5SNnJ3V4psUOMRyHo=
+  dependencies:
+    "@types/draft-js" "*"
+
 "@types/eslint-visitor-keys@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@types/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#1ee30d79544ca84d68d4b3cdb0af4f205663dd2d"
@@ -1823,6 +1830,13 @@
   version "4.7.6"
   resolved "https://registry.npm.taobao.org/@types/history/download/@types/history-4.7.6.tgz#ed8fc802c45b8e8f54419c2d054e55c9ea344356"
   integrity sha1-7Y/IAsRbjo9UQZwtBU5Vyeo0Q1Y=
+
+"@types/html-to-draftjs@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.npm.taobao.org/@types/html-to-draftjs/download/@types/html-to-draftjs-1.4.0.tgz#bfd712d3c5993e0644b76d2654adeae214678fae"
+  integrity sha1-v9cS08WZPgZEt20mVK3q4hRnj64=
+  dependencies:
+    "@types/draft-js" "*"
 
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0":
   version "2.0.1"
@@ -4483,10 +4497,10 @@ draft-js@^0.11.7:
     immutable "~3.7.4"
     object-assign "^4.1.1"
 
-draftjs-to-markdown@^0.6.0:
-  version "0.6.0"
-  resolved "https://registry.npm.taobao.org/draftjs-to-markdown/download/draftjs-to-markdown-0.6.0.tgz#78ec1850c909a8d97132c211dc4d52345c79cd90"
-  integrity sha1-eOwYUMkJqNlxMsIR3E1SNFx5zZA=
+draftjs-to-html@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.npm.taobao.org/draftjs-to-html/download/draftjs-to-html-0.9.1.tgz#1c870fbb588d2390204cb4d0ee7e04ad0c709969"
+  integrity sha1-HIcPu1iNI5AgTLTQ7n4ErQxwmWk=
 
 draftjs-utils@^0.10.2:
   version "0.10.2"
