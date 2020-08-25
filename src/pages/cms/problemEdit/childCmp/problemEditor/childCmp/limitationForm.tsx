@@ -10,6 +10,7 @@ import React, {useEffect} from "react";
 import {Form, Input, Button, message} from "antd";
 import {Problem} from "../../../../../../models/problem";
 import {editProblemLimitation} from "../../../../../../network/problemRequests";
+import style from "../../../problemEdit.module.scss"
 
 interface LimitationFormProps {
   onConfirmed?: () => void;
@@ -33,9 +34,7 @@ const LimitationForm: React.FunctionComponent<LimitationFormProps> = (props) => 
   };
 
   return (
-    <div className={"initial-form-wrap"} style={{
-      width: 450
-    }}>
+    <div className={style.problem_edit_limitation_form}>
       <Form form={form} onFinish={onFinish} initialValues={props.problem}>
         <Form.Item label="时间限制" name={"timeLimit"} rules={[
           {required: true, message: "请设置时间限制"}
@@ -53,9 +52,7 @@ const LimitationForm: React.FunctionComponent<LimitationFormProps> = (props) => 
           <Input placeholder="请设置输出限制" addonAfter={"Byte"}/>
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" style={{
-            marginTop: 13
-          }}>
+          <Button type="primary" htmlType="submit" style={{marginTop: 13}}>
             更新上述限制
           </Button>
         </Form.Item>

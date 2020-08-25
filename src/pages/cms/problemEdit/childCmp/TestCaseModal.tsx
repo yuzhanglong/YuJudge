@@ -68,6 +68,7 @@ const TestCaseModal: React.FunctionComponent<TestCaseModalProps> = (props) => {
       expectedStdOut: getFinalFileDownloadPath(stdOutFileData?.response.key),
       stdIn: getFinalFileDownloadPath(stdInFileData?.response.key)
     }
+
     createSolution(props.problemId, addSolutionForm)
       .then(() => {
         message.success("创建成功～");
@@ -150,7 +151,6 @@ const TestCaseModal: React.FunctionComponent<TestCaseModalProps> = (props) => {
               </Button>
             </Upload>
           </Form.Item>
-
         </Form>
       </Modal>
     </div>

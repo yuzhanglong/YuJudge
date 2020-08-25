@@ -1,22 +1,28 @@
+/*
+ * File: editorTip.tsx
+ * Description: 编辑功能描述小组件
+ * Created: 2020-8-25 15:33:26
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
 import React from "react";
-import classNames from "classnames";
+import style from "./editorTip.module.scss"
 
 interface EditorTipProps {
   title: string;
   content: string;
   children?: React.ReactNode;
-  className?: string;
 }
 
 const EditorTip: React.FunctionComponent<EditorTipProps> = (props) => {
-  const classes = classNames('cms-problem-editor-tip', props.className);
   return (
-    <div className={classes}>
-      <div className={"cms-problem-editor-tip-left"}>
-        <div className={"cms-problem-item-title"}>
+    <div className={style.editor_tip}>
+      <div>
+        <div className={style.editor_tip_item_title}>
           {props.title}
         </div>
-        <div className={"cms-problem-item-description"}>
+        <div className={style.editor_tip_item_description}>
           {props.content}
         </div>
       </div>

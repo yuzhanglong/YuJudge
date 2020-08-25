@@ -5,6 +5,9 @@ import LimitationForm from "./childCmp/limitationForm";
 import BasicInfoForm from "./childCmp/basicInfoForm";
 import DangerZoneForm from "./childCmp/dangerZoneForm";
 import TestCaseTable from "../../../../../components/testCaseTable/TestCaseTable";
+import style from "../../problemEdit.module.scss";
+
+
 
 interface ProblemEditorProps {
   problem: Problem;
@@ -37,53 +40,48 @@ const ProblemEditor: React.FunctionComponent<ProblemEditorProps> = (props) => {
   }
 
   return (
-    <>
-      <Card title="问题编辑">
-        <Card
-          type="inner"
-          style={{marginTop: 10}}
-          title={<div className={"cms-problem-editor-part"}>基本信息</div>}>
-          <BasicInfoForm problem={props.problem}/>
-        </Card>
-        <Card
-          type="inner"
-          style={{marginTop: 30}}
-          title={
-            <div className={"cms-problem-editor-part"}>
-              提交限制
-            </div>
-          }>
-          <LimitationForm problem={props.problem}/>
-        </Card>
-        <Card
-          style={{marginTop: 30}}
-          type="inner"
-          title={
-            <div className={"cms-problem-editor-part"}>
-              测试点
-            </div>
-          } extra={
-          <Button type={"link"} onClick={props.onSolutionAdd}>
-            添加测试点
-          </Button>
+    <Card title="问题编辑">
+      <Card
+        className={style.cms_problem_edit_item}
+        title={
+          <div className={style.cms_problem_edit_item_title}>
+            基本信息
+          </div>
         }>
-          <TestCaseTable
-            testCases={props.solutions}
-            operations={renderTestCaseTableOperations}
-            showDownLoadUrlColumn/>
-        </Card>
-        <Card
-          style={{marginTop: 30}}
-          type="inner"
-          title={
-            <div className={"cms-problem-editor-part-danger"}>
-              危险项
-            </div>
-          }>
-          <DangerZoneForm problem={props.problem}/>
-        </Card>
+        <BasicInfoForm problem={props.problem}/>
       </Card>
-    </>
+      <Card
+        type="inner"
+        className={style.cms_problem_edit_item}
+        title={
+          <div className={style.cms_problem_edit_item_title}>
+            提交限制
+          </div>
+        }>
+        <LimitationForm problem={props.problem}/>
+      </Card>
+      <Card
+        className={style.cms_problem_edit_item}
+        title={
+          <div className={style.cms_problem_edit_item_title}>
+            测试点
+          </div>
+        } extra={
+        <Button type={"link"} onClick={props.onSolutionAdd}>
+          添加测试点
+        </Button>
+      }>
+        <TestCaseTable
+          testCases={props.solutions}
+          operations={renderTestCaseTableOperations}
+          showDownLoadUrlColumn/>
+      </Card>
+      <Card
+        className={style.cms_problem_edit_item}
+        title={<div className={style.cms_problem_edit_item_title_danger}>危险项</div>}>
+        <DangerZoneForm problem={props.problem}/>
+      </Card>
+    </Card>
   );
 }
 

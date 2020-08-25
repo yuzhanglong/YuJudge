@@ -44,7 +44,7 @@ const ShowTestCase: React.FunctionComponent<ShowTestCaseProps> = (props) => {
       if (res && res.message) {
         return (
           <Tooltip title={renderTestCaseTagTip(res, index)}>
-            <Tag key={res.stderrPath} color={JUDGE_CONDITION_COLORS[res.message]}>
+            <Tag key={res.stdinPath} color={JUDGE_CONDITION_COLORS[res.message]}>
               {JUDGE_CONDITION_SIMPLE_NAME[res.message]}
             </Tag>
           </Tooltip>

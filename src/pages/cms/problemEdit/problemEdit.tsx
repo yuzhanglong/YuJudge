@@ -106,7 +106,7 @@ const ProblemEdit: React.FunctionComponent<ProblemEditProps & RouteComponentProp
   }
 
   return (
-    <div className={"problem-edit-page"}>
+    <div>
       <TestCaseModal
         problemId={problemId}
         onConfirmed={() => onTestCaseAddSuccess()}

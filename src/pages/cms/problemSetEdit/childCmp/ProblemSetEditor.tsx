@@ -108,8 +108,7 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
         title={<div className={"cms-problem-editor-part-danger"}>危险项</div>}>
         <EditorTip
           title={"删除这个题目集"}
-          content={"此操作不可恢复，注意: 与它相关联的题目不会被删除"}
-          className={"cms-problem-item-begin"}>
+          content={"此操作不可恢复，注意: 与它相关联的题目不会被删除"}>
           <Button danger>
             删除
           </Button>

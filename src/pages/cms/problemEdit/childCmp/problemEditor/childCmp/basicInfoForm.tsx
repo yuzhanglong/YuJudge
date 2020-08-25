@@ -1,8 +1,20 @@
+/*
+ * File: basicInfoForm.tsx
+ * Description: 题目基本信息表单
+ * Created: 2020-8-25 15:43:31
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
 import React, {useEffect, useState} from "react";
 import {Button, Form, Input} from "antd";
 import {Problem} from "../../../../../../models/problem";
 import TagGroup from "../../../../../../components/tagGroup/TagGroup";
 import {editProblemBasicInfo} from "../../../../../../network/problemRequests";
+import style from "../../../problemEdit.module.scss";
+import {Editor, EditorState} from "react-draft-wysiwyg";
+import {convertToRaw} from "draft-js";
+import draftToMarkdown from "draftjs-to-markdown";
 
 interface BasicInfoFormProps {
   problem: Problem;
@@ -10,37 +22,17 @@ interface BasicInfoFormProps {
 
 const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
   const [form] = Form.useForm();
-  const [content, setContent] = useState<string>("");
+  // 当前标签
   const [currentTags, setCurrentTags] = useState<string[]>([]);
+  // 编辑器状态
+  const [editorState, setEditorState] = useState<EditorState>();
 
 
   useEffect(() => {
     form.setFieldsValue(props.problem);
     setCurrentTags(props.problem.characterTags || []);
-    setContent(props.problem.content || "");
   }, [form, props.problem]);
 
-
-  // markdown内容被改变
-  const onMarkdownChange = (event: any) => {
-    setContent(event);
-  }
-
-  // 表单确认
-  const onFinish = (res: any) => {
-    console.log(currentTags);
-    console.log(content);
-    let requestBody: Problem = {
-      characterTags: currentTags,
-      content: content,
-      name: res.name,
-      id: props.problem.id
-    }
-    editProblemBasicInfo(requestBody)
-      .then(res => {
-        console.log(res);
-      });
-  }
 
   // 标签删除
   const onTagRemove = (index: number) => {
@@ -50,13 +42,34 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
     setCurrentTags(tmp);
   }
 
+  // 保存修改
+  const onSaveButtonClick = () => {
+    if (editorState) {
+      const content = draftToMarkdown(convertToRaw(editorState.getCurrentContent()));
+      form.validateFields()
+        .then(res => {
+          let requestBody: Problem = {
+            characterTags: currentTags,
+            content: content,
+            name: res.name,
+            id: props.problem.id
+          }
+          editProblemBasicInfo(requestBody)
+            .then(res => {
+              console.log(res);
+            });
+        })
+        .catch(() => {
+        })
+    }
+  }
+
   return (
-    <div className={"cms-problem-editor-basic-info-wrap"}>
-      <div className={"cms-problem-editor-basic-info-form"}>
+    <div className={style.problem_edit_basic_info_wrap}>
+      <div className={style.problem_edit_basic_info_form}>
         <Form
           layout={"vertical"}
-          form={form}
-          onFinish={onFinish}>
+          form={form}>
           <Form.Item
             label="题目名称"
             name={"name"}>
@@ -72,21 +85,24 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
               onTagRemove={onTagRemove}
               isRefuseLastTagClose/>
           </Form.Item>
-          <Form.Item
-            label="题目内容">
-            {/*<Editor*/}
-            {/*  wrapperClassName="demo-wrapper"*/}
-            {/*  editorClassName="demo-editor"*/}
-            {/*/>*/}
-          </Form.Item>
-
-          <Form.Item>
-            <Button type="primary" htmlType="submit">
-              保存修改
-            </Button>
-          </Form.Item>
         </Form>
       </div>
+      <Editor
+        editorState={editorState}
+        wrapperClassName={style.problem_edit_content_editor}
+        editorClassName={style.problem_edit_content_editor_body}
+        onEditorStateChange={(state) => {
+          setEditorState(state);
+        }}
+      />
+      <Button
+        type="primary"
+        style={{
+          marginTop: 20
+        }}
+        onClick={() => onSaveButtonClick()}>
+        保存修改
+      </Button>
     </div>
   );
 }

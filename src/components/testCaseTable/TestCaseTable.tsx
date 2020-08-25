@@ -52,6 +52,7 @@ const TestCaseTable: React.FunctionComponent<TestCaseTableProps> = (props) => {
 
   return (
     <Table
+      pagination={false}
       dataSource={props.testCases}
       rowKey={"id"}>
       <Column

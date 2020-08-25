@@ -1,0 +1,67 @@
+/*
+ * File: problemEdit.module.scss
+ * Description: 题目编辑页样式
+ * Created: 2020-8-25 15:35:48
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+
+// 每一块编辑组的卡片标题
+$card-title-font-size: 18px;
+$card-title-font-weight: bold;
+$card-item-spacing: 30px;
+$form-width: 550px;
+
+.cms_problem_edit_item {
+  margin-bottom: $card-item-spacing;
+}
+
+.cms_problem_edit_item_title {
+  font-weight: $card-title-font-weight;
+  font-size: $card-title-font-size;
+}
+
+.cms_problem_edit_item_title_danger {
+  color: #ff4d4f;
+  font-weight: $card-title-font-weight;
+  font-size: $card-title-font-size;
+}
+
+.cms-problem-item-begin {
+  padding-top: 8px;
+}
+
+.cms-problem-editor-test-case-card-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 550px;
+  height: auto;
+}
+
+.problem_edit_limitation_form {
+  width: $form-width;
+  padding-top: 20px;
+}
+
+
+.problem_edit_basic_info_form {
+  width: $form-width;
+  padding-right: 20px;
+}
+
+.problem_edit_basic_info_wrap {
+
+}
+
+.problem_edit_content_editor {
+  max-width: 1150px;
+}
+
+.problem_edit_content_editor_body {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.05);
+  min-height: 300px;
+  padding-left: 10px;
+  padding-right: 10px;
+}

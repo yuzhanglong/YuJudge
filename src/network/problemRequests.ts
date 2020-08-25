@@ -56,18 +56,6 @@ export function getSolutionByProblemId(problemId: number) {
   )
 }
 
-
-// 关闭某个problem
-export const closeProblem = (problemId: number) => {
-  return request.get(
-    "/problem/close_problem/" + problemId,
-    {
-      method: REQUEST_TYPES.GET
-    }
-  )
-}
-
-
 // 设置限制
 export const setLimitations = (problemId: number, limitation: ProblemLimitation) => {
   return request.post(

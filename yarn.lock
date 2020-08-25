@@ -4483,6 +4483,11 @@ draft-js@^0.11.7:
     immutable "~3.7.4"
     object-assign "^4.1.1"
 
+draftjs-to-markdown@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.npm.taobao.org/draftjs-to-markdown/download/draftjs-to-markdown-0.6.0.tgz#78ec1850c909a8d97132c211dc4d52345c79cd90"
+  integrity sha1-eOwYUMkJqNlxMsIR3E1SNFx5zZA=
+
 draftjs-utils@^0.10.2:
   version "0.10.2"
   resolved "https://registry.npm.taobao.org/draftjs-utils/download/draftjs-utils-0.10.2.tgz#a7f16d2c1c174ac38ba3bbf700c256f176b2699c"
