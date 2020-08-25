@@ -37,6 +37,7 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
   useEffect(() => {
     getUserInfo(PAGE_BEGIN - 1, activeUserGroup);
     getAndSetUserGroup();
+    // eslint-disable-next-line
   }, []);
 
   // 获取可供选择的用户组

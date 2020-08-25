@@ -26,6 +26,7 @@ import {UserInfoState} from "../../../hooks/userInfo";
 import {GlobalCount} from "../../../models/common";
 import {getGlobalCount} from "../../../network/common";
 import styles from "./dashboard.module.scss";
+import RcQueueAnim from "rc-queue-anim";
 
 interface DashboardProps {
 
@@ -97,20 +98,22 @@ const Dashboard: React.FunctionComponent<DashboardProps> = () => {
 
   return (
     <div className={styles.dashboard}>
-      <div className={styles.dashboard_cards}>
-        <HeadCardGroup globalCount={globalCount}/>
-      </div>
-      <div className={styles.dashboard_charts}>
-        <ChartGroup
-          globalSubmissionCount={globalCount.recentSubmission}
-          recentSubmission={recentSubmissionCount}
-          userInfo={userInfoState.userInfo}/>
-      </div>
-      <div className={styles.dashboard_tables}>
-        <TableGroup
-          problems={recentProblems}
-          userInfo={activeUserInfo}/>
-      </div>
+      <RcQueueAnim>
+        <div className={styles.dashboard_cards} key={"cards"}>
+          <HeadCardGroup globalCount={globalCount}/>
+        </div>
+        <div className={styles.dashboard_charts} key={"charts"}>
+          <ChartGroup
+            globalSubmissionCount={globalCount.recentSubmission}
+            recentSubmission={recentSubmissionCount}
+            userInfo={userInfoState.userInfo}/>
+        </div>
+        <div className={styles.dashboard_tables} key={"tables"}>
+          <TableGroup
+            problems={recentProblems}
+            userInfo={activeUserInfo}/>
+        </div>
+      </RcQueueAnim>
     </div>
   )
 }

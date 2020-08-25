@@ -14,6 +14,7 @@ import routerConfig from "../../../router/config";
 import Breadcrumb from "./childCmp/Breadcrumb";
 import {RouteComponentProps} from "react-router-dom";
 import CMSHeader from "./childCmp/CMSHeader";
+import RcQueueAnim from "rc-queue-anim";
 
 const {Content, Sider} = Layout;
 
@@ -47,15 +48,17 @@ const CMSLayout: React.FunctionComponent<CMSLayoutProps & RouteComponentProps> =
       </Sider>
       <Layout className="site-layout" style={{marginLeft: 230}}>
         <CMSHeader {...props}/>
-        <Content className={"site-layout-content"}>
-          <div key={"Breadcrumb"}>
-            <Breadcrumb/>
-          </div>
-          <div>
-            <div>
-              {props.children}
+        <Content className={"site-layout-content"} key={new Date().getTime()}>
+          <RcQueueAnim>
+            <div key={"Breadcrumb"}>
+              <Breadcrumb/>
             </div>
-          </div>
+            <div key={"content"}>
+              <div>
+                {props.children}
+              </div>
+            </div>
+          </RcQueueAnim>
         </Content>
       </Layout>
     </Layout>

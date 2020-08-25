@@ -6,13 +6,13 @@
  * Email: yuzl1123@163.com
  */
 
-import ProblemSetManage from "./problemSetManage/ProblemSetManage";
-import ProblemManage from "./problemManage/ProblemManage";
-import ProblemEdit from "./problemEdit/problemEdit";
-import Login from "./login/Login";
-import Landing from "./landing/Landing";
+import ProblemSetManage from "./cms/problemSetManage/ProblemSetManage";
+import ProblemManage from "./cms/problemManage/ProblemManage";
+import ProblemEdit from "./cms/problemEdit/problemEdit";
+import Login from "./common/login/Login";
+import Landing from "./common/landing/Landing";
 import Dashboard from "./cms/dashboard/Dashboard";
-import ProblemHome from "./problemHome/ProblemHome";
+import ProblemHome from "./common/problemHome/ProblemHome";
 import {
   DashboardOutlined,
   UserOutlined,
@@ -20,19 +20,19 @@ import {
   CloudServerOutlined,
   SettingOutlined
 } from "@ant-design/icons/lib";
-import ProblemSetEdit from "./problemSetEdit/ProblemSetEdit";
+import ProblemSetEdit from "./cms/problemSetEdit/ProblemSetEdit";
 import Common from "../components/layout/problemSet/Common";
-import ScoreBoard from "./scoreBoard/ScoreBoard";
-import ProblemSetProblems from "./problemSetProblems/ProblemSetProblems";
-import ProblemSetHome from "./problemSetHome/ProblemSetHome";
-import UserGroupManage from "./userGroupManage/UserGroupManage";
+import ScoreBoard from "./common/scoreBoard/ScoreBoard";
+import ProblemSetProblems from "./common/problemSetProblems/ProblemSetProblems";
+import ProblemSetHome from "./common/problemSetHome/ProblemSetHome";
+import UserGroupManage from "./cms/userGroupManage/UserGroupManage";
 import UserManage from "./cms/userManage/UserManage";
-import JudgeHostInspect from "./judgeHostInspect/JudgeHostInspect";
-import JudgeHostManage from "./judgeHostManage/JudgeHostManage";
-import ProblemSetCount from "./problemSetCount/ProblemSetCount";
-import Home from "./home/Home";
-import Profile from "./profile/Profile";
-import ProblemSets from "./problemSets/ProblemSets";
+import JudgeHostInspect from "./cms/judgeHostInspect/JudgeHostInspect";
+import JudgeHostManage from "./cms/judgeHostManage/JudgeHostManage";
+import ProblemSetCount from "./common/problemSetCount/ProblemSetCount";
+import Home from "./common/home/Home";
+import Profile from "./common/profile/Profile";
+import ProblemSets from "./common/problemSets/ProblemSets";
 
 export default {
   ProblemManage: ProblemManage,

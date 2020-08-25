@@ -1,7 +1,6 @@
-@import "ProblemManage/problemManage";
-@import "problemHome/problemHome";
-@import "landing/landing";
-@import "login/loginPage";
+@import "common/problemHome/problemHome";
+@import "common/landing/landing";
+@import "common/login/loginPage";
 @import "cms/dashboard/dashboard.module";
-@import "problemSetManage/problemSetManage";
-@import "problemSetHome/problemSetHome";
+@import "cms/problemSetManage/problemSetManage";
+@import "common/problemSetHome/problemSetHome";
