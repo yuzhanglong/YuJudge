@@ -11,6 +11,7 @@ import {Col, Menu, Row} from "antd";
 import {Link, RouteComponentProps} from "react-router-dom";
 import {UserInfoState} from "../../../../hooks/userInfo";
 import UserTag from "../../../userTag/UserTag";
+import {HomeOutlined, QuestionCircleOutlined, SnippetsOutlined} from "@ant-design/icons/lib";
 
 interface CommonMenuProps {
 
@@ -26,15 +27,21 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
         <Col>
           <Menu mode="horizontal" activeKey={props.location.pathname}>
 
-            <Menu.Item key="/common/home">
+            <Menu.Item key="/common/home" icon={<HomeOutlined />}>
               <Link to={`/common/home`}>
                 <span className="nav-text">首页</span>
               </Link>
             </Menu.Item>
 
-            <Menu.Item key="/common/problem_sets">
+            <Menu.Item key="/common/problem_sets" icon={<SnippetsOutlined />}>
               <Link to={`/common/problem_sets`}>
                 <span className="nav-text">题目集</span>
+              </Link>
+            </Menu.Item>
+
+            <Menu.Item icon={<QuestionCircleOutlined />}>
+              <Link to={`/`}>
+                <span className="nav-text">问题</span>
               </Link>
             </Menu.Item>
           </Menu>

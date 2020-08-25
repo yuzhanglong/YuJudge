@@ -7,13 +7,13 @@
  */
 
 import React, {useEffect, useState} from "react";
-import {Button, Form, Input} from "antd";
+import {Button, Form, Input, message} from "antd";
 import {Problem} from "../../../../../../models/problem";
 import TagGroup from "../../../../../../components/tagGroup/TagGroup";
 import {editProblemBasicInfo} from "../../../../../../network/problemRequests";
 import style from "../../../problemEdit.module.scss";
 import {Editor} from "react-draft-wysiwyg";
-import {ContentState, convertFromRaw, convertToRaw, EditorState} from "draft-js";
+import {ContentState, convertToRaw, EditorState} from "draft-js";
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 interface BasicInfoFormProps {
@@ -69,7 +69,7 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
           }
           editProblemBasicInfo(requestBody)
             .then(res => {
-              console.log(res);
+              message.success("保存成功~");
             });
         })
         .catch(() => {

@@ -16,6 +16,7 @@
   overflow-y: scroll;
 }
 
+
 .problem-show {
   display: flex;
   width: 100%;
@@ -40,11 +41,11 @@
 
 @keyframes loading {
   0% {
-    background-position: -35px 0
+    background-position: -35px 0;
   }
 
   100% {
-    background-position: 35px 0
+    background-position: 35px 0;
   }
 }
 

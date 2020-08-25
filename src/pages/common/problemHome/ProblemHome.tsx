@@ -7,9 +7,7 @@
  */
 
 import React, {useEffect, useState} from "react";
-import {Card, Col, Layout, message, Row, Tabs} from "antd";
-import {UnControlled as CodeMirror} from 'react-codemirror2'
-import ReactMarkdown from "react-markdown";
+import {Card, Col, Empty, Layout, message, Row, Tabs} from "antd";
 import {RouteComponentProps} from "react-router-dom";
 import {Problem} from "../../../models/problem";
 import {getProblemDetailedById} from "../../../network/problemRequests";
@@ -25,6 +23,8 @@ import {getCodeFromStorage, saveCode} from "../../../utils/dataPersistence";
 import {ProblemHoneTabKeyEnum} from "../../../common/enumerations";
 import {getProblemSetInfo} from "../../../network/problemSetRequest";
 import {ProblemSet} from "../../../models/problemSet";
+import MonacoEditor from 'react-monaco-editor';
+import 'monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution';
 
 interface ProblemShowProps {
 
@@ -194,15 +194,20 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
                 <Tabs.TabPane
                   tab={<span><FormOutlined/>问题</span>}
                   key={ProblemHoneTabKeyEnum.PROBLEM}>
-                  <div className={"problem-show-content-wrap"}>
-                    <ReactMarkdown source={problem.content}></ReactMarkdown>
+                  <div className={"problem-show-content-wrap"}
+                       dangerouslySetInnerHTML={{
+                         __html: problem.content || ""
+                       }}>
+
                   </div>
                 </Tabs.TabPane>
                 <Tabs.TabPane
                   tab={<span><ExperimentOutlined/>题解</span>}
                   key={ProblemHoneTabKeyEnum.SOLUTION}>
                   <div className={"problem-show-content-wrap"}>
-                    题解区域
+                    <Empty style={{
+                      marginTop: "30vh"
+                    }}></Empty>
                   </div>
                 </Tabs.TabPane>
                 <Tabs.TabPane
@@ -235,13 +240,18 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
                     allowedLanguage={problemSetInfo?.allowedLanguage || []}/>
                 </Row>
               </div>
-              <CodeMirror
-                value={codeContent}
-                options={{lineNumbers: true}}
-                className={"problem-show-code-mirror"}
-                onChange={
-                  (editor, data, value) => onEditorChange(value)
-                }/>
+              {/*<CodeMirror*/}
+              {/*  value={codeContent}*/}
+              {/*  options={{lineNumbers: true}}*/}
+              {/*  className={"problem-show-code-mirror"}*/}
+              {/*  onChange={*/}
+              {/*    (editor, data, value) => onEditorChange(value)*/}
+              {/*  }/>*/}
+              <MonacoEditor
+                width="800"
+                height="600"
+                language="javascript"
+              />
               <div className={"problem-tool-bar-wrap"}>
                 <SubmitToolBar
                   onSubmit={onSubmitButtonClick}

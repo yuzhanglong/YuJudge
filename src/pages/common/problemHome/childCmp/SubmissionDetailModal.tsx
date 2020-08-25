@@ -1,3 +1,12 @@
+/*
+ * File: SubmissionDetailModal.tsx
+ * Description: 提交详情对话框
+ * Created: 2020-8-25 22:41:21
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+
 import React from "react";
 import {Modal, Descriptions} from "antd";
 import {SubmissionDetail} from "../../../../models/submission";
@@ -46,7 +55,6 @@ const SubmissionDetailModal: React.FunctionComponent<SubmissionDetailModalProps>
       }
     }
 
-
     return (
       <TextArea
         value={compilerStdOut}
@@ -61,11 +69,13 @@ const SubmissionDetailModal: React.FunctionComponent<SubmissionDetailModalProps>
 
   return (
     <div className={"submission-detail-modal"}>
-      <Modal title="查看提交"
-             visible={props.isVisible}
-             onCancel={props.onClose}
-             footer={null}
-             width={950}>
+      <Modal
+        destroyOnClose
+        title="查看提交"
+        visible={props.isVisible}
+        onCancel={props.onClose}
+        footer={null}
+        width={950}>
         <Descriptions bordered column={2} size={"small"}>
           <Descriptions.Item label="提交时间" span={1}>
             {renderCreateTime(props.submission.createTime)}
@@ -92,7 +102,8 @@ const SubmissionDetailModal: React.FunctionComponent<SubmissionDetailModalProps>
           </Descriptions.Item>
           <Descriptions.Item label={"测试点"}
                              span={2}>
-            {props.submission.judgeResult.judgeResults && <ShowTestCase testCases={props.submission.judgeResult.judgeResults}/>}
+            {props.submission.judgeResult.judgeResults &&
+            <ShowTestCase testCases={props.submission.judgeResult.judgeResults}/>}
           </Descriptions.Item>
           <Descriptions.Item label={"用户代码"}
                              span={2}>
