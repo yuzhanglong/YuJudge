@@ -83,7 +83,8 @@ export const getUsers = (params: UsersPaginationRequest) => {
       },
       params: {
         start: params.start,
-        count: params.count
+        count: params.count,
+        group: params.group
       }
     }
   )

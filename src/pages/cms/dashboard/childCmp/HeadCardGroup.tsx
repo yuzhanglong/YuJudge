@@ -15,7 +15,7 @@ import {
   FileTextTwoTone,
   SettingTwoTone
 } from "@ant-design/icons/lib";
-import {GlobalCount} from "../../../models/common";
+import {GlobalCount} from "../../../../models/common";
 
 interface headCardGroupProps {
   globalCount: GlobalCount;
@@ -45,9 +45,7 @@ const HeadCardGroup: React.FunctionComponent<headCardGroupProps> = (props) => {
         </Col>
         <Col span={6}>
           <HeadCardItem
-            icon={
-              <SettingTwoTone twoToneColor={"#722ed1"}/>
-            }
+            icon={<SettingTwoTone twoToneColor={"#722ed1"}/>}
             topic={"判题核心"}
             content={props.globalCount.judgeHostAmount.toString()}/>
         </Col>

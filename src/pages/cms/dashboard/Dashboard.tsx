@@ -10,27 +10,28 @@ import React, {useEffect, useState} from "react";
 import HeadCardGroup from "./childCmp/HeadCardGroup";
 import ChartGroup from "./childCmp/ChartGroup";
 import TableGroup from "./childCmp/TableGroup";
-import {getRecentProblems} from "../../network/problemRequests";
+import {getRecentProblems} from "../../../network/problemRequests";
 import {
   DEFAULT_DATE_TIME_FORMAT,
   RECENT_ACTIVE_USER_IN_DASHBOARD_AMOUNT,
   RECENT_PROBLEM_IN_DASHBOARD_AMOUNT,
   RECENT_SUBMISSION_DATES_IN_DASHBOARD_AMOUNT
-} from "../../config/config";
-import {Problem} from "../../models/problem";
-import {getRecentSubmission} from "../../network/submissionRequest";
-import {getActiveUserInfo} from "../../network/userRequest";
+} from "../../../config/config";
+import {Problem} from "../../../models/problem";
+import {getRecentSubmission} from "../../../network/submissionRequest";
+import {getActiveUserInfo} from "../../../network/userRequest";
 import moment from "moment";
-import {UserSubmissionCount} from "../../models/submission";
-import {UserInfoState} from "../../hooks/userInfo";
-import {GlobalCount} from "../../models/common";
-import {getGlobalCount} from "../../network/common";
+import {UserSubmissionCount} from "../../../models/submission";
+import {UserInfoState} from "../../../hooks/userInfo";
+import {GlobalCount} from "../../../models/common";
+import {getGlobalCount} from "../../../network/common";
+import styles from "./dashboard.module.scss";
 
 interface DashboardProps {
 
 }
 
-const Dashboard: React.FunctionComponent<DashboardProps> = (props) => {
+const Dashboard: React.FunctionComponent<DashboardProps> = () => {
   // 最新问题
   const [recentProblems, setRecentProblems] = useState<Problem[]>([]);
   // 近期提交统计
@@ -95,17 +96,17 @@ const Dashboard: React.FunctionComponent<DashboardProps> = (props) => {
   }
 
   return (
-    <div className={"dashboard"}>
-      <div className={"dashboard-head"}>
+    <div className={styles.dashboard}>
+      <div className={styles.dashboard_cards}>
         <HeadCardGroup globalCount={globalCount}/>
       </div>
-      <div className={"dashboard-charts"}>
+      <div className={styles.dashboard_charts}>
         <ChartGroup
           globalSubmissionCount={globalCount.recentSubmission}
           recentSubmission={recentSubmissionCount}
           userInfo={userInfoState.userInfo}/>
       </div>
-      <div className={"dashboard-tables"}>
+      <div className={styles.dashboard_tables}>
         <TableGroup
           problems={recentProblems}
           userInfo={activeUserInfo}/>

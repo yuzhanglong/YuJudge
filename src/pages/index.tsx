@@ -11,7 +11,7 @@ import ProblemManage from "./problemManage/ProblemManage";
 import ProblemEdit from "./problemEdit/problemEdit";
 import Login from "./login/Login";
 import Landing from "./landing/Landing";
-import Dashboard from "./dashboard/Dashboard";
+import Dashboard from "./cms/dashboard/Dashboard";
 import ProblemHome from "./problemHome/ProblemHome";
 import {
   DashboardOutlined,
@@ -26,7 +26,7 @@ import ScoreBoard from "./scoreBoard/ScoreBoard";
 import ProblemSetProblems from "./problemSetProblems/ProblemSetProblems";
 import ProblemSetHome from "./problemSetHome/ProblemSetHome";
 import UserGroupManage from "./userGroupManage/UserGroupManage";
-import UserManage from "./userManage/UserManage";
+import UserManage from "./cms/userManage/UserManage";
 import JudgeHostInspect from "./judgeHostInspect/JudgeHostInspect";
 import JudgeHostManage from "./judgeHostManage/JudgeHostManage";
 import ProblemSetCount from "./problemSetCount/ProblemSetCount";

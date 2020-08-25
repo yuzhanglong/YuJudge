@@ -1,0 +1,61 @@
+/*
+ * File: dashboard.module.scss
+ * Description: 控制台样式
+ * Created: 2020-8-25 12:33:04
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+// 宽度限制
+$dash-board-max-width: 1200px;
+$dash-board-min-width: 1000px;
+
+// 控制台大项目间距
+$dash_board_item_spacing: 20px;
+
+// 顶部卡片样式
+$dash_board_head_card_icon_size: 40px;
+$dash_board_head_card_font_size: 20px;
+
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  max-width: $dash_board_max_width;
+  min-width: $dash_board_min_width;
+}
+
+// 顶部卡片组
+.dashboard_cards {
+
+}
+
+// 图表区
+.dashboard_charts {
+  padding-top: $dash_board_item_spacing;
+
+  .dashboard_charts_item {
+    height: 300px;
+  }
+}
+
+// 表格区
+.dashboard_tables {
+  padding-top: $dash_board_item_spacing;
+}
+
+
+.head_card_item_icon {
+  font-size: $dash_board_head_card_icon_size;
+}
+
+
+.head_card_item_content {
+  font-weight: bold;
+  font-size: $dash_board_head_card_font_size;
+}
+
+.head_card_item_topic {
+  font-weight: 300;
+}
+

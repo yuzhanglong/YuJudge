@@ -47,5 +47,5 @@ export interface ProblemPaginationRequest extends PaginationRequest {
 
 // 用户信息分页请求
 export interface UsersPaginationRequest extends PaginationRequest {
-
+  group?: number | null;
 }

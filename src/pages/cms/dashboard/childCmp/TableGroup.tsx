@@ -9,10 +9,10 @@
 import React from "react";
 import {DashOutlined} from "@ant-design/icons/lib";
 import {Card, Col, Row} from "antd";
-import {Problem} from "../../../models/problem";
-import ProblemTable from "../../../components/problemTable/ProblemTable";
-import UserTable from "../../../components/userTable/UserTable";
-import {UserInfo} from "../../../models/user";
+import {Problem} from "../../../../models/problem";
+import ProblemTable from "../../../../components/problemTable/ProblemTable";
+import UserTable from "../../../../components/userTable/UserTable";
+import {UserInfo} from "../../../../models/user";
 
 interface DashboardTableGroupProps {
   problems: Problem[];
@@ -31,7 +31,7 @@ const TableGroup: React.FunctionComponent<DashboardTableGroupProps> = (props) =>
             extra={
               <DashOutlined/>
             }>
-            <div className={"table-wrap"}>
+            <div>
               <ProblemTable
                 problems={props.problems}
                 tableSize={"small"}
@@ -49,7 +49,7 @@ const TableGroup: React.FunctionComponent<DashboardTableGroupProps> = (props) =>
             extra={
               <DashOutlined/>
             }>
-            <div className={"table-wrap"}>
+            <div>
               <UserTable userInfo={props.userInfo} showRanking/>
             </div>
           </Card>

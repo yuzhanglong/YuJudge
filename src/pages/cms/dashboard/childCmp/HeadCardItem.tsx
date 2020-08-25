@@ -8,6 +8,7 @@
 
 import React from "react";
 import {Card, Col, Row} from "antd";
+import style from "../dashboard.module.scss";
 
 interface HeadCardItemProps {
   topic: string;
@@ -23,18 +24,18 @@ const HeadCardItem: React.FunctionComponent<HeadCardItemProps> = (props) => {
     }}>
       <Row justify={"space-between"} align={"middle"}>
         <Col>
-          <div className={"head-card-item-icon"}>
+          <div className={style.head_card_item_icon}>
             {props.icon}
           </div>
         </Col>
         <Col>
           <Row justify={"end"}>
-            <div className={"head-card-item-content"}>
+            <div className={style.head_card_item_content}>
               {props.content}
             </div>
           </Row>
           <Row>
-            <div className={"head-card-item-topic"}>
+            <div className={style.head_card_item_topic}>
               {props.topic}
             </div>
           </Row>

@@ -9,10 +9,11 @@
 import React from "react";
 import {Card, Col, Row} from "antd";
 import {DashOutlined} from "@ant-design/icons/lib";
-import ColumnChart from "../../../components/charts/ColumnChart";
-import {UserInfo} from "../../../models/user";
-import {SubmissionCountInfo, UserSubmissionCount} from "../../../models/submission";
-import SubmissionCount from "../../../components/submissionCount/SubmissionCount";
+import ColumnChart from "../../../../components/charts/ColumnChart";
+import {UserInfo} from "../../../../models/user";
+import {SubmissionCountInfo, UserSubmissionCount} from "../../../../models/submission";
+import SubmissionCount from "../../../../components/submissionCount/SubmissionCount";
+import style from "../dashboard.module.scss";
 
 interface ChartGroupProps {
   recentSubmission: UserSubmissionCount[];
@@ -56,7 +57,7 @@ const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
             extra={
               <DashOutlined/>
             }>
-            <div className={"chart-wrap"}>
+            <div className={style.dashboard_charts_item}>
               <ColumnChart
                 isStack
                 stackField={"type"}
@@ -75,7 +76,7 @@ const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
             extra={
               <DashOutlined/>
             }>
-            <div className={"chart-wrap"}>
+            <div className={style.dashboard_charts_item}>
               <SubmissionCount
                 submissionCounts={props.globalSubmissionCount}
                 showPicker={false}/>
