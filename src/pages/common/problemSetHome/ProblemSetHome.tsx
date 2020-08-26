@@ -13,6 +13,7 @@ import {ProblemSet} from "../../../models/problemSet";
 import {getProblemSetInfo} from "../../../network/problemSetRequest";
 
 import ProblemSetDescription from "./childCmp/ProblemSetDescription";
+import RcQueueAnim from "rc-queue-anim";
 
 interface ProblemSetHomeProps {
 
@@ -54,36 +55,38 @@ const ProblemSetHome: React.FunctionComponent<ProblemSetHomeProps & RouteCompone
   }
 
 
-
   return (
-    <div className={"problem-set-home"}>
-      <Card
-        title={"题目集概况"}
-        headStyle={{
-          textAlign: "center"
-        }}>
-        <div style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center"
-        }}>
-          <ProblemSetDescription
-            problemSetInfo={problemSetInfo}/>
-          <div>
-            <Button
-              onClick={onOverViewProblemsButtonClick}
-              type={"primary"}
-              style={{
-                marginTop: 20
-              }}>
-              查看问题
-            </Button>
+    <RcQueueAnim>
+      <div className={"problem-set-home"} key={"problem-set-home"}>
+        <Card
+          title={"题目集概况"}
+          headStyle={{
+            textAlign: "center"
+          }}>
+          <div style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center"
+          }}>
+            <ProblemSetDescription
+              problemSetInfo={problemSetInfo}/>
+            <div>
+              <Button
+                onClick={onOverViewProblemsButtonClick}
+                type={"primary"}
+                style={{
+                  marginTop: 20
+                }}>
+                查看问题
+              </Button>
+            </div>
           </div>
-        </div>
 
-      </Card>
-    </div>
+        </Card>
+      </div>
+    </RcQueueAnim>
+
   )
 }
 

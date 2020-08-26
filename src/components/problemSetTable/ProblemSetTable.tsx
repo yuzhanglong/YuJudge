@@ -28,6 +28,7 @@ interface ProblemSetTableProps {
   onEditButtonClick?: (id: number) => void;
   otherOperations?: React.ReactNode;
   showOperations?: boolean;
+  allowTitleRoute?: boolean;
 }
 
 const ProblemSetTable: React.FunctionComponent<ProblemSetTableProps> = (props) => {
@@ -70,11 +71,14 @@ const ProblemSetTable: React.FunctionComponent<ProblemSetTableProps> = (props) =
 
   // 渲染题目集名称
   const renderProblemSetName = (data: ProblemSet) => {
-    return (
-      <Link to={`/common/problem_set/${data.id}/overview`}>
-        {data.name}
-      </Link>
-    )
+    if (props.allowTitleRoute) {
+      return (
+        <Link to={`/common/problem_set/${data.id}/overview`}>
+          {data.name}
+        </Link>
+      )
+    }
+    return (<div>{data.name}</div>)
   }
 
   // 获取允许的编程语言信息
@@ -152,7 +156,8 @@ ProblemSetTable.defaultProps = {
   showPagination: true,
   tableSize: undefined,
   isLoading: false,
-  showOperations: true
+  showOperations: true,
+  allowTitleRoute: false
 }
 
 export default ProblemSetTable;

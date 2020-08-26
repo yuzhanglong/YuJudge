@@ -8,7 +8,7 @@
 
 import React from "react";
 import {RouteComponentProps} from "react-router-dom";
-import {Empty} from "antd";
+import {Card, Empty} from "antd";
 
 interface SolutionProps {
 
@@ -16,9 +16,9 @@ interface SolutionProps {
 
 const Solution: React.FunctionComponent<SolutionProps & RouteComponentProps> = (props) => {
   return (
-    <div>
-      <Empty/>
-    </div>
+    <Card>
+      <Empty description={"题解板块开发中"}/>
+    </Card>
   )
 }
 

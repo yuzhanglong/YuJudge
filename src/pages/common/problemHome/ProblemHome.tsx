@@ -19,6 +19,7 @@ import CodeEditor from "../../../components/codeEditor/CodeEditor";
 import {SubmissionInfo} from "../../../models/submissionInfo";
 import {DEFAULT_JUDGE_PREFERENCE} from "../../../config/config";
 import {submitCode} from "../../../network/submissionRequest";
+import RcQueueAnim from "rc-queue-anim";
 
 interface ProblemShowProps {
   children: React.ReactNode;
@@ -99,38 +100,41 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
   }
 
   return (
-    <div className={style.problem_home}>
-      <Card>
-        <div className={style.problem_home_title}>
-          {renderTitle()}
-        </div>
-
-        <div className={style.problem_home_content}>
-          <div className={style.problem_home_content_route_selector}>
-            <RouteSelector onChange={(v) => setActiveProblemRoute(v)}/>
+    <RcQueueAnim>
+      <div className={style.problem_home} key={"problem_home"}>
+        <Card>
+          <div className={style.problem_home_title}>
+            {renderTitle()}
           </div>
 
-          <div className={style.problem_home_content_body}>
-            <Card className={style.problem_home_content_item}>
+          <div className={style.problem_home_content}>
+            <div className={style.problem_home_content_route_selector}>
+              <RouteSelector onChange={(v) => setActiveProblemRoute(v)}/>
+            </div>
+
+            <div className={style.problem_home_content_body}>
+              <Card className={style.problem_home_content_item}>
+                {
+                  activeProblemRoute === "problem" &&
+                  <div dangerouslySetInnerHTML={{__html: problem.content || ""}}/>
+                }
+                {activeProblemRoute !== "problem" && props.children}
+              </Card>
+
               {
                 activeProblemRoute === "problem" &&
-                <div dangerouslySetInnerHTML={{__html: problem.content || ""}}/>
+                <Card className={style.problem_home_content_item}>
+                  <CodeEditor
+                    allowedLanguage={problemSetInfo?.allowedLanguage || []}
+                    onSubmit={(l, c) => onSubmit(l, c)}/>
+                </Card>
               }
-              {activeProblemRoute !== "problem" && props.children}
-            </Card>
-
-            {
-              activeProblemRoute === "problem" &&
-              <Card className={style.problem_home_content_item}>
-                <CodeEditor
-                  allowedLanguage={problemSetInfo?.allowedLanguage || []}
-                  onSubmit={(l, c) => onSubmit(l, c)}/>
-              </Card>
-            }
+            </div>
           </div>
-        </div>
-      </Card>
-    </div>
+        </Card>
+      </div>
+    </RcQueueAnim>
+
   )
 }
 

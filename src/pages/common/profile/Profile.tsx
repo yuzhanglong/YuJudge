@@ -7,15 +7,16 @@
  */
 
 import React from "react";
+import {Card, Empty} from "antd";
 
 interface profileProps {
 
 }
 const Profile: React.FunctionComponent<profileProps> = (props) => {
   return (
-    <div>
-      profile
-    </div>
+    <Card title={"个人中心"}>
+      <Empty description={"个人中心开发中..."}/>
+    </Card>
   )
 }
 

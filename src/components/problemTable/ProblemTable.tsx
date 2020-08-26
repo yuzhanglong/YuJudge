@@ -131,30 +131,33 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
                type: "checkbox",
                ...rowSelection,
              } : undefined}>
-      <Column title={"序号"} width={150}
-              render={renderProblemOrder}/>
+      {
+        props.isShowProblemOrder &&
+        <Column title={"序号"} width={150}
+                render={renderProblemOrder}/>
+      }
 
       <Column title={"题目ID"} dataIndex={"id"}
               key={"number"} width={150}/>
       <Column title={"问题名称"}
               dataIndex={"name"}
-              key={"number"}
+              key={"name"}
               width={150}/>
       {props.isShowTags &&
       <Column title={"标签"}
               dataIndex={"characterTags"}
-              key={"number"}
+              key={"标签"}
               width={250}
               render={(value: any) => renderTags(value)}/>}
       {props.isShowCreateTime &&
       <Column title={"创建时间"}
               dataIndex={"createTime"}
-              key={"number"}
+              key={"创建时间"}
               width={150}
               render={renderCreateTime}/>}
       {props.isShowOperations &&
       <Column title={"操作"}
-              key={"number"}
+              key={"操作"}
               width={150}
               render={renderOperations}
               align={"center"}/>}
@@ -171,7 +174,7 @@ ProblemTable.defaultProps = {
   showPagination: true,
   isLoading: false,
   isShowCheckBoxGroup: false,
-  isShowProblemOrder: false,
+  isShowProblemOrder: true,
   showEditButton: true
 }
 

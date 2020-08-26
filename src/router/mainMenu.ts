@@ -16,16 +16,28 @@ export const MAIN_MENU: MenuRouterConfig[] = [
     path: "/common",
     children: [
       {
-        key: "/home",
+        key: "home",
         component: "Home",
         title: "首页",
         path: "/common/home",
       },
       {
-        key: "/profile",
+        key: "profile",
         component: "Profile",
         title: "我的",
         path: "/common/profile",
+      },
+      {
+        key: "discussion",
+        component: "Discussion",
+        title: "话题",
+        path: "/common/discussion",
+      },
+      {
+        key: "ranking",
+        component: "Ranking",
+        title: "排名",
+        path: "/common/ranking",
       },
       {
         key: "/problem_sets",

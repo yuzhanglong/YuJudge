@@ -35,6 +35,8 @@ import Profile from "./common/profile/Profile";
 import ProblemSets from "./common/problemSets/ProblemSets";
 import Solution from "./common/solution/Solution";
 import Submission from "./common/submission/Submission";
+import Discussion from "./common/discussion/Discussion";
+import Ranking from "./common/ranking/Ranking";
 
 export default {
   ProblemManage: ProblemManage,
@@ -63,5 +65,7 @@ export default {
   Profile: Profile,
   ProblemSets: ProblemSets,
   Solution: Solution,
-  Submission: Submission
+  Submission: Submission,
+  Discussion: Discussion,
+  Ranking: Ranking
 } as any;

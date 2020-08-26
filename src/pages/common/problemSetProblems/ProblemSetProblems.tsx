@@ -15,6 +15,7 @@ import {getProblemSetProblems} from "../../../network/problemSetRequest";
 import {Button, Card, message} from "antd";
 import {RouteComponentProps} from "react-router-dom";
 import ProblemTable from "../../../components/problemTable/ProblemTable";
+import RcQueueAnim from "rc-queue-anim";
 
 interface ProblemSetProblemsProps {
 
@@ -31,7 +32,7 @@ const ProblemSetProblems: React.FunctionComponent<ProblemSetProblemsProps & Rout
   }, [params.problemSetId]);
 
   // 获取题目集所有题目
-  const getProblemSetProblemData = (problemSetId:number, start: number) => {
+  const getProblemSetProblemData = (problemSetId: number, start: number) => {
     problemSetProblemPagination
       .changeCurrentPage({
         start: start,
@@ -50,33 +51,36 @@ const ProblemSetProblems: React.FunctionComponent<ProblemSetProblemsProps & Rout
   }
 
   return (
-    <div className={"problem-set-home"}>
-      <Card
-        title={"所有题目"}
-        headStyle={{textAlign: "center"}}
-        bodyStyle={{
-          display: "flex",
-          justifyContent: "center"
-        }}>
-        <ProblemTable
-          isLoading={problemSetProblemPagination.isLoading}
-          problems={problemSetProblemPagination.items}
-          isShowOperations
-          showEditButton={false}
-          onPageChange={(val: number) => getProblemSetProblemData(params.problemSetId, val - 1)}
-          totalPage={problemSetProblemPagination.paginationInfo.totalPage}
-          otherOperations={(content: any) => {
-            return (
-              <Button
-                type={"link"}
-                onClick={() => onGotoProblemButtonClick(content)}>
-                前往
-              </Button>
-            )
+    <RcQueueAnim>
+      <div className={"problem-set-home"} key={"problem-set-home"}>
+        <Card
+          title={"所有题目"}
+          headStyle={{textAlign: "center"}}
+          bodyStyle={{
+            display: "flex",
+            justifyContent: "center"
           }}>
-        </ProblemTable>
-      </Card>
-    </div>
+          <ProblemTable
+            isLoading={problemSetProblemPagination.isLoading}
+            problems={problemSetProblemPagination.items}
+            isShowOperations
+            showEditButton={false}
+            onPageChange={(val: number) => getProblemSetProblemData(params.problemSetId, val - 1)}
+            totalPage={problemSetProblemPagination.paginationInfo.totalPage}
+            otherOperations={(content: any) => {
+              return (
+                <Button
+                  type={"link"}
+                  onClick={() => onGotoProblemButtonClick(content)}>
+                  前往
+                </Button>
+              )
+            }}>
+          </ProblemTable>
+        </Card>
+      </div>
+    </RcQueueAnim>
+
   )
 }
 

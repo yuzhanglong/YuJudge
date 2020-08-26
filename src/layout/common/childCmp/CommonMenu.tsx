@@ -11,7 +11,7 @@ import {Col, Menu, Row} from "antd";
 import {Link, RouteComponentProps} from "react-router-dom";
 import {UserInfoState} from "../../../hooks/userInfo";
 import UserTag from "../../../components/userTag/UserTag";
-import {HomeOutlined, QuestionCircleOutlined, SnippetsOutlined} from "@ant-design/icons/lib";
+import {HomeOutlined, QuestionCircleOutlined, SnippetsOutlined, UserOutlined} from "@ant-design/icons/lib";
 
 interface CommonMenuProps {
 
@@ -26,7 +26,6 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
       <Row justify={"space-between"} className={"problem-set-layout-menu"}>
         <Col>
           <Menu mode="horizontal" activeKey={props.location.pathname}>
-
             <Menu.Item key="/common/home" icon={<HomeOutlined />}>
               <Link to={`/common/home`}>
                 <span className="nav-text">首页</span>
@@ -39,9 +38,15 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
               </Link>
             </Menu.Item>
 
-            <Menu.Item icon={<QuestionCircleOutlined />}>
+            <Menu.Item  key="/common/problem_set/100/problems" icon={<QuestionCircleOutlined />}>
               <Link to={`/common/problem_set/100/problems`}>
                 <span className="nav-text">问题</span>
+              </Link>
+            </Menu.Item>
+
+            <Menu.Item icon={<UserOutlined />} key={"/common/ranking"}>
+              <Link to={`/common/ranking`}>
+                <span className="nav-text">排名</span>
               </Link>
             </Menu.Item>
           </Menu>

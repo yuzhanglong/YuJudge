@@ -85,7 +85,7 @@ const UserTag: React.FunctionComponent<UserInfoProps & RouteComponentProps> = (p
             </div>
             <div style={{
               fontSize: 13,
-              color: "#8c8c8c"
+              color: "#999797"
             }}>
               {props.description}
             </div>
