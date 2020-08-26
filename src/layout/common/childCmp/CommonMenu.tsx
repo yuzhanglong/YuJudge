@@ -9,8 +9,8 @@
 import React from "react";
 import {Col, Menu, Row} from "antd";
 import {Link, RouteComponentProps} from "react-router-dom";
-import {UserInfoState} from "../../../../hooks/userInfo";
-import UserTag from "../../../userTag/UserTag";
+import {UserInfoState} from "../../../hooks/userInfo";
+import UserTag from "../../../components/userTag/UserTag";
 import {HomeOutlined, QuestionCircleOutlined, SnippetsOutlined} from "@ant-design/icons/lib";
 
 interface CommonMenuProps {

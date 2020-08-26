@@ -9,7 +9,7 @@
 import React, {useEffect, useState} from "react";
 import {Card, Timeline} from "antd";
 import SubmissionCount from "../../../components/submissionCount/SubmissionCount";
-import {SubmissionCountInfo} from "../../../models/submission";
+import {SubmissionCountInfo} from "../../../models/submissionInfo";
 import {countProblemSetSubmissionInfo} from "../../../network/problemSetRequest";
 import {RouteComponentProps} from "react-router-dom";
 

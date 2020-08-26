@@ -8,11 +8,11 @@ import {JUDGE_CONDITION_COLORS, JUDGE_CONDITION_TAG_NAMES} from "../../../../com
 import {PROGRAM_LANGUAGE_NAME} from "../../../../common/programLanguage";
 import {SUBMISSION_SINGLE_PAGE_SIZE} from "../../../../config/config";
 import classNames from "classnames";
-import {Submission} from "../../../../models/submission";
+import {SubmissionInfo} from "../../../../models/submissionInfo";
 import {UserInfo} from "../../../../models/user";
 
 interface SubmissionTableProps {
-  submissions: Submission[];
+  submissions: SubmissionInfo[];
   total: number;
   activePage: number;
   onPageChange?: (currentPage: number) => void;
@@ -91,7 +91,7 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
     <Table
       dataSource={props.submissions}
       rowKey={"id"}
-      size="small"
+      size="middle"
       pagination={{
         total: props.total,
         defaultPageSize: SUBMISSION_SINGLE_PAGE_SIZE,

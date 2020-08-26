@@ -25,7 +25,7 @@ const Common: React.FunctionComponent<ProblemLayoutProps & RouteComponentProps> 
           <CommonMenu {...props}/>
         </div>
       </Affix>
-      <div key={new Date().getTime()}>
+      <div>
         <RcQueueAnim type={"bottom"}>
           <div key={"content"}>
             {props.children}

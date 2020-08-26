@@ -62,6 +62,20 @@ export const MAIN_MENU: MenuRouterConfig[] = [
         component: "ProblemHome",
         title: "问题",
         path: "/common/problem_set/:problemSetId/problem/:problemId",
+        children: [
+          {
+            key: "submission",
+            component: "Submission",
+            title: "提交",
+            path: "/common/problem_set/:problemSetId/problem/:problemId/submission",
+          },
+          {
+            key: "solution",
+            component: "Solution",
+            title: "题解",
+            path: "/common/problem_set/:problemSetId/problem/:problemId/solution",
+          },
+        ]
       },
     ]
   }]

@@ -21,7 +21,7 @@ import {
   SettingOutlined
 } from "@ant-design/icons/lib";
 import ProblemSetEdit from "./cms/problemSetEdit/ProblemSetEdit";
-import Common from "../components/layout/problemSet/Common";
+import Common from "../layout/common/Common";
 import ScoreBoard from "./common/scoreBoard/ScoreBoard";
 import ProblemSetProblems from "./common/problemSetProblems/ProblemSetProblems";
 import ProblemSetHome from "./common/problemSetHome/ProblemSetHome";
@@ -33,6 +33,8 @@ import ProblemSetCount from "./common/problemSetCount/ProblemSetCount";
 import Home from "./common/home/Home";
 import Profile from "./common/profile/Profile";
 import ProblemSets from "./common/problemSets/ProblemSets";
+import Solution from "./common/solution/Solution";
+import Submission from "./common/submission/Submission";
 
 export default {
   ProblemManage: ProblemManage,
@@ -59,5 +61,7 @@ export default {
   ProblemSetCount: ProblemSetCount,
   Home: Home,
   Profile: Profile,
-  ProblemSets: ProblemSets
+  ProblemSets: ProblemSets,
+  Solution: Solution,
+  Submission: Submission
 } as any;

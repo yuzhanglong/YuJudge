@@ -11,7 +11,7 @@ import {Card, Col, Row} from "antd";
 import {DashOutlined} from "@ant-design/icons/lib";
 import ColumnChart from "../../../../components/charts/ColumnChart";
 import {UserInfo} from "../../../../models/user";
-import {SubmissionCountInfo, UserSubmissionCount} from "../../../../models/submission";
+import {SubmissionCountInfo, UserSubmissionCount} from "../../../../models/submissionInfo";
 import SubmissionCount from "../../../../components/submissionCount/SubmissionCount";
 import style from "../dashboard.module.scss";
 

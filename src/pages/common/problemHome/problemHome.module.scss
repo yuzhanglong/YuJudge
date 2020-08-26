@@ -1,43 +1,10 @@
-.problem-show-code-mirror {
-  background-color: #a7a3a3;
-}
-
-.problem-show-code-operation-wrap {
-  padding-bottom: 20px;
-  padding-top: 17px;
-}
-
-.cm-s-default {
-  height: 74vh;
-}
-
-.problem-show-content-wrap {
-  height: 80vh;
-  overflow-y: scroll;
-}
-
-
-.problem-show {
-  display: flex;
-  width: 100%;
-  min-width: 900px;
-  flex-direction: column;
-
-  pre {
-    background-color: #e9ecef;
-    padding: 10px;
-    border-radius: 4px;
-  }
-}
-
-.problem-show-content-wrap::-webkit-scrollbar {
-  width: 10px;
-  height: 1px;
-}
-
-.problem-tool-bar-wrap {
-  padding-top: 20px;
-}
+/*
+ * File: problemHome.module.scss
+ * Description: 问题首页路由
+ * Created: 2020-8-26 18:21:58
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
 
 @keyframes loading {
   0% {
@@ -73,4 +40,46 @@
   width: 760px;
   background-color: #f5f5f5;
   border-radius: 5px;
+}
+
+
+.problem_home {
+  padding: 30px;
+  min-height: calc(100vh - 48px);
+}
+
+
+.problem_home_title {
+  text-align: center;
+
+  .problem_home_title_problem_name {
+    font-weight: bold;
+    font-size: 24px;
+    padding-bottom: 5px;
+  }
+
+  .problem_home_title_problem_limitation {
+
+  }
+}
+
+.problem_home_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 15px;
+
+
+  .problem_home_content_route_selector {
+    padding-bottom: 15px;
+  }
+
+  .problem_home_content_body {
+    padding-bottom: 15px;
+    width: 60vw;
+  }
+
+  .problem_home_content_item {
+    margin-bottom: 25px;
+  }
 }

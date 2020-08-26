@@ -7,7 +7,7 @@
  */
 
 import React from "react";
-import {SubmissionCountInfo} from "../../models/submission";
+import {SubmissionCountInfo} from "../../models/submissionInfo";
 import LineChart from "../charts/LineChart";
 import {Col, DatePicker, Row, Tag} from "antd";
 import {Moment} from "moment";

@@ -16,6 +16,7 @@ export interface Problem {
   content?: string;
   timeLimit?: number;
   cpuTimeLimit?: number;
+  memoryLimit?: number;
   outputLimit?: number;
   closed?: boolean;
 }

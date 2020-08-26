@@ -7,11 +7,11 @@
  */
 
 import request, {REQUEST_TYPES} from "./request";
-import {Submission} from "../models/submission";
+import {SubmissionInfo} from "../models/submissionInfo";
 import {getTokenFromStorage} from "../utils/dataPersistence";
 
 // 提交代码
-export const submitCode = (submission: Submission) => {
+export const submitCode = (submission: SubmissionInfo) => {
   return request.post(
     "/submission/submit_code",
     submission,

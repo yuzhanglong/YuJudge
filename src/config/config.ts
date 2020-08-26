@@ -65,3 +65,6 @@ export const JUDGE_HOST_DEGAULT_URL_SCHEME = "http";
 
 // 用户信息键
 export const USER_INFO_KEY = "user";
+
+// 默认判题偏好
+export const DEFAULT_JUDGE_PREFERENCE = "ACM";

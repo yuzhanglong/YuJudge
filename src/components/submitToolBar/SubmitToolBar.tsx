@@ -11,20 +11,16 @@ interface SubmitToolBarProps {
 
 const SubmitToolBar: React.FunctionComponent<SubmitToolBarProps> = (props) => {
   return (
-    <div className={"submit-tool-bar"}>
-      <div className={"left-button-group"}>
+    <div style={{display: "flex"}}>
+      <div>
         <Button type={"primary"}
                 style={{marginRight: 10}}
                 onClick={props.onSubmit}
                 disabled={!props.isButtonActive}>
           提交
         </Button>
-        <Button onClick={props.onSave}
-                disabled={!props.isButtonActive}>
-          保存
-        </Button>
       </div>
-      <div className={"right-button-group"}>
+      <div>
         <Button onClick={props.onClear}
                 disabled={!props.isButtonActive}>
           清空

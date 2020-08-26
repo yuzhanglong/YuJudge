@@ -1,10 +1,10 @@
-import {MenuRouterConfig} from "../../../../router/config";
+import {MenuRouterConfig} from "../../../router/config";
 import {Menu} from "antd";
 import React from "react";
 import {MenuProps} from "antd/lib/menu";
 import SubMenu from "antd/lib/menu/SubMenu";
 import {Link} from "react-router-dom";
-import AllComponents from "../../../../pages";
+import AllComponents from "../../../pages";
 
 
 const renderMenuItems = (item: MenuRouterConfig[]) => {

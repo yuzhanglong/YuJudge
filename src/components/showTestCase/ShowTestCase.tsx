@@ -7,7 +7,7 @@
  */
 
 import React from "react";
-import {JudgeResultForSingleTestCase} from "../../models/submission";
+import {JudgeResultForSingleTestCase} from "../../models/submissionInfo";
 import {Tag, Tooltip} from "antd";
 import {
   JUDGE_CONDITION_COLORS,

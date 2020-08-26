@@ -7,7 +7,7 @@
  */
 
 import React from "react";
-import {MenuRouterConfig} from "../../../../router/config";
+import {MenuRouterConfig} from "../../../router/config";
 
 
 const WithRouteConfig = (

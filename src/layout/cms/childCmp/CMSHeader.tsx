@@ -7,9 +7,9 @@
  */
 
 import React from "react";
-import UserTag from "../../../userTag/UserTag";
+import UserTag from "../../../components/userTag/UserTag";
 import {RouteComponentProps} from "react-router-dom";
-import {UserInfoState} from "../../../../hooks/userInfo";
+import {UserInfoState} from "../../../hooks/userInfo";
 
 
 interface HeaderProps {

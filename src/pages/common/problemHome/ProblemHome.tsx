@@ -7,79 +7,61 @@
  */
 
 import React, {useEffect, useState} from "react";
-import {Card, Col, Empty, Layout, message, Row, Tabs} from "antd";
+import {Card, message} from "antd";
 import {RouteComponentProps} from "react-router-dom";
 import {Problem} from "../../../models/problem";
 import {getProblemDetailedById} from "../../../network/problemRequests";
-import LanguageSelector from "./childCmp/LanguageSelector";
-import SubmitToolBar from "../../../components/submitToolBar/SubmitToolBar";
-import {ExperimentOutlined, FormOutlined, OrderedListOutlined} from '@ant-design/icons';
-import {getSubmissionById, getSubmissionByProblemId, submitCode} from "../../../network/submissionRequest";
-import {Submission} from "../../../models/submission";
-import SubmissionTable from "./childCmp/SubmissionTable";
-import {PAGE_BEGIN, SUBMISSION_REQUEST_TASK_TIME, SUBMISSION_SINGLE_PAGE_SIZE} from "../../../config/config";
-import SubmissionDetailModal from "./childCmp/SubmissionDetailModal";
-import {getCodeFromStorage, saveCode} from "../../../utils/dataPersistence";
-import {ProblemHoneTabKeyEnum} from "../../../common/enumerations";
 import {getProblemSetInfo} from "../../../network/problemSetRequest";
 import {ProblemSet} from "../../../models/problemSet";
-import MonacoEditor from 'react-monaco-editor';
-import 'monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution';
+import style from "./problemHome.module.scss"
+import RouteSelector from "./childCmp/RouteSelector";
+import CodeEditor from "../../../components/codeEditor/CodeEditor";
+import {SubmissionInfo} from "../../../models/submissionInfo";
+import {DEFAULT_JUDGE_PREFERENCE} from "../../../config/config";
+import {submitCode} from "../../../network/submissionRequest";
 
 interface ProblemShowProps {
-
+  children: React.ReactNode;
 }
 
 const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProps> = (props) => {
-
-  // 默认判题偏好
-  const DEFAULT_JUDGE_PREFERENCE = "ACM";
 
   const params: any = props.match.params;
   const problemId: number = params.problemId;
   const problemSetId: number = params.problemSetId;
 
-
   // 当前problem
   const [problem, setProblem] = useState<Problem>({});
-  // 代码内容
-  const [codeContent, setCodeContent] = useState("");
-  // 语言选择器中活跃的语言
-  const [activeLanguage, setActiveLanguage] = useState<string>();
-  // 提交表格
-  const [submissions, setSubmissions] = useState<Submission[]>([]);
-  // 总的提交数目
-  const [submissionCount, setSubmissionCount] = useState(1);
-  // 当前活跃的页码
-  const [activePage, setActivePage] = useState(1);
-  // 提交详情是否可视
-  const [isSubmissionDetailVisible, setIsSubmissionIsVisible] = useState(false);
-  // 选中的提交细节内容
-  const [activeSubmission, setActiveSubmission] = useState();
-  // 选中的左侧导航的key
-  const [activeProblemTabKey, setActiveProblemTabKey] = useState(ProblemHoneTabKeyEnum.PROBLEM);
+
   // 题目集基本信息
   const [problemSetInfo, setProblemSetInfo] = useState<ProblemSet>();
+
+  // 活跃的problem路由
+  const [activeProblemRoute, setActiveProblemRoute] = useState<string>("problem");
+
+  // 提交按钮被按下
+  const onSubmit = (language: string, code: string) => {
+    const submission: SubmissionInfo = {
+      problemId: problem.id,
+      codeContent: code,
+      language: language,
+      judgePreference: DEFAULT_JUDGE_PREFERENCE,
+      problemSetId: params.problemSetId
+    }
+    // 发送提交请求
+    submitCode(submission).then(() => {
+      message.success("提交成功~");
+      setActiveProblemRoute("submission");
+      props.history.push(`/common/problem_set/${problemSetId}/problem/${problemId}/submission`);
+    });
+  }
 
 
   useEffect(() => {
     getProblemData(problemId);
     getProblemSetData(problemSetId);
-    showSavedCode(problemId);
-    getProblemSubmission(problemId, PAGE_BEGIN);
   }, [problemId, problemSetId]);
 
-  // 管理轮询任务
-  useEffect(() => {
-    const id = setInterval(() => {
-      getProblemSubmission(problemId, activePage);
-    }, SUBMISSION_REQUEST_TASK_TIME);
-    return () => {
-      // 轮询任务id不能由useState管理，
-      // 否则组件销毁再来执行clearInterval会造成id为undefined的情况
-      clearInterval(id);
-    }
-  }, [activePage, problemId]);
 
   // 获取题目集信息
   const getProblemSetData = (problemSetId: number) => {
@@ -87,7 +69,6 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
       .then(res => {
         const problemSet: ProblemSet = res.data;
         setProblemSetInfo(problemSet);
-        setActiveLanguage(problemSet.allowedLanguage ? problemSet.allowedLanguage[0] : undefined);
       });
   }
 
@@ -103,166 +84,52 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
       })
   }
 
-  // 分页获取当前问题下的所有提交
-  const getProblemSubmission = (problemId: number, page: number) => {
-    getSubmissionByProblemId(page - 1, SUBMISSION_SINGLE_PAGE_SIZE, problemId)
-      .then(res => {
-        setSubmissions(res.data.items);
-        setSubmissionCount(res.data.total);
-      })
-      .catch(() => {
-        message.error("获取提交内容失败");
-      })
-  }
-
-  // 编辑器文字发生改变
-  const onEditorChange = (value: string) => {
-    setCodeContent(value);
-  }
-
-  // 提交按钮被点击
-  const onSubmitButtonClick = () => {
-    // 保证选择了一项编程语言
-    if (activeLanguage) {
-      let submission: Submission = {
-        problemId: problem.id,
-        codeContent: codeContent,
-        language: activeLanguage,
-        judgePreference: DEFAULT_JUDGE_PREFERENCE,
-        problemSetId: params.problemSetId
-      }
-      // 发送提交请求
-      submitCode(submission).then(() => {
-        message.success("提交成功~");
-        // 提交时tab跳转到提交页面，同时内部的表单切回第一页，用户可以立刻查看提交状态
-        setActiveProblemTabKey(ProblemHoneTabKeyEnum.SUBMISSION);
-        onPaginationChange(PAGE_BEGIN);
-      });
-    }
-  }
-
-  // 用户切换页码
-  const onPaginationChange = (currentPage: number) => {
-    setActivePage(currentPage);
-    // 立刻刷新一次
-    getProblemSubmission(problemId, currentPage);
-  }
-
-  // 清空按钮被点击
-  const onClearButtonClick = () => {
-    setCodeContent("");
-    message.success("代码区已清空~");
-  }
-
-  // 展示submission细节信息
-  const showSubmissionDetail = (event: any) => {
-    const submissionId: number = event.id;
-    getSubmissionDetail(submissionId);
-    setIsSubmissionIsVisible(true);
-  }
-
-  // 获取提交细节内容
-  const getSubmissionDetail = (submissionId: number) => {
-    getSubmissionById(submissionId)
-      .then(res => {
-        setActiveSubmission(res.data);
-      })
-  }
-
-
-  // 保存按钮被点击
-  const onCodeSave = () => {
-    saveCode(problemId.toString(), codeContent);
-    message.success("代码已保存～");
-  }
-
-  // 展示之前保存的代码
-  const showSavedCode = (problemId: number) => {
-    const code = getCodeFromStorage(problemId.toString());
-    if (code) {
-      setCodeContent(code);
-    }
+  // 渲染标题
+  const renderTitle = () => {
+    return (
+      <div>
+        <div className={style.problem_home_title_problem_name}>
+          {problem.name}
+        </div>
+        <div className={style.problem_home_title_problem_limitation}>
+          {`时间限制: ${problem.timeLimit} ms / 内存限制: ${problem.memoryLimit} kb / 输出限制: ${problem.cpuTimeLimit} byte`}
+        </div>
+      </div>
+    )
   }
 
   return (
-    <div className={"problem-show"}>
-      <Layout>
-        <Row>
-          <Col span={12}>
-            <Card>
-              <Tabs activeKey={activeProblemTabKey} onChange={(key: any) => setActiveProblemTabKey(key)}>
-                <Tabs.TabPane
-                  tab={<span><FormOutlined/>问题</span>}
-                  key={ProblemHoneTabKeyEnum.PROBLEM}>
-                  <div className={"problem-show-content-wrap"}
-                       dangerouslySetInnerHTML={{
-                         __html: problem.content || ""
-                       }}>
+    <div className={style.problem_home}>
+      <Card>
+        <div className={style.problem_home_title}>
+          {renderTitle()}
+        </div>
 
-                  </div>
-                </Tabs.TabPane>
-                <Tabs.TabPane
-                  tab={<span><ExperimentOutlined/>题解</span>}
-                  key={ProblemHoneTabKeyEnum.SOLUTION}>
-                  <div className={"problem-show-content-wrap"}>
-                    <Empty style={{
-                      marginTop: "30vh"
-                    }}></Empty>
-                  </div>
-                </Tabs.TabPane>
-                <Tabs.TabPane
-                  tab={<span><OrderedListOutlined/>提交记录</span>}
-                  key={ProblemHoneTabKeyEnum.SUBMISSION}>
-                  <div className={"problem-show-content-wrap"}>
-                    <SubmissionTable
-                      submissions={submissions}
-                      activePage={activePage}
-                      total={submissionCount}
-                      onPageChange={onPaginationChange}
-                      onSubmissionTagClick={showSubmissionDetail}/>
-                    <SubmissionDetailModal
-                      isVisible={isSubmissionDetailVisible}
-                      onClose={() => setIsSubmissionIsVisible(false)}
-                      submission={activeSubmission}
-                      problemName={problem.name ? problem.name : ""}/>
-                  </div>
-                </Tabs.TabPane>
-              </Tabs>
-            </Card>
-          </Col>
+        <div className={style.problem_home_content}>
+          <div className={style.problem_home_content_route_selector}>
+            <RouteSelector onChange={(v) => setActiveProblemRoute(v)}/>
+          </div>
 
-          <Col span={12}>
-            <Card>
-              <div className={"problem-show-code-operation-wrap"}>
-                <Row>
-                  <LanguageSelector
-                    onLanguageChange={(res) => setActiveLanguage(res)}
-                    allowedLanguage={problemSetInfo?.allowedLanguage || []}/>
-                </Row>
-              </div>
-              {/*<CodeMirror*/}
-              {/*  value={codeContent}*/}
-              {/*  options={{lineNumbers: true}}*/}
-              {/*  className={"problem-show-code-mirror"}*/}
-              {/*  onChange={*/}
-              {/*    (editor, data, value) => onEditorChange(value)*/}
-              {/*  }/>*/}
-              <MonacoEditor
-                width="800"
-                height="600"
-                language="javascript"
-              />
-              <div className={"problem-tool-bar-wrap"}>
-                <SubmitToolBar
-                  onSubmit={onSubmitButtonClick}
-                  onClear={onClearButtonClick}
-                  isButtonActive={codeContent !== ""}
-                  onSave={() => onCodeSave()}/>
-              </div>
+          <div className={style.problem_home_content_body}>
+            <Card className={style.problem_home_content_item}>
+              {
+                activeProblemRoute === "problem" &&
+                <div dangerouslySetInnerHTML={{__html: problem.content || ""}}/>
+              }
+              {activeProblemRoute !== "problem" && props.children}
             </Card>
-          </Col>
-        </Row>
-      </Layout>
+
+            {
+              activeProblemRoute === "problem" &&
+              <Card className={style.problem_home_content_item}>
+                <CodeEditor
+                  allowedLanguage={problemSetInfo?.allowedLanguage || []}
+                  onSubmit={(l, c) => onSubmit(l, c)}/>
+              </Card>
+            }
+          </div>
+        </div>
+      </Card>
     </div>
   )
 }

@@ -15,7 +15,7 @@ import React from "react";
 import routerConfig, {MenuRouterConfig} from "./config";
 import AllComponents from '../pages';
 import {Redirect, Route, Switch} from "react-router-dom";
-import CMSLayout from "../components/layout/cms/CMSLayout";
+import CMSLayout from "../layout/cms/CMSLayout";
 
 
 interface MyRouterProps {
