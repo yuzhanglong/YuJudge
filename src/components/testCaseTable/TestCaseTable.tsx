@@ -10,7 +10,7 @@ import React from "react";
 import {Button, Table} from "antd";
 import {ProblemTestCase} from "../../models/problem";
 import Column from "antd/lib/table/Column";
-import {DownloadOutlined} from "@ant-design/icons/lib";
+import {DownloadOutlined} from "@ant-design/icons";
 
 interface TestCaseTableProps {
   testCases: ProblemTestCase[];

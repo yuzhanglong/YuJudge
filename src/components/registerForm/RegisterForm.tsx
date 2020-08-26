@@ -8,7 +8,7 @@
 
 import React from "react";
 import {Button, Col, Form, Input, Row} from "antd";
-import {CheckCircleOutlined, LockOutlined, UserOutlined} from "@ant-design/icons/lib/icons";
+import {CheckCircleOutlined, LockOutlined, UserOutlined} from "@ant-design/icons";
 import classNames from "classnames";
 
 interface registerFormProps {

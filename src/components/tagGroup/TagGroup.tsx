@@ -8,7 +8,7 @@
 
 import React, {useState} from "react";
 import {Input, Tag} from "antd";
-import {PlusOutlined} from "@ant-design/icons/lib";
+import {PlusOutlined} from "@ant-design/icons";
 
 interface TagGroupProps {
   initTags: string[];

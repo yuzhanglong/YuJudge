@@ -15,7 +15,7 @@ import {UsersPaginationRequest} from "../../../models/pagination";
 import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_USER_MANAGE} from "../../../config/config";
 import {UserInfo} from "../../../models/user";
 import {BaseResponse} from "../../../models/common";
-import {ExclamationCircleOutlined, PlusOutlined} from "@ant-design/icons/lib";
+import {ExclamationCircleOutlined, PlusOutlined} from "@ant-design/icons";
 import UserManageToolBar from "./childCmp/UserManageToolBar";
 import {UserGroupInfo} from "../../../models/UserGroup";
 import {getUserGroups} from "../../../network/userGroupRequest";

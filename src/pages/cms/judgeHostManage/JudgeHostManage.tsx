@@ -14,7 +14,7 @@ import JudgeHostTable from "../../../components/judgeHostTable/JudgeHostTable";
 import {RouteComponentProps} from "react-router-dom";
 import JudgeHostEditModal from "./childCmp/JudgeHostEditModal";
 import {BaseResponse} from "../../../models/common";
-import {PlusOutlined} from "@ant-design/icons/lib";
+import {PlusOutlined} from "@ant-design/icons";
 
 interface JudgeServerManageProps {
 

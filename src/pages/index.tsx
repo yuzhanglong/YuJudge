@@ -19,7 +19,7 @@ import {
   ProfileOutlined,
   CloudServerOutlined,
   SettingOutlined
-} from "@ant-design/icons/lib";
+} from "@ant-design/icons";
 import ProblemSetEdit from "./cms/problemSetEdit/ProblemSetEdit";
 import Common from "../layout/common/Common";
 import ScoreBoard from "./common/scoreBoard/ScoreBoard";

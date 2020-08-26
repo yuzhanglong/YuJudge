@@ -11,7 +11,7 @@ import {Button, Card, message, Modal} from "antd";
 import UserGroupTable from "../../../components/userGroupTable/UserGroupTable";
 import {UserGroupInfo} from "../../../models/UserGroup";
 import {createUserGroup, deleteUserGroup, editUserGroup, getUserGroups} from "../../../network/userGroupRequest";
-import {ExclamationCircleOutlined, PlusOutlined} from "@ant-design/icons/lib";
+import {ExclamationCircleOutlined, PlusOutlined} from "@ant-design/icons";
 import {BaseResponse} from "../../../models/common";
 import UserGroupEditModal from "./childCmp/UserGroupEditModal";
 import {PermissionInfo} from "../../../models/permission";

@@ -8,7 +8,7 @@
 
 import React from "react";
 import {Card, Col, Row} from "antd";
-import {DashOutlined} from "@ant-design/icons/lib";
+import {DashOutlined} from "@ant-design/icons";
 import ColumnChart from "../../../../components/charts/ColumnChart";
 import {UserInfo} from "../../../../models/user";
 import {SubmissionCountInfo, UserSubmissionCount} from "../../../../models/submissionInfo";

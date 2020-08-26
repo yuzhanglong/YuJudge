@@ -14,7 +14,7 @@ import {
   ContactsTwoTone,
   FileTextTwoTone,
   SettingTwoTone
-} from "@ant-design/icons/lib";
+} from "@ant-design/icons";
 import {GlobalCount} from "../../../../models/common";
 
 interface headCardGroupProps {

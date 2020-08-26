@@ -16,7 +16,7 @@ import {message, Modal} from "antd";
 import TestCaseModal from "./childCmp/TestCaseModal";
 import {getUploadToken} from "../../../network/common";
 import {UploadTokenData} from "../../../models/common";
-import {ExclamationCircleOutlined} from "@ant-design/icons/lib";
+import {ExclamationCircleOutlined} from "@ant-design/icons";
 
 interface ProblemEditProps {
 

@@ -9,7 +9,7 @@
 import React from "react";
 import {Button, Checkbox, Col, DatePicker, Form, Input, Modal, Row, Space} from "antd";
 import Search from "antd/es/input/Search";
-import {PlusOutlined} from "@ant-design/icons/lib";
+import {PlusOutlined} from "@ant-design/icons";
 
 const {RangePicker} = DatePicker;
 

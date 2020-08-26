@@ -11,7 +11,7 @@ import {Col, Menu, Row} from "antd";
 import {Link, RouteComponentProps} from "react-router-dom";
 import {UserInfoState} from "../../../hooks/userInfo";
 import UserTag from "../../../components/userTag/UserTag";
-import {HomeOutlined, QuestionCircleOutlined, SnippetsOutlined, UserOutlined} from "@ant-design/icons/lib";
+import {HomeOutlined, QuestionCircleOutlined, SnippetsOutlined, UserOutlined} from "@ant-design/icons";
 
 interface CommonMenuProps {
 

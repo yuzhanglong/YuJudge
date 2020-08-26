@@ -8,7 +8,7 @@
 
 import React, {useEffect} from "react";
 import {Button, Form, Input, message, Modal, Upload} from "antd";
-import {UploadOutlined} from "@ant-design/icons/lib";
+import {UploadOutlined} from "@ant-design/icons";
 import {DOWNLOAD_SERVER_BASE_URL, UPLOAD_SERVER_BASE_URL} from "../../../../config/config";
 import {ProblemTestCase} from "../../../../models/problem";
 import {UploadFile} from "antd/es/upload/interface";

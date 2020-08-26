@@ -8,7 +8,7 @@
 
 import React from "react";
 import {Button, Col, Form, Input, Row} from "antd";
-import {UserOutlined, LockOutlined, CheckCircleOutlined} from "@ant-design/icons/lib/icons";
+import {UserOutlined, LockOutlined, CheckCircleOutlined} from "@ant-design/icons";
 import classNames from "classnames";
 
 interface LoginFormProps {

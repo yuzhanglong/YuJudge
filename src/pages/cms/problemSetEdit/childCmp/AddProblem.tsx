@@ -13,7 +13,7 @@ import {Button, Col, message, Modal, Row} from "antd";
 import Search from "antd/es/input/Search";
 import {updateProblemSetProblems} from "../../../../network/problemSetRequest";
 import confirm from "antd/es/modal/confirm";
-import {ExclamationCircleOutlined} from "@ant-design/icons/lib";
+import {ExclamationCircleOutlined} from "@ant-design/icons";
 import {ADD_PROBLEM_MAX_SHOW} from "../../../../config/config";
 
 interface AddProblemProps {
