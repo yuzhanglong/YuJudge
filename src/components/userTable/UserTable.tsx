@@ -14,6 +14,7 @@ import {RankingColorEnum} from "../../common/enumerations";
 import {TablePaginationConfig} from "antd/lib/table/interface";
 import {Pagination} from "../../models/pagination";
 import {UserGroupInfo} from "../../models/UserGroup";
+import {SizeType} from "antd/lib/config-provider/SizeContext";
 
 interface UserTableProps {
   userInfo: UserInfo[];
@@ -24,6 +25,7 @@ interface UserTableProps {
   showEmail?: boolean;
   isLoading?: boolean;
   onPageChange?: (page: number) => void;
+  tableSize?: SizeType;
 }
 
 const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
@@ -91,6 +93,7 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
 
   return (
     <Table
+      size={props.tableSize}
       dataSource={props.userInfo}
       rowKey={"nickname"}
       pagination={props.pagination ? paginationProp : false}
@@ -144,7 +147,8 @@ UserTable.defaultProps = {
   showRanking: true,
   showScope: false,
   showEmail: false,
-  isLoading: false
+  isLoading: false,
+  tableSize: undefined
 }
 
 export default UserTable;

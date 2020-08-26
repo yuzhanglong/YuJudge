@@ -8,130 +8,82 @@
 
 
 import React, {useEffect, useState} from "react";
-import UserCard from "../../../components/userCard/UserCard";
-import {UserInfoState} from "../../../hooks/userInfo";
-import {Card, Col, Divider, Row, Table} from "antd";
-import {getRecentSubmission, getUserJudgeResultCount} from "../../../network/submissionRequest";
-import JudgeResultCount from "../../../components/judgeResultCount/JudgeResultCount";
-import ColumnChart from "../../../components/charts/ColumnChart";
-import {UserSubmissionCount} from "../../../models/submission";
-import moment from "moment";
-import {DEFAULT_DATE_TIME_FORMAT, RECENT_SUBMISSION_DATES_IN_DASHBOARD_AMOUNT} from "../../../config/config";
+import {Card, message, Table} from "antd";
+import style from "./home.module.scss";
+import {UsePaginationState} from "../../../hooks/pagination";
+import {PAGE_BEGIN, RECENT_ACTIVE_USER_IN_DASHBOARD_AMOUNT} from "../../../config/config";
+import {getNotices} from "../../../network/noticeRequest";
+import {NoticePaginationRequest} from "../../../models/pagination";
+import NoticeTable from "../../../components/noticeTable/NoticeTable";
+import QuickStart from "./childCmp/QuickStart";
+import {RouteComponentProps} from "react-router-dom";
+import UserTable from "../../../components/userTable/UserTable";
+import {getActiveUserInfo} from "../../../network/userRequest";
+
 
 interface HomeProps {
 
 }
 
-const Home: React.FunctionComponent<HomeProps> = (props) => {
+const Home: React.FunctionComponent<HomeProps & RouteComponentProps> = (props) => {
   useEffect(() => {
-    getUserJudgeResults();
-    getRecentSubmissionCount();
+    getAndSetNotice(PAGE_BEGIN - 1);
+    getAndSetRecentActiveUserInfo();
+    // eslint-disable-next-line
   }, []);
 
-  // 用户信息
-  const userInfoState = UserInfoState();
-  // 用户提交统计
-  const [userJudgeResultCount, setUserJudgeResultCount] = useState();
-  // 近期提交
-  const [recentSubmission, setRecentSubmission] = useState<UserSubmissionCount[]>([]);
+  // 分页状态
+  const noticePaginationState = UsePaginationState<NoticePaginationRequest>(PAGE_BEGIN - 1, getNotices);
 
-  // 获取判题结果统计信息
-  const getUserJudgeResults = () => {
-    getUserJudgeResultCount()
-      .then(res => {
-        setUserJudgeResultCount(res.data);
+  // 活跃用户
+  const [activeUserInfo, setActiveUserInfo] = useState([]);
+
+  // 获取通知
+  const getAndSetNotice = (start: number) => {
+    noticePaginationState
+      .changeCurrentPage({start: start, count: 5})
+      .catch(() => {
+        message.error("获取公告失败");
       })
   }
 
-  // 获取最近提交统计信息
-  const getRecentSubmissionCount = () => {
-    const end = moment().add(1, "days").format(DEFAULT_DATE_TIME_FORMAT);
-    // 默认提早七天
-    const start = moment().add(
-      RECENT_SUBMISSION_DATES_IN_DASHBOARD_AMOUNT * (-1),
-      "days").format(DEFAULT_DATE_TIME_FORMAT);
-
-    getRecentSubmission(start, end)
+  // 获取最近活跃用户
+  const getAndSetRecentActiveUserInfo = () => {
+    getActiveUserInfo(RECENT_ACTIVE_USER_IN_DASHBOARD_AMOUNT)
       .then(res => {
-        setRecentSubmission(res.data);
+        setActiveUserInfo(res.data);
       })
-  }
-
-  // 处理用户的提交信息，将其转变为支持表格渲染的数据结构
-  const generateUserSubmissionData = () => {
-    let result = [];
-    for (let i = 0; i < recentSubmission.length; i++) {
-      let tmp = recentSubmission[i];
-      const d = new Date(tmp.time);
-      result.push(
-        {
-          date: d.getMonth() + 1 + "." + d.getDate(),
-          amount: tmp.totalAmount,
-          type: "通过",
-        },
-        {
-          date: d.getMonth() + 1 + "." + d.getDate(),
-          amount: tmp.totalAmount - tmp.acceptAmount,
-          type: "未通过",
-        },
-      )
-    }
-    return result;
   }
 
 
   return (
-    <div
-      style={{
-        backgroundColor: "#f0f2f5",
-        minHeight: "100vh"
-      }}>
-      <div className={"home-content"} style={{
-        marginTop: 20,
-        display: "flex",
-        justifyContent: "center"
-      }}>
-        <div
-          className={"home-content-public"}
-          style={{
-            marginRight: 15,
-            width: 1000
-          }}>
-          <Card title={"公告"} style={{
-            marginBottom: 20
-          }}>
+    <div className={style.home}>
+      <div className={style.home_content}>
+        <div className={style.home_content_main}>
+          <Card title={"公告"} className={style.home_content_item}>
+            <NoticeTable notices={noticePaginationState.items}/>
+          </Card>
+
+          <Card title={"最近更新"} className={style.home_content_item}>
             <Table></Table>
           </Card>
-          <Card title={"个人数据"}>
-            <Row>
-              <Col>
-                <div style={{
-                  width: 560
-                }}>
-                  <ColumnChart
-                    height={200}
-                    isStack
-                    stackField={"type"}
-                    xKey={"date"}
-                    yKey={"amount"}
-                    yKeyDesc={"提交数"}
-                    data={generateUserSubmissionData()}/>
-                </div>
-              </Col>
-              <Divider type={"vertical"} style={{height: 200}}/>
-              <Col>
-                <div style={{
-                  width: 350
-                }}>
-                  <JudgeResultCount
-                    resultCounts={userJudgeResultCount}/>
-                </div>
-              </Col>
-            </Row>
-          </Card>
+
         </div>
-        <div className={"home-content-user"}>
-          {userInfoState.userInfo && <UserCard userInfo={userInfoState.userInfo} height={"90vh"}/>}
+        <div className={style.home_content_side}>
+          <Card title={"每日一句"} className={style.home_content_side_item}>
+            HAHAHAHA
+          </Card>
+
+          <Card title={"快速开始"} className={style.home_content_side_item}>
+            <QuickStart onSearch={() => {
+            }}/>
+          </Card>
+
+          <Card title={"活跃用户"} className={style.home_content_side_item}>
+            <UserTable userInfo={activeUserInfo} tableSize={"middle"}/>
+          </Card>
+
+
         </div>
       </div>
     </div>

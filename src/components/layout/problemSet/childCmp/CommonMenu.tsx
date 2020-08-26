@@ -40,7 +40,7 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
             </Menu.Item>
 
             <Menu.Item icon={<QuestionCircleOutlined />}>
-              <Link to={`/`}>
+              <Link to={`/common/problem_set/100/problems`}>
                 <span className="nav-text">问题</span>
               </Link>
             </Menu.Item>

@@ -49,3 +49,8 @@ export interface ProblemPaginationRequest extends PaginationRequest {
 export interface UsersPaginationRequest extends PaginationRequest {
   group?: number | null;
 }
+
+// 通知相关分页请求
+export interface NoticePaginationRequest extends PaginationRequest {
+
+}

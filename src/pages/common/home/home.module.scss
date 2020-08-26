@@ -1,0 +1,41 @@
+/*
+ * File: home.module.scss
+ * Description: 首页样式
+ * Created: 2020-8-26 11:28:35
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+@import "src/styles/public";
+
+$home-main-width: 900px;
+$home-side-width: 350px;
+$home-item-spacing: 12px;
+
+.home {
+  background-color: $common-backgroud;
+  min-height: 100vh;
+}
+
+.home_content {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.home_content_main {
+  margin-right: 15px;
+  width: $home-main-width;
+}
+
+.home_content_side {
+  width: $home-side-width;
+}
+
+.home_content_side_item {
+  margin-bottom: $home-item-spacing;
+}
+
+.home_content_item {
+  margin-bottom: $home-item-spacing;
+}

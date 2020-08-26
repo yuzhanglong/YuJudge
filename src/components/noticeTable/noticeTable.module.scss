@@ -1,0 +1,24 @@
+/*
+ * File: noticeTable.module.scss
+ * Description: 公告表格的样式
+ * Created: 2020-8-26 12:24:11
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+// 一般公告
+.notice_table_title {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+// 重要公告
+.notice_table_title_important {
+  color: #f5222d;
+  font-size: 15px;
+}
+
+// 一般公告
+.notice_table_title_common {
+
+}

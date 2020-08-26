@@ -55,3 +55,10 @@ export enum ProblemSetConditionEnum {
   // 未开始
   NOT_STARTED = "NOT_STARTED"
 }
+
+
+// 公告优先级
+export enum NoticePriority {
+  IMPORTANT = "IMPORTANT",
+  COMMON = "COMMON",
+}
