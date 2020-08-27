@@ -8,9 +8,9 @@
 
 import React from "react";
 import {Line} from "@ant-design/charts";
-import {GuideLineConfig, ITitle} from "@antv/g2plot/lib/interface/config";
+import {GuideLineConfig, ITitle} from "@antv/g2plot";
 import {DEFAULT_DATE_TIME_FORMAT} from "../../config/config";
-import {LineConfig as G2plotProps} from "@antv/g2plot/lib/plots/line";
+import {LineConfig as G2plotProps} from "@antv/g2plot";
 
 interface LineChartProps {
   data: any[];

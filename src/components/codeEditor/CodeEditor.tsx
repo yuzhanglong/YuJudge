@@ -9,7 +9,7 @@
 import React, {useEffect, useState} from "react";
 import SubmitToolBar from "../submitToolBar/SubmitToolBar";
 import LanguageSelector from "../../pages/common/problemHome/childCmp/LanguageSelector";
-import MonacoEditor from "react-monaco-editor/lib/editor";
+import MonacoEditor from "react-monaco-editor";
 import style from "./codeEditor.module.scss"
 import {message} from "antd";
 

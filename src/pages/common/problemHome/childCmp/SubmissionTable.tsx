@@ -1,6 +1,6 @@
 import React from "react";
 import {Table, Tag} from "antd";
-import Column from "antd/lib/table/Column";
+
 import {timestampToDateTime} from "../../../../utils/dateTime";
 import {TablePaginationConfig} from "antd/lib/table/interface";
 import {JudgeConditionEnum} from "../../../../common/enumerations";
@@ -10,6 +10,7 @@ import {SUBMISSION_SINGLE_PAGE_SIZE} from "../../../../config/config";
 import classNames from "classnames";
 import {SubmissionInfo} from "../../../../models/submissionInfo";
 import {UserInfo} from "../../../../models/user";
+import Column from "antd/es/table/Column";
 
 interface SubmissionTableProps {
   submissions: SubmissionInfo[];

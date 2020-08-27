@@ -18,6 +18,7 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "@types/react-draft-wysiwyg": "^1.13.0",
+    "@types/react-loadable": "^5.5.3",
     "@types/react-router-dom": "^5.1.5",
     "@types/react-syntax-highlighter": "^11.0.4",
     "@typescript-eslint/eslint-plugin": "^2.10.0",
@@ -32,6 +33,7 @@
     "camelcase": "^5.3.1",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
     "classnames": "^2.2.6",
+    "compression-webpack-plugin": "^5.0.1",
     "css-loader": "3.4.2",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
@@ -70,6 +72,7 @@
     "react-dev-utils": "^10.2.1",
     "react-dom": "^16.13.1",
     "react-draft-wysiwyg": "^1.14.5",
+    "react-loadable": "^5.5.0",
     "react-markdown": "^4.3.1",
     "react-monaco-editor": "^0.40.0",
     "react-router-dom": "^5.2.0",
@@ -91,7 +94,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "node --max_old_space_size=4096 scripts/build.js",
+    "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {

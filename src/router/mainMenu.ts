@@ -11,7 +11,7 @@ import {MenuRouterConfig} from "./config";
 export const MAIN_MENU: MenuRouterConfig[] = [
   {
     key: "/common",
-    component: "ProblemSetLayout",
+    component: "Common",
     title: "题目集",
     path: "/common",
     children: [

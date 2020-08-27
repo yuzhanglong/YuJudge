@@ -8,7 +8,7 @@
 
 import React from "react";
 import {Column, StackedColumn} from "@ant-design/charts";
-import {DataItem, LegendPosition} from "@antv/g2plot/lib/interface/config";
+import {DataItem, LegendPosition} from "@antv/g2plot";
 import {StackedColumnConfig} from "@ant-design/charts/es/stackedColumn";
 import {ColumnConfig} from "@ant-design/charts/es/column";
 
