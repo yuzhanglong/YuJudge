@@ -19,7 +19,7 @@ interface ProblemSetsProps {
 
 }
 
-const ProblemSets: React.FunctionComponent<ProblemSetsProps> = (props) => {
+const ProblemSets: React.FunctionComponent<ProblemSetsProps> = () => {
 
   // 题目集分页State
   const problemSetsPaginationState = UsePaginationState<ProblemSetPaginationRequest>(PAGE_BEGIN - 1, getProblemSets);

@@ -20,9 +20,9 @@ interface AuthorizeModalProps {
   // 用户组id
   userGroupId: number | null;
   // 是否可见
-  isVisiable: boolean;
+  visible: boolean;
   // 关闭
-  onCancle: () => void;
+  onCancel: () => void;
 }
 
 const AuthorizeModal: React.FunctionComponent<AuthorizeModalProps> = (props) => {
@@ -77,7 +77,7 @@ const AuthorizeModal: React.FunctionComponent<AuthorizeModalProps> = (props) => 
       updateUserGroupPermission(props.userGroupId, userGroupPermissionKeys)
         .then(() => {
           message.success("授权成功~");
-          props.onCancle();
+          props.onCancel();
         })
         .catch((err:BaseResponse) => {
           message.error(err.message);
@@ -90,8 +90,8 @@ const AuthorizeModal: React.FunctionComponent<AuthorizeModalProps> = (props) => 
       width={800}
       title={"用户组授权"}
       destroyOnClose
-      visible={props.isVisiable}
-      onCancel={props.onCancle}
+      visible={props.visible}
+      onCancel={props.onCancel}
       maskClosable={false}
       onOk={() => updatePermissions()}
     >

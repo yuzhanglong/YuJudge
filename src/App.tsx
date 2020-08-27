@@ -8,20 +8,20 @@
 
 
 import React from 'react';
-import {HashRouter} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 import zhCN from 'antd/es/locale/zh_CN';
 import {ConfigProvider} from "antd";
 import MyRouter from "./router/MyRouter";
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <ConfigProvider locale={zhCN}>
         <div className="App">
           <MyRouter></MyRouter>
         </div>
       </ConfigProvider>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 

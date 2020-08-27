@@ -2,11 +2,11 @@ import React from "react";
 import {Card} from "antd";
 import {ExperimentTwoTone} from "@ant-design/icons";
 
-interface FeautresProps {
+interface FeatureProps {
 
 }
 
-const Feautres: React.FunctionComponent<FeautresProps> = () => {
+const Feature: React.FunctionComponent<FeatureProps> = () => {
   const renderCardCover = (
     <div className={"feature-card-wrap"}>
       <div className={"feature-card-icon-wrap"}>
@@ -16,10 +16,10 @@ const Feautres: React.FunctionComponent<FeautresProps> = () => {
         Feature
       </div>
       <div className={"feature-card-content"}>
-        FeatureFeatureFeatureF
-        eature FeatureFeature
-        FeatureFeature Featur
-        eFeatureFeaturefhfhtf
+        FeatureFeatureFeature
+        Feature FeatureFeature
+        FeatureFeature Feature
+        FeatureFeaturefhfhtf
       </div>
     </div>
 
@@ -54,4 +54,4 @@ const Feautres: React.FunctionComponent<FeautresProps> = () => {
   )
 }
 
-export default Feautres;
+export default Feature;

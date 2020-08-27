@@ -12,7 +12,7 @@ import {Card, Empty} from "antd";
 interface RankingProps {
 
 }
-const Ranking: React.FunctionComponent<RankingProps> = (props) => {
+const Ranking: React.FunctionComponent<RankingProps> = () => {
   return (
     <Card>
       <Empty description={"排名板块开发中...."}/>

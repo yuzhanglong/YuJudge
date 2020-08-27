@@ -22,12 +22,12 @@ interface UserGroupManageProps {
 
 }
 
-const UserGroupManage: React.FunctionComponent<UserGroupManageProps> = (props) => {
+const UserGroupManage: React.FunctionComponent<UserGroupManageProps> = () => {
   // 用户组信息
   const [userGroups, setUserGroups] = useState<UserGroupInfo[]>([]);
 
   // 用户组表单是否可视
-  const [isUserGroupVisiable, setIsUserGroupVisiable] = useState<boolean>(false);
+  const [isUserGroupVisible, setIsUserGroupVisible] = useState<boolean>(false);
 
   // 欲编辑的用户组信息
   const [userGroupInfoToEdit, setUserGroupInfoToEdit] = useState<UserGroupInfo | null>(null);
@@ -39,7 +39,7 @@ const UserGroupManage: React.FunctionComponent<UserGroupManageProps> = (props) =
   const [activeUserGroup, setActiveUserGroup] = useState<number | null>(null);
 
   // 是否开启权限分配modal
-  const [isPermissionModalVisiable, setIsPermissionModalVisiable] = useState<boolean>(false);
+  const [isPermissionModalVisible, setIsPermissionModalVisible] = useState<boolean>(false);
 
   useEffect(() => {
     getUserGroupInfo();
@@ -65,7 +65,7 @@ const UserGroupManage: React.FunctionComponent<UserGroupManageProps> = (props) =
         </Button>
         <Button type={"link"} onClick={() => {
           setActiveUserGroup(value.id);
-          setIsPermissionModalVisiable(true);
+          setIsPermissionModalVisible(true);
         }}>
           授权
         </Button>
@@ -102,7 +102,7 @@ const UserGroupManage: React.FunctionComponent<UserGroupManageProps> = (props) =
       // 创建模式
       createUserGroup(res)
         .then(() => {
-          setIsUserGroupVisiable(false);
+          setIsUserGroupVisible(false);
           getUserGroupInfo();
           message.success("创建成功");
         })
@@ -113,7 +113,7 @@ const UserGroupManage: React.FunctionComponent<UserGroupManageProps> = (props) =
       // 编辑模式
       editUserGroup(userGroupInfoToEdit.id, res)
         .then(() => {
-          setIsUserGroupVisiable(false);
+          setIsUserGroupVisible(false);
           getUserGroupInfo();
           message.success("编辑成功");
           // 不要忘记重置回去=
@@ -128,12 +128,12 @@ const UserGroupManage: React.FunctionComponent<UserGroupManageProps> = (props) =
   // 编辑按钮被按下
   const onEditButtonClick = (res: UserGroupInfo) => {
     setUserGroupInfoToEdit(res);
-    setIsUserGroupVisiable(true);
+    setIsUserGroupVisible(true);
   }
 
   // 编辑对话框被销毁
   const onEditFormDestroy = () => {
-    setIsUserGroupVisiable(false);
+    setIsUserGroupVisible(false);
     setUserGroupInfoToEdit(null);
   }
 
@@ -155,7 +155,7 @@ const UserGroupManage: React.FunctionComponent<UserGroupManageProps> = (props) =
           type={"primary"}
           icon={<PlusOutlined/>}
           onClick={() => {
-            setIsUserGroupVisiable(true);
+            setIsUserGroupVisible(true);
           }}>
           创建用户组
         </Button>
@@ -166,13 +166,13 @@ const UserGroupManage: React.FunctionComponent<UserGroupManageProps> = (props) =
       <UserGroupEditModal
         dataToEdit={userGroupInfoToEdit}
         onConfirm={(res: UserGroupInfo) => onCreateOrEditUserGroupConfirm(res)}
-        isVisiable={isUserGroupVisiable}
-        onCalcel={() => onEditFormDestroy()}/>
+        visible={isUserGroupVisible}
+        onCancel={() => onEditFormDestroy()}/>
       <AuthorizeModal
-        onCancle={() => setIsPermissionModalVisiable(false)}
+        onCancel={() => setIsPermissionModalVisible(false)}
         totalPermissions={permissionToAllocate}
         userGroupId={activeUserGroup}
-        isVisiable={isPermissionModalVisiable}/>
+        visible={isPermissionModalVisible}/>
     </Card>
   )
 }

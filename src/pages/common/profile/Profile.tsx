@@ -12,7 +12,7 @@ import {Card, Empty} from "antd";
 interface profileProps {
 
 }
-const Profile: React.FunctionComponent<profileProps> = (props) => {
+const Profile: React.FunctionComponent<profileProps> = () => {
   return (
     <Card title={"个人中心"}>
       <Empty description={"个人中心开发中..."}/>

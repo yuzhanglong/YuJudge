@@ -33,7 +33,7 @@ interface HomeProps {
 
 }
 
-const Home: React.FunctionComponent<HomeProps & RouteComponentProps> = (props) => {
+const Home: React.FunctionComponent<HomeProps & RouteComponentProps> = () => {
   useEffect(() => {
     getAndSetNotice(PAGE_BEGIN - 1);
     getAndSetRecentActiveUserInfo();
@@ -106,7 +106,7 @@ const Home: React.FunctionComponent<HomeProps & RouteComponentProps> = (props) =
           <RcQueueAnim>
             <div key={"home_content_side_item1"}>
               <Card title={"每日一句"} className={style.home_content_side_item}>
-                HAHAHAHA
+                ENJOY CODING
               </Card>
             </div>
             <div key={"home_content_side_item2"}>

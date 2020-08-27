@@ -68,7 +68,7 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
             id: props.problem.id
           }
           editProblemBasicInfo(requestBody)
-            .then(res => {
+            .then(() => {
               message.success("保存成功~");
             });
         })

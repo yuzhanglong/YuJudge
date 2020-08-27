@@ -12,7 +12,7 @@ import React from "react";
 interface LoadingProps {
 
 }
-const Loading: React.FunctionComponent<LoadingProps> = (props) => {
+const Loading: React.FunctionComponent<LoadingProps> = () => {
   return (
     <div>
       加载中

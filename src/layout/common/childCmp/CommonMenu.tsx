@@ -57,7 +57,7 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
             height={48}
             userName={userInfoState.userInfo?.nickname}
             description={userInfoState.userInfo?.userGroups ? userInfoState.userInfo?.userGroups[0].description : ""}
-            avater={userInfoState.userInfo?.avatar}/>
+            avatar={userInfoState.userInfo?.avatar}/>
         </Col>
       </Row>
 

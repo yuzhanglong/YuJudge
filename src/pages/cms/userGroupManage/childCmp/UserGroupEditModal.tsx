@@ -11,9 +11,9 @@ import {Form, Input, Modal} from "antd";
 import {UserGroupInfo} from "../../../../models/UserGroup";
 
 interface UserGroupEditModalProps {
-  isVisiable: boolean;
+  visible: boolean;
   onConfirm: (res: UserGroupInfo) => void;
-  onCalcel: () => void;
+  onCancel: () => void;
   dataToEdit?: UserGroupInfo | null;
 }
 
@@ -48,8 +48,8 @@ const UserGroupEditModal: React.FunctionComponent<UserGroupEditModalProps> = (pr
       forceRender
       maskClosable={false}
       title={`${props.dataToEdit ? "编辑用户组" : "创建一个用户组"}`}
-      visible={props.isVisiable}
-      onCancel={props.onCalcel}
+      visible={props.visible}
+      onCancel={props.onCancel}
       onOk={onFormConfirm}>
       <Form form={form}>
         <Form.Item

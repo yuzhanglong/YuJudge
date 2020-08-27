@@ -8,7 +8,7 @@
 
 import {LanguageTypeEnum} from "./enumerations";
 
-// C_PLUS_PULS的昵称
+// C_PLUS_PLUS的昵称
 export const C_PLUS_PLUS_NICK_NAME = "C++";
 
 // 展示给用户，支持的编程语言的执行脚本内容

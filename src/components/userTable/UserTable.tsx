@@ -32,14 +32,14 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
 
   // 渲染用户排名相关信息
   const renderUserRanking = (index: number) => {
-    const rankingstyle: React.CSSProperties = {
+    const rankingStyle: React.CSSProperties = {
       backgroundColor: getRanking(index + 1)
     }
     return (
       <div>
         <Badge
           count={index + 1}
-          style={rankingstyle}/>
+          style={rankingStyle}/>
       </div>
     )
   }

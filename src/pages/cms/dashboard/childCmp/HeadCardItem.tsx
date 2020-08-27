@@ -13,13 +13,13 @@ import style from "../dashboard.module.scss";
 interface HeadCardItemProps {
   topic: string;
   content: string;
-  hoverable?: boolean;
+  hover?: boolean;
   icon: React.ReactNode;
 }
 
 const HeadCardItem: React.FunctionComponent<HeadCardItemProps> = (props) => {
   return (
-    <Card hoverable={props.hoverable} bodyStyle={{
+    <Card hoverable={props.hover} bodyStyle={{
       padding: 20
     }}>
       <Row justify={"space-between"} align={"middle"}>
@@ -48,7 +48,7 @@ const HeadCardItem: React.FunctionComponent<HeadCardItemProps> = (props) => {
 }
 
 HeadCardItem.defaultProps = {
-  hoverable: true
+  hover: true
 }
 
 

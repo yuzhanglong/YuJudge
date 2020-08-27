@@ -26,7 +26,7 @@ const JudgeHostManage: React.FunctionComponent<JudgeServerManageProps & RouteCom
   const [judgeHostsInfo, setJudgeHostInfo] = useState<JudgeHostInfo[]>([]);
 
   // 是否展示编辑对话框
-  const [editModalVisiable, setEditModalVisiable] = useState<boolean>(false);
+  const [editModalVisible, setEditModalVisible] = useState<boolean>(false);
 
   useEffect(() => {
     getJudgeHosts();
@@ -61,7 +61,7 @@ const JudgeHostManage: React.FunctionComponent<JudgeServerManageProps & RouteCom
     return (
       <Button
         type={"primary"}
-        onClick={() => setEditModalVisiable(true)} icon={<PlusOutlined />}>
+        onClick={() => setEditModalVisible(true)} icon={<PlusOutlined />}>
         新建判题机
       </Button>
     )
@@ -72,7 +72,7 @@ const JudgeHostManage: React.FunctionComponent<JudgeServerManageProps & RouteCom
     createJudgeHost(value)
       .then(() => {
         message.success("创建成功~");
-        setEditModalVisiable(false);
+        setEditModalVisible(false);
         getJudgeHosts();
       })
       .catch((err: BaseResponse) => {
@@ -87,8 +87,8 @@ const JudgeHostManage: React.FunctionComponent<JudgeServerManageProps & RouteCom
         judgeHosts={judgeHostsInfo}
         operations={renderOperations}/>
       <JudgeHostEditModal
-        isVisiable={editModalVisiable}
-        onCancel={() => setEditModalVisiable(false)}
+        visible={editModalVisible}
+        onCancel={() => setEditModalVisible(false)}
         onConfirm={(v) => createJudgeHostRequest(v)}/>
     </Card>
   )

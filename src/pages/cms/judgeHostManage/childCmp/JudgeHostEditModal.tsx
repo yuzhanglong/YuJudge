@@ -10,17 +10,17 @@ import React, {useState} from "react";
 import {Button, Form, Input, InputNumber, Modal, Select} from "antd";
 import {isUrlValidated} from "../../../../utils/regex";
 import {JudgeHostRequest} from "../../../../models/judgeHost";
-import {JUDGE_HOST_DEGAULT_URL_SCHEME} from "../../../../config/config";
+import {JUDGE_HOST_DEFAULT_URL_SCHEME} from "../../../../config/config";
 
 interface JudgeHostFormProps {
-  isVisiable: boolean;
+  visible: boolean;
   onCancel: () => void;
   onConfirm: (data: JudgeHostRequest) => void;
 }
 
 const JudgeHostEditModal: React.FunctionComponent<JudgeHostFormProps> = (props) => {
   const [form] = Form.useForm();
-  const [urlScheme, setUrlScheme] = useState<string>(JUDGE_HOST_DEGAULT_URL_SCHEME);
+  const [urlScheme, setUrlScheme] = useState<string>(JUDGE_HOST_DEFAULT_URL_SCHEME);
 
   // 渲染Modal底部内容
   const renderFooter = () => {
@@ -64,7 +64,7 @@ const JudgeHostEditModal: React.FunctionComponent<JudgeHostFormProps> = (props) 
   return (
     <Modal
       width={500}
-      visible={props.isVisiable}
+      visible={props.visible}
       maskClosable={false}
       destroyOnClose
       onCancel={props.onCancel}

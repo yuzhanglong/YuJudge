@@ -36,7 +36,7 @@ const ProblemSetEdit: React.FunctionComponent<ProblemSetEditProps & RouteCompone
   const [searchContent, setSearchContent] = useState<string | null>(null);
 
   // problem对话框是否可见
-  const [addProblemModalVisiable, setAddProblemModalVisiable] = useState<boolean>(false);
+  const [addProblemModalVisible, setAddProblemModalVisible] = useState<boolean>(false);
 
   const params: any = props.match.params;
   const problemSetId: number = params.id;
@@ -81,7 +81,7 @@ const ProblemSetEdit: React.FunctionComponent<ProblemSetEditProps & RouteCompone
   }
 
   // 搜索确认
-  const onSerachConfirm = (value: string) => {
+  const onSearchConfirm = (value: string) => {
     setSearchContent(value);
     getProblemsData(0, value);
   }
@@ -104,16 +104,16 @@ const ProblemSetEdit: React.FunctionComponent<ProblemSetEditProps & RouteCompone
         onPageChange={(val) => getProblemSetProblemData(val - 1)}
         problemSetProblemsTotalPage={problemSetProblemPagination.paginationInfo.totalPage || 1}
         problems={problemSetProblemPagination.items}
-        onProblemAdd={() => setAddProblemModalVisiable(true)}
+        onProblemAdd={() => setAddProblemModalVisible(true)}
         onRemoveFormProblemSet={onRemoveFormProblemSet}/>
       <AddProblem
         problemSetId={problemSetId}
-        onCancel={() => setAddProblemModalVisiable(false)}
+        onCancel={() => setAddProblemModalVisible(false)}
         onProblemPageChange={(val: number) => getProblemsData(val - 1, searchContent)}
         totalPage={totalProblemPagination.paginationInfo.totalPage}
         problems={totalProblemPagination.items}
-        isVisiable={addProblemModalVisiable}
-        onSearchConfirm={onSerachConfirm}/>
+        visible={addProblemModalVisible}
+        onSearchConfirm={onSearchConfirm}/>
     </div>
   )
 }

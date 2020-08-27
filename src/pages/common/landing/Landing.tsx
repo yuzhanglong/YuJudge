@@ -11,7 +11,7 @@ import React from "react";
 import {RouteComponentProps} from "react-router-dom";
 import LandingHeader from "./childCmp/LandingHeader";
 import MainPart from "./childCmp/MainPart";
-import Feautres from "./childCmp/Feautres";
+import Feature from "./childCmp/Feature";
 import LandingFooter from "./childCmp/LandingFooter";
 
 interface LandingProps {
@@ -41,7 +41,7 @@ const Landing: React.FunctionComponent<LandingProps & RouteComponentProps> = (pr
           </MainPart>
         </div>
         <div className={"landing-item"}>
-          <Feautres></Feautres>
+          <Feature></Feature>
         </div>
         <div className={"landing-item landing-item-footer"}>
           <LandingFooter></LandingFooter>

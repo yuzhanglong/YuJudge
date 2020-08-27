@@ -61,7 +61,7 @@ export const DATE_TIME_FORMAT_BY_HOUR = "HH:mm:ss";
 export const JUDGE_HOST_DEFAULT_PORT = 8080;
 
 // 判题机默认url方案
-export const JUDGE_HOST_DEGAULT_URL_SCHEME = "http";
+export const JUDGE_HOST_DEFAULT_URL_SCHEME = "http";
 
 // 用户信息键
 export const USER_INFO_KEY = "user";

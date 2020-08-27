@@ -20,7 +20,7 @@ interface TestCaseModalProps {
   onCancel: () => void;
   uploadToken?: string;
   problemId: number;
-  initalTestCase?: ProblemTestCase;
+  initialTestCase?: ProblemTestCase;
 
 }
 
@@ -34,10 +34,10 @@ const TestCaseModal: React.FunctionComponent<TestCaseModalProps> = (props) => {
   const [form] = Form.useForm();
 
   useEffect(() => {
-    if (props.initalTestCase) {
-      form.setFieldsValue(props.initalTestCase);
+    if (props.initialTestCase) {
+      form.setFieldsValue(props.initialTestCase);
     }
-  }, [form, props.initalTestCase])
+  }, [form, props.initialTestCase])
 
 
   // 构造上传表单

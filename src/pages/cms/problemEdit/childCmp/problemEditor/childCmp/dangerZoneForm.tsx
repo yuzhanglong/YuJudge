@@ -7,7 +7,7 @@ interface DangerZoneFormProps {
   problem: Problem;
 }
 
-const DangerZoneForm: React.FunctionComponent<DangerZoneFormProps> = (props) => {
+const DangerZoneForm: React.FunctionComponent<DangerZoneFormProps> = () => {
   return (
     <div>
       <EditorTip title={"清空所有提交数据"}

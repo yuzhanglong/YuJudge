@@ -14,7 +14,7 @@ import {RouteComponentProps} from "react-router-dom";
 
 interface UserInfoProps {
   userName?: string;
-  avater?: string;
+  avatar?: string;
   description?: string;
   height: number;
 }
@@ -71,7 +71,7 @@ const UserTag: React.FunctionComponent<UserInfoProps & RouteComponentProps> = (p
           }}>
             <Avatar
               size="large"
-              src={props.avater}
+              src={props.avatar}
               style={{
                 backgroundColor: "#ffffff"
               }}/>

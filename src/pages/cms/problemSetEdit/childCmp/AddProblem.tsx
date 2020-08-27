@@ -18,7 +18,7 @@ import {ADD_PROBLEM_MAX_SHOW} from "../../../../config/config";
 
 interface AddProblemProps {
   problems: Problem[];
-  isVisiable: boolean;
+  visible: boolean;
   totalPage: number | undefined;
   onProblemPageChange: (page: number) => void;
   onSearchConfirm?: (val: string) => void;
@@ -94,7 +94,7 @@ const AddProblem: React.FunctionComponent<AddProblemProps> = (props) => {
 
   return (
     <Modal
-      visible={props.isVisiable}
+      visible={props.visible}
       title={"添加问题到题目集"}
       width={1000}
       footer={false}
@@ -131,7 +131,7 @@ const AddProblem: React.FunctionComponent<AddProblemProps> = (props) => {
 }
 
 AddProblem.defaultProps = {
-  isVisiable: false
+  visible: false
 }
 
 export default AddProblem;

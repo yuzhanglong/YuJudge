@@ -10,5 +10,9 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="loader" level="application" />
+    <orderEntry type="library" name="workerMain" level="application" />
+    <orderEntry type="library" name="react.production" level="application" />
+    <orderEntry type="library" name="react-router" level="application" />
+    <orderEntry type="library" name="react-dom.production" level="application" />
   </component>
 </module>

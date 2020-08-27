@@ -14,7 +14,7 @@ interface SolutionProps {
 
 }
 
-const Solution: React.FunctionComponent<SolutionProps & RouteComponentProps> = (props) => {
+const Solution: React.FunctionComponent<SolutionProps & RouteComponentProps> = () => {
   return (
     <Card>
       <Empty description={"题解板块开发中"}/>

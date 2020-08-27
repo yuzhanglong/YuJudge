@@ -11,7 +11,7 @@ import React from "react";
 interface DiscussionProps {
 
 }
-const Discussion: React.FunctionComponent<DiscussionProps> = (props) => {
+const Discussion: React.FunctionComponent<DiscussionProps> = () => {
   return (
     <div>
 

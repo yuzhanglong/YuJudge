@@ -1,6 +1,6 @@
 /*
  * File: CMSHeader.tsx
- * Description: 项目布局结构的头部bufen
+ * Description: 项目布局结构的头部部分
  * Created: 2020-08-08 19:28:19
  * Author: yuzhanglong
  * Email: yuzl1123@163.com
@@ -24,7 +24,7 @@ const CMSHeader: React.FunctionComponent<HeaderProps & RouteComponentProps> = (p
       <UserTag
         {...props}
         height={64}
-        avater={userInfoState.userInfo?.avatar}
+        avatar={userInfoState.userInfo?.avatar}
         userName={userInfoState.userInfo?.nickname}
         description={userInfoState.userInfo?.userGroups ? userInfoState.userInfo?.userGroups[0].description : ""}/>
     </div>
