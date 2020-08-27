@@ -1,6 +1,4 @@
-'use strict';
-
-// Do this as the first thing so that any code reading it knows the right env.
+// 设置运行环境
 process.env.BABEL_ENV = 'development';
 process.env.NODE_ENV = 'development';
 
@@ -29,7 +27,7 @@ const {
 } = require('react-dev-utils/WebpackDevServerUtils');
 const openBrowser = require('react-dev-utils/openBrowser');
 const paths = require('../config/paths');
-const configFactory = require('../config/webpack.config');
+const configFactory = require('../config/webpack/webpack.config');
 const createDevServerConfig = require('../config/webpackDevServer.config');
 
 const useYarn = fs.existsSync(paths.yarnLockFile);
