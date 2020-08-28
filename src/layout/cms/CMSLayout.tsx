@@ -27,7 +27,6 @@ const CMSLayout: React.FunctionComponent<CMSLayoutProps & RouteComponentProps> =
     <Layout style={{minHeight: '100vh'}}>
       <Sider
         width={230}
-        theme="dark"
         style={{
           height: '100vh',
           position: 'fixed',

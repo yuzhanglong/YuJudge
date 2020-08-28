@@ -8,15 +8,15 @@
 
 
 import React from "react";
+import {Spin} from "antd";
 
 interface LoadingProps {
 
 }
+
 const Loading: React.FunctionComponent<LoadingProps> = () => {
   return (
-    <div>
-      加载中
-    </div>
+    <Spin size="large" tip={"拼命加载中~"}/>
   )
 }
 

@@ -76,7 +76,6 @@ const MyRouter: React.FunctionComponent<MyRouterProps> = () => {
               children={
                 <div>
                   {createRouteByKey("menus")}
-                  {createRouteByKey("common")}
                 </div>
               }/>
           )

@@ -8,12 +8,11 @@
 
 
 import Loadable from 'react-loadable';
-import Loading from "../layout/public/loading/Loading";
 
 
 export default (loader: any) => {
   return Loadable({
     loader: () => loader,
-    loading: Loading
+    loading: () => null
   });
 }

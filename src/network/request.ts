@@ -7,7 +7,9 @@
  */
 
 import axios from 'axios';
-import {TIME_OUT, BASE_URL} from "../config/config";
+import {TIME_OUT, BASE_URL, LOADING_MIN_TIME} from "../config/config";
+import {removeLoading, showLoading} from "../utils/dom";
+
 
 export enum REQUEST_TYPES {
   GET = "get",
@@ -20,17 +22,27 @@ const request = axios.create({
   baseURL: BASE_URL
 });
 
-axios.interceptors.request.use(config => {
-  // TODO:
-  //  1.发送网络请求时，在页面中添加一个loading组件作为动画
-  //  2.某些网络请求要求用户必须登录，可以在请求中判断是否携带了token，没有携带token直接跳转到login页面
-  //  3.对某些请求参数进行序列化
+let requestCount = 0;
+
+
+request.interceptors.request.use(config => {
+  if (requestCount === 0) {
+    showLoading();
+    requestCount++;
+  }
   return config;
 }, err => {
-  return err;
+  return Promise.reject(err);
 })
 
 request.interceptors.response.use(response => {
+  requestCount--;
+  if (requestCount <= 0) {
+    requestCount = 0;
+    setTimeout(() => {
+      removeLoading();
+    }, LOADING_MIN_TIME);
+  }
   return response.data;
 }, err => {
   return Promise.reject(err.response.data);

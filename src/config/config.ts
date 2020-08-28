@@ -68,3 +68,9 @@ export const USER_INFO_KEY = "user";
 
 // 默认判题偏好
 export const DEFAULT_JUDGE_PREFERENCE = "ACM";
+
+// 全局loadingId
+export const LOADING_DOM_ID = "loading";
+
+// 全局loading最小时间，为提高用户体验防止loading一闪而过
+export const LOADING_MIN_TIME = 300;

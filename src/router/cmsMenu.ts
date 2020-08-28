@@ -14,10 +14,10 @@ import {JUDGE_HOST_MANAGE_MENU} from "./cmsJudgeHostMenu";
 
 export const CMS_MENUS: MenuRouterConfig[] = [
   {
-    key: "/cms/dashboard",
+    key: "/cms",
     component: "Dashboard",
     title: "控制台",
-    path: "/cms/dashboard",
+    path: "/cms",
     icon: "DashboardOutlined",
     isShowInMenu: true
   },
