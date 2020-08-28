@@ -14,5 +14,10 @@
     <orderEntry type="library" name="react.production" level="application" />
     <orderEntry type="library" name="react-router" level="application" />
     <orderEntry type="library" name="react-dom.production" level="application" />
+    <orderEntry type="library" name="g6" level="application" />
+    <orderEntry type="library" name="moment" level="application" />
+    <orderEntry type="library" name="g2" level="application" />
+    <orderEntry type="library" name="Draft" level="application" />
+    <orderEntry type="library" name="2.ba8c1173.chunk" level="application" />
   </component>
 </module>
