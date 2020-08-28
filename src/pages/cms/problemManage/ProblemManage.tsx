@@ -7,19 +7,24 @@
  */
 
 
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import ProblemTable from "../../../components/problemTable/ProblemTable";
 import {RouteComponentProps} from "react-router-dom";
 import {getProblems} from "../../../network/problemRequests";
 import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from "../../../config/config";
 import {UsePaginationState} from "../../../hooks/pagination";
 import {ProblemPaginationRequest} from "../../../models/pagination";
-import {Card, message} from "antd";
+import {Button, Card, message} from "antd";
+import {PlusOutlined} from "@ant-design/icons";
+import CreateProblemModal from "./childCmp/CreateProblemModal";
 
 
 const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
   // 分页对象
-  const problemPagination = UsePaginationState<ProblemPaginationRequest>(PAGE_BEGIN - 1, getProblems)
+  const problemPagination = UsePaginationState<ProblemPaginationRequest>(PAGE_BEGIN - 1, getProblems);
+
+  // 新建问题的对话框
+  const [createButtonModalVisible, setCreateButtonModalVisible] = useState(false);
 
   useEffect(() => {
     getProblemsData(0, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE, null);
@@ -49,8 +54,23 @@ const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
     getProblemsData(page - 1, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE, null);
   }
 
+  // 渲染创建功能按钮
+  const renderCreateProblemButton = () => {
+    return (
+      <Button
+        onClick={() => setCreateButtonModalVisible(true)}
+        type={"primary"}
+        icon={<PlusOutlined/>}>
+        创建题目
+      </Button>
+    )
+  }
+
   return (
-    <Card title={"题目管理"}>
+    <Card title={"题目管理"} extra={renderCreateProblemButton()}>
+      <CreateProblemModal
+        visible={createButtonModalVisible}
+        onCancel={() => setCreateButtonModalVisible(false)}/>
       <ProblemTable
         onProblemEdit={gotoEditProblem}
         problems={problemPagination.items}

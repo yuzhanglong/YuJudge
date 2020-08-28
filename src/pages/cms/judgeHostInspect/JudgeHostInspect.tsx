@@ -113,30 +113,32 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
   return (
     <Card title={judgeHostInfo ? judgeHostInfo.name : "加载中"} extra={renderCardExtra()}>
       <RcQueueAnim>
-        <Card
-          key={"basic"}
-          title={"基本信息"}
-          style={{
-            marginBottom: 20
-          }}>
-          <BasicInfo judgeHostInfo={judgeHostInfo}/>
-        </Card>
-        <Card
-          key={"current-condition"}
-          title={"实时状态"}
-          style={{
-            marginBottom: 20
-          }}>
-          <CurrentCondition judgeHostInfo={judgeHostInfo}/>
-        </Card>
-        <Card
-          title={"数据统计"}
-          key={"data"}>
-          <SubmissionCount
-            submissionCounts={judgeHostSubmissionCounts}
-            initialTimeRange={initDay()}
-            onPickerChange={(res) => getSubmissionCountsData(res[0], res[1])}/>
-        </Card>
+        <div>
+          <Card
+            key={"basic"}
+            title={"基本信息"}
+            style={{
+              marginBottom: 20
+            }}>
+            <BasicInfo judgeHostInfo={judgeHostInfo}/>
+          </Card>
+          <Card
+            key={"current-condition"}
+            title={"实时状态"}
+            style={{
+              marginBottom: 20
+            }}>
+            <CurrentCondition judgeHostInfo={judgeHostInfo}/>
+          </Card>
+          <Card
+            title={"数据统计"}
+            key={"data"}>
+            <SubmissionCount
+              submissionCounts={judgeHostSubmissionCounts}
+              initialTimeRange={initDay()}
+              onPickerChange={(res) => getSubmissionCountsData(res[0], res[1])}/>
+          </Card>
+        </div>
       </RcQueueAnim>
     </Card>
   )

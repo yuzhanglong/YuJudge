@@ -10,7 +10,7 @@
 export const TIME_OUT: number = 5000;
 
 // 服务器的baseUrl
-export const BASE_URL: string = "http://localhost:8080";
+export const BASE_URL: string = "http://47.106.202.255:8080";
 
 // 提交界面中单页的数据量
 export const SUBMISSION_SINGLE_PAGE_SIZE: number = 15;

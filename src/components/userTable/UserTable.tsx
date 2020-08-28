@@ -75,6 +75,7 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
 
   // 渲染身份信息
   const renderUserGroups = (content: UserGroupInfo[]) => {
+    if (!content || !content.length) return "无所在用户组";
     return content.map(res => {
       return (
         <Tag color="geekblue" key={res.id}>
