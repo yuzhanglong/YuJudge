@@ -128,3 +128,19 @@ export const deleteTestCase = (testCaseId: number) => {
     }
   )
 }
+
+// 创建一个问题
+export const createProblem = (name: string) => {
+  return request.post(
+    "/problem/create_problem",
+    {
+      name: name
+    },
+    {
+      headers: {
+        Authorization: getTokenFromStorage()
+      },
+
+    }
+  )
+}

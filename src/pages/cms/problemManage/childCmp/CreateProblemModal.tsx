@@ -12,24 +12,31 @@ import {Form, Input, Modal} from "antd";
 interface CreateProblemModalProps {
   visible: boolean;
   onCancel: () => void;
+  onConfirm: (name: string) => void;
 }
 
 const CreateProblemModal: React.FunctionComponent<CreateProblemModalProps> = (props) => {
-
   const [form] = Form.useForm();
+
+  const onFormConfirm = () => {
+    form.validateFields()
+      .then(res => {
+        props.onConfirm(res.name);
+      })
+  }
 
   return (
     <Modal
       title={"创建一个问题"}
       visible={props.visible}
-      onCancel={() => props.onCancel()}>
-      <Form>
+      onCancel={() => props.onCancel()} onOk={() => onFormConfirm()}>
+      <Form form={form}>
         <Form.Item
           label={"名称"}
           name="name"
           rules={[{
-          required: true,
-          message: "请输入名称"
+            required: true,
+            message: "请输入名称"
           }]}>
           <Input/>
         </Form.Item>

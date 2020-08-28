@@ -60,7 +60,7 @@ const SubmissionCount: React.FunctionComponent<SubmissionCountProps> = (props) =
         hour: t.toDate(),
         time: 0
       }
-    })
+    });
   }
 
   // 当选择器发生改变时

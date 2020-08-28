@@ -12,14 +12,14 @@ const DangerZoneForm: React.FunctionComponent<DangerZoneFormProps> = () => {
     <div>
       <EditorTip title={"清空所有提交数据"}
                  content={"删除这个问题下的所有提交数据，同时清空AC率等统计信息"}>
-        <Button danger>
+        <Button danger disabled>
           清空
         </Button>
       </EditorTip>
       <Divider/>
       <EditorTip title={"删除这个问题"}
                  content={"所有的题目信息/提交统计都会丢失，这个操作不可恢复"}>
-        <Button danger>
+        <Button danger disabled>
           删除
         </Button>
       </EditorTip>

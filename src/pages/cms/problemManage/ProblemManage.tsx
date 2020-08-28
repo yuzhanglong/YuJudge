@@ -10,7 +10,7 @@
 import React, {useEffect, useState} from "react";
 import ProblemTable from "../../../components/problemTable/ProblemTable";
 import {RouteComponentProps} from "react-router-dom";
-import {getProblems} from "../../../network/problemRequests";
+import {createProblem, getProblems} from "../../../network/problemRequests";
 import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from "../../../config/config";
 import {UsePaginationState} from "../../../hooks/pagination";
 import {ProblemPaginationRequest} from "../../../models/pagination";
@@ -66,9 +66,22 @@ const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
     )
   }
 
+  // 提交创建问题表单
+  const createProblemConfirm = (name: string) => {
+    createProblem(name)
+      .then(() => {
+        message.success("创建成功~");
+        setCreateButtonModalVisible(false);
+        getProblemsData(0, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE, null);
+      })
+      .catch(() => {
+      });
+  }
+
   return (
     <Card title={"题目管理"} extra={renderCreateProblemButton()}>
       <CreateProblemModal
+        onConfirm={(name) => createProblemConfirm(name)}
         visible={createButtonModalVisible}
         onCancel={() => setCreateButtonModalVisible(false)}/>
       <ProblemTable
