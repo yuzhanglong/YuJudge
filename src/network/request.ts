@@ -7,8 +7,28 @@
  */
 
 import axios from 'axios';
-import {TIME_OUT, BASE_URL, LOADING_MIN_TIME} from "../config/config";
+import {TIME_OUT, BASE_URL, LOADING_MIN_TIME, NO_CONNECTION_RESPONSE} from "../config/config";
 import {removeLoading, showLoading} from "../utils/dom";
+
+
+// 加载loading
+const loading = () => {
+  if (requestCount === 0) {
+    showLoading();
+    requestCount++;
+  }
+}
+
+// 删除loading
+const deleteLoading = () => {
+  requestCount--;
+  if (requestCount <= 0) {
+    requestCount = 0;
+    setTimeout(() => {
+      removeLoading();
+    }, LOADING_MIN_TIME);
+  }
+}
 
 
 export enum REQUEST_TYPES {
@@ -26,9 +46,8 @@ let requestCount = 0;
 
 
 request.interceptors.request.use(config => {
-  if (requestCount === 0) {
-    showLoading();
-    requestCount++;
+  if (config.headers.loading) {
+    loading();
   }
   return config;
 }, err => {
@@ -36,16 +55,11 @@ request.interceptors.request.use(config => {
 })
 
 request.interceptors.response.use(response => {
-  requestCount--;
-  if (requestCount <= 0) {
-    requestCount = 0;
-    setTimeout(() => {
-      removeLoading();
-    }, LOADING_MIN_TIME);
-  }
+  deleteLoading();
   return response.data;
 }, err => {
-  return Promise.reject(err.response.data);
+  deleteLoading();
+  return Promise.reject(err.response ? err.response.data : NO_CONNECTION_RESPONSE);
 })
 
 export default request;

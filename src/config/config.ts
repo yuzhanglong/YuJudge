@@ -7,10 +7,12 @@
  */
 
 // request的响应时间最大值
+import {BaseResponse} from "../models/common";
+
 export const TIME_OUT: number = 5000;
 
 // 服务器的baseUrl
-export const BASE_URL: string = "http://47.106.202.255:8080";
+export const BASE_URL: string = "http://localhost:8080";
 
 // 提交界面中单页的数据量
 export const SUBMISSION_SINGLE_PAGE_SIZE: number = 15;
@@ -74,3 +76,13 @@ export const LOADING_DOM_ID = "loading";
 
 // 全局loading最小时间，为提高用户体验防止loading一闪而过
 export const LOADING_MIN_TIME = 300;
+
+// 无连接响应
+export const NO_CONNECTION_RESPONSE: BaseResponse = {
+  message: "服务器连接异常",
+  config: {},
+  data: undefined,
+  headers: undefined,
+  status: 0,
+  statusText: ""
+}
