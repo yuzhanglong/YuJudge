@@ -26,7 +26,9 @@ const EditorTip: React.FunctionComponent<EditorTipProps> = (props) => {
           {props.content}
         </div>
       </div>
-      {props.children}
+      <div>
+        {props.children}
+      </div>
     </div>
   )
 }

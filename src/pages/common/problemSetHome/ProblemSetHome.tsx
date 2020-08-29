@@ -82,11 +82,9 @@ const ProblemSetHome: React.FunctionComponent<ProblemSetHomeProps & RouteCompone
               </Button>
             </div>
           </div>
-
         </Card>
       </div>
     </RcQueueAnim>
-
   )
 }
 

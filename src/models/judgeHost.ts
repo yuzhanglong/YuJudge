@@ -28,6 +28,7 @@ export interface JudgeHostCondition {
   memoryCostPercentage: number;
   cpuCostPercentage: number;
   queueAmount: number;
+  maxWorkingAmount: number;
 }
 
 // 判题机创建

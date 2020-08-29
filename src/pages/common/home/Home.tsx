@@ -106,7 +106,8 @@ const Home: React.FunctionComponent<HomeProps & RouteComponentProps> = () => {
           <RcQueueAnim>
             <div key={"home_content_side_item1"}>
               <Card title={"每日一句"} className={style.home_content_side_item}>
-                ENJOY CODING
+                {/*//TODO:调取后端接口*/}
+                用珠宝打扮自己，不如用知识充实自己。
               </Card>
             </div>
             <div key={"home_content_side_item2"}>

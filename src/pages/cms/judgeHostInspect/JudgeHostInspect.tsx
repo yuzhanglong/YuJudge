@@ -7,10 +7,14 @@
  */
 
 import React, {useEffect, useState} from "react";
-import {Badge, Card} from "antd";
+import {Badge, Button, Card, Divider, message, Slider} from "antd";
 import {RouteComponentProps} from "react-router-dom";
 import {JudgeHostInfo} from "../../../models/judgeHost";
-import {countJudgeHostSubmissionInfo, getJudgeHostInfoById} from "../../../network/judgeHostRequest";
+import {
+  countJudgeHostSubmissionInfo,
+  getJudgeHostInfoById,
+  setJudgeHostMaxWorkingAmount
+} from "../../../network/judgeHostRequest";
 import BasicInfo from "./childCmp/BasicInfo";
 import CurrentCondition from "./childCmp/CurrentCondition";
 import SubmissionCount from "../../../components/submissionCount/SubmissionCount";
@@ -19,6 +23,8 @@ import {getDateRangeMomentArray} from "../../../utils/dateTime";
 import {DEFAULT_DATE_TIME_FORMAT} from "../../../config/config";
 import moment from "moment";
 import RcQueueAnim from "rc-queue-anim";
+import style from "./judgeHostInspect.module.scss";
+import EditorTip from "../../../components/editorTip/editorTip";
 
 interface JudgeHostInspectProps {
 
@@ -39,7 +45,8 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
       resolutionPath: "",
       scriptPath: "",
       workPath: "",
-      workingAmount: 0
+      workingAmount: 0,
+      maxWorkingAmount: 0
     },
     connection: false,
     createTime: 0,
@@ -110,6 +117,15 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
     return getDateRangeMomentArray(before.getTime(), now.getTime());
   }
 
+  // 设置某个判题服务器最大判题节点个数
+  const setMaxWorkingAmount = (amount: number) => {
+    setJudgeHostMaxWorkingAmount(judgeHostId, amount, false)
+      .then(() => {
+        message.success("设置最大节点个数成功");
+        getJudgeHostInfo(judgeHostId);
+      })
+  }
+
   return (
     <Card title={judgeHostInfo ? judgeHostInfo.name : "加载中"} extra={renderCardExtra()}>
       <RcQueueAnim>
@@ -117,9 +133,7 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
           <Card
             key={"basic"}
             title={"基本信息"}
-            style={{
-              marginBottom: 20
-            }}>
+            className={style.judge_host_inspect_item}>
             <BasicInfo judgeHostInfo={judgeHostInfo}/>
           </Card>
           <Card
@@ -132,11 +146,38 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
           </Card>
           <Card
             title={"数据统计"}
-            key={"data"}>
+            key={"data"}
+            className={style.judge_host_inspect_item}>
             <SubmissionCount
               submissionCounts={judgeHostSubmissionCounts}
               initialTimeRange={initDay()}
               onPickerChange={(res) => getSubmissionCountsData(res[0], res[1])}/>
+          </Card>
+          <Card title={"操作"}>
+            <EditorTip title={"设置最大判题节点数目"}
+                       content={"注意: 值过大可能会导致判题服务器崩溃，请根据服务器性能作出正确选择"}>
+              {
+                judgeHostInfo.condition.maxWorkingAmount &&
+                <Slider
+                  onAfterChange={(val: number) => setMaxWorkingAmount(val)}
+                  defaultValue={judgeHostInfo.condition.maxWorkingAmount}
+                  tooltipVisible
+                  min={1}
+                  max={10}
+                  tooltipPlacement={"bottom"}
+                  style={{width: 300}}/>
+              }
+            </EditorTip>
+            <Divider></Divider>
+            <EditorTip title={"关闭这个判题服务器"}
+                       content={"这个判题服务器将不再接受任何任务直到重新启动"}>
+              <Button danger disabled>关闭</Button>
+            </EditorTip>
+            <Divider></Divider>
+            <EditorTip title={"删除这个判题服务器"}
+                       content={"注意: 这个操作不可恢复"}>
+              <Button danger disabled>删除</Button>
+            </EditorTip>
           </Card>
         </div>
       </RcQueueAnim>

@@ -62,3 +62,14 @@ export const createJudgeHost = (requestBody: JudgeHostRequest) => {
     }
   )
 }
+
+// 设置某个判题服务器最大判题节点个数
+export const setJudgeHostMaxWorkingAmount = (judgeHostId: number, maxWorkingAmount: number, isForce: boolean) => {
+  return request.put(
+    "/judge_host/set_judge_host_working_amount/" + judgeHostId,
+    {
+      maxWorkingAmount: maxWorkingAmount,
+      isForce: isForce
+    }
+  )
+}

@@ -49,8 +49,9 @@ const CMSLayout: React.FunctionComponent<CMSLayoutProps & RouteComponentProps> =
         <CMSHeader {...props}/>
         <Content className={"site-layout-content"} key={new Date().getTime()}>
           <RcQueueAnim>
-            <div key={"Breadcrumb"}>
-              <Breadcrumb/>
+            <div key={"Breadcrumb"} style={{
+              marginTop: 30
+            }}>
             </div>
             <div key={"content"}>
               <div>
