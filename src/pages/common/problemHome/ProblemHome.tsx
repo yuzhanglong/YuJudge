@@ -71,11 +71,13 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
 
   // 获取题目集信息
   const getProblemSetData = (problemSetId: number) => {
-    getProblemSetInfo(problemSetId)
-      .then(res => {
-        const problemSet: ProblemSet = res.data;
-        setProblemSetInfo(problemSet);
-      });
+    if (problemSetId) {
+      getProblemSetInfo(problemSetId)
+        .then(res => {
+          const problemSet: ProblemSet = res.data;
+          setProblemSetInfo(problemSet);
+        });
+    }
   }
 
   // 获取问题数据

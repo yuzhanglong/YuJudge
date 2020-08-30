@@ -12,6 +12,7 @@ import LanguageSelector from "../../pages/common/problemHome/childCmp/LanguageSe
 import MonacoEditor from "react-monaco-editor";
 import style from "./codeEditor.module.scss"
 import {message} from "antd";
+import {DEFAULT_LANGUAGE} from "../../config/config";
 
 interface CodeEditorProps {
   allowedLanguage: string[];
@@ -37,6 +38,8 @@ const CodeEditor: React.FunctionComponent<CodeEditorProps> = (props) => {
   useEffect(() => {
     if (props.allowedLanguage && props.allowedLanguage.length) {
       setActiveLanguage(props.allowedLanguage[0]);
+    } else {
+      setActiveLanguage(DEFAULT_LANGUAGE[0]);
     }
   }, [props.allowedLanguage]);
 
@@ -52,7 +55,11 @@ const CodeEditor: React.FunctionComponent<CodeEditorProps> = (props) => {
       <div className={style.code_editor_language_selector}>
         <LanguageSelector
           onLanguageChange={(res) => setActiveLanguage(res)}
-          allowedLanguage={props.allowedLanguage}/>
+          allowedLanguage={
+            props.allowedLanguage && props.allowedLanguage.length
+              ? props.allowedLanguage
+              : DEFAULT_LANGUAGE
+          }/>
       </div>
       <div className={style.code_editor_editor_wrap}>
         <MonacoEditor
@@ -76,7 +83,7 @@ const CodeEditor: React.FunctionComponent<CodeEditorProps> = (props) => {
         <SubmitToolBar
           onSubmit={() => onSubmit()}
           onClear={() => onClearButtonClick()}
-          isButtonActive={codeContent != null && codeContent !== ""} />
+          isButtonActive={codeContent != null && codeContent !== ""}/>
       </div>
     </div>
   )

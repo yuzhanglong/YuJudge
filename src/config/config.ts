@@ -9,6 +9,7 @@
 // request的响应时间最大值
 import {BaseResponse} from "../models/common";
 import {Empty} from "antd";
+import {LanguageTypeEnum} from "../common/enumerations";
 
 export const TIME_OUT: number = 5000;
 
@@ -93,3 +94,11 @@ export const EMPTY_IMAGE = Empty.PRESENTED_IMAGE_SIMPLE;
 
 // 权限请求头键ming
 export const AUTHORIZATION_KEY = "Authorization";
+
+// 默认语言
+export const DEFAULT_LANGUAGE = [
+  LanguageTypeEnum.C,
+  LanguageTypeEnum.C_PLUS_PLUS,
+  LanguageTypeEnum.JAVA,
+  LanguageTypeEnum.PYTHON
+]

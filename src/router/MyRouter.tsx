@@ -80,7 +80,7 @@ const MyRouter: React.FunctionComponent<MyRouterProps> = () => {
               }/>
           )
         }}/>
-      <Route render={() => <Redirect to="/404"/>}/>
+      <Route render={() => <Redirect to="/result/404"/>}/>
     </Switch>
   );
 }

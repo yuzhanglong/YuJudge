@@ -65,7 +65,7 @@ request.interceptors.response.use(response => {
     if ((code === NO_TOKEN || code === BAD_TOKEN) && !isRefuse) {
       isRefuse = true;
       message.error("登录信息已经过期, 请重新登录");
-      window.reactRouter.push("/login");
+      window.reactRouter.push("/result/403");
       setTimeout(() => {
         isRefuse = false;
       }, 4000);
