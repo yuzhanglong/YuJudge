@@ -154,7 +154,7 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
       <Column title={"创建时间"}
               dataIndex={"createTime"}
               key={"创建时间"}
-              width={150}
+              width={180}
               render={renderCreateTime}/>}
       {props.isShowOperations &&
       <Column title={"操作"}

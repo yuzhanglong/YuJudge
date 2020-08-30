@@ -27,17 +27,21 @@ import ProblemTable from "../../../components/problemTable/ProblemTable";
 import {getRecentProblems} from "../../../network/problemRequests";
 import {Problem} from "../../../models/problem";
 import RcQueueAnim from "rc-queue-anim";
+import {getDailyWord} from "../../../network/common";
+import {DailyWord} from "../../../models/common";
+import {Meta} from "antd/es/list/Item";
 
 
 interface HomeProps {
 
 }
 
-const Home: React.FunctionComponent<HomeProps & RouteComponentProps> = () => {
+const Home: React.FunctionComponent<HomeProps & RouteComponentProps> = (props) => {
   useEffect(() => {
     getAndSetNotice(PAGE_BEGIN - 1);
     getAndSetRecentActiveUserInfo();
     getAndSetRecentProblem();
+    getAndSetDailyWord();
     // eslint-disable-next-line
   }, []);
 
@@ -49,6 +53,9 @@ const Home: React.FunctionComponent<HomeProps & RouteComponentProps> = () => {
 
   // 近期问题
   const [recentProblems, setRecentProblems] = useState<Problem[]>([]);
+
+  // 每日一句
+  const [dailyWord, setDailyWord] = useState<DailyWord>();
 
   // 获取通知
   const getAndSetNotice = (start: number) => {
@@ -73,6 +80,19 @@ const Home: React.FunctionComponent<HomeProps & RouteComponentProps> = () => {
       .then(res => {
         setRecentProblems(res.data);
       })
+  }
+
+  // 每日一句
+  const getAndSetDailyWord = () => {
+    getDailyWord()
+      .then(res => {
+        setDailyWord(res.data);
+      })
+  }
+
+  // 搜索按钮被按下
+  const onSearch = (problemId: string) => {
+    props.history.push(`/common/problem/${problemId}`);
   }
 
 
@@ -106,14 +126,12 @@ const Home: React.FunctionComponent<HomeProps & RouteComponentProps> = () => {
           <RcQueueAnim>
             <div key={"home_content_side_item1"}>
               <Card title={"每日一句"} className={style.home_content_side_item}>
-                {/*//TODO:调取后端接口*/}
-                用珠宝打扮自己，不如用知识充实自己。
+                <Meta title={dailyWord?.title} description={dailyWord?.content}/>
               </Card>
             </div>
             <div key={"home_content_side_item2"}>
               <Card title={"快速开始"} className={style.home_content_side_item}>
-                <QuickStart onSearch={() => {
-                }}/>
+                <QuickStart onSearch={(value) => onSearch(value)}/>
               </Card>
             </div>
             <div key={"home_content_side_item3"}>

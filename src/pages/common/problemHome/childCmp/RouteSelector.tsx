@@ -29,7 +29,11 @@ const RouteSelector: React.FunctionComponent<RouteSelectorProps & RouteComponent
   return (
     <Radio.Group onChange={onRadioChange}>
       <Radio.Button value="problem" onClick={() => {
-        props.history.push(`/common/problem_set/${problemSetId}/problem/${problemId}`);
+        if (problemSetId) {
+          props.history.push(`/common/problem_set/${problemSetId}/problem/${problemId}`);
+        } else {
+          props.history.push(`/common/problem/${problemId}`);
+        }
       }}>
         <FormOutlined/>
         问题
@@ -37,7 +41,11 @@ const RouteSelector: React.FunctionComponent<RouteSelectorProps & RouteComponent
       <Radio.Button
         value="submission"
         onClick={() => {
-          props.history.push(`/common/problem_set/${problemSetId}/problem/${problemId}/submission`);
+          if (problemSetId) {
+            props.history.push(`/common/problem_set/${problemSetId}/problem/${problemId}/submission`);
+          } else {
+            props.history.push(`/common/problem/${problemId}/submission`);
+          }
         }}>
         <OrderedListOutlined/>
         提交记录
@@ -45,7 +53,11 @@ const RouteSelector: React.FunctionComponent<RouteSelectorProps & RouteComponent
       <Radio.Button
         value="solution"
         onClick={() => {
-          props.history.push(`/common/problem_set/${problemSetId}/problem/${problemId}/solution`);
+          if (problemSetId) {
+            props.history.push(`/common/problem_set/${problemSetId}/problem/${problemId}/solution`);
+          } else {
+            props.history.push(`/common/problem/${problemId}/solution`);
+          }
         }}>
         <ExperimentOutlined/>
         题解

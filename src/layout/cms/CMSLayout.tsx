@@ -11,7 +11,6 @@ import React from "react";
 import {Layout} from "antd";
 import SideBar from "./childCmp/SideBar";
 import routerConfig from "../../router/config";
-import Breadcrumb from "./childCmp/Breadcrumb";
 import {RouteComponentProps} from "react-router-dom";
 import CMSHeader from "./childCmp/CMSHeader";
 import RcQueueAnim from "rc-queue-anim";

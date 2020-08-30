@@ -131,7 +131,7 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
       <RcQueueAnim>
         <div>
           <Card
-            key={"basic"}
+            key={"BasicResult"}
             title={"基本信息"}
             className={style.judge_host_inspect_item}>
             <BasicInfo judgeHostInfo={judgeHostInfo}/>

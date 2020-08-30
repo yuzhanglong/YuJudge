@@ -80,7 +80,6 @@ const ProblemSetProblems: React.FunctionComponent<ProblemSetProblemsProps & Rout
         </Card>
       </div>
     </RcQueueAnim>
-
   )
 }
 

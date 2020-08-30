@@ -11,16 +11,22 @@ import {MAIN_MENU} from "./mainMenu";
 
 export const COMMON_MENUS: MenuRouterConfig[] = [
   {
-    key: "/landing",
+    key: "landing",
     component: "Landing",
     title: "着陆页",
     path: "/",
   },
   {
-    key: "/login",
+    key: "login",
     component: "Login",
     title: "用户登录",
     path: "/login",
+  },
+  {
+    key: "result",
+    component: "BasicResult",
+    title: "结果页",
+    path: "/result/:type",
   },
   ...MAIN_MENU
 ]

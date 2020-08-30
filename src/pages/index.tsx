@@ -52,6 +52,8 @@ const Home = loadable(import("./common/home/Home"));
 const ScoreBoard = loadable(import("./common/scoreBoard/ScoreBoard"));
 const Login = loadable(import("./common/login/Login"));
 const Landing = loadable(import("./common/landing/Landing"));
+const Problems = loadable(import("./common/problems/Problems"));
+const BasicResult = loadable(import("./common/basicResult/BasicResult"))
 
 
 // 导出
@@ -78,11 +80,13 @@ export default {
   JudgeHostInspect: JudgeHostInspect,
   JudgeHostManage: JudgeHostManage,
   ProblemSetCount: ProblemSetCount,
+  Problems: Problems,
   Home: Home,
   Profile: Profile,
   ProblemSets: ProblemSets,
   Solution: Solution,
   Submission: Submission,
   Discussion: Discussion,
-  Ranking: Ranking
+  Ranking: Ranking,
+  BasicResult: BasicResult
 } as any;

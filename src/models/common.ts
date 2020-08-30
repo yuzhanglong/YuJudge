@@ -8,7 +8,6 @@
 
 import {AxiosResponse} from "axios";
 import {SubmissionCountInfo} from "./submissionInfo";
-import {History} from "history";
 
 // 服务端基础响应内容
 export interface BaseResponse extends AxiosResponse {
@@ -26,6 +25,7 @@ export interface UploadTokenData {
   uploadToken: string;
 }
 
+// 全局统计
 export interface GlobalCount {
   problemAmount: number;
   problemSetAmount: number;
@@ -33,4 +33,10 @@ export interface GlobalCount {
   userAmount: number;
   judgeHostAmount: number;
   recentSubmission: SubmissionCountInfo[];
+}
+
+// 每日一句
+export interface DailyWord {
+  title: string;
+  content: string;
 }

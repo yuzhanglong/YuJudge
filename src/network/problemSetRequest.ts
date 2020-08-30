@@ -34,7 +34,7 @@ export const createProblemSet = (problemSet: ProblemSet) => {
 // 获取某个problemSet下所有problem
 export const getProblemSetProblems = (requestParams: ProblemSetProblemPaginationRequest) => {
   return request.get(
-    "/problem_set/get_problem_set_problems/" + requestParams.problemSetId,
+    "/problem_set/get_problem_set_problems",
     {
       params: requestParams
     }

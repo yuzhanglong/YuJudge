@@ -13,7 +13,7 @@ import {UserInfoState} from "../../../hooks/userInfo";
 import UserTag from "../../../components/userTag/UserTag";
 import {
   AreaChartOutlined,
-  HomeOutlined,
+  HomeOutlined, QuestionCircleOutlined,
   SnippetsOutlined,
   UserOutlined
 } from "@ant-design/icons";
@@ -46,6 +46,12 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
           <Menu.Item key="/common/home" icon={<HomeOutlined/>}>
             <Link to={`/common/home`}>
               <span className="nav-text">首页</span>
+            </Link>
+          </Menu.Item>
+
+          <Menu.Item key="/common/problem" icon={<QuestionCircleOutlined />}>
+            <Link to={"/common/problem"}>
+              <span className="nav-text">问题</span>
             </Link>
           </Menu.Item>
 

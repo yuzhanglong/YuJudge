@@ -53,7 +53,11 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
     submitCode(submission).then(() => {
       message.success("提交成功~");
       setActiveProblemRoute("submission");
-      props.history.push(`/common/problem_set/${problemSetId}/problem/${problemId}/submission`);
+      if (problemSetId) {
+        props.history.push(`/common/problem_set/${problemSetId}/problem/${problemId}/submission`);
+      } else {
+        props.history.push(`/common/problem/${problemId}/submission`);
+      }
     });
   }
 
@@ -61,6 +65,7 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
   useEffect(() => {
     getProblemData(problemId);
     getProblemSetData(problemSetId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [problemId, problemSetId]);
 
 
@@ -82,6 +87,7 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
       })
       .catch(() => {
         message.error("这个问题不存在");
+        props.history.replace("/result/404");
       })
   }
 
