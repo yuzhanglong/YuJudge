@@ -11,7 +11,7 @@ import {SubmissionCountInfo} from "../../models/submissionInfo";
 import LineChart from "../charts/LineChart";
 import {Col, DatePicker, Empty, Row, Tag} from "antd";
 import {Moment} from "moment";
-import {DATE_TIME_FORMAT_BY_HOUR, DEFAULT_DATE_TIME_FORMAT} from "../../config/config";
+import {DATE_TIME_FORMAT_BY_HOUR, DEFAULT_DATE_TIME_FORMAT, EMPTY_IMAGE} from "../../config/config";
 import moment from "moment";
 
 interface SubmissionCountProps {
@@ -115,7 +115,7 @@ const SubmissionCount: React.FunctionComponent<SubmissionCountProps> = (props) =
             yDescription={"提交数量"}/> :
           <Empty
             description={"该时间段无提交"}
-            image={Empty.PRESENTED_IMAGE_SIMPLE}>
+            image={EMPTY_IMAGE}>
           </Empty>
       }
     </div>

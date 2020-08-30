@@ -13,24 +13,14 @@ import {UserGroupInfo} from "../models/UserGroup";
 // 获取所有用户组信息
 export const getUserGroups = () => {
   return request.get(
-    "/user_group/get_user_groups",
-    {
-      headers: {
-        Authorization: getTokenFromStorage()
-      }
-    }
+    "/user_group/get_user_groups"
   )
 };
 
 // 删除用户组
 export const deleteUserGroup = (groupId: number) => {
   return request.delete(
-    "/user_group/delete_user_group/" + groupId,
-    {
-      headers: {
-        Authorization: getTokenFromStorage()
-      }
-    }
+    "/user_group/delete_user_group/" + groupId
   )
 };
 
@@ -41,11 +31,6 @@ export const createUserGroup = (userGroupInfo: UserGroupInfo) => {
     {
       name: userGroupInfo.name,
       description: userGroupInfo.description
-    },
-    {
-      headers: {
-        Authorization: getTokenFromStorage()
-      }
     }
   )
 };
@@ -57,11 +42,6 @@ export const editUserGroup = (userGroupId: number, userGroupInfo: UserGroupInfo)
     {
       name: userGroupInfo.name,
       description: userGroupInfo.description
-    },
-    {
-      headers: {
-        Authorization: getTokenFromStorage()
-      }
     }
   )
 };

@@ -9,17 +9,11 @@
 
 import request from "./request";
 import {NoticePaginationRequest} from "../models/pagination";
-import {getTokenFromStorage} from "../utils/dataPersistence";
 
 // 通过id来获取problem的基本信息
 export const getNotices = (requestBody: NoticePaginationRequest) => {
   return request.get(
-    "/notice/get_notices",
-    {
-      headers: {
-        Authorization: getTokenFromStorage()
-      }
-    }
+    "/notice/get_notices"
   )
 }
 

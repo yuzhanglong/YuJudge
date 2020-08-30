@@ -6,19 +6,15 @@
  * Email: yuzl1123@163.com
  */
 
-import request, {REQUEST_TYPES} from "./request";
+import request from "./request";
 import {Problem, ProblemLimitation, ProblemTestCase} from "../models/problem";
 import {ProblemPaginationRequest} from "../models/pagination";
-import {getTokenFromStorage} from "../utils/dataPersistence";
 
 
 // 通过id来获取problem的基本信息
 export const getProblemById = (problemId: string) => {
   return request.get(
     "/problem/get_problem_by_id/" + problemId,
-    {
-      method: REQUEST_TYPES.GET
-    }
   )
 }
 
@@ -28,7 +24,6 @@ export const getProblems = (requestParams: ProblemPaginationRequest) => {
   return request.get(
     "/problem/get_problems",
     {
-      method: REQUEST_TYPES.GET,
       params: requestParams
     }
   )
@@ -38,10 +33,7 @@ export const getProblems = (requestParams: ProblemPaginationRequest) => {
 // 获取problem的详细信息
 export const getProblemDetailedById = (problemId: number) => {
   return request.get(
-    "/problem/get_problem_detailed_by_id/" + problemId,
-    {
-      method: REQUEST_TYPES.GET
-    }
+    "/problem/get_problem_detailed_by_id/" + problemId
   )
 }
 
@@ -49,10 +41,7 @@ export const getProblemDetailedById = (problemId: number) => {
 // 获取problem的一个或多个解决方案
 export function getSolutionByProblemId(problemId: number) {
   return request.get(
-    "/problem/get_solutions/" + problemId,
-    {
-      method: REQUEST_TYPES.GET
-    }
+    "/problem/get_solutions/" + problemId
   )
 }
 
@@ -60,10 +49,7 @@ export function getSolutionByProblemId(problemId: number) {
 export const setLimitations = (problemId: number, limitation: ProblemLimitation) => {
   return request.post(
     "/problem/set_limitation/" + problemId,
-    limitation,
-    {
-      method: REQUEST_TYPES.GET
-    }
+    limitation
   )
 }
 
@@ -72,10 +58,7 @@ export const setLimitations = (problemId: number, limitation: ProblemLimitation)
 export const createSolution = (problemId: number, solution: ProblemTestCase) => {
   return request.post(
     "/problem/create_solution/" + problemId,
-    solution,
-    {
-      method: REQUEST_TYPES.POST
-    }
+    solution
   )
 }
 
@@ -95,12 +78,7 @@ export const getRecentProblems = (size: number) => {
 export const editProblemBasicInfo = (problem: Problem) => {
   return request.put(
     "/problem/edit_problem/" + problem.id,
-    problem,
-    {
-      headers: {
-        Authorization: getTokenFromStorage()
-      }
-    }
+    problem
   )
 }
 
@@ -108,24 +86,14 @@ export const editProblemBasicInfo = (problem: Problem) => {
 export const editProblemLimitation = (problem: Problem) => {
   return request.put(
     "/problem/set_limitation/" + problem.id,
-    problem,
-    {
-      headers: {
-        Authorization: getTokenFromStorage()
-      }
-    }
+    problem
   )
 }
 
 // 删除测试点记录
 export const deleteTestCase = (testCaseId: number) => {
   return request.delete(
-    "/problem/delete_solution/" + testCaseId,
-    {
-      headers: {
-        Authorization: getTokenFromStorage()
-      }
-    }
+    "/problem/delete_solution/" + testCaseId
   )
 }
 
@@ -135,12 +103,6 @@ export const createProblem = (name: string) => {
     "/problem/create_problem",
     {
       name: name
-    },
-    {
-      headers: {
-        Authorization: getTokenFromStorage()
-      },
-
     }
   )
 }

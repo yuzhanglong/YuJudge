@@ -7,8 +7,9 @@
  */
 
 import axios from 'axios';
-import {TIME_OUT, BASE_URL, LOADING_MIN_TIME, NO_CONNECTION_RESPONSE} from "../config/config";
+import {TIME_OUT, BASE_URL, LOADING_MIN_TIME, NO_CONNECTION_RESPONSE, AUTHORIZATION_KEY} from "../config/config";
 import {removeLoading, showLoading} from "../utils/dom";
+import {getTokenFromStorage} from "../utils/dataPersistence";
 
 
 // 加载loading
@@ -30,13 +31,6 @@ const deleteLoading = () => {
   }
 }
 
-
-export enum REQUEST_TYPES {
-  GET = "get",
-  POST = "post",
-  DELETE = "delete",
-}
-
 const request = axios.create({
   timeout: TIME_OUT,
   baseURL: BASE_URL
@@ -49,6 +43,9 @@ request.interceptors.request.use(config => {
   if (config.headers.loading) {
     loading();
   }
+  // 添加权限请求头
+  config.headers[AUTHORIZATION_KEY] = getTokenFromStorage();
+
   return config;
 }, err => {
   return Promise.reject(err);

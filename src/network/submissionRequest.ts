@@ -6,21 +6,14 @@
  * Email: yuzl1123@163.com
  */
 
-import request, {REQUEST_TYPES} from "./request";
+import request from "./request";
 import {SubmissionInfo} from "../models/submissionInfo";
-import {getTokenFromStorage} from "../utils/dataPersistence";
 
 // 提交代码
 export const submitCode = (submission: SubmissionInfo) => {
   return request.post(
     "/submission/submit_code",
-    submission,
-    {
-      method: REQUEST_TYPES.POST,
-      headers: {
-        Authorization: getTokenFromStorage()
-      }
-    }
+    submission
   )
 }
 
@@ -34,8 +27,7 @@ export const getSubmissionByProblemId = (start: number, count: number, problemId
         start: start,
         count: count,
         problemId: problemId
-      },
-      method: REQUEST_TYPES.GET
+      }
     }
   )
 }
@@ -48,8 +40,7 @@ export const getSubmissionById = (submissionId: number) => {
     {
       params: {
         submissionId: submissionId
-      },
-      method: REQUEST_TYPES.GET
+      }
     }
   )
 }
@@ -62,9 +53,6 @@ export const getRecentSubmission = (begin: string, end: string) => {
       params: {
         begin: begin,
         end: end
-      },
-      headers: {
-        "Authorization": getTokenFromStorage()
       }
     }
   )
@@ -73,11 +61,6 @@ export const getRecentSubmission = (begin: string, end: string) => {
 // 用户判题结果统计
 export const getUserJudgeResultCount = () => {
   return request.get(
-    "/submission/get_user_judge_result_count",
-    {
-      headers: {
-        "Authorization": getTokenFromStorage()
-      }
-    }
+    "/submission/get_user_judge_result_count"
   )
 }

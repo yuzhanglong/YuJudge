@@ -8,6 +8,7 @@
 
 // request的响应时间最大值
 import {BaseResponse} from "../models/common";
+import {Empty} from "antd";
 
 export const TIME_OUT: number = 5000;
 
@@ -86,3 +87,9 @@ export const NO_CONNECTION_RESPONSE: BaseResponse = {
   status: 0,
   statusText: ""
 }
+
+// 显示为空的图片
+export const EMPTY_IMAGE = Empty.PRESENTED_IMAGE_SIMPLE;
+
+// 权限请求头键ming
+export const AUTHORIZATION_KEY = "Authorization";

@@ -15,12 +15,7 @@ import {JudgeHostRequest} from "../models/judgeHost";
 // 获取所有的判题机信息
 export const getJudgeHostsInfo = () => {
   return request.get(
-    "/judge_host/get_judge_hosts_info",
-    {
-      headers: {
-        Authorization: getTokenFromStorage()
-      }
-    }
+    "/judge_host/get_judge_hosts_info"
   )
 }
 
@@ -29,11 +24,6 @@ export const getJudgeHostsInfo = () => {
 export const getJudgeHostInfoById = (judgeHostId: number) => {
   return request.get(
     "/judge_host/get_judge_host_by_id/" + judgeHostId,
-    {
-      headers: {
-        Authorization: getTokenFromStorage()
-      }
-    }
   )
 }
 

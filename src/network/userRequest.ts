@@ -7,19 +7,15 @@
  */
 
 
-import request, {REQUEST_TYPES} from "./request";
+import request from "./request";
 import {LoginFormData, RegisterFormData} from "../models/user";
-import {getTokenFromStorage} from "../utils/dataPersistence";
 import {UsersPaginationRequest} from "../models/pagination";
 
 
 // 获取验证码相关信息
 export const getCheckCodeInfo = () => {
   return request.get(
-    "/user/get_check_code",
-    {
-      method: REQUEST_TYPES.GET
-    }
+    "/user/get_check_code"
   )
 }
 
@@ -28,10 +24,7 @@ export const getCheckCodeInfo = () => {
 export const login = (loginFormData: LoginFormData) => {
   return request.post(
     "/user/login",
-    loginFormData,
-    {
-      method: REQUEST_TYPES.POST
-    }
+    loginFormData
   )
 }
 
@@ -39,10 +32,7 @@ export const login = (loginFormData: LoginFormData) => {
 export const register = (registerFormData: RegisterFormData) => {
   return request.post(
     "/user/register",
-    registerFormData,
-    {
-      method: REQUEST_TYPES.POST
-    }
+    registerFormData
   )
 }
 
@@ -51,9 +41,6 @@ export const getActiveUserInfo = (userAmount: number) => {
   return request.get(
     "/user/get_active_user",
     {
-      headers: {
-        Authorization: getTokenFromStorage()
-      },
       params: {
         amount: userAmount
       }
@@ -64,12 +51,7 @@ export const getActiveUserInfo = (userAmount: number) => {
 // 获取用户信息
 export const getUserInfo = () => {
   return request.get(
-    "/user/get_user_info",
-    {
-      headers: {
-        Authorization: getTokenFromStorage()
-      },
-    }
+    "/user/get_user_info"
   )
 }
 
@@ -78,9 +60,6 @@ export const getUsers = (params: UsersPaginationRequest) => {
   return request.get(
     "/user/get_users",
     {
-      headers: {
-        Authorization: getTokenFromStorage()
-      },
       params: {
         start: params.start,
         count: params.count,
@@ -93,11 +72,6 @@ export const getUsers = (params: UsersPaginationRequest) => {
 // 删除用户
 export const deleteUser = (userId: number) => {
   return request.delete(
-    "/user/delete_user/" + userId,
-    {
-      headers: {
-        Authorization: getTokenFromStorage()
-      }
-    }
+    "/user/delete_user/" + userId
   )
 }

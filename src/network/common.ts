@@ -6,7 +6,7 @@
  * Email: yuzl1123@163.com
  */
 
-import request, {REQUEST_TYPES} from "./request";
+import request from "./request";
 import {getTokenFromStorage} from "../utils/dataPersistence";
 
 // 获取上传凭证
@@ -14,7 +14,9 @@ export const getUploadToken = () => {
   return request.get(
     "/common/upload_token",
     {
-      method: REQUEST_TYPES.GET
+      headers: {
+        Authorization: getTokenFromStorage()
+      }
     }
   )
 }

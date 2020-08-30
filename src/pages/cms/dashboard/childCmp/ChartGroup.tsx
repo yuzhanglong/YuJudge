@@ -7,13 +7,14 @@
  */
 
 import React from "react";
-import {Card, Col, Row} from "antd";
+import {Card, Col, Empty, Row} from "antd";
 import {DashOutlined} from "@ant-design/icons";
 import ColumnChart from "../../../../components/charts/ColumnChart";
 import {UserInfo} from "../../../../models/user";
 import {SubmissionCountInfo, UserSubmissionCount} from "../../../../models/submissionInfo";
 import SubmissionCount from "../../../../components/submissionCount/SubmissionCount";
 import style from "../dashboard.module.scss";
+import {EMPTY_IMAGE} from "../../../../config/config";
 
 interface ChartGroupProps {
   recentSubmission: UserSubmissionCount[];
@@ -45,6 +46,18 @@ const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
     return result;
   }
 
+  // 检测是否为空
+  const checkRecentSubmissionIsEmpty = () => {
+    console.log(111);
+    for (let i = 0; i < props.recentSubmission.length; i++) {
+      if (props.recentSubmission[i].totalAmount !== 0) {
+        console.log(props.recentSubmission[i]);
+        return false;
+      }
+    }
+    return true;
+  }
+
 
   return (
     <div>
@@ -57,14 +70,18 @@ const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
             extra={
               <DashOutlined/>
             }>
-            <div className={style.dashboard_charts_item}>
-              <ColumnChart
-                isStack
-                stackField={"type"}
-                xKey={"date"}
-                yKey={"amount"}
-                yKeyDesc={"提交数"}
-                data={generateUserSubmissionData()}/>
+            <div className={checkRecentSubmissionIsEmpty() ? "" :style.dashboard_charts_item}>
+              {
+                !checkRecentSubmissionIsEmpty() ?
+                  <ColumnChart
+                    isStack
+                    stackField={"type"}
+                    xKey={"date"}
+                    yKey={"amount"}
+                    yKeyDesc={"提交数"}
+                    data={generateUserSubmissionData()}/>
+                  : <Empty image={EMPTY_IMAGE}/>
+              }
             </div>
           </Card>
         </Col>
@@ -76,7 +93,7 @@ const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
             extra={
               <DashOutlined/>
             }>
-            <div className={style.dashboard_charts_item}>
+            <div className={checkRecentSubmissionIsEmpty() ? "" :style.dashboard_charts_item}>
               <SubmissionCount
                 submissionCounts={props.globalSubmissionCount}
                 showPicker={false}/>

@@ -7,9 +7,8 @@
  */
 
 
-import request, {REQUEST_TYPES} from "./request";
+import request from "./request";
 import {ProblemSet} from "../models/problemSet";
-import {getTokenFromStorage} from "../utils/dataPersistence";
 import {ProblemSetPaginationRequest, ProblemSetProblemPaginationRequest} from "../models/pagination";
 
 
@@ -18,7 +17,6 @@ export const getProblemSets = (requestParams: ProblemSetPaginationRequest) => {
   return request.get(
     "/problem_set/get_problem_sets",
     {
-      method: REQUEST_TYPES.GET,
       params: requestParams
     }
   )
@@ -29,12 +27,7 @@ export const getProblemSets = (requestParams: ProblemSetPaginationRequest) => {
 export const createProblemSet = (problemSet: ProblemSet) => {
   return request.post(
     "/problem_set/create_problem_set",
-    problemSet,
-    {
-      headers: {
-        Authorization: getTokenFromStorage()
-      }
-    }
+    problemSet
   )
 }
 
@@ -43,9 +36,6 @@ export const getProblemSetProblems = (requestParams: ProblemSetProblemPagination
   return request.get(
     "/problem_set/get_problem_set_problems/" + requestParams.problemSetId,
     {
-      headers: {
-        Authorization: getTokenFromStorage()
-      },
       params: requestParams
     }
   )
@@ -88,12 +78,7 @@ export const getProblemSetInfo = (problemSetId: number) => {
 // 获取题目集记分板信息
 export const getProblemSetScoreBoard = (problemSetId: number) => {
   return request.get(
-    "/problem_set/get_score_board/" + problemSetId,
-    {
-      headers: {
-        Authorization: getTokenFromStorage()
-      }
-    }
+    "/problem_set/get_score_board/" + problemSetId
   )
 }
 
@@ -101,12 +86,7 @@ export const getProblemSetScoreBoard = (problemSetId: number) => {
 export const updateProblemSetBasicInfo = (problemSet: ProblemSet) => {
   return request.put(
     "/problem_set/update_problem_set_basic_info/" + problemSet.id,
-    problemSet,
-    {
-      headers: {
-        Authorization: getTokenFromStorage()
-      }
-    }
+    problemSet
   )
 }
 
@@ -117,9 +97,6 @@ export const countProblemSetSubmissionInfo = (problemSetId: number) => {
     {
       params: {
         problemSetId: problemSetId
-      },
-      headers: {
-        Authorization: getTokenFromStorage()
       }
     }
   )
@@ -132,9 +109,6 @@ export const countProblemSetScatter = (problemSetId: number) => {
     {
       params: {
         problemSetId: problemSetId
-      },
-      headers: {
-        Authorization: getTokenFromStorage()
       }
     }
   )
