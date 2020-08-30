@@ -91,7 +91,7 @@ const ProblemSetEdit: React.FunctionComponent<ProblemSetEditProps & RouteCompone
     removeProblemFormProblemSet(problemSetId, problemId)
       .then(() => {
         getProblemsData(PAGE_BEGIN - 1, searchContent);
-        window.location.reload();
+        window.reactRouter.push("?");
       });
   }
 

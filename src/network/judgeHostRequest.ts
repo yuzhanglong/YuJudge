@@ -8,7 +8,6 @@
 
 
 import request from "./request";
-import {getTokenFromStorage} from "../utils/dataPersistence";
 import {JudgeHostRequest} from "../models/judgeHost";
 
 

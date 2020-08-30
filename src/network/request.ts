@@ -10,6 +10,13 @@ import axios from 'axios';
 import {TIME_OUT, BASE_URL, LOADING_MIN_TIME, NO_CONNECTION_RESPONSE, AUTHORIZATION_KEY} from "../config/config";
 import {removeLoading, showLoading} from "../utils/dom";
 import {getTokenFromStorage} from "../utils/dataPersistence";
+import {BAD_TOKEN, NO_TOKEN} from "../config/code";
+import {message} from "antd";
+
+// 请求数量
+let requestCount = 0;
+// 拒绝哨兵，防止权限问题被驳回时弹出重复的窗口
+let isRefuse = false;
 
 
 // 加载loading
@@ -36,8 +43,6 @@ const request = axios.create({
   baseURL: BASE_URL
 });
 
-let requestCount = 0;
-
 
 request.interceptors.request.use(config => {
   if (config.headers.loading) {
@@ -45,7 +50,6 @@ request.interceptors.request.use(config => {
   }
   // 添加权限请求头
   config.headers[AUTHORIZATION_KEY] = getTokenFromStorage();
-
   return config;
 }, err => {
   return Promise.reject(err);
@@ -56,6 +60,17 @@ request.interceptors.response.use(response => {
   return response.data;
 }, err => {
   deleteLoading();
+  if (err.response) {
+    const code = err.response.data.code;
+    if ((code === NO_TOKEN || code === BAD_TOKEN) && !isRefuse) {
+      isRefuse = true;
+      message.error("登录信息已经过期, 请重新登录");
+      window.reactRouter.push("/login");
+      setTimeout(() => {
+        isRefuse = false;
+      }, 4000);
+    }
+  }
   return Promise.reject(err.response ? err.response.data : NO_CONNECTION_RESPONSE);
 })
 

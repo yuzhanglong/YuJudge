@@ -56,7 +56,7 @@ export const setLimitations = (problemId: number, limitation: ProblemLimitation)
 
 // 添加解决方案
 export const createSolution = (problemId: number, solution: ProblemTestCase) => {
-  return request.post(
+  return request.put(
     "/problem/create_solution/" + problemId,
     solution
   )

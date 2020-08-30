@@ -7,7 +7,6 @@
  */
 
 import request from "./request";
-import {getTokenFromStorage} from "../utils/dataPersistence";
 import {UserGroupInfo} from "../models/UserGroup";
 
 // 获取所有用户组信息

@@ -47,7 +47,7 @@ const CMSLayout: React.FunctionComponent<CMSLayoutProps & RouteComponentProps> =
       </Sider>
       <Layout className="site-layout" style={{marginLeft: 230}}>
         <CMSHeader {...props}/>
-        <Content className={"site-layout-content"} key={new Date().getTime()}>
+        <Content className={"site-layout-content"}>
           <RcQueueAnim>
             <div key={"Breadcrumb"} style={{
               marginTop: 30

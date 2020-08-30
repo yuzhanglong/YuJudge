@@ -27,12 +27,14 @@ import {GlobalCount} from "../../../models/common";
 import {getGlobalCount} from "../../../network/common";
 import styles from "./dashboard.module.scss";
 import RcQueueAnim from "rc-queue-anim";
+import {RouteComponentProps} from "react-router-dom";
 
 interface DashboardProps {
 
 }
 
-const Dashboard: React.FunctionComponent<DashboardProps> = () => {
+const Dashboard: React.FunctionComponent<DashboardProps & RouteComponentProps> = (props) => {
+
   // 最新问题
   const [recentProblems, setRecentProblems] = useState<Problem[]>([]);
   // 近期提交统计

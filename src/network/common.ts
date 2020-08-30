@@ -7,29 +7,18 @@
  */
 
 import request from "./request";
-import {getTokenFromStorage} from "../utils/dataPersistence";
 
 // 获取上传凭证
 export const getUploadToken = () => {
   return request.get(
-    "/common/upload_token",
-    {
-      headers: {
-        Authorization: getTokenFromStorage()
-      }
-    }
+    "/common/upload_token"
   )
 }
 
 // 获取全局统计信息
 export const getGlobalCount = () => {
   return request.get(
-    "/common/get_global_count",
-    {
-      headers: {
-        Authorization: getTokenFromStorage()
-      }
-    }
+    "/common/get_global_count"
   )
 }
 

@@ -8,25 +8,25 @@
 
 
 import React from 'react';
-import {BrowserRouter} from "react-router-dom";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 import zhCN from 'antd/es/locale/zh_CN';
 import {ConfigProvider} from "antd";
 import MyRouter from "./router/MyRouter";
 import {Provider} from "react-redux";
 import store from "./store"
 
-function App() {
+const App: React.FunctionComponent<RouteComponentProps> = (props) => {
+  // 挂载全局路由
+  window.reactRouter = props.history;
   return (
-    <BrowserRouter>
-      <ConfigProvider locale={zhCN}>
-        <div className="App">
-          <Provider store={store}>
-            <MyRouter></MyRouter>
-          </Provider>
-        </div>
-      </ConfigProvider>
-    </BrowserRouter>
+    <ConfigProvider locale={zhCN}>
+      <div className="App">
+        <Provider store={store}>
+          <MyRouter></MyRouter>
+        </Provider>
+      </div>
+    </ConfigProvider>
   );
 }
 
-export default App;
+export default withRouter(App);

@@ -7,7 +7,6 @@
  */
 
 import request from "./request";
-import {getTokenFromStorage} from "../utils/dataPersistence";
 
 
 // 获取可以分配的权限

@@ -8,6 +8,7 @@
 
 import {AxiosResponse} from "axios";
 import {SubmissionCountInfo} from "./submissionInfo";
+import {History} from "history";
 
 // 服务端基础响应内容
 export interface BaseResponse extends AxiosResponse {
