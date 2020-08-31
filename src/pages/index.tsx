@@ -32,7 +32,7 @@ import Profile from "./common/profile/Profile";
 
 // cms 界面
 const Dashboard = loadable(import('./cms/dashboard/Dashboard'));
-const ProblemEdit = loadable(import('./cms/problemEdit/problemEdit'));
+const ProblemEdit = loadable(import('./cms/problemEdit/ProblemEdit'));
 const ProblemManage = loadable(import('./cms/problemManage/ProblemManage'));
 const ProblemSetManage = loadable(import("./cms/problemSetManage/ProblemSetManage"));
 const UserManage = loadable(import('./cms/userManage/UserManage'));

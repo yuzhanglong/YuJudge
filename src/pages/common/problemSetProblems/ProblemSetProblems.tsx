@@ -16,6 +16,7 @@ import {Button, Card, message} from "antd";
 import {RouteComponentProps} from "react-router-dom";
 import ProblemTable from "../../../components/problemTable/ProblemTable";
 import RcQueueAnim from "rc-queue-anim";
+import style from "../problemSetHome/problemSetHome.module.scss"
 
 interface ProblemSetProblemsProps {
 
@@ -52,7 +53,7 @@ const ProblemSetProblems: React.FunctionComponent<ProblemSetProblemsProps & Rout
 
   return (
     <RcQueueAnim>
-      <div className={"problem-set-home"} key={"problem-set-home"}>
+      <div className={style.problem_set_home} key={"problem-set-home"}>
         <Card
           title={"所有题目"}
           headStyle={{textAlign: "center"}}

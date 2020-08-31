@@ -1,5 +1,5 @@
 /*
- * File: config.ts
+ * File: config.js
  * Description: 全局配置相关
  * Created: 2020-7-18
  * Author: yuzhanglong

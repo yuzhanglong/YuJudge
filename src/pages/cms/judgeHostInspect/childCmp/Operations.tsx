@@ -49,7 +49,7 @@ const Operations: React.FunctionComponent<OperationsProps> = (props) => {
   return (
     <div>
       <EditorTip
-        title={`${props.judgeHostInfo.active ? "关闭" : "打开"} 这个判题服务器`}
+        title={`${props.judgeHostInfo.active ? "关闭" : "打开"}这个判题服务器`}
         content={`${props.judgeHostInfo.active ? "这个判题服务器将不再接受任何任务直到重新启动" : "允许判题服务器接受任务"}`}>
         <Button
           type={!props.judgeHostInfo.active ? "primary" : "default"}

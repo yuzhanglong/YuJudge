@@ -12,6 +12,7 @@ import SubmissionCount from "../../../components/submissionCount/SubmissionCount
 import {SubmissionCountInfo} from "../../../models/submissionInfo";
 import {countProblemSetSubmissionInfo} from "../../../network/problemSetRequest";
 import {RouteComponentProps} from "react-router-dom";
+import style from "../problemSetHome/problemSetHome.module.scss"
 
 interface ProblemSetCountProps {
 
@@ -36,7 +37,7 @@ const ProblemSetCount: React.FunctionComponent<ProblemSetCountProps & RouteCompo
   }
 
   return (
-    <div className={"problem-set-home"}>
+    <div className={style.problem_set_home}>
       <Card
         title={"数据统计"}
         headStyle={{

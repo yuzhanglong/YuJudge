@@ -1,3 +1,12 @@
+/*
+ * File: ProblemSetManage.tsx
+ * Description: 题目集管理
+ * Created: 2020-8-31 20:34:04
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+
 import React, {useEffect, useState} from "react";
 import {createProblemSet, getProblemSets} from "../../../network/problemSetRequest";
 import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_SET_MANAGE} from "../../../config/config";
@@ -9,6 +18,7 @@ import {RouteComponentProps} from "react-router-dom";
 import {UsePaginationState} from "../../../hooks/pagination";
 import {ProblemSetPaginationRequest} from "../../../models/pagination";
 import {dateRangeMomentArrayToTimeStampArray} from "../../../utils/dateTime";
+import style from "./problemSetManage.module.scss"
 
 
 const ProblemSetManage: React.FunctionComponent<RouteComponentProps> = (props) => {
@@ -90,7 +100,7 @@ const ProblemSetManage: React.FunctionComponent<RouteComponentProps> = (props) =
 
   return (
     <Card title={"题目集管理"}>
-      <div className={"problem-set-tool-bar-wrap"}>
+      <div className={style.problem_set_tool_bar_wrap}>
         <ProblemSetToolBar
           onCheckBoxChange={onProblemSetsLimitationChange}
           showModal={isShowEditForm}

@@ -15,6 +15,7 @@ import {ProblemPaginationRequest} from "../../../models/pagination";
 import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from "../../../config/config";
 import {RouteComponentProps} from "react-router-dom";
 import {getProblems} from "../../../network/problemRequests";
+import style from "../problemSetHome/problemSetHome.module.scss"
 
 interface ProblemsProps {
 
@@ -49,7 +50,7 @@ const Problems: React.FunctionComponent<ProblemsProps & RouteComponentProps> = (
 
   return (
     <RcQueueAnim>
-      <div className={"problem-set-home"} key={"problem-set-home"}>
+      <div className={style.problem_set_home} key={"problem-set-home"}>
         <Card
           title={"所有题目"}
           headStyle={{textAlign: "center"}}

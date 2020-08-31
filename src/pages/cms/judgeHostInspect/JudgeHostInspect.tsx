@@ -7,12 +7,11 @@
  */
 
 import React, {useEffect, useState} from "react";
-import {Badge, Button, Card, Divider, message, Modal} from "antd";
 import {RouteComponentProps} from "react-router-dom";
 import {JudgeHostInfo} from "../../../models/judgeHost";
 import {
-  countJudgeHostSubmissionInfo, deleteJudgeHost,
-  getJudgeHostInfoById, resetJudgeHostCondition,
+  countJudgeHostSubmissionInfo,
+  getJudgeHostInfoById,
 } from "../../../network/judgeHostRequest";
 import BasicInfo from "./childCmp/BasicInfo";
 import CurrentCondition from "./childCmp/CurrentCondition";
@@ -23,10 +22,8 @@ import {DEFAULT_DATE_TIME_FORMAT} from "../../../config/config";
 import moment from "moment";
 import RcQueueAnim from "rc-queue-anim";
 import style from "./judgeHostInspect.module.scss";
-import EditorTip from "../../../components/editorTip/editorTip";
-import {ExclamationCircleOutlined} from "@ant-design/icons";
-import {deleteTestCase} from "../../../network/problemRequests";
 import Operations from "./childCmp/Operations";
+import {Badge, Card} from "antd";
 
 interface JudgeHostInspectProps {
 

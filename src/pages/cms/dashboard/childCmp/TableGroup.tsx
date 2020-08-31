@@ -56,8 +56,6 @@ const TableGroup: React.FunctionComponent<DashboardTableGroupProps> = (props) =>
           </Card>
         </Col>
       </Row>
-
-
     </div>
   )
 }

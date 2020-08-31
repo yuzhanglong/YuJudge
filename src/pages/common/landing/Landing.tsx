@@ -12,7 +12,8 @@ import {RouteComponentProps} from "react-router-dom";
 import LandingHeader from "./childCmp/LandingHeader";
 import MainPart from "./childCmp/MainPart";
 import Feature from "./childCmp/Feature";
-import LandingFooter from "./childCmp/LandingFooter";
+import Footer from "./childCmp/LandingFooter";
+import style from "./landing.module.scss"
 
 interface LandingProps {
 
@@ -29,22 +30,22 @@ const Landing: React.FunctionComponent<LandingProps & RouteComponentProps> = (pr
     props.history.push("/login");
   }
   return (
-    <div className={"landing-page"}>
-      <div className={"landing"}>
-        <div className={"landing-item"}>
+    <div className={style.landing_page}>
+      <div className={style.landing}>
+        <div className={style.landing_item}>
           <LandingHeader></LandingHeader>
         </div>
-        <div className={"landing-item"}>
+        <div className={style.landing_item}>
           <MainPart
             onMainButtonClick={() => gotoLoginPage()}
             onSubButtonClick={() => gotoRegister()}>
           </MainPart>
         </div>
-        <div className={"landing-item"}>
+        <div className={style.landing_item}>
           <Feature></Feature>
         </div>
-        <div className={"landing-item landing-item-footer"}>
-          <LandingFooter></LandingFooter>
+        <div className={style.landing_item_footer}>
+          <Footer></Footer>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 /*
- * File: config.ts
+ * File: config.js
  * Description: 全局路由配置
  * Created: 2020-7-19 18:00
  * Author: yuzhanglong

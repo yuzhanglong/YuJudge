@@ -121,7 +121,7 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
 
           <div className={style.problem_home_content}>
             <div className={style.problem_home_content_route_selector}>
-              <RouteSelector/>
+              <RouteSelector {...props}/>
             </div>
             <div className={style.problem_home_content_body}>
               <Card className={style.problem_home_content_item}>

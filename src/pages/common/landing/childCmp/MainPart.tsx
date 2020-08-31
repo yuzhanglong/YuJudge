@@ -8,6 +8,8 @@
 
 import React from "react";
 import {Button} from "antd";
+import style from "../landing.module.scss"
+
 
 interface MainPartProps {
   onMainButtonClick?: () => void;
@@ -18,35 +20,35 @@ interface MainPartProps {
 
 const MainPart: React.FunctionComponent<MainPartProps> = (props) => {
   return (
-    <div className={"main-part"}>
-      <div className={"main-part-content-wrap"}>
-        <div className={"main-part-left"}>
-          <h1 className="main-part-title">
+    <div className={style.main_part}>
+      <div className={style.main_part_content_wrap}>
+        <div className={style.main_part_left}>
+          <h1 className={style.main_part_title}>
             Enjoy Coding And Get Happiness
           </h1>
-          <p className="main-part-paragraph">
-            all work and no play makes jack a dull boy
-            all work and no play makes jack a dull boy
-            all work and no play makes jack a dull boy
+          <p className={style.main_part_paragraph}>
             all work and no play makes jack a dull boy
           </p>
           <Button
             size="large"
             type="primary"
-            className={"main-part-button register"}
+            className={style.main_part_button}
             onClick={() => props.onMainButtonClick ? props.onMainButtonClick() : null}>
             {props.mainButtonText}
           </Button>
           <Button
             size="large"
-            className={"main-part-button"}
+            className={style.main_part_button}
             onClick={() => props.onSubButtonClick ? props.onSubButtonClick() : null}>
             {props.subButtonText}
           </Button>
         </div>
-        <div className={"main-part-illustration"}>
-          <img alt={"codeTyping"} src={"http://cdn.yuzzl.top/codeTyping.svg"}
-               className={"main-part-illustration-image"}/>
+
+        <div>
+          <img
+            alt={"codeTyping"}
+            src={"http://cdn.yuzzl.top/codeTyping.svg"}
+            className={style.main_part_illustration_image}/>
         </div>
       </div>
     </div>

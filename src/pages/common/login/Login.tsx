@@ -15,6 +15,7 @@ import {BaseResponse} from "../../../models/common";
 import {Button, Card, message} from "antd";
 import {saveUserInfo, setToken} from "../../../utils/dataPersistence";
 import RegisterForm from "../../../components/registerForm/RegisterForm";
+import style from "./loginPage.module.scss"
 
 interface LoginProps {
 
@@ -105,18 +106,18 @@ const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = (props)
   }
 
   return (
-    <div className={"login-page"}>
-      <div className={"login"}>
+    <div className={style.login_page}>
+      <div className={style.login}>
         <div className={"login-page-image-wrap"}>
           <img
             src={"http://cdn.yuzzl.top/confirmation.svg"}
             alt={"confirmation"}
-            className={"login-page-image"}/>
+            className={style.login_page_image}/>
         </div>
         <div className={"login-page-login-area"}>
           <Card>
-            <div className={"login-area-title"}>
-              <div className={"login-area-title-main"}>
+            <div className={style.login_area_title}>
+              <div className={style.login_area_title_main}>
                 {activeForm === formType.LOGIN ? "用户登录" : "用户注册"}
               </div>
               <div className={"register-link"}>
@@ -125,14 +126,14 @@ const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = (props)
                 </Button>
               </div>
             </div>
-            <div className={"login-area-form"}>
+            <div>
               {
                 activeForm === formType.LOGIN &&
                 <LoginForm
                   checkCode={checkCodeInfo?.image}
                   validateRequired onConfirm={onLogin}
                   onCheckCodeClick={resetCheckCode}
-                  className={"login-form"}>
+                  className={style.login_form}>
                 </LoginForm>
               }
               {
@@ -141,7 +142,7 @@ const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = (props)
                   checkCode={checkCodeInfo?.image}
                   validateRequired onConfirm={onRegister}
                   onCheckCodeClick={resetCheckCode}
-                  className={"login-form"}>
+                  className={style.login_form}>
                 </RegisterForm>
               }
             </div>

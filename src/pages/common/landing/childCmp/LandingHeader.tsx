@@ -7,6 +7,7 @@
  */
 
 import React from "react";
+import style from "../landing.module.scss"
 
 interface LandingHeaderProps {
 
@@ -14,10 +15,9 @@ interface LandingHeaderProps {
 
 const LandingHeader: React.FunctionComponent<LandingHeaderProps> = () => {
   return (
-    <div className={"landing-header"}>
-      <div className={"landing-header-content"}>
+    <div className={style.landing_header}>
+      <div className={style.landing_header_content}>
         <svg width="48" height="32" viewBox="0 0 48 32" xmlns="http://www.w3.org/2000/svg">
-
         </svg>
       </div>
     </div>
