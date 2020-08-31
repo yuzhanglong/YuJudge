@@ -39,9 +39,22 @@ export const UserInfoState = () => {
     })
   }
 
+  // 判断是否一般用户
+  const isCommonUser = () => {
+    if (userInfo) {
+      for (let i = 0; i < userInfo.userGroups.length; i++) {
+        if (userInfo.userGroups[i].name === "COMMON") {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   return {
     userInfo,
     removeUserInfo,
-    resetUserInfo
+    resetUserInfo,
+    isCommonUser
   }
 }

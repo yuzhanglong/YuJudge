@@ -1,0 +1,36 @@
+/*
+ * File: userTag.module.scss
+ * Description: 用户标签样式
+ * Created: 2020-8-31 13:35:18
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+
+.user_tag_avatar_wrap {
+  margin-right: 16px;
+}
+
+.user_tag_drop_down {
+  display: flex;
+  background-color: #ffffff;
+  width: 150px;
+  align-items: center;
+  float: right;
+  cursor: pointer;
+}
+
+.user_tag_drop_down_menu {
+  width: 200px;
+  float: right;
+}
+
+.user_tag_user_name {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.user_tag_description {
+  color: #999797;
+  font-size: 13px;
+}

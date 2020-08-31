@@ -49,7 +49,7 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
             </Link>
           </Menu.Item>
 
-          <Menu.Item key="/common/problem" icon={<QuestionCircleOutlined />}>
+          <Menu.Item key="/common/problem" icon={<QuestionCircleOutlined/>}>
             <Link to={"/common/problem"}>
               <span className="nav-text">问题</span>
             </Link>
@@ -84,6 +84,7 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
         <UserTag
           {...props}
           height={48}
+          showGotoCms={!userInfoState.isCommonUser()}
           userName={userInfoState.userInfo?.nickname}
           description={userInfoState.userInfo?.userGroups ? userInfoState.userInfo?.userGroups[0].description : ""}
           avatar={userInfoState.userInfo?.avatar}/>

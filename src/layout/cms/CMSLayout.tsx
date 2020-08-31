@@ -15,7 +15,6 @@ import {RouteComponentProps} from "react-router-dom";
 import CMSHeader from "./childCmp/CMSHeader";
 import RcQueueAnim from "rc-queue-anim";
 import {UserInfoState} from "../../hooks/userInfo";
-import {UserInfo} from "../../models/user";
 
 const {Content, Sider} = Layout;
 
@@ -29,22 +28,11 @@ const CMSLayout: React.FunctionComponent<CMSLayoutProps & RouteComponentProps> =
   const userInfoState = UserInfoState();
 
   useEffect(() => {
-    if (userInfoState.userInfo && isCommonUser(userInfoState.userInfo)) {
+    if (userInfoState.userInfo && userInfoState.isCommonUser()) {
       message.error("您无权访问该页面");
       props.history.replace("/common/home");
     }
-  }, [props.history, userInfoState.userInfo]);
-
-
-  // 判断是否一般用户
-  const isCommonUser = (userInfo: UserInfo) => {
-    for (let i = 0; i < userInfo.userGroups.length; i++) {
-      if (userInfo.userGroups[i].name === "COMMON") {
-        return true;
-      }
-    }
-    return false;
-  }
+  }, [props.history, userInfoState, userInfoState.userInfo]);
 
   return (
     <Layout style={{minHeight: '100vh'}}>

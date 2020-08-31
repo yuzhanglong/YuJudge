@@ -25,6 +25,7 @@ const CMSHeader: React.FunctionComponent<HeaderProps & RouteComponentProps> = (p
       <UserTag
         {...props}
         height={64}
+        showGotoCms={false}
         avatar={props.userInfo?.avatar}
         userName={props.userInfo?.nickname}
         description={props.userInfo?.userGroups ? userInfoState.userInfo?.userGroups[0].description : ""}/>
