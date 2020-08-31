@@ -61,7 +61,7 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
     return (
       <div>
         <Tag color={getJudgeConditionColor(condition)}
-             onClick={() => onSeeSubmissionTagClick(detail)}
+             onClick={() => onSeeSubmissionTagClick(detail, condition)}
              className={className}>
           {getJudgeConditionTagName(condition)}
         </Tag>
@@ -77,8 +77,9 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
   }
 
   // 判题状态标签被单击
-  const onSeeSubmissionTagClick = (detail: any) => {
-    if (props.onSubmissionTagClick) {
+  const onSeeSubmissionTagClick = (detail: any, condition: JudgeConditionEnum) => {
+    const isWaiting = condition === JudgeConditionEnum.WAITING || condition === JudgeConditionEnum.PENDING;
+    if (props.onSubmissionTagClick && !isWaiting) {
       props.onSubmissionTagClick(detail);
     }
   }

@@ -7,12 +7,12 @@
  */
 
 import React, {useEffect, useState} from "react";
-import {Badge, Button, Card, Divider} from "antd";
+import {Badge, Button, Card, Divider, message, Modal} from "antd";
 import {RouteComponentProps} from "react-router-dom";
 import {JudgeHostInfo} from "../../../models/judgeHost";
 import {
-  countJudgeHostSubmissionInfo,
-  getJudgeHostInfoById,
+  countJudgeHostSubmissionInfo, deleteJudgeHost,
+  getJudgeHostInfoById, resetJudgeHostCondition,
 } from "../../../network/judgeHostRequest";
 import BasicInfo from "./childCmp/BasicInfo";
 import CurrentCondition from "./childCmp/CurrentCondition";
@@ -24,6 +24,9 @@ import moment from "moment";
 import RcQueueAnim from "rc-queue-anim";
 import style from "./judgeHostInspect.module.scss";
 import EditorTip from "../../../components/editorTip/editorTip";
+import {ExclamationCircleOutlined} from "@ant-design/icons";
+import {deleteTestCase} from "../../../network/problemRequests";
+import Operations from "./childCmp/Operations";
 
 interface JudgeHostInspectProps {
 
@@ -144,15 +147,7 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
               onPickerChange={(res) => getSubmissionCountsData(res[0], res[1])}/>
           </Card>
           <Card title={"操作"}>
-            <EditorTip title={"关闭这个判题服务器"}
-                       content={"这个判题服务器将不再接受任何任务直到重新启动"}>
-              <Button danger disabled>关闭</Button>
-            </EditorTip>
-            <Divider></Divider>
-            <EditorTip title={"删除这个判题服务器"}
-                       content={"注意: 这个操作不可恢复"}>
-              <Button danger disabled>删除</Button>
-            </EditorTip>
+            <Operations judgeHostInfo={judgeHostInfo} onReset={() => getJudgeHostInfo(judgeHostId)}/>
           </Card>
         </div>
       </RcQueueAnim>

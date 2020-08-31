@@ -13,7 +13,7 @@ import {ExperimentOutlined, FormOutlined, OrderedListOutlined} from "@ant-design
 import {RouteComponentProps, withRouter} from "react-router-dom";
 
 interface RouteSelectorProps {
-  onChange: (value: string) => void;
+
 }
 
 const RouteSelector: React.FunctionComponent<RouteSelectorProps & RouteComponentProps> = (props) => {
@@ -22,12 +22,19 @@ const RouteSelector: React.FunctionComponent<RouteSelectorProps & RouteComponent
   const problemId: number = params.problemId;
   const problemSetId: number = params.problemSetId;
 
-  const onRadioChange = (event: any) => {
-    props.onChange(event.target.value);
+  // 活跃的标签
+  const getActiveValue = () => {
+    if (props.location.pathname.includes("submission")) {
+      return "submission";
+    }
+    if (props.location.pathname.includes("solution")) {
+      return "solution";
+    }
+    return "problem";
   }
 
   return (
-    <Radio.Group onChange={onRadioChange}>
+    <Radio.Group value={getActiveValue()}>
       <Radio.Button value="problem" onClick={() => {
         if (problemSetId) {
           props.history.push(`/common/problem_set/${problemSetId}/problem/${problemId}`);

@@ -29,7 +29,7 @@ const BasicInfo: React.FunctionComponent<BasicInfoProps> = (props) => {
         {timestampToDateTime(props.judgeHostInfo?.createTime)}
       </Descriptions.Item>
       <Descriptions.Item label="CPU核心数">
-        {props.judgeHostInfo?.condition.cpuCoreAmount}
+        {props.judgeHostInfo?.condition.maxWorkingAmount}
       </Descriptions.Item>
       <Descriptions.Item label="判题机版本">
         <Tag color={"geekblue"}>DEVELOP</Tag>

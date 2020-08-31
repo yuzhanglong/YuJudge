@@ -26,10 +26,12 @@ interface ProblemShowProps {
 }
 
 const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProps> = (props) => {
+  console.log(props);
 
   const params: any = props.match.params;
   const problemId: number = params.problemId;
   const problemSetId: number = params.problemSetId;
+
 
   // 当前problem
   const [problem, setProblem] = useState<Problem>({});
@@ -37,8 +39,11 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
   // 题目集基本信息
   const [problemSetInfo, setProblemSetInfo] = useState<ProblemSet>();
 
-  // 活跃的problem路由
-  const [activeProblemRoute, setActiveProblemRoute] = useState<string>("problem");
+  useEffect(() => {
+    getProblemData(problemId);
+    getProblemSetData(problemSetId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [problemId, problemSetId]);
 
   // 提交按钮被按下
   const onSubmit = (language: string, code: string) => {
@@ -52,7 +57,6 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
     // 发送提交请求
     submitCode(submission).then(() => {
       message.success("提交成功~");
-      setActiveProblemRoute("submission");
       if (problemSetId) {
         props.history.push(`/common/problem_set/${problemSetId}/problem/${problemId}/submission`);
       } else {
@@ -60,13 +64,6 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
       }
     });
   }
-
-
-  useEffect(() => {
-    getProblemData(problemId);
-    getProblemSetData(problemSetId);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [problemId, problemSetId]);
 
 
   // 获取题目集信息
@@ -107,6 +104,13 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
     )
   }
 
+  // 是否在problem首页
+  const isInProblemHome = () => {
+    const isInSubmission = props.location.pathname.includes("submission");
+    const isInSolution = props.location.pathname.includes("solution");
+    return !(isInSolution || isInSubmission);
+  }
+
   return (
     <RcQueueAnim>
       <div className={style.problem_home} key={"problem_home"}>
@@ -117,20 +121,15 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
 
           <div className={style.problem_home_content}>
             <div className={style.problem_home_content_route_selector}>
-              <RouteSelector onChange={(v) => setActiveProblemRoute(v)}/>
+              <RouteSelector/>
             </div>
-
             <div className={style.problem_home_content_body}>
               <Card className={style.problem_home_content_item}>
-                {
-                  activeProblemRoute === "problem" &&
-                  <div dangerouslySetInnerHTML={{__html: problem.content || ""}}/>
-                }
-                {activeProblemRoute !== "problem" && props.children}
+                {isInProblemHome() && <div dangerouslySetInnerHTML={{__html: problem.content || ""}}/>}
+                {!isInProblemHome() && props.children}
               </Card>
-
               {
-                activeProblemRoute === "problem" &&
+                isInProblemHome() &&
                 <Card className={style.problem_home_content_item}>
                   <CodeEditor
                     allowedLanguage={problemSetInfo?.allowedLanguage || []}
