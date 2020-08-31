@@ -13,4 +13,4 @@ export const NO_TOKEN = "A0003";
 export const BAD_TOKEN = "A0004";
 
 // 禁止访问
-export const SERVER_FORBIDDEN = "A0011";
+export const USER_GROUP_FORBIDDEN = "A0011";

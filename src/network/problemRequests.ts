@@ -6,7 +6,7 @@
  * Email: yuzl1123@163.com
  */
 
-import request from "./request";
+import request from "./interceptor";
 import {Problem, ProblemLimitation, ProblemTestCase} from "../models/problem";
 import {ProblemPaginationRequest} from "../models/pagination";
 

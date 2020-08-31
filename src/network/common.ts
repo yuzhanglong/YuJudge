@@ -6,7 +6,7 @@
  * Email: yuzl1123@163.com
  */
 
-import request from "./request";
+import request from "./interceptor";
 
 // 获取上传凭证
 export const getUploadToken = () => {

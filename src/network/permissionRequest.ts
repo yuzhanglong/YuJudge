@@ -6,7 +6,7 @@
  * Email: yuzl1123@163.com
  */
 
-import request from "./request";
+import request from "./interceptor";
 
 
 // 获取可以分配的权限

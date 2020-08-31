@@ -8,7 +8,7 @@
 
 
 import React, {useEffect, useState} from "react";
-import {Card, message} from "antd";
+import {message} from "antd";
 import style from "./home.module.scss";
 import {UsePaginationState} from "../../../hooks/pagination";
 import {
@@ -18,25 +18,21 @@ import {
 } from "../../../config/config";
 import {getNotices} from "../../../network/noticeRequest";
 import {NoticePaginationRequest} from "../../../models/pagination";
-import NoticeTable from "../../../components/noticeTable/NoticeTable";
-import QuickStart from "./childCmp/QuickStart";
 import {RouteComponentProps} from "react-router-dom";
-import UserTable from "../../../components/userTable/UserTable";
 import {getActiveUserInfo} from "../../../network/userRequest";
-import ProblemTable from "../../../components/problemTable/ProblemTable";
 import {getRecentProblems} from "../../../network/problemRequests";
 import {Problem} from "../../../models/problem";
-import RcQueueAnim from "rc-queue-anim";
 import {getDailyWord} from "../../../network/common";
 import {DailyWord} from "../../../models/common";
-import {Meta} from "antd/es/list/Item";
+import SideItem from "./childCmp/SideItem";
+import HomeContent from "./childCmp/HomeContent";
 
 
 interface HomeProps {
 
 }
 
-const Home: React.FunctionComponent<HomeProps & RouteComponentProps> = (props) => {
+const Home: React.FunctionComponent<HomeProps & RouteComponentProps> = () => {
   useEffect(() => {
     getAndSetNotice(PAGE_BEGIN - 1);
     getAndSetRecentActiveUserInfo();
@@ -90,56 +86,15 @@ const Home: React.FunctionComponent<HomeProps & RouteComponentProps> = (props) =
       })
   }
 
-  // 搜索按钮被按下
-  const onSearch = (problemId: string) => {
-    props.history.push(`/common/problem/${problemId}`);
-  }
-
 
   return (
     <div className={style.home}>
       <div className={style.home_content}>
         <div className={style.home_content_main}>
-          <RcQueueAnim>
-            <div key={"home_content_item1"}>
-              <Card title={"公告"} className={style.home_content_item}>
-                <NoticeTable notices={noticePaginationState.items}/>
-              </Card>
-            </div>
-
-            <div key={"home_content_item2"}>
-              <Card title={"最近更新"} className={style.home_content_item}>
-                <ProblemTable
-                  isShowProblemOrder={false}
-                  problems={recentProblems}
-                  isShowOperations={false}
-                  isShowTags={false}
-                  showPagination={false}
-                  tableSize={"middle"}/>
-              </Card>
-            </div>
-          </RcQueueAnim>
-
-
+          <HomeContent notices={noticePaginationState.items} problems={recentProblems}/>
         </div>
         <div className={style.home_content_side}>
-          <RcQueueAnim>
-            <div key={"home_content_side_item1"}>
-              <Card title={"每日一句"} className={style.home_content_side_item}>
-                <Meta title={dailyWord?.title} description={dailyWord?.content}/>
-              </Card>
-            </div>
-            <div key={"home_content_side_item2"}>
-              <Card title={"快速开始"} className={style.home_content_side_item}>
-                <QuickStart onSearch={(value) => onSearch(value)}/>
-              </Card>
-            </div>
-            <div key={"home_content_side_item3"}>
-              <Card title={"活跃用户"} className={style.home_content_side_item}>
-                <UserTable userInfo={activeUserInfo} tableSize={"middle"}/>
-              </Card>
-            </div>
-          </RcQueueAnim>
+          <SideItem activeUserInfo={activeUserInfo} dailyWord={dailyWord}/>
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@
 import React from "react";
 import {NoticeInfo} from "../../models/notice";
 import Column from "antd/lib/table/Column";
-import {Table} from "antd";
+import {Avatar, Col, Row, Table} from "antd";
 import {timestampToDateTime} from "../../utils/dateTime";
 import style from "./noticeTable.module.scss";
 import {NoticePriority} from "../../common/enumerations";
@@ -43,11 +43,21 @@ const NoticeTable: React.FunctionComponent<NoticeTableProps> = (props) => {
   }
 
   // 渲染作者
-  const renderCreator = (user:UserInfo) => {
+  const renderCreator = (user: UserInfo) => {
     return (
-      <div>
-        {user.nickname}
-      </div>
+      <Row align={"middle"}>
+        <Col>
+          <div className={style.notice_table_creator}>
+            {user.nickname}
+          </div>
+        </Col>
+        <Col>
+          <Avatar
+            size={"small"}
+            src={user.avatar}
+            className={style.notice_table_avatar}/>
+        </Col>
+      </Row>
     )
   }
 

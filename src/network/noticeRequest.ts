@@ -7,7 +7,7 @@
  */
 
 
-import request from "./request";
+import request from "./interceptor";
 import {NoticePaginationRequest} from "../models/pagination";
 
 // 通过id来获取problem的基本信息

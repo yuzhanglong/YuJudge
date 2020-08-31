@@ -7,7 +7,7 @@
  */
 
 
-import request from "./request";
+import request from "./interceptor";
 import {JudgeHostRequest} from "../models/judgeHost";
 
 

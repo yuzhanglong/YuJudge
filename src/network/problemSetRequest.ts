@@ -7,7 +7,7 @@
  */
 
 
-import request from "./request";
+import request from "./interceptor";
 import {ProblemSet} from "../models/problemSet";
 import {ProblemSetPaginationRequest, ProblemSetProblemPaginationRequest} from "../models/pagination";
 

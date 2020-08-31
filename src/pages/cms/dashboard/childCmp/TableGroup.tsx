@@ -34,8 +34,9 @@ const TableGroup: React.FunctionComponent<DashboardTableGroupProps> = (props) =>
             <div>
               <ProblemTable
                 problems={props.problems}
-                tableSize={"small"}
+                tableSize={"middle"}
                 isShowOperations={false}
+                isShowProblemOrder={false}
                 showPagination={false}/>
             </div>
           </Card>

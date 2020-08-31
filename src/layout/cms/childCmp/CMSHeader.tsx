@@ -10,10 +10,11 @@ import React from "react";
 import UserTag from "../../../components/userTag/UserTag";
 import {RouteComponentProps} from "react-router-dom";
 import {UserInfoState} from "../../../hooks/userInfo";
+import {UserInfo} from "../../../models/user";
 
 
 interface HeaderProps {
-
+  userInfo?: UserInfo;
 }
 
 const CMSHeader: React.FunctionComponent<HeaderProps & RouteComponentProps> = (props) => {
@@ -24,9 +25,9 @@ const CMSHeader: React.FunctionComponent<HeaderProps & RouteComponentProps> = (p
       <UserTag
         {...props}
         height={64}
-        avatar={userInfoState.userInfo?.avatar}
-        userName={userInfoState.userInfo?.nickname}
-        description={userInfoState.userInfo?.userGroups ? userInfoState.userInfo?.userGroups[0].description : ""}/>
+        avatar={props.userInfo?.avatar}
+        userName={props.userInfo?.nickname}
+        description={props.userInfo?.userGroups ? userInfoState.userInfo?.userGroups[0].description : ""}/>
     </div>
   )
 }

@@ -6,7 +6,7 @@
  * Email: yuzl1123@163.com
  */
 
-import request from "./request";
+import request from "./interceptor";
 import {UserGroupInfo} from "../models/UserGroup";
 
 // 获取所有用户组信息
