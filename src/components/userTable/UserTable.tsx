@@ -9,7 +9,6 @@
 import React from "react";
 import {UserInfo} from "../../models/user";
 import {Badge, Table, Tag} from "antd";
-import Column from "antd/lib/table/Column";
 import {RankingColorEnum} from "../../common/enumerations";
 import {TablePaginationConfig} from "antd/lib/table/interface";
 import {Pagination} from "../../models/pagination";
@@ -100,41 +99,41 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
       pagination={props.pagination ? paginationProp : false}
       onChange={(e: TablePaginationConfig) => onPageChange(e)}>
       {
-        props.showRanking && <Column
+        props.showRanking && <Table.Column
           title={"排名"}
           render={(value: any, record: any, index: number) => renderUserRanking(index)}/>
       }
-      <Column
+      <Table.Column
         title={"用户名"}
         dataIndex={"nickname"}/>
       {
         props.showScope &&
-        <Column
+        <Table.Column
           title={"所在用户组"}
           dataIndex={"userGroups"}
           render={renderUserGroups}/>
       }
       {
         props.showEmail &&
-        <Column
+        <Table.Column
           title={"邮箱"}
           dataIndex={"email"}/>
       }
       {
         props.showRanking &&
-        <Column
+        <Table.Column
           title={"提交数"}
           dataIndex={"submissionAmount"}/>
       }
       {
         props.showRanking &&
-        <Column
+        <Table.Column
           title={"AC数"}
           dataIndex={"acAmount"}/>
       }
       {
         props.operations &&
-        <Column
+        <Table.Column
           width={300}
           align={"center"}
           title={"操作"}

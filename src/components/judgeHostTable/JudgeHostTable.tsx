@@ -10,7 +10,6 @@
 import React from "react";
 import {JudgeHostCondition, JudgeHostInfo} from "../../models/judgeHost";
 import {Table, Tag} from "antd";
-import Column from "antd/lib/table/Column";
 
 interface JudgeHostTable {
   judgeHosts: JudgeHostInfo[];
@@ -88,42 +87,42 @@ const JudgeHostTable: React.FunctionComponent<JudgeHostTable> = (props) => {
 
   return (
     <Table dataSource={props.judgeHosts} rowKey={"id"}>
-      <Column
+      <Table.Column
         title={"状态"}
         key={"active"}
         render={renderCondition}
         width={100}/>
-      <Column
+      <Table.Column
         title={"名称"}
         dataIndex={"name"}
         align={"center"}
         key={"name"}
         width={250}/>
-      <Column
+      <Table.Column
         title={"cpu核心数"}
         dataIndex={"condition"}
         key={"cpu-core"}
         align={"center"}
         render={renderCpuCoreAmount}/>
-      <Column
+      <Table.Column
         title={"当前判题个数"}
         align={"center"}
         dataIndex={"condition"}
         key={"currentWorking"}
         render={renderWorkingAmount}/>
-      <Column
+      <Table.Column
         title={"cpu消耗"}
         align={"center"}
         dataIndex={"condition"}
         key={"cpu"} render={renderCpuCostPercentage}/>
-      <Column
+      <Table.Column
         align={"center"}
         title={"内存消耗"}
         dataIndex={"condition"}
         key={"memory"} render={renderMemoryCostPercentage}/>
       {
         props.operations &&
-        <Column
+        <Table.Column
           align={"center"}
           title={"操作"}
           key={"operation"}

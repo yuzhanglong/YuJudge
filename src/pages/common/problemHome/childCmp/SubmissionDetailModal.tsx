@@ -8,11 +8,10 @@
 
 
 import React from "react";
-import {Modal, Descriptions} from "antd";
+import {Modal, Descriptions, Input} from "antd";
 import {SubmissionDetail} from "../../../../models/submissionInfo";
 import ReactMarkdown from "react-markdown";
 import {timestampToDateTime} from "../../../../utils/dateTime";
-import TextArea from "antd/es/input/TextArea";
 import ShowTestCase from "../../../../components/showTestCase/ShowTestCase";
 
 interface SubmissionDetailModalProps {
@@ -56,13 +55,13 @@ const SubmissionDetailModal: React.FunctionComponent<SubmissionDetailModalProps>
     }
 
     return (
-      <TextArea
+      <Input.TextArea
         value={compilerStdOut}
         style={{
           height: 100,
           backgroundColor: "#f5f5f5"
         }}>
-      </TextArea>
+      </Input.TextArea>
     )
   }
 

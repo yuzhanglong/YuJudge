@@ -9,10 +9,8 @@
 import React, {useState} from "react";
 import ProblemTable from "../../../../components/problemTable/ProblemTable";
 import {Problem} from "../../../../models/problem";
-import {Button, Col, message, Modal, Row} from "antd";
-import Search from "antd/es/input/Search";
+import {Button, Col, Input, message, Modal, Row} from "antd";
 import {updateProblemSetProblems} from "../../../../network/problemSetRequest";
-import confirm from "antd/es/modal/confirm";
 import {ExclamationCircleOutlined} from "@ant-design/icons";
 import {ADD_PROBLEM_MAX_SHOW} from "../../../../config/config";
 
@@ -58,7 +56,7 @@ const AddProblem: React.FunctionComponent<AddProblemProps> = (props) => {
 
   // 用户添加确认
   const onAddProblemConfirm = () => {
-    confirm({
+    Modal.confirm({
       title: '以下题目将被添加至题目集:',
       icon: <ExclamationCircleOutlined/>,
       content: (<div>{getAddConfirmContent()}</div>),
@@ -104,7 +102,7 @@ const AddProblem: React.FunctionComponent<AddProblemProps> = (props) => {
         justify={"space-between"}
         style={{marginBottom: 18}}>
         <Col>
-          <Search
+          <Input.Search
             placeholder="问题关键词或id"
             onSearch={value => onSearchButtonClick(value)}
             style={{width: 200}}

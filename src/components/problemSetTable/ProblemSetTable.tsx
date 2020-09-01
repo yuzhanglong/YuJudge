@@ -12,7 +12,6 @@ import {Button, Table} from "antd";
 import {TablePaginationConfig} from "antd/es/table";
 import {SINGLE_PAGE_SIZE_IN_PROBLEM_SET_MANAGE} from "../../config/config";
 import {SizeType} from "antd/lib/config-provider/SizeContext";
-import Column from "antd/lib/table/Column";
 import {timestampToDateTime} from "../../utils/dateTime";
 import {UserInfo} from "../../models/user";
 import {Link} from "react-router-dom";
@@ -106,41 +105,41 @@ const ProblemSetTable: React.FunctionComponent<ProblemSetTableProps> = (props) =
         pagination={props.showPagination ? paginationProp : false}
         onChange={(e: TablePaginationConfig) => onPageChange(e)}
         size={props.tableSize}>
-        <Column
+        <Table.Column
           title={"编号"}
           dataIndex={"id"}
           key={"id"}/>
-        <Column
+        <Table.Column
           title={"题目集名称"}
           key={"name"}
           render={renderProblemSetName}/>
-        <Column
+        <Table.Column
           title={"判题偏好"}
           dataIndex={"judgePreference"}
           key={"judgePreference"}/>
-        <Column
+        <Table.Column
           title={"开始时间"}
           dataIndex={"startTime"}
           key={"startTime"}
           render={renderTime}/>
-        <Column
+        <Table.Column
           title={"截止时间"}
           dataIndex={"deadline"}
           key={"deadline"}
           render={renderTime}/>
-        <Column
+        <Table.Column
           title={"支持语言"}
           dataIndex={"allowedLanguage"}
           key={"allowedLanguage"}
           render={getAllowedLanguageInfo}/>
-        <Column
+        <Table.Column
           title={"创建者"}
           dataIndex={"creator"}
           key={"creator"}
           render={renderCreator}/>
         {
           props.showOperations &&
-          <Column
+          <Table.Column
             title={"操作"}
             key={"number"}
             width={150}

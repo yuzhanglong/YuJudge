@@ -11,7 +11,6 @@ import React, {useState} from "react";
 import {timestampToDateTime} from "../../utils/dateTime";
 import {Button, Table, Tag} from "antd";
 import {Problem} from "../../models/problem";
-import Column from "antd/lib/table/Column";
 import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from "../../config/config";
 import {TablePaginationConfig} from "antd/lib/table/interface";
 import {SizeType} from "antd/lib/config-provider/SizeContext";
@@ -121,47 +120,52 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
   }
 
   return (
-    <Table dataSource={props.problems}
-           rowKey={"id"}
-           loading={props.isLoading}
-           pagination={props.showPagination ? paginationProp : false}
-           onChange={(e: TablePaginationConfig) => onPageChange(e)}
-           size={props.tableSize}
-           rowSelection={
-             props.isShowCheckBoxGroup ? {
-               type: "checkbox",
-               ...rowSelection,
-             } : undefined}>
+    <Table
+      dataSource={props.problems}
+      rowKey={"id"}
+      loading={props.isLoading}
+      pagination={props.showPagination ? paginationProp : false}
+      onChange={(e: TablePaginationConfig) => onPageChange(e)}
+      size={props.tableSize}
+      rowSelection={
+        props.isShowCheckBoxGroup ? {
+          type: "checkbox",
+          ...rowSelection,
+        } : undefined}>
       {
         props.isShowProblemOrder &&
-        <Column title={"序号"} width={150}
-                render={renderProblemOrder}/>
+        <Table.Column
+          title={"序号"} width={150}
+          render={renderProblemOrder}/>
       }
-
-      <Column title={"题目ID"} dataIndex={"id"}
-              key={"number"} width={150}/>
-      <Column title={"问题名称"}
-              dataIndex={"name"}
-              key={"name"}
-              width={150}/>
+      <Table.Column
+        title={"题目ID"} dataIndex={"id"}
+        key={"number"} width={150}/>
+      <Table.Column
+        title={"问题名称"}
+        dataIndex={"name"}
+        key={"name"}
+        width={150}/>
       {props.isShowTags &&
-      <Column title={"标签"}
-              dataIndex={"characterTags"}
-              key={"标签"}
-              width={250}
-              render={(value: any) => renderTags(value)}/>}
+      <Table.Column
+        title={"标签"}
+        dataIndex={"characterTags"}
+        key={"标签"}
+        width={250}
+        render={(value: any) => renderTags(value)}/>}
       {props.isShowCreateTime &&
-      <Column title={"创建时间"}
-              dataIndex={"createTime"}
-              key={"创建时间"}
-              width={180}
-              render={renderCreateTime}/>}
+      <Table.Column
+        title={"创建时间"}
+        dataIndex={"createTime"}
+        key={"创建时间"}
+        width={180}
+        render={renderCreateTime}/>}
       {props.isShowOperations &&
-      <Column title={"操作"}
-              key={"操作"}
-              width={150}
-              render={renderOperations}
-              align={"center"}/>}
+      <Table.Column title={"操作"}
+                    key={"操作"}
+                    width={150}
+                    render={renderOperations}
+                    align={"center"}/>}
     </Table>
   )
 }

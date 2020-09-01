@@ -9,7 +9,6 @@
 import React from "react";
 import {ScoreBoardItem, ScoreBoardSolutionInfo} from "../../models/submissionInfo";
 import {Table} from "antd";
-import Column from "antd/lib/table/Column";
 import {tenDecimalToTwentySixDecimal} from "../../utils/math";
 import {UserInfo} from "../../models/user";
 import classNames from "classnames";
@@ -57,7 +56,7 @@ const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) =
     let res = [];
     for (let i = 0; i < props.problemAmount; i++) {
       res.push(
-        <Column
+        <Table.Column
           key={i}
           title={tenDecimalToTwentySixDecimal(i + 1)}
           align={"center"}
@@ -84,24 +83,24 @@ const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) =
         bordered
         rowKey={"rank"}
         dataSource={props.scoreBoardItems}>
-        <Column
+        <Table.Column
           title={"排名"}
           align={"center"}
           width={80}
           render={(value: any, record: any, index: number) => index + 1}/>
-        <Column
+        <Table.Column
           title={"用户/队伍"}
           dataIndex={"teamInfo"}
           render={renderTeamInfo}
           align={"center"}
           width={160}/>
-        <Column
+        <Table.Column
           title={"AC"}
           dataIndex={"totalAcAmount"}
           render={renderAcAmount}
           align={"center"}
           width={50}/>
-        <Column
+        <Table.Column
           title={"罚时"}
           dataIndex={"totalTimePenalty"}
           align={"center"}

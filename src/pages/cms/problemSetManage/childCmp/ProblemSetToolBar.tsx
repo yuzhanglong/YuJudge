@@ -8,7 +8,6 @@
 
 import React from "react";
 import {Button, Checkbox, Col, DatePicker, Form, Input, Modal, Row, Space} from "antd";
-import Search from "antd/es/input/Search";
 import {PlusOutlined} from "@ant-design/icons";
 
 const {RangePicker} = DatePicker;
@@ -50,7 +49,7 @@ const ProblemSetToolBar: React.FunctionComponent<ProblemSetManageToolsProps> = (
     <div>
       <Row align={"middle"} justify={"space-between"}>
         <Col>
-          <Search
+          <Input.Search
             placeholder="搜索题目集"
             onSearch={value => onSearchButtonClick(value)}
             style={{width: 200}}
@@ -68,7 +67,7 @@ const ProblemSetToolBar: React.FunctionComponent<ProblemSetManageToolsProps> = (
           <Button
             type={"primary"}
             onClick={props.onCreateButtonClick}
-            icon={<PlusOutlined />}>
+            icon={<PlusOutlined/>}>
             创建题目集
           </Button>
         </Col>

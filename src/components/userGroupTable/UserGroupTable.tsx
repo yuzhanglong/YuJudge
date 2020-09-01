@@ -9,7 +9,6 @@
 import React from "react";
 import {Table} from "antd";
 import {UserGroupInfo} from "../../models/UserGroup";
-import Column from "antd/lib/table/Column";
 
 interface UserGroupTableProps {
   // 用户组信息列表
@@ -33,18 +32,18 @@ const UserGroupTable: React.FunctionComponent<UserGroupTableProps> = (props) => 
     <Table
       dataSource={props.userGroups}
       rowKey={"id"}>
-      <Column
+      <Table.Column
         title={"名称"}
         key={"name"}
         dataIndex={"name"}
         width={250}/>
       />
-      <Column
+      <Table.Column
         title={"描述"}
         dataIndex={"description"}
         key={"description"}/>
       />
-      <Column
+      <Table.Column
         title={"操作"}
         key={"description"}
         align={"center"}

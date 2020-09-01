@@ -8,7 +8,6 @@
 
 import React from "react";
 import {NoticeInfo} from "../../models/notice";
-import Column from "antd/lib/table/Column";
 import {Avatar, Col, Row, Table} from "antd";
 import {timestampToDateTime} from "../../utils/dateTime";
 import style from "./noticeTable.module.scss";
@@ -67,16 +66,16 @@ const NoticeTable: React.FunctionComponent<NoticeTableProps> = (props) => {
         size={"middle"}
         rowKey={"id"}
         dataSource={props.notices}>
-        <Column
+        <Table.Column
           title={"标题"}
           key={"title"}
           render={renderNoticeTitle}/>
-        <Column
+        <Table.Column
           title={"作者"}
           dataIndex={"creator"}
           key={"creator"}
           render={renderCreator}/>
-        <Column
+        <Table.Column
           title={"发布时间"}
           dataIndex={"createTime"}
           key={"createTime"}

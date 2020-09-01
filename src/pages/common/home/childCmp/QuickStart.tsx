@@ -7,7 +7,7 @@
  */
 
 import React from "react";
-import Search from "antd/es/input/Search";
+import {Input} from "antd";
 
 interface QuickStartProps {
   onSearch: (value: string) => void;
@@ -17,7 +17,7 @@ const QuickStart: React.FunctionComponent<QuickStartProps> = (props) => {
 
   return (
     <div>
-      <Search
+      <Input.Search
         enterButton={"GO!"}
         onSearch={(value) => props.onSearch(value)}
         placeholder="输入题目编号"

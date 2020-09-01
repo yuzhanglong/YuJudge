@@ -9,7 +9,6 @@
 import React from "react";
 import {Button, Table} from "antd";
 import {ProblemTestCase} from "../../models/problem";
-import Column from "antd/lib/table/Column";
 import {DownloadOutlined} from "@ant-design/icons";
 
 interface TestCaseTableProps {
@@ -55,27 +54,27 @@ const TestCaseTable: React.FunctionComponent<TestCaseTableProps> = (props) => {
       pagination={false}
       dataSource={props.testCases}
       rowKey={"id"}>
-      <Column
+      <Table.Column
         title={"编号"}
         render={((value, record, index) => (index + 1))}
       />
-      <Column
+      <Table.Column
         title={"描述"}
         dataIndex={"description"}
       />
       {props.showDownLoadUrlColumn &&
-      <Column
+      <Table.Column
         title={"标准输入"}
         dataIndex={"stdIn"}
         render={renderTestCaseDownLoad}
       />}
       {props.showDownLoadUrlColumn &&
-      <Column
+      <Table.Column
         title={"标准输出"}
         dataIndex={"expectedStdOut"}
         render={renderTestCaseDownLoad}
       />}
-      <Column
+      <Table.Column
         title={"操作"}
         key={"number"}
         width={150}

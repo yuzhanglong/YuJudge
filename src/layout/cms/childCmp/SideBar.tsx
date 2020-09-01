@@ -2,7 +2,6 @@ import {MenuRouterConfig} from "../../../router/config";
 import {Menu} from "antd";
 import React from "react";
 import {MenuProps} from "antd/lib/menu";
-import SubMenu from "antd/lib/menu/SubMenu";
 import {Link} from "react-router-dom";
 import AllComponents from "../../../pages";
 
@@ -32,9 +31,9 @@ const renderSideBarSubMenus = (item: MenuRouterConfig[]) => {
       }
       if (subMenu.children && subMenu.children.length > 0) {
         return (
-          <SubMenu title={subMenu.title} key={subMenu.key} icon={subMenu.icon ? <MenuIcon/> : null}>
+          <Menu.SubMenu title={subMenu.title} key={subMenu.key} icon={subMenu.icon ? <MenuIcon/> : null}>
             {renderMenuItems(subMenu.children || [])}
-          </SubMenu>
+          </Menu.SubMenu>
         )
       } else {
         return (

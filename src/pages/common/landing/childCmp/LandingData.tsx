@@ -50,7 +50,7 @@ export const LandingFooterDataSource = {
         },
         childWrapper: {
           children: [
-            {name: 'link0', href: 'https://github.com/yuzhanglong/YuJudge', children: '前端项目(React + ts)'},
+            {name: 'link0', href: 'https://github.com/yuzhanglong/YuJudge', children: '前端项目(React + TypeScript)'},
             {name: 'link1', href: 'https://github.com/yuzhanglong/YuJudge-JudgeServer', children: '服务端项目(SpringBoot)'},
             {name: 'link1', href: 'https://github.com/yuzhanglong/YuJudge-JudgeHost', children: '判题服务器(SpringBoot)'},
             {name: 'link2', href: 'https://github.com/yuzhanglong/YuJudge-Core', children: '判题核心(C, base Linux)'}

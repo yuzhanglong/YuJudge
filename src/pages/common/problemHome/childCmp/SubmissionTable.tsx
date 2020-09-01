@@ -1,3 +1,11 @@
+/*
+ * File: SubmissionTable.tsx
+ * Description: 提交表格
+ * Created: 2020-9-1 13:43:39
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
 import React from "react";
 import {Table, Tag} from "antd";
 
@@ -10,7 +18,6 @@ import {SUBMISSION_SINGLE_PAGE_SIZE} from "../../../../config/config";
 import classNames from "classnames";
 import {SubmissionInfo} from "../../../../models/submissionInfo";
 import {UserInfo} from "../../../../models/user";
-import Column from "antd/es/table/Column";
 
 interface SubmissionTableProps {
   submissions: SubmissionInfo[];
@@ -101,37 +108,37 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
         showSizeChanger: false
       }}
       onChange={refreshPagination}>
-      <Column
+      <Table.Column
         title={"提交时间"} align={"center"}
         dataIndex={"createTime"}
         key={"createTime"}
         width={150}
         render={renderCreateTime}/>
-      <Column
+      <Table.Column
         title={"状态"} align={"center"}
         dataIndex={"judgeCondition"}
         key={"judgeCondition"}
         width={150}
         render={renderJudgeCondition}/>
-      <Column
+      <Table.Column
         title={"编译器"} align={"center"}
         dataIndex={"language"}
         key={"language"}
         width={150}
         render={renderCompilerContent}/>
-      <Column
+      <Table.Column
         title={"时间消耗"} align={"center"}
         dataIndex={"timeCost"}
         key={"timeCost"}
         render={renderTimeCost}
         width={150}/>
-      <Column
+      <Table.Column
         title={"内存消耗"} align={"center"}
         dataIndex={"memoryCost"}
         key={"memoryCost"}
         width={150}
         render={renderMemoryCost}/>
-      <Column
+      <Table.Column
         title={"提交用户"} align={"center"}
         dataIndex={"creator"}
         key={"creator"}

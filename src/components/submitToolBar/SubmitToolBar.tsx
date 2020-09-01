@@ -13,16 +13,18 @@ const SubmitToolBar: React.FunctionComponent<SubmitToolBarProps> = (props) => {
   return (
     <div style={{display: "flex"}}>
       <div>
-        <Button type={"primary"}
-                style={{marginRight: 10}}
-                onClick={props.onSubmit}
-                disabled={!props.isButtonActive}>
+        <Button
+          type={"primary"}
+          style={{marginRight: 10}}
+          onClick={props.onSubmit}
+          disabled={!props.isButtonActive}>
           提交
         </Button>
       </div>
       <div>
-        <Button onClick={props.onClear}
-                disabled={!props.isButtonActive}>
+        <Button
+          onClick={props.onClear}
+          disabled={!props.isButtonActive}>
           清空
         </Button>
       </div>
