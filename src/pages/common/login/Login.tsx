@@ -13,7 +13,7 @@ import {getCheckCodeInfo, getUserInfo, login, register} from "../../../network/u
 import {CheckCodeData, LoginFormData, LoginResponseData, RegisterFormData} from "../../../models/user";
 import {BaseResponse} from "../../../models/common";
 import {Button, Card, message} from "antd";
-import {saveUserInfo, setToken} from "../../../utils/dataPersistence";
+import {getTokenFromStorage, saveUserInfo, setToken} from "../../../utils/dataPersistence";
 import RegisterForm from "../../../components/registerForm/RegisterForm";
 import style from "./loginPage.module.scss"
 
@@ -37,7 +37,18 @@ const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = (props)
 
   useEffect(() => {
     getCheckCode();
+    checkUserIsLogin();
+    // eslint-disable-next-line
   }, []);
+
+  // 检测用户是否已经登录
+  const checkUserIsLogin = () => {
+    const token = getTokenFromStorage();
+    if (token) {
+      // 在下个页面向服务器验证token的有效性，如果token无效则会返回
+      props.history.push("/common/home");
+    }
+  }
 
   // 执行登录操作
   const onLogin = (value: any) => {
@@ -108,9 +119,9 @@ const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = (props)
   return (
     <div className={style.login_page}>
       <div className={style.login}>
-        <div className={"login-page-image-wrap"}>
+        <div>
           <img
-            src={"http://cdn.yuzzl.top/confirmation.svg"}
+            src={"http://cdn.yuzzl.top/Completed.svg"}
             alt={"confirmation"}
             className={style.login_page_image}/>
         </div>

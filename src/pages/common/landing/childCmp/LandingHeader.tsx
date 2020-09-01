@@ -8,6 +8,8 @@
 
 import React from "react";
 import style from "../landing.module.scss"
+import TweenOne from "rc-tween-one";
+import {Col, Row} from "antd";
 
 interface LandingHeaderProps {
 
@@ -17,8 +19,21 @@ const LandingHeader: React.FunctionComponent<LandingHeaderProps> = () => {
   return (
     <div className={style.landing_header}>
       <div className={style.landing_header_content}>
-        <svg width="48" height="32" viewBox="0 0 48 32" xmlns="http://www.w3.org/2000/svg">
-        </svg>
+        <TweenOne animation={{x: -30, type: 'from', ease: 'easeOutQuad'}}>
+          <Row align={"middle"}>
+            <Col>
+              <img
+                src={"http://cdn.yuzzl.top/yu_judge_logo.png"}
+                alt="img"
+                className={style.landing_logo}/>
+            </Col>
+            <Col>
+              <div className={style.landing_logo_text}>
+                YuJudge V1.0
+              </div>
+            </Col>
+          </Row>
+        </TweenOne>
       </div>
     </div>
   )

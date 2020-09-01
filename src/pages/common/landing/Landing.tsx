@@ -20,12 +20,12 @@ interface LandingProps {
 }
 
 const Landing: React.FunctionComponent<LandingProps & RouteComponentProps> = (props) => {
-  // 前往登录页面
-  const gotoLoginPage = () => {
+  // 前往首页
+  const goHome = () => {
     props.history.push("/login");
   }
 
-  // 前往注册界面
+  // 前往注册/登录
   const gotoRegister = () => {
     props.history.push("/login");
   }
@@ -37,7 +37,9 @@ const Landing: React.FunctionComponent<LandingProps & RouteComponentProps> = (pr
         </div>
         <div className={style.landing_item}>
           <MainPart
-            onMainButtonClick={() => gotoLoginPage()}
+            mainButtonText={"首页"}
+            subButtonText={"登录"}
+            onMainButtonClick={() => goHome()}
             onSubButtonClick={() => gotoRegister()}>
           </MainPart>
         </div>

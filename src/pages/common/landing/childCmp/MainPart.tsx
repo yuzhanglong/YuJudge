@@ -27,11 +27,14 @@ const MainPart: React.FunctionComponent<MainPartProps> = (props) => {
             Enjoy Coding And Get Happiness
           </h1>
           <p className={style.main_part_paragraph}>
-            all work and no play makes jack a dull boy
+            Human life,
+            like flood water and do not hear of islands and reefs,
+            it is difficult to create beautiful waves.
           </p>
           <Button
             size="large"
             type="primary"
+            style={{marginRight: 12}}
             className={style.main_part_button}
             onClick={() => props.onMainButtonClick ? props.onMainButtonClick() : null}>
             {props.mainButtonText}

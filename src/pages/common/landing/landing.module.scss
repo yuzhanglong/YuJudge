@@ -1,0 +1,252 @@
+/*
+ * File: landing.module.scss
+ * Description: 着陆页样式
+ * Created: 2020-8-31 20:21:21
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+
+.landing_logo {
+  width: 55px;
+  height: 55px;
+}
+
+.landing_logo_text {
+  font-size: 22px;
+  margin-left: 10px;
+}
+
+.landing_header {
+  position: relative;
+  padding: 24px 0;
+}
+
+.landing_header_content {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  padding-left: 16px;
+}
+
+
+.main_part {
+  position: relative;
+  text-align: center;
+  padding-top: 40px;
+  font-family: "Mukta", sans-serif;
+}
+
+.main_part_content_wrap {
+  display: flex;
+  padding-left: 24px;
+  padding-right: 24px;
+  text-align: left;
+
+
+  .main_part_title {
+    font-weight: 700;
+    font-size: 56px;
+    margin-bottom: 22px;
+    line-height: 72px;
+  }
+
+  .main_part_paragraph {
+    margin-bottom: 26px;
+    font-size: 20px;
+    font-weight: 300;
+    color: #6F8394;
+  }
+
+  .register {
+    margin-right: 15px;
+    border: none;
+  }
+
+  .main_part_button {
+    width: 100px;
+    border-radius: 4px;
+    font-size: 16px;
+    height: 42px;
+  }
+}
+
+.main_part_left {
+  width: 500px;
+}
+
+.main_part_illustration_image {
+  width: 700px;
+}
+
+.landing_features {
+  padding-top: 80px;
+}
+
+.feature_card_icon_wrap {
+  font-size: 40px;
+}
+
+.feature_card_wrap {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.feature_card_content {
+  font-size: 18px;
+  font-weight: 300;
+  padding-top: 17px;
+  color: #6F8394;
+}
+
+.landing_features_card_wrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.landing_item {
+  width: 1400px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.landing_item_footer {
+  width: 1400px;
+  padding-top: 60px;
+}
+
+.landing_page {
+  background-color: #F6F8FA;
+  display: flex;
+  justify-content: center;
+}
+
+.landing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  width: 1400px;
+}
+
+
+.footer1-wrapper {
+  background: #001529;
+  overflow: hidden;
+  position: relative;
+  min-height: 360px;
+  color: #999;
+
+  .footer1 {
+    .home-page {
+      padding: 64px 24px 80px;
+    }
+  }
+
+  .block {
+    padding: 0 32px;
+
+    .logo {
+      max-width: 180px;
+    }
+
+    .slogan {
+      font-size: 12px;
+      margin-top: -20px;
+    }
+
+    > h2 {
+      margin-bottom: 24px;
+      color: #ccc;
+    }
+
+    a {
+      color: #999;
+      margin-bottom: 12px;
+      float: left;
+      clear: both;
+
+      &:hover {
+        color: cornflowerblue;
+      }
+    }
+  }
+
+  .copyright-wrapper {
+    width: 100%;
+
+    .home-page {
+      padding: 0 24px;
+      overflow: hidden;
+    }
+
+    .copyright {
+      height: 80px;
+      text-align: center;
+      line-height: 80px;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer1 {
+    min-height: 550px;
+
+    &-wrapper {
+      .footer1 {
+        .home-page {
+          padding: 64px 24px 32px;
+        }
+      }
+    }
+
+    .logo {
+      margin: 0 auto 24px;
+    }
+
+    .block {
+      text-align: center;
+      margin-bottom: 32px;
+      padding: 0;
+    }
+
+    > ul {
+      width: 90%;
+      margin: 20px auto 0;
+      padding: 10px 0;
+
+      > li {
+        width: 100%;
+
+        h2 {
+          margin-bottom: 10px;
+        }
+
+        li {
+          display: inline-block;
+          margin-right: 10px;
+        }
+      }
+    }
+
+    .copyright {
+      &-wrapper {
+        .home-page {
+          padding: 0;
+
+          .copyright {
+            font-size: 12px;
+          }
+        }
+      }
+
+      span {
+        width: 90%;
+      }
+    }
+  }
+}
