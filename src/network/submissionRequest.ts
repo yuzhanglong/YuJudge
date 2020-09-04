@@ -13,7 +13,12 @@ import {SubmissionInfo} from "../models/submissionInfo";
 export const submitCode = (submission: SubmissionInfo) => {
   return request.post(
     "/submission/submit_code",
-    submission
+    submission,
+    {
+      headers: {
+        loading: true
+      }
+    }
   )
 }
 

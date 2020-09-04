@@ -8,7 +8,7 @@
 
 
 import React from "react";
-import {Card} from "antd";
+import {Button, Card} from "antd";
 import style from "../home.module.scss";
 import NoticeTable from "../../../../components/noticeTable/NoticeTable";
 import ProblemTable from "../../../../components/problemTable/ProblemTable";
@@ -22,6 +22,12 @@ interface HomeContentProps {
 }
 
 const HomeContent: React.FunctionComponent<HomeContentProps> = (props) => {
+  // 跳转到某个problem
+  const onGotoProblemButtonClick = (content: any) => {
+    const problemId = content.id;
+    window.reactRouter.push(`/common/problem/${problemId}`);
+  }
+
   return (
     <RcQueueAnim>
       <div key={"home_content_item1"}>
@@ -35,10 +41,20 @@ const HomeContent: React.FunctionComponent<HomeContentProps> = (props) => {
           <ProblemTable
             isShowProblemOrder={false}
             problems={props.problems}
-            isShowOperations={false}
+            isShowOperations
+            showEditButton={false}
             isShowTags={false}
             showPagination={false}
-            tableSize={"middle"}/>
+            tableSize={"middle"}
+            otherOperations={(content: any) => {
+              return (
+                <Button
+                  type={"link"}
+                  onClick={() => onGotoProblemButtonClick(content)}>
+                  前往
+                </Button>
+              )
+            }}/>
         </Card>
       </div>
     </RcQueueAnim>

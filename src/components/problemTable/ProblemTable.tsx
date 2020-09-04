@@ -56,7 +56,7 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
       <div>
         {
           tags.map((tag) => {
-            // TODO: 具体颜色信息应该由前端传过来
+            // TODO: 具体颜色信息应该由服务端传过来
             return (
               <Tag color={tag === "入门" ? "purple" : "geekblue"} key={tag}>
                 {tag}

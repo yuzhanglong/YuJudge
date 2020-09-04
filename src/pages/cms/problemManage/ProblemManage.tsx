@@ -85,6 +85,7 @@ const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
         visible={createButtonModalVisible}
         onCancel={() => setCreateButtonModalVisible(false)}/>
       <ProblemTable
+        isShowProblemOrder={false}
         onProblemEdit={gotoEditProblem}
         problems={problemPagination.items}
         totalPage={problemPagination.paginationInfo.totalPage}

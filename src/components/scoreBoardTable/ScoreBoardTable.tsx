@@ -78,7 +78,6 @@ const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) =
 
   return (
     <div className={"score-board-table"}>
-      {props.scoreBoardItems.length > 0 &&
       <Table
         bordered
         rowKey={"rank"}
@@ -105,8 +104,8 @@ const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) =
           dataIndex={"totalTimePenalty"}
           align={"center"}
           width={80}/>
-        {renderColumns()}
-      </Table>}
+        {props.scoreBoardItems.length > 0 && renderColumns()}
+      </Table>
     </div>
   )
 }

@@ -27,3 +27,11 @@ export interface ProblemSetScatterItem {
   userNickName: string,
   time: number;
 }
+
+// 时间线
+export interface ProblemSetTimelineItem {
+  creator: UserInfo;
+  isFirstAc: boolean;
+  acTime: number;
+  problemIndex: number;
+}

@@ -32,7 +32,7 @@ export const UPLOAD_SERVER_BASE_URL: string = "http://up-z2.qiniup.com";
 export const DOWNLOAD_SERVER_BASE_URL: string = "http://cdn.yuzzl.top";
 
 // 控制台最近题目的数量
-export const RECENT_PROBLEM_IN_DASHBOARD_AMOUNT: number = 8;
+export const RECENT_PROBLEM_IN_DASHBOARD_AMOUNT: number = 6;
 
 // 控制台个人近期提交的天数
 export const RECENT_SUBMISSION_DATES_IN_DASHBOARD_AMOUNT: number = 10;
@@ -57,6 +57,9 @@ export const SINGLE_PAGE_SIZE_IN_USER_MANAGE = 10;
 
 // 默认日期格式化
 export const DEFAULT_DATE_TIME_FORMAT = "YYYY-MM-DD HH:mm:ss";
+
+// 默认日期格式化
+export const TIME_LINE_IN_PROBLEM_SET_FORMAT = "YYYY-MM-DD HH:mm";
 
 // 日期格式化 - 小时
 export const DATE_TIME_FORMAT_BY_HOUR = "HH:mm:ss";

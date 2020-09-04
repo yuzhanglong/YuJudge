@@ -7,16 +7,28 @@
  */
 
 import React from "react";
-import {Card, Empty} from "antd";
+import {Card} from "antd";
+import UserCard from "../../../components/userCard/UserCard";
+import {UserInfoState} from "../../../hooks/userInfo";
+import style from "./profile.module.scss"
 
 interface profileProps {
 
 }
+
 const Profile: React.FunctionComponent<profileProps> = () => {
+
+  const userInfoState = UserInfoState();
+
   return (
-    <Card title={"个人中心"}>
-      <Empty description={"个人中心开发中..."}/>
-    </Card>
+    <div title={"个人中心"} className={style.profile}>
+      <Card className={style.profile_content}>
+        {
+          userInfoState.userInfo &&
+          <UserCard userInfo={userInfoState.userInfo}/>
+        }
+      </Card>
+    </div>
   )
 }
 

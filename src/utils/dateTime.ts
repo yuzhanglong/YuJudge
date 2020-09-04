@@ -26,6 +26,6 @@ export const getDateRangeMomentArray = (start: number, end: number) => {
 export const dateRangeMomentArrayToTimeStampArray = (timeRange: Moment[]) => {
   return [
     timeRange[0].toDate(),
-    timeRange[0].toDate()
+    timeRange[1].toDate()
   ]
 }

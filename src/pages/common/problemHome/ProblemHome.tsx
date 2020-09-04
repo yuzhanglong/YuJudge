@@ -20,6 +20,7 @@ import {SubmissionInfo} from "../../../models/submissionInfo";
 import {DEFAULT_JUDGE_PREFERENCE} from "../../../config/config";
 import {submitCode} from "../../../network/submissionRequest";
 import RcQueueAnim from "rc-queue-anim";
+import {BaseResponse} from "../../../models/common";
 
 interface ProblemShowProps {
   children: React.ReactNode;
@@ -55,14 +56,18 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
       problemSetId: params.problemSetId
     }
     // 发送提交请求
-    submitCode(submission).then(() => {
-      message.success("提交成功~");
-      if (problemSetId) {
-        props.history.push(`/common/problem_set/${problemSetId}/problem/${problemId}/submission`);
-      } else {
-        props.history.push(`/common/problem/${problemId}/submission`);
-      }
-    });
+    submitCode(submission)
+      .then(() => {
+        message.success("提交成功~");
+        if (problemSetId) {
+          props.history.push(`/common/problem_set/${problemSetId}/problem/${problemId}/submission`);
+        } else {
+          props.history.push(`/common/problem/${problemId}/submission`);
+        }
+      })
+      .catch((err: BaseResponse) => {
+        message.error(err.message);
+      })
   }
 
 

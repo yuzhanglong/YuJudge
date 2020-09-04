@@ -1,0 +1,20 @@
+/*
+ * File: profile.module.scss
+ * Description: 个人中心页面样式
+ * Created: 2020-9-4 23:05:51
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+@import "src/styles/public";
+
+.profile {
+  background-color: $common-background;
+  min-height: 90vh;
+}
+
+.profile_content {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}

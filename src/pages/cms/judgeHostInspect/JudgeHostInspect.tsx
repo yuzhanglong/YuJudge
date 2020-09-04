@@ -45,7 +45,8 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
       scriptPath: "",
       workPath: "",
       workingAmount: 0,
-      maxWorkingAmount: 0
+      maxWorkingAmount: 0,
+      version: "UNKNOWN"
     },
     connection: false,
     createTime: 0,

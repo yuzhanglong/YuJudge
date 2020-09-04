@@ -13,6 +13,7 @@ import {SubmissionCountInfo} from "../../../models/submissionInfo";
 import {countProblemSetSubmissionInfo} from "../../../network/problemSetRequest";
 import {RouteComponentProps} from "react-router-dom";
 import style from "../problemSetHome/problemSetHome.module.scss"
+import ProblemSetTimeLine from "./childCmp/ProblemSetTimeLine";
 
 interface ProblemSetCountProps {
 
@@ -55,12 +56,7 @@ const ProblemSetCount: React.FunctionComponent<ProblemSetCountProps & RouteCompo
           <Card title={"时间轴"} style={{
             marginTop: 30
           }}>
-            <Timeline>
-              <Timeline.Item>Create a services site 2015-09-01</Timeline.Item>
-              <Timeline.Item>Solve initial network problems 2015-09-01</Timeline.Item>
-              <Timeline.Item>Technical testing 2015-09-01</Timeline.Item>
-              <Timeline.Item>Network problems being solved 2015-09-01</Timeline.Item>
-            </Timeline>
+            <ProblemSetTimeLine problemSetId={problemSetId}/>
           </Card>
         </div>
       </Card>

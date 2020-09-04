@@ -9,7 +9,11 @@
 import React, {useEffect, useState} from "react";
 import {RouteComponentProps} from "react-router-dom";
 import ProblemSetEditor from "./childCmp/ProblemSetEditor";
-import {getProblemSetInfo, getProblemSetProblems, removeProblemFormProblemSet} from "../../../network/problemSetRequest";
+import {
+  getProblemSetInfo,
+  getProblemSetProblems,
+  removeProblemFormProblemSet
+} from "../../../network/problemSetRequest";
 import AddProblem from "./childCmp/AddProblem";
 import {UsePaginationState} from "../../../hooks/pagination";
 import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from "../../../config/config";

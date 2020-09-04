@@ -113,3 +113,10 @@ export const countProblemSetScatter = (problemSetId: number) => {
     }
   )
 }
+
+// 获取题目集时间线
+export const getProblemSetTimeline = (problemSetId: number) => {
+  return request.get(
+    "/problem_set/timeline/" + problemSetId,
+  )
+}
