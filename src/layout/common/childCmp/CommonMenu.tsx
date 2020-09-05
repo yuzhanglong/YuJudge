@@ -12,7 +12,7 @@ import {Link, RouteComponentProps} from "react-router-dom";
 import {UserInfoState} from "../../../hooks/userInfo";
 import UserTag from "../../../components/userTag/UserTag";
 import {
-  AreaChartOutlined,
+  AreaChartOutlined, FileSearchOutlined,
   HomeOutlined, QuestionCircleOutlined,
   SnippetsOutlined,
   UserOutlined
@@ -60,7 +60,14 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
               <span className="nav-text">题目集</span>
             </Link>
           </Menu.Item>
-
+          {
+            getProblemSetId() &&
+            <Menu.Item icon={<FileSearchOutlined/>} key={"overview"}>
+              <Link to={`/common/problem_set/${getProblemSetId()}/overview`}>
+                <span className="nav-text">概览</span>
+              </Link>
+            </Menu.Item>
+          }
           {
             getProblemSetId() &&
             <Menu.Item icon={<UserOutlined/>} key={"score_board"}>

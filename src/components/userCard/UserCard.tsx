@@ -9,6 +9,7 @@
 import React from "react";
 import {Avatar, Card, Row} from "antd";
 import {UserInfo} from "../../models/user";
+import style from "./userCard.module.scss"
 
 interface userCardProps {
   userInfo: UserInfo;
@@ -17,56 +18,34 @@ interface userCardProps {
 
 const UserCard: React.FunctionComponent<userCardProps> = (props) => {
   return (
-    <Card
-      style={{
-        width: 250,
-        height: props.height
-      }}
-      bodyStyle={{
-        width: 250,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}>
-      <Avatar src={props.userInfo.avatar} style={{
-        width: 90,
-        height: 90
-      }}/>
+    <Card className={style.user_card}>
+      <div className={style.user_card_body}>
+        <Avatar src={props.userInfo.avatar} className={style.user_avatar}/>
+        <div className={style.user_nickname}>
+          {props.userInfo.nickname}
+        </div>
 
-      <div style={{
-        fontSize: 28,
-        fontWeight: "bold"
-      }}>
-        {props.userInfo.nickname}
-      </div>
-
-      <div style={{
-        fontSize: 14,
-        color: "#8c8c8c"
-      }}>
-        {props.userInfo.userGroups[0].description}
-      </div>
-      <div style={{
-        width: 190,
-        marginTop: 30,
-        fontWeight: "bold"
-      }}>
-        <Row justify={"space-between"}>
-          <div>
-            提交数目
-          </div>
-          <div>
-            {props.userInfo.submissionAmount}
-          </div>
-        </Row>
-        <Row justify={"space-between"}>
-          <div>
-            AC数目
-          </div>
-          <div>
-            {props.userInfo.acAmount}
-          </div>
-        </Row>
+        <div className={style.user_group}>
+          {props.userInfo.userGroups[0].description}
+        </div>
+        <div className={style.user_card_count}>
+          <Row justify={"space-between"}>
+            <div>
+              提交数目
+            </div>
+            <div>
+              {props.userInfo.submissionAmount}
+            </div>
+          </Row>
+          <Row justify={"space-between"}>
+            <div>
+              AC数目
+            </div>
+            <div>
+              {props.userInfo.acAmount}
+            </div>
+          </Row>
+        </div>
       </div>
     </Card>
   )

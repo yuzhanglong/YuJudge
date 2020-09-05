@@ -25,7 +25,7 @@ export const MAIN_MENU: MenuRouterConfig[] = [
         key: "profile",
         component: "Profile",
         title: "我的",
-        path: "/common/profile",
+        path: "/common/profile/:userId",
       },
       {
         key: "discussion",

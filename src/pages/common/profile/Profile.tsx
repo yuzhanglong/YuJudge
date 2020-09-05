@@ -7,7 +7,7 @@
  */
 
 import React, {useEffect, useState} from "react";
-import {Card, Col, Row} from "antd";
+import {Card, Col, message, Row} from "antd";
 import UserCard from "../../../components/userCard/UserCard";
 import {UserInfoState} from "../../../hooks/userInfo";
 import style from "./profile.module.scss"
@@ -19,12 +19,16 @@ import {getRecentSubmission, getUserJudgeResultCount} from "../../../network/sub
 import RcQueueAnim from "rc-queue-anim";
 import {getUserAcProblemIds, getUserTriedProblemIds} from "../../../network/problemRequests";
 import {ProblemCountItem} from "../../../models/problem";
+import {RouteComponentProps} from "react-router-dom";
+import {BaseResponse} from "../../../models/common";
+import {USER_NOT_EXIST} from "../../../config/code";
 
 interface profileProps {
 
 }
 
-const Profile: React.FunctionComponent<profileProps> = () => {
+const Profile: React.FunctionComponent<profileProps & RouteComponentProps> = (props) => {
+  const uid = (props.match.params as any).userId === "me" ? null : (props.match.params as any).userId;
 
   const userInfoState = UserInfoState();
 
@@ -41,29 +45,30 @@ const Profile: React.FunctionComponent<profileProps> = () => {
   const [triedCount, setTriedCount] = useState<ProblemCountItem[]>([]);
 
   useEffect(() => {
-    getAndSetRecentSubmissionCount();
-    getUserJudgeResults();
-    getAndSetUserAcProblem();
-    getAndSetUserTriedProblem();
-  }, []);
+    getAndSetRecentSubmissionCount(uid);
+    getUserJudgeResults(uid);
+    getAndSetUserAcProblem(uid);
+    getAndSetUserTriedProblem(uid);
+    // eslint-disable-next-line
+  }, [uid]);
 
   // 获取最近提交统计信息
-  const getAndSetRecentSubmissionCount = () => {
+  const getAndSetRecentSubmissionCount = (uid: number | null) => {
     const end = moment().add(1, "days").format(DEFAULT_DATE_TIME_FORMAT);
     // 默认提早七天
     const start = moment().add(
       RECENT_SUBMISSION_DATES_IN_DASHBOARD_AMOUNT * (-1),
       "days").format(DEFAULT_DATE_TIME_FORMAT);
 
-    getRecentSubmission(start, end)
+    getRecentSubmission(start, end, uid)
       .then(res => {
         setRecentSubmissionCount(res.data);
       })
   }
 
   // 获取判题结果统计信息
-  const getUserJudgeResults = () => {
-    getUserJudgeResultCount()
+  const getUserJudgeResults = (userId: number | null) => {
+    getUserJudgeResultCount(userId)
       .then(res => {
         setUserJudgeResultCount(res.data);
       })
@@ -74,6 +79,12 @@ const Profile: React.FunctionComponent<profileProps> = () => {
     getUserAcProblemIds(uid)
       .then(res => {
         setAcCount(res.data);
+      })
+      .catch((err: BaseResponse) => {
+        if (err.code === USER_NOT_EXIST) {
+          message.error(err.message);
+          props.history.replace("/result/404");
+        }
       })
   }
 
@@ -90,10 +101,8 @@ const Profile: React.FunctionComponent<profileProps> = () => {
       <div title={"个人中心"} className={style.profile} key={"profile"}>
         <Card className={style.profile_content}>
           <Row>
-            <Col>
-              <div className={style.profile_user_info} key={"profile_user_info"}>
-                {userInfoState.userInfo && <UserCard userInfo={userInfoState.userInfo}/>}
-              </div>
+            <Col className={style.profile_user_info}>
+              {userInfoState.userInfo && <UserCard userInfo={userInfoState.userInfo}/>}
             </Col>
             <Col>
               <div key={"ProfileCount"}>

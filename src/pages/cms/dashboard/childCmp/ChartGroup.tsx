@@ -15,6 +15,7 @@ import {SubmissionCountInfo, UserSubmissionCount} from "../../../../models/submi
 import SubmissionCount from "../../../../components/submissionCount/SubmissionCount";
 import style from "../dashboard.module.scss";
 import {EMPTY_IMAGE} from "../../../../config/config";
+import {generateUserSubmissionData} from "../../../../utils/chart";
 
 interface ChartGroupProps {
   recentSubmission: UserSubmissionCount[];
@@ -24,31 +25,8 @@ interface ChartGroupProps {
 
 const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
 
-  // 处理用户的提交信息，将其转变为支持表格渲染的数据结构
-  const generateUserSubmissionData = () => {
-    let result = [];
-    for (let i = 0; i < props.recentSubmission.length; i++) {
-      let tmp = props.recentSubmission[i];
-      const d = new Date(tmp.time);
-      result.push(
-        {
-          date: d.getMonth() + 1 + "." + d.getDate(),
-          amount: tmp.totalAmount,
-          type: "通过",
-        },
-        {
-          date: d.getMonth() + 1 + "." + d.getDate(),
-          amount: tmp.totalAmount - tmp.acceptAmount,
-          type: "未通过",
-        },
-      )
-    }
-    return result;
-  }
-
   // 检测是否为空
   const checkRecentSubmissionIsEmpty = () => {
-    console.log(111);
     for (let i = 0; i < props.recentSubmission.length; i++) {
       if (props.recentSubmission[i].totalAmount !== 0) {
         console.log(props.recentSubmission[i]);
@@ -70,7 +48,7 @@ const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
             extra={
               <DashOutlined/>
             }>
-            <div className={checkRecentSubmissionIsEmpty() ? "" :style.dashboard_charts_item}>
+            <div className={checkRecentSubmissionIsEmpty() ? "" : style.dashboard_charts_item}>
               {
                 !checkRecentSubmissionIsEmpty() ?
                   <ColumnChart
@@ -79,7 +57,7 @@ const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
                     xKey={"date"}
                     yKey={"amount"}
                     yKeyDesc={"提交数"}
-                    data={generateUserSubmissionData()}/>
+                    data={generateUserSubmissionData(props.recentSubmission)}/>
                   : <Empty image={EMPTY_IMAGE}/>
               }
             </div>
@@ -93,7 +71,7 @@ const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
             extra={
               <DashOutlined/>
             }>
-            <div className={checkRecentSubmissionIsEmpty() ? "" :style.dashboard_charts_item}>
+            <div className={checkRecentSubmissionIsEmpty() ? "" : style.dashboard_charts_item}>
               <SubmissionCount
                 submissionCounts={props.globalSubmissionCount}
                 showPicker={false}/>

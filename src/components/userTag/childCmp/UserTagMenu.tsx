@@ -28,7 +28,7 @@ const UserTagMenu: React.FunctionComponent<UserTagMenuProps> = (props) => {
 
   // 个人信息标签被单击
   const onSeeProfile = () => {
-    window.reactRouter.push("/common/profile");
+    window.reactRouter.push("/common/profile/me");
   }
 
   // 前往后台

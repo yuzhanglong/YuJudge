@@ -43,5 +43,5 @@ export interface ProblemLimitation {
 // 问题统计
 export interface ProblemCountItem {
   name: string;
-  id: number;
+  problemId: number;
 }

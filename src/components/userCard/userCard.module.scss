@@ -1,0 +1,38 @@
+/*
+ * File: userCard.module.scss
+ * Description: 用户卡片样式
+ * Created: 2020-9-5 21:45:57
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+.user_card {
+  width: 250px;
+}
+
+.user_card_body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user_avatar {
+  width: 90px;
+  height: 90px;
+}
+
+.user_nickname {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.user_group {
+  font-size: 14px;
+  color: #8c8c8c;
+}
+
+.user_card_count {
+  width: 190px;
+  margin-top: 30px;
+  font-weight: bold;
+}

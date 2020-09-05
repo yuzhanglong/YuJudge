@@ -51,21 +51,27 @@ export const getSubmissionById = (submissionId: number) => {
 }
 
 // 获取某个时间区间内的提交统计
-export const getRecentSubmission = (begin: string, end: string) => {
+export const getRecentSubmission = (begin: string, end: string, uid: number | null = null) => {
   return request.get(
     "/submission/get_user_recent_submission",
     {
       params: {
         begin: begin,
-        end: end
+        end: end,
+        uid: uid
       }
     }
   )
 }
 
 // 用户判题结果统计
-export const getUserJudgeResultCount = () => {
+export const getUserJudgeResultCount = (uid: number | null = null) => {
   return request.get(
-    "/submission/get_user_judge_result_count"
+    "/submission/get_user_judge_result_count",
+    {
+      params: {
+        uid: uid
+      }
+    }
   )
 }

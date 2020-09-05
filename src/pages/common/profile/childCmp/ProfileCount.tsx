@@ -17,6 +17,8 @@ import {BulbTwoTone, DashOutlined, FileTextTwoTone, PieChartTwoTone, SmileTwoTon
 import RcQueueAnim from "rc-queue-anim";
 import CommonTitle from "../../../../components/commonTitle/CommonTitle";
 import {ProblemCountItem} from "../../../../models/problem";
+import ProblemItems from "../../../../components/userTag/childCmp/ProblemItems";
+import {generateUserSubmissionData} from "../../../../utils/chart";
 
 interface ProfileCountProps {
   recentSubmission: UserSubmissionCount[];
@@ -26,28 +28,18 @@ interface ProfileCountProps {
 }
 
 const ProfileCount: React.FunctionComponent<ProfileCountProps> = (props) => {
-
-  // 处理用户的提交信息，将其转变为支持表格渲染的数据结构
-  const generateUserSubmissionData = () => {
-    let result = [];
+  // 检测是否为空
+  const checkRecentSubmissionIsEmpty = () => {
     for (let i = 0; i < props.recentSubmission.length; i++) {
-      let tmp = props.recentSubmission[i];
-      const d = new Date(tmp.time);
-      result.push(
-        {
-          date: d.getMonth() + 1 + "." + d.getDate(),
-          amount: tmp.totalAmount,
-          type: "通过",
-        },
-        {
-          date: d.getMonth() + 1 + "." + d.getDate(),
-          amount: tmp.totalAmount - tmp.acceptAmount,
-          type: "未通过",
-        },
-      )
+      if (props.recentSubmission[i].totalAmount !== 0) {
+        console.log(props.recentSubmission[i]);
+        return false;
+      }
     }
-    return result;
+    return true;
   }
+
+
   return (
     <RcQueueAnim>
       <div key={"profile_group_item_1"}>
@@ -58,7 +50,11 @@ const ProfileCount: React.FunctionComponent<ProfileCountProps> = (props) => {
             extra={
               <DashOutlined/>
             }>
-            <Empty image={EMPTY_IMAGE}/>
+            {
+              props.acCount.length ?
+                <ProblemItems items={props.acCount}/> :
+                <Empty image={EMPTY_IMAGE}></Empty>
+            }
           </Card>
           <Card
             title={<CommonTitle title={"尝试过"} icon={<BulbTwoTone/>}/>}
@@ -66,20 +62,22 @@ const ProfileCount: React.FunctionComponent<ProfileCountProps> = (props) => {
             extra={
               <DashOutlined/>
             }>
-            <Empty image={EMPTY_IMAGE}/>
+            {props.triedCount.length ?
+              <ProblemItems items={props.triedCount}/> :
+              <Empty image={EMPTY_IMAGE}></Empty>}
           </Card>
         </Row>
       </div>
       <div key={"profile_group_item_2"}>
-        <Row className={style.profile_group_item}>
+        <Row>
           <Card
             title={<CommonTitle title={"近期提交"} icon={<FileTextTwoTone/>}/>}
             className={style.profile_recent_submission}
             extra={
               <DashOutlined/>
             }>
-            <div>
-              {
+            {
+              !checkRecentSubmissionIsEmpty() ?
                 <ColumnChart
                   height={220}
                   isStack
@@ -87,16 +85,19 @@ const ProfileCount: React.FunctionComponent<ProfileCountProps> = (props) => {
                   xKey={"date"}
                   yKey={"amount"}
                   yKeyDesc={"提交数"}
-                  data={generateUserSubmissionData()}/>
-              }
-            </div>
+                  data={generateUserSubmissionData(props.recentSubmission)}/> :
+                <Empty image={EMPTY_IMAGE}/>
+            }
           </Card>
           <Card
             title={<CommonTitle title={"判题统计"} icon={<PieChartTwoTone/>}/>}
             className={style.profile_recent_judge_result_count}
             extra={<DashOutlined/>}>
-            <JudgeResultCount
-              resultCounts={props.userJudgeResultCount}/>
+            {
+              props.userJudgeResultCount.length ?
+                <JudgeResultCount resultCounts={props.userJudgeResultCount}/> :
+                <Empty image={EMPTY_IMAGE}/>
+            }
           </Card>
         </Row>
       </div>

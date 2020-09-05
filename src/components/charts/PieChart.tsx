@@ -29,8 +29,8 @@ const PieChart: React.FunctionComponent<PieChartProps> = (props) => {
     color: props.colorRender,
     radius:1.0,
     label: {
-      visible: false,
-      type: 'inner',
+      visible: true,
+      type: 'outer',
     },
     legend: {
       visible: true

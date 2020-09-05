@@ -14,3 +14,6 @@ export const BAD_TOKEN = "A0004";
 
 // 禁止访问
 export const USER_GROUP_FORBIDDEN = "A0011";
+
+// 用户不存在
+export const USER_NOT_EXIST = "B0006";
