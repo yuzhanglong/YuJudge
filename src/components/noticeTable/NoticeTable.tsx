@@ -41,12 +41,18 @@ const NoticeTable: React.FunctionComponent<NoticeTableProps> = (props) => {
     )
   }
 
+  // 用户被单击
+  const onUserClick = (uid: number) => {
+    window.reactRouter.push("/common/profile/" + uid);
+  }
+
   // 渲染作者
   const renderCreator = (user: UserInfo) => {
     return (
-      <Row align={"middle"}>
+      <Row align={"middle"} onClick={() => onUserClick(user.id)}>
         <Col>
-          <div className={style.notice_table_creator}>
+          <div
+            className={style.notice_table_creator}>
             {user.nickname}
           </div>
         </Col>

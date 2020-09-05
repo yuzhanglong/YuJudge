@@ -11,10 +11,11 @@ import React from "react";
 interface DiscussionProps {
 
 }
+
 const Discussion: React.FunctionComponent<DiscussionProps> = () => {
   return (
     <div>
-
+      讨论版块暂未开放
     </div>
   )
 }

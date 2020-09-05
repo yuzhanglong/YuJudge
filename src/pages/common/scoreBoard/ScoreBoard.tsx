@@ -12,7 +12,7 @@ import {RouteComponentProps} from "react-router-dom";
 import {getProblemSetScoreBoard} from "../../../network/problemSetRequest";
 import {ScoreBoardInfo} from "../../../models/submissionInfo";
 import ScoreBoardTable from "../../../components/scoreBoardTable/ScoreBoardTable";
-import style from "../problemSetHome/problemSetHome.module.scss"
+import style from "./scoreBoard.module.scss"
 
 interface ScoreBoardProps {
 
@@ -45,20 +45,19 @@ const ScoreBoard: React.FunctionComponent<ScoreBoardProps & RouteComponentProps>
   }
 
   return (
-    <div className={style.problem_set_home}>
-      <Card
-        title={"记分板"}
-        headStyle={{textAlign: "center"}}
-        bodyStyle={{
-          display: "flex",
-          justifyContent: "center",
-          minWidth: 1000
-        }}>
-        <ScoreBoardTable
-          scoreBoardItems={scoreBoardInfo.participants}
-          problemAmount={scoreBoardInfo.problemAmount}>
-        </ScoreBoardTable>
-      </Card>
+    <div className={style.score_board}>
+      <div className={style.score_board_content}>
+        <Card
+          title={"记分板"}
+          headStyle={{textAlign: "center"}}>
+          <div className={style.score_board_body}>
+            <ScoreBoardTable
+              scoreBoardItems={scoreBoardInfo.participants}
+              problemAmount={scoreBoardInfo.problemAmount}>
+            </ScoreBoardTable>
+          </div>
+        </Card>
+      </div>
     </div>
   )
 }

@@ -1,1 +1,45 @@
+/*
+ * File: public.scss
+ * Description: 公共样式
+ * Created: 2020-9-5 22:25:18
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+// common页面，该类页面在【/common】路由下, 基本布局是一个顶部的导航栏，然后主体部分
+
+// 主体底色
 $common-background: #f0f2f5;
+
+// 导航栏距离主体20个px
+$common-page-background-top: 20px;
+
+// 背景部分
+$common-page-background-min-height: calc(100vh - 48px - 20px);
+
+// 内容部分
+$common-page-content-min-height: calc(100vh - 48px - 40px);
+
+// 内容边距，留白
+$common-page-body-margin: 20px;
+
+$common-page-body-min-height: calc(100vh - 48px - 40px - 107px);
+
+
+// 背景高度
+@mixin common-page {
+  background-color: $common-background;
+  min-height: $common-page-background-min-height;
+  margin-top: $common-page-background-top;
+
+}
+
+// 内容高度
+@mixin common-page-content {
+  margin: $common-page-body-margin;
+  min-height: $common-page-content-min-height;
+}
+
+@mixin common-page-body {
+  min-height: $common-page-body-min-height;
+}

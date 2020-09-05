@@ -9,12 +9,12 @@
 import React, {useEffect, useState} from "react";
 import {getProblemSetTimeline} from "../../../../network/problemSetRequest";
 import {ProblemSetTimelineItem} from "../../../../models/problemSet";
-import {message, Tag, Timeline} from "antd";
+import {Empty, message, Tag, Timeline} from "antd";
 import {CheckCircleOutlined} from "@ant-design/icons";
 import style from "../problemSetCount.module.scss"
 import {tenDecimalToTwentySixDecimal} from "../../../../utils/math";
 import moment from "moment";
-import {TIME_LINE_IN_PROBLEM_SET_FORMAT} from "../../../../config/config";
+import {EMPTY_IMAGE, TIME_LINE_IN_PROBLEM_SET_FORMAT} from "../../../../config/config";
 
 interface ProblemSetTimeLineProps {
   problemSetId: number;
@@ -54,7 +54,6 @@ const ProblemSetTimeLine: React.FunctionComponent<ProblemSetTimeLineProps> = (pr
                 通过【{tenDecimalToTwentySixDecimal(res.problemIndex + 1)}】题
               </div>
             </div>
-
           </div>
         </Timeline.Item>
       )
@@ -75,7 +74,7 @@ const ProblemSetTimeLine: React.FunctionComponent<ProblemSetTimeLineProps> = (pr
 
   return (
     <Timeline mode={"left"}>
-      {renderTimeline()}
+      {problemSetTimelineItems.length ? renderTimeline() : <Empty image={EMPTY_IMAGE}/>}
     </Timeline>
   )
 }

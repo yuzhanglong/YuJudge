@@ -13,12 +13,10 @@ $home-side-width: 350px;
 $home-item-spacing: 12px;
 
 .home {
-  background-color: $common-background;
-  min-height: 100vh;
+  @include common-page;
 }
 
 .home_content {
-  margin-top: 20px;
   display: flex;
   justify-content: center;
 }

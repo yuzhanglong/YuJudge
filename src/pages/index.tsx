@@ -40,6 +40,7 @@ const JudgeHostManage = loadable(import('./cms/judgeHostManage/JudgeHostManage')
 const JudgeHostInspect = loadable(import('./cms/judgeHostInspect/JudgeHostInspect'));
 const ProblemSetEdit = loadable(import('./cms/problemSetEdit/ProblemSetEdit'));
 const UserGroupManage = loadable(import('./cms/userGroupManage/UserGroupManage'));
+const Settings = loadable(import("./cms/settings/Settings"));
 
 
 // 一般界面
@@ -88,5 +89,6 @@ export default {
   Submission: Submission,
   Discussion: Discussion,
   Ranking: Ranking,
-  BasicResult: BasicResult
+  BasicResult: BasicResult,
+  Settings: Settings
 } as any;

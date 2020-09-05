@@ -59,31 +59,27 @@ const ProblemSetHome: React.FunctionComponent<ProblemSetHomeProps & RouteCompone
   return (
     <RcQueueAnim>
       <div className={style.problem_set_home} key={"problem-set-home"}>
-        <Card
-          title={"题目集概况"}
-          headStyle={{
-            textAlign: "center"
-          }}>
-          <div style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center"
-          }}>
-            <ProblemSetDescription
-              problemSetInfo={problemSetInfo}/>
-            <div>
-              <Button
-                onClick={onOverViewProblemsButtonClick}
-                type={"primary"}
-                style={{
-                  marginTop: 20
-                }}>
-                查看问题
-              </Button>
+        <div className={style.problem_set_home_content}>
+          <Card title={"题目集概况"} headStyle={{textAlign: "center"}}>
+            <div className={style.problem_set_home_body}>
+              <div className={style.problem_set_home_description}>
+                <ProblemSetDescription
+                  problemSetInfo={problemSetInfo}/>
+              </div>
+              <div>
+                <Button
+                  onClick={onOverViewProblemsButtonClick}
+                  type={"primary"}
+                  style={{
+                    marginTop: 20
+                  }}>
+                  查看问题
+                </Button>
+              </div>
             </div>
-          </div>
-        </Card>
+          </Card>
+        </div>
+
       </div>
     </RcQueueAnim>
   )

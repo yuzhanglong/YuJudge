@@ -1,0 +1,22 @@
+/*
+ * File: problems.module.scss
+ * Description: 问题汇总页面样式
+ * Created: 2020-9-5 22:27:03
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+@import "src/styles/public";
+
+.problems {
+  @include common-page;
+}
+
+.problems_content {
+  @include common-page-content;
+}
+
+.problems_table_wrap {
+  @include common-page-body;
+  display: flex;
+  justify-content: center;
+}

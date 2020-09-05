@@ -8,16 +8,19 @@
 
 @import "src/styles/public";
 
+// 每个小内容的宽高
+$profile-item-width: 500px;
+$profile-item-height: 300px;
+
+// 内容间距
+$profile-item-spacing: 20px;
+
 .profile {
-  background-color: $common-background;
-  min-height: calc(100vh - 70px);
+  @include common-page;
 }
 
 .profile_content {
-  margin-top: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
-  min-height: calc(100vh - 88px);
+  @include common-page-content;
 }
 
 .profile_user_info {
@@ -26,25 +29,25 @@
 }
 
 .profile_user_have_pass {
-  width: 500px;
-  margin-right: 20px;
+  width: $profile-item-width;
+  margin-right: $profile-item-spacing;
 }
 
 .profile_user_have_tried {
-  width: 500px;
+  width: $profile-item-width;
 }
 
 .profile_group_item {
-  margin-bottom: 20px;
+  margin-bottom: $profile-item-spacing;
 }
 
 .profile_recent_submission {
-  width: 500px;
-  margin-right: 20px;
-  height: 300px;
+  width: $profile-item-width;
+  margin-right: $profile-item-spacing;
+  height: $profile-item-height;
 }
 
 .profile_recent_judge_result_count {
-  width: 500px;
-  height: 300px;
+  width: $profile-item-width;
+  height: $profile-item-height;
 }

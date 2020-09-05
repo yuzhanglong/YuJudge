@@ -1,0 +1,23 @@
+/*
+ * File: scoreBoard.module.scss
+ * Description: 计分板页面
+ * Created: 2020-9-5 23:35:12
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+@import "src/styles/public";
+
+.score_board {
+  @include common-page;
+}
+
+.score_board_content {
+  @include common-page-content;
+}
+
+.score_board_body{
+  @include common-page-body;
+  display: flex;
+  justify-content: center;
+}

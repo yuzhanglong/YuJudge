@@ -6,6 +6,22 @@
  * Email: yuzl1123@163.com
  */
 
+@import "src/styles/public";
+
+.problem_set_count {
+  @include common-page;
+}
+
+.problem_set_count_content {
+  @include common-page-content;
+}
+
+.problem_set_count_body {
+  @include common-page-body;
+  display: flex;
+  justify-content: center;
+}
+
 .time_line_body {
   display: flex;
 }
@@ -27,6 +43,6 @@
 
 }
 
-.time_line_time{
+.time_line_time {
   font-weight: bold;
 }

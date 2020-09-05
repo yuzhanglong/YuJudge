@@ -1,4 +1,28 @@
+/*
+ * File: problemSetHome.module.scss
+ * Description: 题目集概览页面样式
+ * Created: 2020-9-5 23:23:59
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+@import "src/styles/public";
+
 .problem_set_home {
-  padding: 20px;
-  min-height: calc(100vh - 48px);
+  @include common-page;
+}
+
+.problem_set_home_content {
+  @include common-page-content;
+}
+
+.problem_set_home_body {
+  @include common-page-body;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.problem_set_home_description {
+  min-width: 1000px;
 }

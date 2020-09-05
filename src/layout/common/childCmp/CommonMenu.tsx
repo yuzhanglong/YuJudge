@@ -38,11 +38,13 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
     return null;
   }
 
+  console.log(props.location.pathname);
+
 
   return (
     <Row justify={"space-between"} className={"problem-set-layout-menu"}>
       <Col>
-        <Menu mode="horizontal" activeKey={props.location.pathname}>
+        <Menu mode="horizontal" selectedKeys={[props.location.pathname]}>
           <Menu.Item key="/common/home" icon={<HomeOutlined/>}>
             <Link to={`/common/home`}>
               <span className="nav-text">首页</span>
@@ -62,7 +64,7 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
           </Menu.Item>
           {
             getProblemSetId() &&
-            <Menu.Item icon={<FileSearchOutlined/>} key={"overview"}>
+            <Menu.Item icon={<FileSearchOutlined/>} key={`/common/problem_set/${getProblemSetId()}/overview`}>
               <Link to={`/common/problem_set/${getProblemSetId()}/overview`}>
                 <span className="nav-text">概览</span>
               </Link>
@@ -70,7 +72,7 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
           }
           {
             getProblemSetId() &&
-            <Menu.Item icon={<UserOutlined/>} key={"score_board"}>
+            <Menu.Item icon={<UserOutlined/>} key={`/common/problem_set/${getProblemSetId()}/score_board`}>
               <Link to={`/common/problem_set/${getProblemSetId()}/score_board`}>
                 <span className="nav-text">记分板</span>
               </Link>
@@ -79,7 +81,7 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
 
           {
             getProblemSetId() &&
-            <Menu.Item icon={<AreaChartOutlined/>} key={"count"}>
+            <Menu.Item icon={<AreaChartOutlined/>} key={`/common/problem_set/${getProblemSetId()}/count`}>
               <Link to={`/common/problem_set/${getProblemSetId()}/count`}>
                 <span className="nav-text">统计</span>
               </Link>

@@ -14,7 +14,7 @@ import {PAGE_BEGIN} from "../../../config/config";
 import {ProblemSetPaginationRequest} from "../../../models/pagination";
 import {Card} from "antd";
 import RcQueueAnim from "rc-queue-anim";
-import style from "../problemSetHome/problemSetHome.module.scss"
+import style from "./problemSets.module.scss"
 
 interface ProblemSetsProps {
 
@@ -46,28 +46,22 @@ const ProblemSets: React.FunctionComponent<ProblemSetsProps> = () => {
 
   return (
     <RcQueueAnim>
-      <div className={style.problem_set_home} key={"problem-set-home"}>
-        <Card
-          title={"题目集"}
-          headStyle={{
-            textAlign: "center"
-          }}>
-          <div style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-          }}>
-            <ProblemSetTable
-              allowTitleRoute
-              showOperations={false}
-              problemSets={problemSetsPaginationState.items}
-              isLoading={problemSetsPaginationState.isLoading}/>
-          </div>
-        </Card>
+      <div className={style.problem_sets} key={"problem-set-home"}>
+        <div className={style.problems_content}>
+          <Card
+            title={"题目集"}
+            headStyle={{textAlign: "center"}}>
+            <div className={style.problems_body}>
+              <ProblemSetTable
+                allowTitleRoute
+                showOperations={false}
+                problemSets={problemSetsPaginationState.items}
+                isLoading={problemSetsPaginationState.isLoading}/>
+            </div>
+          </Card>
+        </div>
       </div>
     </RcQueueAnim>
-
   )
 }
 

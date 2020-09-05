@@ -6,6 +6,8 @@
  * Email: yuzl1123@163.com
  */
 
+@import "src/styles/public";
+
 @keyframes loading {
   0% {
     background-position: -35px 0;
@@ -44,8 +46,11 @@
 
 
 .problem_home {
-  padding: 30px;
-  min-height: calc(100vh - 48px);
+  @include common-page;
+}
+
+.problem_home_body {
+  @include common-page-content;
 }
 
 
