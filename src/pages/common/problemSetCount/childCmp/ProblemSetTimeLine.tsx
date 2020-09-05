@@ -10,7 +10,6 @@ import React, {useEffect, useState} from "react";
 import {getProblemSetTimeline} from "../../../../network/problemSetRequest";
 import {ProblemSetTimelineItem} from "../../../../models/problemSet";
 import {message, Tag, Timeline} from "antd";
-import {timestampToDateTime} from "../../../../utils/dateTime";
 import {CheckCircleOutlined} from "@ant-design/icons";
 import style from "../problemSetCount.module.scss"
 import {tenDecimalToTwentySixDecimal} from "../../../../utils/math";
@@ -36,7 +35,12 @@ const ProblemSetTimeLine: React.FunctionComponent<ProblemSetTimeLineProps> = (pr
         <Timeline.Item
           dot={<CheckCircleOutlined/>}
           key={res.acTime}
-          label={moment(res.acTime).format(TIME_LINE_IN_PROBLEM_SET_FORMAT)}>
+          label={
+            <div className={style.time_line_time}>
+              {moment(res.acTime).format(TIME_LINE_IN_PROBLEM_SET_FORMAT)}
+            </div>
+
+          }>
           <div className={style.time_line_body}>
             <div className={style.time_line_tags}>
               {res.isFirstAc && <Tag color="#108ee9">FIRST AC</Tag>}
@@ -47,7 +51,7 @@ const ProblemSetTimeLine: React.FunctionComponent<ProblemSetTimeLineProps> = (pr
                 {res.creator.nickname}
               </div>
               <div className={style.time_line_description_content}>
-                通过【{tenDecimalToTwentySixDecimal(res.problemIndex)}】题
+                通过【{tenDecimalToTwentySixDecimal(res.problemIndex + 1)}】题
               </div>
             </div>
 

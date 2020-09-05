@@ -106,3 +106,27 @@ export const createProblem = (name: string) => {
     }
   )
 }
+
+// 获取用户已经ac题目的id集合
+export const getUserAcProblemIds = (uid: number | null = null) => {
+  return request.get(
+    "/problem/user_ac_problem_ids",
+    {
+      params: {
+        uid: uid
+      }
+    }
+  )
+}
+
+// 获取用户尝试题目的id集合
+export const getUserTriedProblemIds = (uid: number | null = null) => {
+  return request.get(
+    "/problem/user_tried_problem_ids",
+    {
+      params: {
+        uid: uid
+      }
+    }
+  )
+}

@@ -10,11 +10,40 @@
 
 .profile {
   background-color: $common-background;
-  min-height: 90vh;
+  min-height: calc(100vh - 70px);
 }
 
 .profile_content {
   margin-top: 20px;
   margin-left: 20px;
   margin-right: 20px;
+  min-height: calc(100vh - 88px);
+}
+
+.profile_user_info {
+  margin-right: 20px;
+}
+
+.profile_user_have_pass {
+  width: 500px;
+  margin-right: 20px;
+}
+
+.profile_user_have_tried {
+  width: 500px;
+}
+
+.profile_group_item {
+  margin-bottom: 20px;
+}
+
+.profile_recent_submission {
+  width: 500px;
+  margin-right: 20px;
+  height: 300px;
+}
+
+.profile_recent_judge_result_count {
+  width: 500px;
+  height: 300px;
 }
