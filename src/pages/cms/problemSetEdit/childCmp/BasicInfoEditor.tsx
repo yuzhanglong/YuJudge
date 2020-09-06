@@ -6,25 +6,33 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect} from "react";
-import {Button, DatePicker, Form, Input} from "antd";
+import React, {useEffect, useState} from "react";
+import {Button, DatePicker, Form, Input, Switch, Checkbox} from "antd";
 import {ProblemSet} from "../../../../models/problemSet";
 import {getDateRangeMomentArray} from "../../../../utils/dateTime";
+import {LanguageTypeEnum} from "../../../../common/enumerations";
+import {PROGRAM_LANGUAGE_NAME} from "../../../../common/programLanguage";
 
 interface BasicInfoEditorProps {
   problemSet: ProblemSet;
-  onEditConfirm: (value: any) => void;
+  onEditConfirm: (value: ProblemSet) => void;
 }
 
 const BasicInfoEditor: React.FunctionComponent<BasicInfoEditorProps> = (props) => {
-  console.log(props.problemSet);
+
+  const [activeLanguage, setActiveLanguage] = useState<string[]>([]);
+
   const [form] = Form.useForm();
+
+  const [open, setOpen] = useState<boolean>(true);
 
   // 表单初始化
   useEffect(() => {
+    setActiveLanguage(props.problemSet.allowedLanguage || []);
     form.setFieldsValue({
       name: props.problemSet.name,
       description: props.problemSet.description,
+      open: props.problemSet.open,
       timeRange: getDateRangeMomentArray(
         props.problemSet.startTime || 0,
         props.problemSet.deadline || 0
@@ -33,12 +41,22 @@ const BasicInfoEditor: React.FunctionComponent<BasicInfoEditorProps> = (props) =
   }, [form, props.problemSet]);
 
   // 表单确认
-  const onFormFinish = (data: any) => {
+  const onFormFinish = (data: ProblemSet) => {
+    data.allowedLanguage = activeLanguage;
+    data.open = open;
     props.onEditConfirm(data);
   }
 
+  // 多选框选项
+  const options = [
+    {label: PROGRAM_LANGUAGE_NAME[LanguageTypeEnum.PYTHON], value: LanguageTypeEnum.PYTHON},
+    {label: PROGRAM_LANGUAGE_NAME[LanguageTypeEnum.JAVA], value: LanguageTypeEnum.JAVA},
+    {label: PROGRAM_LANGUAGE_NAME[LanguageTypeEnum.C_PLUS_PLUS], value: LanguageTypeEnum.C_PLUS_PLUS},
+    {label: PROGRAM_LANGUAGE_NAME[LanguageTypeEnum.C], value: LanguageTypeEnum.C},
+  ];
+
   return (
-    <Form form={form} labelAlign={"left"} onFinish={onFormFinish}>
+    <Form form={form} labelAlign={"left"} onFinish={(val: any) => onFormFinish(val)}>
       <Form.Item
         label="题目名称"
         name={"name"}>
@@ -53,6 +71,13 @@ const BasicInfoEditor: React.FunctionComponent<BasicInfoEditorProps> = (props) =
         label="内容描述"
         name={"description"}>
         <Input.TextArea/>
+      </Form.Item>
+      <Form.Item
+        label="是否公开">
+        <Switch checked={open} onChange={(v) => setOpen(v)}/>
+      </Form.Item>
+      <Form.Item label="支持语言">
+        <Checkbox.Group options={options} value={activeLanguage} onChange={(v: any) => setActiveLanguage(v)}/>
       </Form.Item>
       <Form.Item>
         <Button type="primary" htmlType="submit">

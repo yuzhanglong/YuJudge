@@ -7,7 +7,7 @@
  */
 
 import React from "react";
-import {Button, Card, message, Popconfirm} from "antd";
+import {Button, Card, message, Popconfirm as PopConfirm} from "antd";
 import ProblemTable from "../../../../components/problemTable/ProblemTable";
 import {Problem} from "../../../../models/problem";
 import {RouteComponentProps} from "react-router-dom";
@@ -17,6 +17,7 @@ import {ProblemSet} from "../../../../models/problemSet";
 import {dateRangeMomentArrayToTimeStampArray} from "../../../../utils/dateTime";
 import {updateProblemSetBasicInfo} from "../../../../network/problemSetRequest";
 import RcQueueAnim from "rc-queue-anim";
+import style from "../problemSetEdit.module.scss"
 
 interface ProblemSetEditorProps {
   problems: Problem[];
@@ -50,7 +51,8 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
         startTime: rangeTmp[0].getTime(),
         deadline: rangeTmp[1].getTime(),
         id: props.problemSet.id,
-        open: true
+        open: formData.open,
+        allowedLanguage: formData.allowedLanguage
       }
       updateProblemSetBasicInfo(problemSet)
         .then(() => {
@@ -68,23 +70,17 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
         <div key={"problem-editor-basic-info"}>
           <Card
             type="inner"
-            style={{marginTop: 10}}
-            title={
-              <div>
-                基本信息
-              </div>
-            }>
+            title={<div className={style.cms_problem_set_edit_item_title}>基本信息</div>}>
             <BasicInfoEditor
               problemSet={props.problemSet}
               onEditConfirm={onEditConfirm}/>
           </Card>
         </div>
-
         <div key={"problem-editor-problems"}>
           <Card
             type="inner"
             style={{marginTop: 10}}
-            title={<div>拥有的题目</div>}
+            title={<div className={style.cms_problem_set_edit_item_title}>拥有的题目</div>}
             extra={
               <Button type={"link"} onClick={() => props.onProblemAdd()}>
                 添加已有问题
@@ -97,7 +93,7 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
               problems={props.problems}
               onProblemEdit={gotoEditProblem}
               otherOperations={(content: any) => (
-                <Popconfirm
+                <PopConfirm
                   title="你确定要从题目集中移除这个题目吗"
                   okText="确定"
                   cancelText="取消"
@@ -105,16 +101,15 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
                   <Button type={"link"} danger>
                     从题目集中移除
                   </Button>
-                </Popconfirm>
+                </PopConfirm>
               )}/>
           </Card>
         </div>
-
         <div key={"problem-editor-danger"}>
           <Card
             type="inner"
             style={{marginTop: 10}}
-            title={<div>危险项</div>}>
+            title={<div className={style.cms_problem_set_edit_item_title_danger}>危险项</div>}>
             <EditorTip
               title={"删除这个题目集"}
               content={"此操作不可恢复，注意: 与它相关联的题目不会被删除"}>
