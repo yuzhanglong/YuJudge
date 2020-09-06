@@ -15,6 +15,10 @@ import {SubmissionInfo} from "../../../models/submissionInfo";
 import {SUBMISSION_REQUEST_TASK_TIME, SUBMISSION_SINGLE_PAGE_SIZE} from "../../../config/config";
 import {getSubmissionById, getSubmissionByProblemId} from "../../../network/submissionRequest";
 import {message} from "antd";
+import {BaseResponse} from "../../../models/common";
+import {PROBLEM_SET_FORBIDDEN} from "../../../config/code";
+import {goToResult} from "../../../utils/route";
+import {ResultPageParam} from "../../../common/enumerations";
 
 interface SubmissionProps {
 
@@ -89,6 +93,13 @@ const Submission: React.FunctionComponent<SubmissionProps & RouteComponentProps>
     getSubmissionById(submissionId)
       .then(res => {
         setActiveSubmission(res.data);
+      })
+      .catch((err: BaseResponse) => {
+        if (err.code === PROBLEM_SET_FORBIDDEN) {
+          goToResult(ResultPageParam.PROBLEM_SET_FORBIDDEN);
+        } else {
+          goToResult(ResultPageParam.NOT_FOUND);
+        }
       })
   }
 

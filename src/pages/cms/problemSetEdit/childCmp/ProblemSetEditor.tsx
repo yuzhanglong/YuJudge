@@ -49,7 +49,8 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
         description: formData.description,
         startTime: rangeTmp[0].getTime(),
         deadline: rangeTmp[1].getTime(),
-        id: props.problemSet.id
+        id: props.problemSet.id,
+        open: true
       }
       updateProblemSetBasicInfo(problemSet)
         .then(() => {

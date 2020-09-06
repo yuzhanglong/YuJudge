@@ -23,6 +23,7 @@ $common-page-content-min-height: calc(100vh - 48px - 40px);
 // 内容边距，留白
 $common-page-body-margin: 20px;
 
+// 如果是有标题的卡片，那么还要限制
 $common-page-body-min-height: calc(100vh - 48px - 40px - 107px);
 
 
@@ -34,12 +35,13 @@ $common-page-body-min-height: calc(100vh - 48px - 40px - 107px);
 
 }
 
-// 内容高度
+// 主体内容高度
 @mixin common-page-content {
   margin: $common-page-body-margin;
   min-height: $common-page-content-min-height;
 }
 
+// 卡片内容高度
 @mixin common-page-body {
   min-height: $common-page-body-min-height;
 }

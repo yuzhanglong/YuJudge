@@ -118,7 +118,9 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
 
   return (
     <RcQueueAnim>
-      <div className={style.problem_home} key={"problem_home"}>
+      {
+        problem &&
+        <div className={style.problem_home} key={"problem_home"}>
         <Card className={style.problem_home_body}>
           <div>
             <div className={style.problem_home_title}>
@@ -146,6 +148,7 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
           </div>
         </Card>
       </div>
+      }
     </RcQueueAnim>
 
   )

@@ -12,11 +12,15 @@ import {UsePaginationState} from "../../../hooks/pagination";
 import {ProblemSetProblemPaginationRequest} from "../../../models/pagination";
 import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from "../../../config/config";
 import {getProblemSetProblems} from "../../../network/problemSetRequest";
-import {Button, Card, message} from "antd";
+import {Button, Card} from "antd";
 import {RouteComponentProps} from "react-router-dom";
 import ProblemTable from "../../../components/problemTable/ProblemTable";
 import RcQueueAnim from "rc-queue-anim";
 import style from "../problemSetHome/problemSetHome.module.scss"
+import {BaseResponse} from "../../../models/common";
+import {PROBLEM_SET_FORBIDDEN} from "../../../config/code";
+import {goToResult} from "../../../utils/route";
+import {ResultPageParam} from "../../../common/enumerations";
 
 interface ProblemSetProblemsProps {
 
@@ -40,8 +44,12 @@ const ProblemSetProblems: React.FunctionComponent<ProblemSetProblemsProps & Rout
         count: SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE,
         problemSetId: problemSetId
       })
-      .catch((err) => {
-        message.error(err.message);
+      .catch((err: BaseResponse) => {
+        if (err.code === PROBLEM_SET_FORBIDDEN) {
+          goToResult(ResultPageParam.PROBLEM_SET_FORBIDDEN);
+        } else {
+          goToResult(ResultPageParam.NOT_FOUND);
+        }
       })
   }
 

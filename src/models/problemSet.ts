@@ -19,6 +19,7 @@ export interface ProblemSet {
   judgePreference?: string;
   allowedLanguage?: string[];
   condition?: string;
+  open: boolean;
 }
 
 // 题目集散点

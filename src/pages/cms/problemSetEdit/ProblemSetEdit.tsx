@@ -28,7 +28,7 @@ interface ProblemSetEditProps {
 
 const ProblemSetEdit: React.FunctionComponent<ProblemSetEditProps & RouteComponentProps> = (props) => {
   // 当前题目集信息
-  const [problemSetInfo, setProblemSetInfo] = useState<ProblemSet>({});
+  const [problemSetInfo, setProblemSetInfo] = useState<ProblemSet>();
 
   // 题目集problem分页对象
   const problemSetProblemPagination = UsePaginationState<ProblemSetProblemPaginationRequest>(PAGE_BEGIN - 1, getProblemSetProblems);
@@ -102,22 +102,27 @@ const ProblemSetEdit: React.FunctionComponent<ProblemSetEditProps & RouteCompone
 
   return (
     <div>
-      <ProblemSetEditor
-        {...props}
-        problemSet={problemSetInfo}
-        onPageChange={(val) => getProblemSetProblemData(val - 1)}
-        problemSetProblemsTotalPage={problemSetProblemPagination.paginationInfo.totalPage || 1}
-        problems={problemSetProblemPagination.items}
-        onProblemAdd={() => setAddProblemModalVisible(true)}
-        onRemoveFormProblemSet={onRemoveFormProblemSet}/>
-      <AddProblem
-        problemSetId={problemSetId}
-        onCancel={() => setAddProblemModalVisible(false)}
-        onProblemPageChange={(val: number) => getProblemsData(val - 1, searchContent)}
-        totalPage={totalProblemPagination.paginationInfo.totalPage}
-        problems={totalProblemPagination.items}
-        visible={addProblemModalVisible}
-        onSearchConfirm={onSearchConfirm}/>
+      {
+        problemSetInfo &&
+        <div>
+          <ProblemSetEditor
+            {...props}
+            problemSet={problemSetInfo}
+            onPageChange={(val) => getProblemSetProblemData(val - 1)}
+            problemSetProblemsTotalPage={problemSetProblemPagination.paginationInfo.totalPage || 1}
+            problems={problemSetProblemPagination.items}
+            onProblemAdd={() => setAddProblemModalVisible(true)}
+            onRemoveFormProblemSet={onRemoveFormProblemSet}/>
+          <AddProblem
+            problemSetId={problemSetId}
+            onCancel={() => setAddProblemModalVisible(false)}
+            onProblemPageChange={(val: number) => getProblemsData(val - 1, searchContent)}
+            totalPage={totalProblemPagination.paginationInfo.totalPage}
+            problems={totalProblemPagination.items}
+            visible={addProblemModalVisible}
+            onSearchConfirm={onSearchConfirm}/>
+        </div>
+      }
     </div>
   )
 }

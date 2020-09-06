@@ -68,7 +68,8 @@ const ProblemSetManage: React.FunctionComponent<RouteComponentProps> = (props) =
       name: formData.name,
       description: formData.description,
       startTime: rangeTmp[0].getTime(),
-      deadline: rangeTmp[1].getTime()
+      deadline: rangeTmp[1].getTime(),
+      open: true
     }
 
     createProblemSet(problemSet)

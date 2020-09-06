@@ -62,3 +62,10 @@ export enum NoticePriority {
   IMPORTANT = "IMPORTANT",
   COMMON = "COMMON",
 }
+
+// 结果页参数
+export enum ResultPageParam {
+  FORBIDDEN = "403",
+  NOT_FOUND = "404",
+  PROBLEM_SET_FORBIDDEN = "problem_set_forbidden"
+}

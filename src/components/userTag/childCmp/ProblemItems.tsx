@@ -8,7 +8,7 @@
 
 import React from "react";
 import {ProblemCountItem} from "../../../models/problem";
-import {Col, Row} from "antd";
+import {Button, Col, Row} from "antd";
 
 interface ProblemItemsProps {
   items: ProblemCountItem[];
@@ -23,9 +23,9 @@ const ProblemItems: React.FunctionComponent<ProblemItemsProps> = (props) => {
     return props.items.map(res => {
       return (
         <Col style={{fontWeight: "bold"}} span={12}>
-          <a onClick={() => onProblemClick(res.problemId)}>
+          <Button type={"link"} onClick={() => onProblemClick(res.problemId)}>
             [{res.problemId}]
-          </a>
+          </Button>
           {" " + res.name}
         </Col>
       )

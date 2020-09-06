@@ -17,3 +17,6 @@ export const USER_GROUP_FORBIDDEN = "A0011";
 
 // 用户不存在
 export const USER_NOT_EXIST = "B0006";
+
+// 题目集禁止访问
+export const PROBLEM_SET_FORBIDDEN = "B0022";

@@ -58,8 +58,11 @@ const ProblemSetDescription: React.FunctionComponent<ProblemSetDescriptionProps>
       <Descriptions.Item label="截止时间" span={2}>
         {timestampToDateTime(props.problemSetInfo.deadline || 0)}
       </Descriptions.Item>
-      <Descriptions.Item label="题目集状态" span={4}>
+      <Descriptions.Item label="题目集状态" span={2}>
         <Badge status="processing" text={getProblemSetCondition(props.problemSetInfo.condition)}/>
+      </Descriptions.Item>
+      <Descriptions.Item label="是否公共题目集" span={2}>
+        {props.problemSetInfo ? "是" : "否"}
       </Descriptions.Item>
       <Descriptions.Item label="判题偏好" span={2}>
         {props.problemSetInfo.judgePreference}

@@ -15,6 +15,10 @@ import style from "./problemSetHome.module.scss"
 
 import ProblemSetDescription from "./childCmp/ProblemSetDescription";
 import RcQueueAnim from "rc-queue-anim";
+import {BaseResponse} from "../../../models/common";
+import {PROBLEM_SET_FORBIDDEN} from "../../../config/code";
+import {goToResult} from "../../../utils/route";
+import {ResultPageParam} from "../../../common/enumerations";
 
 interface ProblemSetHomeProps {
 
@@ -27,19 +31,11 @@ const ProblemSetHome: React.FunctionComponent<ProblemSetHomeProps & RouteCompone
 
   useEffect(() => {
     getProblemSetData(problemSetId);
+    // eslint-disable-next-line
   }, [problemSetId]);
 
   // 题目集基本信息
-  const [problemSetInfo, setProblemSetInfo] = useState<ProblemSet>({
-    createTime: 0,
-    creator: undefined,
-    deadline: 0,
-    description: "",
-    name: "",
-    startTime: 0,
-    allowedLanguage: [],
-    judgePreference: "ACM"
-  });
+  const [problemSetInfo, setProblemSetInfo] = useState<ProblemSet>();
 
 
   // 获取题目集信息
@@ -47,7 +43,14 @@ const ProblemSetHome: React.FunctionComponent<ProblemSetHomeProps & RouteCompone
     getProblemSetInfo(problemSetId)
       .then(res => {
         setProblemSetInfo(res.data);
-      });
+      })
+      .catch((err: BaseResponse) => {
+        if (err.code === PROBLEM_SET_FORBIDDEN) {
+          goToResult(ResultPageParam.PROBLEM_SET_FORBIDDEN);
+        } else {
+          goToResult(ResultPageParam.NOT_FOUND);
+        }
+      })
   }
 
   // 查看问题按钮被单击
@@ -58,7 +61,7 @@ const ProblemSetHome: React.FunctionComponent<ProblemSetHomeProps & RouteCompone
 
   return (
     <RcQueueAnim>
-      <div className={style.problem_set_home} key={"problem-set-home"}>
+      {problemSetInfo && <div className={style.problem_set_home} key={"problem-set-home"}>
         <div className={style.problem_set_home_content}>
           <Card title={"题目集概况"} headStyle={{textAlign: "center"}}>
             <div className={style.problem_set_home_body}>
@@ -80,7 +83,7 @@ const ProblemSetHome: React.FunctionComponent<ProblemSetHomeProps & RouteCompone
           </Card>
         </div>
 
-      </div>
+      </div>}
     </RcQueueAnim>
   )
 }

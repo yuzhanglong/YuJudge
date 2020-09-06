@@ -13,6 +13,10 @@ import {getProblemSetScoreBoard} from "../../../network/problemSetRequest";
 import {ScoreBoardInfo} from "../../../models/submissionInfo";
 import ScoreBoardTable from "../../../components/scoreBoardTable/ScoreBoardTable";
 import style from "./scoreBoard.module.scss"
+import {BaseResponse} from "../../../models/common";
+import {PROBLEM_SET_FORBIDDEN} from "../../../config/code";
+import {goToResult} from "../../../utils/route";
+import {ResultPageParam} from "../../../common/enumerations";
 
 interface ScoreBoardProps {
 
@@ -39,8 +43,12 @@ const ScoreBoard: React.FunctionComponent<ScoreBoardProps & RouteComponentProps>
       .then(res => {
         setScoreBoardInfo(res.data);
       })
-      .catch(() => {
-        message.error("记分板信息获取失败");
+      .catch((err: BaseResponse) => {
+        if (err.code === PROBLEM_SET_FORBIDDEN) {
+          goToResult(ResultPageParam.PROBLEM_SET_FORBIDDEN);
+        } else {
+          goToResult(ResultPageParam.NOT_FOUND);
+        }
       })
   }
 
