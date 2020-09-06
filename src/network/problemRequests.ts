@@ -130,3 +130,10 @@ export const getUserTriedProblemIds = (uid: number | null = null) => {
     }
   )
 }
+
+// 删除题目
+export const deleteProblem = (problemId: number) => {
+  return request.delete(
+    "/problem/problem/" + problemId
+  )
+}

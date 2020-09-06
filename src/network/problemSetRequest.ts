@@ -120,3 +120,10 @@ export const getProblemSetTimeline = (problemSetId: number) => {
     "/problem_set/timeline/" + problemSetId,
   )
 }
+
+// 移除题目集
+export const removeProblemSet = (problemSetId: number) => {
+  return request.delete(
+    "/problem_set/problem_set/" + problemSetId,
+  )
+}

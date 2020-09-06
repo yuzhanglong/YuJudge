@@ -22,6 +22,7 @@ interface AddProblemProps {
   onSearchConfirm?: (val: string) => void;
   onCancel: () => void;
   problemSetId: number;
+  onAddSuccess: () => void;
 }
 
 const AddProblem: React.FunctionComponent<AddProblemProps> = (props) => {
@@ -41,7 +42,7 @@ const AddProblem: React.FunctionComponent<AddProblemProps> = (props) => {
     updateProblemSetProblems(props.problemSetId, selectedRowIds)
       .then(() => {
         message.success("添加成功");
-        window.reactRouter.push("?");
+        props.onAddSuccess();
       })
       .catch(() => {
         //TODO: 错误处理

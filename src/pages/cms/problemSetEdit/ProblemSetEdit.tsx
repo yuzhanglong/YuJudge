@@ -94,8 +94,9 @@ const ProblemSetEdit: React.FunctionComponent<ProblemSetEditProps & RouteCompone
   const onRemoveFormProblemSet = (problemId: number) => {
     removeProblemFormProblemSet(problemSetId, problemId)
       .then(() => {
+        message.success("移除成功~");
         getProblemsData(PAGE_BEGIN - 1, searchContent);
-        window.reactRouter.push("?");
+        getProblemSetProblemData(PAGE_BEGIN - 1);
       });
   }
 
@@ -114,6 +115,7 @@ const ProblemSetEdit: React.FunctionComponent<ProblemSetEditProps & RouteCompone
             onProblemAdd={() => setAddProblemModalVisible(true)}
             onRemoveFormProblemSet={onRemoveFormProblemSet}/>
           <AddProblem
+            onAddSuccess={() => getProblemSetProblemData(PAGE_BEGIN - 1)}
             problemSetId={problemSetId}
             onCancel={() => setAddProblemModalVisible(false)}
             onProblemPageChange={(val: number) => getProblemsData(val - 1, searchContent)}

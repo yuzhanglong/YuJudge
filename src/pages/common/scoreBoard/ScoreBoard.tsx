@@ -7,7 +7,7 @@
  */
 
 import React, {useEffect, useState} from "react";
-import {Card, message} from "antd";
+import {Card} from "antd";
 import {RouteComponentProps} from "react-router-dom";
 import {getProblemSetScoreBoard} from "../../../network/problemSetRequest";
 import {ScoreBoardInfo} from "../../../models/submissionInfo";

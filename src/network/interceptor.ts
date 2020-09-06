@@ -13,7 +13,6 @@ import {AUTHORIZATION_KEY, LOADING_MIN_TIME, NO_CONNECTION_RESPONSE} from "../co
 import {clearStorage, getTokenFromStorage} from "../utils/dataPersistence";
 import {BAD_TOKEN, NO_TOKEN, USER_GROUP_FORBIDDEN} from "../config/code";
 import {message} from "antd";
-import {BaseResponse} from "../models/common";
 
 let requestCount = 0;
 
