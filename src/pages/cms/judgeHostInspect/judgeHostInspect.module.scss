@@ -6,6 +6,17 @@
  * Email: yuzl1123@163.com
  */
 
+@import "src/styles/public";
+
+.judge_host_edit_item_title {
+  @include cms_operation_card;
+}
+
+.judge_host_edit_item_title_danger {
+  @include cms_operation_card;
+  color: $cms-operation_card_danger_color;
+}
+
 .judge_host_inspect_item {
   margin-bottom: 20px;
 }

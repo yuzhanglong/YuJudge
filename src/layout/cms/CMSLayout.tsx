@@ -15,6 +15,7 @@ import {RouteComponentProps} from "react-router-dom";
 import CMSHeader from "./childCmp/CMSHeader";
 import RcQueueAnim from "rc-queue-anim";
 import {UserInfoState} from "../../hooks/userInfo";
+import style from "../layout.module.scss";
 
 const {Content, Sider} = Layout;
 
@@ -36,14 +37,8 @@ const CMSLayout: React.FunctionComponent<CMSLayoutProps & RouteComponentProps> =
 
   return (
     <Layout style={{minHeight: '100vh'}}>
-      <Sider
-        width={230}
-        style={{
-          height: '100vh',
-          position: 'fixed',
-          left: 0,
-        }}>
-        <div className="layout-logo"/>
+      <Sider className={style.cms_sider} width={230}>
+        <div className={style.cms_logo}/>
         <SideBar
           menus={routerConfig.menus}
           theme={"dark"}
@@ -56,20 +51,13 @@ const CMSLayout: React.FunctionComponent<CMSLayoutProps & RouteComponentProps> =
           }}>
         </SideBar>
       </Sider>
-      <Layout className="site-layout" style={{marginLeft: 230}}>
-        <CMSHeader
-          {...props}
-          userInfo={userInfoState.userInfo ? userInfoState.userInfo : undefined}/>
-        <Content className={"site-layout-content"}>
+
+      <Layout className={style.cms_right}>
+        <CMSHeader{...props} userInfo={userInfoState.userInfo ? userInfoState.userInfo : undefined}/>
+        <Content>
           <RcQueueAnim>
-            <div key={"Breadcrumb"} style={{
-              marginTop: 30
-            }}>
-            </div>
-            <div key={"content"}>
-              <div>
-                {props.children}
-              </div>
+            <div key={"content"} className={style.cms_content}>
+              {props.children}
             </div>
           </RcQueueAnim>
         </Content>

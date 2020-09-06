@@ -6,26 +6,21 @@
  * Email: yuzl1123@163.com
  */
 
+@import "src/styles/public";
 
-// 每一块编辑组的卡片标题
-$card-title-font-size: 18px;
-$card-title-font-weight: bold;
-$card-item-spacing: 30px;
 $form-width: 550px;
 
 .cms_problem_edit_item {
-  margin-bottom: $card-item-spacing;
+  margin-bottom: $cms_operation_card_spacing;
 }
 
 .cms_problem_edit_item_title {
-  font-weight: $card-title-font-weight;
-  font-size: $card-title-font-size;
+  @include cms_operation_card;
 }
 
 .cms_problem_edit_item_title_danger {
-  color: #ff4d4f;
-  font-weight: $card-title-font-weight;
-  font-size: $card-title-font-size;
+  @include cms_operation_card;
+  color: $cms-operation_card_danger_color;
 }
 
 .cms-problem-item-begin {
@@ -60,7 +55,7 @@ $form-width: 550px;
 }
 
 .problem_edit_content_editor_body {
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: $header-box-shadow;
   min-height: 300px;
   padding-left: 10px;
   padding-right: 10px;

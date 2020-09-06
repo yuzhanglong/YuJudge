@@ -6,6 +6,8 @@
  * Email: yuzl1123@163.com
  */
 
+@import "src/styles/public";
+
 .code_editor {
 
 }
@@ -15,7 +17,7 @@
 }
 
 .code_editor_editor_wrap {
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: $header-box-shadow;
   padding-top: 10px;
   padding-bottom: 10px;
 }

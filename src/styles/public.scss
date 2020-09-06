@@ -6,6 +6,10 @@
  * Email: yuzl1123@163.com
  */
 
+// 页面导航条阴影
+$header-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.05);
+
+
 // common页面，该类页面在【/common】路由下, 基本布局是一个顶部的导航栏，然后主体部分
 
 // 主体底色
@@ -26,13 +30,15 @@ $common-page-body-margin: 20px;
 // 如果是有标题的卡片，那么还要限制
 $common-page-body-min-height: calc(100vh - 48px - 40px - 107px);
 
+// 导航栏字体
+$common-nav-font-weight: bold;
+
 
 // 背景高度
 @mixin common-page {
   background-color: $common-background;
   min-height: $common-page-background-min-height;
   margin-top: $common-page-background-top;
-
 }
 
 // 主体内容高度
@@ -44,4 +50,26 @@ $common-page-body-min-height: calc(100vh - 48px - 40px - 107px);
 // 卡片内容高度
 @mixin common-page-body {
   min-height: $common-page-body-min-height;
+}
+
+
+// 后台侧边栏宽度
+$cms-sider-width: 230px;
+
+// 后台主题边距
+$cms-content-margin: 90px 50px 30px;
+
+// 后台管理操作组卡片
+$cms_operation_card_title_font_size: 15px;
+$cms_operation_card_title_font_weight: bold;
+$cms_operation_card_spacing: 30px;
+$cms-operation_card_danger_color: #ff4d4f;
+
+@mixin cms_operation_card {
+  font-weight: $cms_operation_card_title_font_weight;
+  font-size: $cms_operation_card_title_font_size;
+}
+
+::-webkit-scrollbar {
+  display: none; /* Chrome Safari */
 }

@@ -1,0 +1,57 @@
+/*
+ * File: layout.module.scss
+ * Description: 布局相关样式
+ * Created: 2020-9-6 12:23:23
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+@import "src/styles/public";
+
+// common 布局
+
+.problem_set_layout_menu {
+  box-shadow: $header-box-shadow;
+  background-color: #ffffff;
+}
+
+.nav_text {
+  font-weight: $common-nav-font-weight;
+}
+
+
+// cms 布局
+
+// cms右侧部分，即除了侧边栏的部分
+.cms_right {
+  margin-left: $cms-sider-width;
+}
+
+// cms页面主体
+.cms_content {
+  margin: $cms-content-margin;
+}
+
+// cms页面头部
+.cms_header {
+  background-color: #ffffff;
+  padding: 0;
+  z-index: 666;
+  box-shadow: $header-box-shadow;
+  position: fixed;
+  height: 64px;
+  width: calc(100vw - 230px);
+}
+
+// cms侧边栏
+.cms_sider {
+  height: 100vh;
+  position: fixed;
+  left: 0;
+}
+
+.cms_logo {
+  height: 30px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 15px;
+}

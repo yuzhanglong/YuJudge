@@ -120,31 +120,34 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
   return (
     <Card title={judgeHostInfo ? judgeHostInfo.name : "加载中"} extra={renderCardExtra()}>
       <RcQueueAnim>
-        <div>
+        <div key={"BasicResult"}>
           <Card
-            key={"BasicResult"}
-            title={"基本信息"}
+            title={<div className={style.judge_host_edit_item_title}>基本信息</div>}
             className={style.judge_host_inspect_item}>
             <BasicInfo judgeHostInfo={judgeHostInfo}/>
           </Card>
+        </div>
+        <div key={"current-condition"}>
           <Card
-            key={"current-condition"}
-            title={"实时状态"}
+            title={<div className={style.judge_host_edit_item_title}>实时状态</div>}
             style={{
               marginBottom: 20
             }}>
             <CurrentCondition judgeHostInfo={judgeHostInfo}/>
           </Card>
+        </div>
+        <div key={"data"}>
           <Card
-            title={"数据统计"}
-            key={"data"}
+            title={<div className={style.judge_host_edit_item_title}>数据统计</div>}
             className={style.judge_host_inspect_item}>
             <SubmissionCount
               submissionCounts={judgeHostSubmissionCounts}
               initialTimeRange={initDay()}
               onPickerChange={(res) => getSubmissionCountsData(res[0], res[1])}/>
           </Card>
-          <Card title={"操作"}>
+        </div>
+        <div key={"operations"}>
+          <Card title={<div className={style.judge_host_edit_item_title}>操作</div>}>
             <Operations judgeHostInfo={judgeHostInfo} onReset={() => getJudgeHostInfo(judgeHostId)}/>
           </Card>
         </div>

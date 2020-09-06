@@ -16,6 +16,7 @@ $dash_board_item_spacing: 20px;
 // 顶部卡片样式
 $dash_board_head_card_icon_size: 40px;
 $dash_board_head_card_font_size: 20px;
+$dash_board_head_card_font_weight: 300;
 
 
 .dashboard {
@@ -56,6 +57,6 @@ $dash_board_head_card_font_size: 20px;
 }
 
 .head_card_item_topic {
-  font-weight: 300;
+  font-weight: $dash_board_head_card_font_weight;
 }
 

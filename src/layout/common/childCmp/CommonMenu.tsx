@@ -11,6 +11,7 @@ import {Col, Menu, Row} from "antd";
 import {Link, RouteComponentProps} from "react-router-dom";
 import {UserInfoState} from "../../../hooks/userInfo";
 import UserTag from "../../../components/userTag/UserTag";
+import style from "../../layout.module.scss";
 import {
   AreaChartOutlined, FileSearchOutlined,
   HomeOutlined, QuestionCircleOutlined,
@@ -38,35 +39,32 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
     return null;
   }
 
-  console.log(props.location.pathname);
-
-
   return (
-    <Row justify={"space-between"} className={"problem-set-layout-menu"}>
+    <Row justify={"space-between"} className={style.problem_set_layout_menu}>
       <Col>
         <Menu mode="horizontal" selectedKeys={[props.location.pathname]}>
           <Menu.Item key="/common/home" icon={<HomeOutlined/>}>
             <Link to={`/common/home`}>
-              <span className="nav-text">首页</span>
+              <span className={style.nav_text}>首页</span>
             </Link>
           </Menu.Item>
 
           <Menu.Item key="/common/problem" icon={<QuestionCircleOutlined/>}>
             <Link to={"/common/problem"}>
-              <span className="nav-text">问题</span>
+              <span className={style.nav_text}>问题</span>
             </Link>
           </Menu.Item>
 
           <Menu.Item key="/common/problem_sets" icon={<SnippetsOutlined/>}>
             <Link to={`/common/problem_sets`}>
-              <span className="nav-text">题目集</span>
+              <span className={style.nav_text}>题目集</span>
             </Link>
           </Menu.Item>
           {
             getProblemSetId() &&
             <Menu.Item icon={<FileSearchOutlined/>} key={`/common/problem_set/${getProblemSetId()}/overview`}>
               <Link to={`/common/problem_set/${getProblemSetId()}/overview`}>
-                <span className="nav-text">概览</span>
+                <span className={style.nav_text}>概览</span>
               </Link>
             </Menu.Item>
           }
@@ -74,7 +72,7 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
             getProblemSetId() &&
             <Menu.Item icon={<UserOutlined/>} key={`/common/problem_set/${getProblemSetId()}/score_board`}>
               <Link to={`/common/problem_set/${getProblemSetId()}/score_board`}>
-                <span className="nav-text">记分板</span>
+                <span className={style.nav_text}>记分板</span>
               </Link>
             </Menu.Item>
           }
@@ -83,7 +81,7 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
             getProblemSetId() &&
             <Menu.Item icon={<AreaChartOutlined/>} key={`/common/problem_set/${getProblemSetId()}/count`}>
               <Link to={`/common/problem_set/${getProblemSetId()}/count`}>
-                <span className="nav-text">统计</span>
+                <span className={style.nav_text}>统计</span>
               </Link>
             </Menu.Item>
           }
