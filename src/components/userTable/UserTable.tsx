@@ -14,6 +14,7 @@ import {TablePaginationConfig} from "antd/lib/table/interface";
 import {Pagination} from "../../models/pagination";
 import {UserGroupInfo} from "../../models/UserGroup";
 import {SizeType} from "antd/lib/config-provider/SizeContext";
+import style from "./userTable.module.scss"
 
 interface UserTableProps {
   userInfo: UserInfo[];
@@ -91,6 +92,13 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
     }
   }
 
+  // 渲染用户名
+  const renderUserName = (name: string) => {
+    return (
+      <div className={style.user_name}>{name}</div>
+    )
+  }
+
   return (
     <Table
       size={props.tableSize}
@@ -105,7 +113,7 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
       }
       <Table.Column
         title={"用户名"}
-        dataIndex={"nickname"}/>
+        dataIndex={"nickname"} render={renderUserName}/>
       {
         props.showScope &&
         <Table.Column
