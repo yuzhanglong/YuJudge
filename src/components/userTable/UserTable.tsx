@@ -117,7 +117,8 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
         props.showEmail &&
         <Table.Column
           title={"邮箱"}
-          dataIndex={"email"}/>
+          dataIndex={"email"}
+          render={(res) => res ? res : "未提供"}/>
       }
       {
         props.showRanking &&

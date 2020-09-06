@@ -44,3 +44,14 @@ export const editUserGroup = (userGroupId: number, userGroupInfo: UserGroupInfo)
     }
   )
 };
+
+// 向用户组添加用户
+export const addUserToUserGroup = (userIds: number[], userGroupId: number) => {
+  return request.put(
+    "/user_group/user_group_users",
+    {
+      userIds: userIds,
+      userGroupId: userGroupId
+    }
+  )
+}

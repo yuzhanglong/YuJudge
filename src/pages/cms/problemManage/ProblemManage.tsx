@@ -17,6 +17,7 @@ import {ProblemPaginationRequest} from "../../../models/pagination";
 import {Button, Card, message} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
 import CreateProblemModal from "./childCmp/CreateProblemModal";
+import {BaseResponse} from "../../../models/common";
 
 
 const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
@@ -74,7 +75,8 @@ const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
         setCreateButtonModalVisible(false);
         getProblemsData(0, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE, null);
       })
-      .catch(() => {
+      .catch((err: BaseResponse) => {
+        message.error(err.message);
       });
   }
 

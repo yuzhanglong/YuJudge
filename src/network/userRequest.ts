@@ -75,3 +75,25 @@ export const deleteUser = (userId: number) => {
     "/user/delete_user/" + userId
   )
 }
+
+// 创建用户
+export const createUser = (nickname: string, password: string) => {
+  return request.post(
+    "/user/user",
+    {
+      nickname: nickname,
+      password: password
+    }
+  );
+}
+
+// 分配用户组
+export const allocateUserUserGroup = (userId: number, userGroupIds: string[]) => {
+  return request.put(
+    "/user/user_user_groups",
+    {
+      userId: userId,
+      userGroupIds: userGroupIds
+    }
+  );
+}

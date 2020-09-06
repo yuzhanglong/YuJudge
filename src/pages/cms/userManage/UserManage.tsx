@@ -9,7 +9,7 @@
 import React, {useEffect, useState} from "react";
 import {Button, Card, message, Modal} from "antd";
 import UserTable from "../../../components/userTable/UserTable";
-import {deleteUser, getUsers} from "../../../network/userRequest";
+import {allocateUserUserGroup, createUser, deleteUser, getUsers} from "../../../network/userRequest";
 import {UsePaginationState} from "../../../hooks/pagination";
 import {UsersPaginationRequest} from "../../../models/pagination";
 import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_USER_MANAGE} from "../../../config/config";
@@ -19,6 +19,8 @@ import {ExclamationCircleOutlined, PlusOutlined} from "@ant-design/icons";
 import UserManageToolBar from "./childCmp/UserManageToolBar";
 import {UserGroupInfo} from "../../../models/UserGroup";
 import {getUserGroups} from "../../../network/userGroupRequest";
+import CreateUserModal from "./childCmp/CreateUserModal";
+import AllocateUserGroupsModal from "./childCmp/AllocateUserGroupsModal";
 
 interface UserManageProps {
 
@@ -33,6 +35,12 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
 
   // 当前用户组id
   const [activeUserGroup, setActiveUserGroup] = useState<number | null>(null);
+
+  // 创建用户对话框
+  const [isCreateUserModalVisible, setIsCreateUserModalVisible] = useState<boolean>(false);
+
+  // 当前选中用户
+  const [activeUser, setActiveUser] = useState<UserInfo | null>(null);
 
   useEffect(() => {
     getUserInfo(PAGE_BEGIN - 1, activeUserGroup);
@@ -69,9 +77,13 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
   const renderUserOperations = (content: any) => {
     return (
       <div>
+        <Button type={"link"} onClick={() => setActiveUser(content)}>
+          分配用户组
+        </Button>
         <Button type={"link"} danger onClick={() => onUserRemoveButtonClick(content)}>
           删除
         </Button>
+
       </div>
     )
   }
@@ -100,6 +112,7 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
   const renderAddUserButton = () => {
     return (
       <Button
+        onClick={() => setIsCreateUserModalVisible(true)}
         type={"primary"}
         icon={<PlusOutlined/>}>
         创建用户
@@ -111,6 +124,33 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
   const onSelectorChange = (data: number) => {
     setActiveUserGroup(data < 0 ? null : data);
     getUserInfo(PAGE_BEGIN - 1, data < 0 ? null : data);
+  }
+
+  // 创建用户
+  const createUserConfirm = (n: string, p: string) => {
+    createUser(n, p)
+      .then(() => {
+        message.success("创建用户成功");
+        getUserInfo(PAGE_BEGIN - 1, activeUserGroup);
+      })
+      .catch((err: BaseResponse) => {
+        message.error(err.message);
+      })
+  }
+
+  // 为用户分配用户组
+  const allocateUserGroups = (userGroupsIds: string[]) => {
+    if (activeUser) {
+      allocateUserUserGroup(activeUser.id, userGroupsIds)
+        .then(() => {
+          message.success("分配成功~");
+          setActiveUser(null);
+          getUserInfo(PAGE_BEGIN - 1, activeUserGroup);
+        })
+        .catch(() => {
+          message.error("分配失败");
+        });
+    }
   }
 
   return (
@@ -127,6 +167,19 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
         userInfo={usersPaginationState.items}
         showRanking={false}
         operations={renderUserOperations}/>
+      <CreateUserModal
+        isVisible={isCreateUserModalVisible}
+        onClose={() => setIsCreateUserModalVisible(false)}
+        onCreateConfirm={createUserConfirm}/>
+      {
+        activeUser &&
+        <AllocateUserGroupsModal
+          onConfirm={(res) => allocateUserGroups(res)}
+          onCancel={() => setActiveUser(null)}
+          isVisible={true}
+          userInfo={activeUser}
+          totalUserGroups={userGroupItems}/>
+      }
     </Card>
   )
 }
