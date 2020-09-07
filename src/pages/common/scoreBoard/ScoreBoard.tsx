@@ -17,6 +17,7 @@ import {BaseResponse} from "../../../models/common";
 import {PROBLEM_SET_FORBIDDEN} from "../../../config/code";
 import {goToResult} from "../../../utils/route";
 import {ResultPageParam} from "../../../common/enumerations";
+import RcQueueAnim from "rc-queue-anim";
 
 interface ScoreBoardProps {
 
@@ -30,12 +31,7 @@ const ScoreBoard: React.FunctionComponent<ScoreBoardProps & RouteComponentProps>
   }, [params.problemSetId]);
 
   // 记分板数据
-  const [scoreBoardInfo, setScoreBoardInfo] = useState<ScoreBoardInfo>({
-      frozen: false,
-      participants: [],
-      problemAmount: 0
-    }
-  );
+  const [scoreBoardInfo, setScoreBoardInfo] = useState<ScoreBoardInfo>();
 
   // 获取记分板数据
   const getScoreBoardInfo = (problemSetId: number) => {
@@ -53,20 +49,25 @@ const ScoreBoard: React.FunctionComponent<ScoreBoardProps & RouteComponentProps>
   }
 
   return (
-    <div className={style.score_board}>
-      <div className={style.score_board_content}>
-        <Card
-          title={"记分板"}
-          headStyle={{textAlign: "center"}}>
-          <div className={style.score_board_body}>
-            <ScoreBoardTable
-              scoreBoardItems={scoreBoardInfo.participants}
-              problemAmount={scoreBoardInfo.problemAmount}>
-            </ScoreBoardTable>
-          </div>
-        </Card>
+    <RcQueueAnim>
+      <div className={style.score_board} key={"score_board"}>
+        <div className={style.score_board_content}>
+          <Card
+            title={"记分板"}
+            headStyle={{textAlign: "center"}}>
+            <div className={style.score_board_body}>
+              {
+                scoreBoardInfo &&
+                <ScoreBoardTable
+                  scoreBoardItems={scoreBoardInfo.participants}
+                  problemAmount={scoreBoardInfo.problemAmount}>
+                </ScoreBoardTable>
+              }
+            </div>
+          </Card>
+        </div>
       </div>
-    </div>
+    </RcQueueAnim>
   )
 }
 

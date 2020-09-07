@@ -33,13 +33,6 @@ interface HomeProps {
 }
 
 const Home: React.FunctionComponent<HomeProps & RouteComponentProps> = () => {
-  useEffect(() => {
-    getAndSetNotice(PAGE_BEGIN - 1);
-    getAndSetRecentActiveUserInfo();
-    getAndSetRecentProblem();
-    getAndSetDailyWord();
-    // eslint-disable-next-line
-  }, []);
 
   // 分页状态
   const noticePaginationState = UsePaginationState<NoticePaginationRequest>(PAGE_BEGIN - 1, getNotices);
@@ -52,6 +45,16 @@ const Home: React.FunctionComponent<HomeProps & RouteComponentProps> = () => {
 
   // 每日一句
   const [dailyWord, setDailyWord] = useState<DailyWord>();
+
+
+  useEffect(() => {
+    getAndSetNotice(PAGE_BEGIN - 1);
+    getAndSetRecentActiveUserInfo();
+    getAndSetRecentProblem();
+    getAndSetDailyWord();
+    // eslint-disable-next-line
+  }, []);
+
 
   // 获取通知
   const getAndSetNotice = (start: number) => {

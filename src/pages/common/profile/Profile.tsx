@@ -9,7 +9,6 @@
 import React, {useEffect, useState} from "react";
 import {Card, Col, message, Row} from "antd";
 import UserCard from "../../../components/userCard/UserCard";
-import {UserInfoState} from "../../../hooks/userInfo";
 import style from "./profile.module.scss"
 import ProfileCount from "./childCmp/ProfileCount";
 import {UserJudgeResultCount, UserSubmissionCount} from "../../../models/submission";
@@ -22,6 +21,8 @@ import {ProblemCountItem} from "../../../models/problem";
 import {RouteComponentProps} from "react-router-dom";
 import {BaseResponse} from "../../../models/common";
 import {USER_NOT_EXIST} from "../../../config/code";
+import {getUserInfo} from "../../../network/userRequest";
+import {UserInfo} from "../../../models/user";
 
 interface profileProps {
 
@@ -29,8 +30,6 @@ interface profileProps {
 
 const Profile: React.FunctionComponent<profileProps & RouteComponentProps> = (props) => {
   const uid = (props.match.params as any).userId === "me" ? null : (props.match.params as any).userId;
-
-  const userInfoState = UserInfoState();
 
   // 用户提交统计
   const [userJudgeResultCount, setUserJudgeResultCount] = useState<UserJudgeResultCount[]>([]);
@@ -44,11 +43,15 @@ const Profile: React.FunctionComponent<profileProps & RouteComponentProps> = (pr
   // 用户尝试
   const [triedCount, setTriedCount] = useState<ProblemCountItem[]>([]);
 
+  // 当前用户
+  const [currentUser, setCurrentUser] = useState<UserInfo>();
+
   useEffect(() => {
     getAndSetRecentSubmissionCount(uid);
     getUserJudgeResults(uid);
     getAndSetUserAcProblem(uid);
     getAndSetUserTriedProblem(uid);
+    getAndSetUserInfo(uid);
     // eslint-disable-next-line
   }, [uid]);
 
@@ -96,13 +99,21 @@ const Profile: React.FunctionComponent<profileProps & RouteComponentProps> = (pr
       })
   }
 
+  // 获取用户信息
+  const getAndSetUserInfo = (uid: number | null) => {
+    getUserInfo(uid)
+      .then(res => {
+        setCurrentUser(res.data);
+      })
+  }
+
   return (
     <RcQueueAnim>
       <div title={"个人中心"} className={style.profile} key={"profile"}>
         <Card className={style.profile_content}>
           <Row>
             <Col className={style.profile_user_info}>
-              {userInfoState.userInfo && <UserCard userInfo={userInfoState.userInfo}/>}
+              {currentUser && <UserCard userInfo={currentUser}/>}
             </Col>
             <Col>
               <div key={"ProfileCount"}>

@@ -27,7 +27,12 @@ export const getProblemSets = (requestParams: ProblemSetPaginationRequest) => {
 export const createProblemSet = (problemSet: ProblemSet) => {
   return request.post(
     "/problem_set/create_problem_set",
-    problemSet
+    problemSet,
+    {
+      headers: {
+        loading: true
+      }
+    }
   )
 }
 
@@ -78,7 +83,12 @@ export const getProblemSetInfo = (problemSetId: number) => {
 // 获取题目集记分板信息
 export const getProblemSetScoreBoard = (problemSetId: number) => {
   return request.get(
-    "/problem_set/get_score_board/" + problemSetId
+    "/problem_set/get_score_board/" + problemSetId,
+    {
+      headers: {
+        loading: true
+      }
+    }
   )
 }
 

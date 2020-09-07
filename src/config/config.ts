@@ -44,7 +44,7 @@ export const RECENT_ACTIVE_USER_IN_DASHBOARD_AMOUNT: number = 7;
 export const PAGE_BEGIN: number = 1;
 
 // problem管理页面表单单页长度
-export const SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE = 10;
+export const SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE = 15;
 
 // 题目集表格单页长度
 export const SINGLE_PAGE_SIZE_IN_PROBLEM_SET_MANAGE = 10;

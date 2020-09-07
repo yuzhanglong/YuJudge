@@ -1,22 +1,22 @@
 /*
- * File: scoreBoard.module.scss
- * Description: 计分板页面
- * Created: 2020-9-5 23:35:12
+ * File: problemSetProblem.module.scss
+ * Description: 题目集题目样式
+ * Created: 2020-9-7 16:14:58
  * Author: yuzhanglong
  * Email: yuzl1123@163.com
  */
 
 @import "src/styles/public";
 
-.score_board {
+.problem_set_problem {
   @include common-page;
 }
 
-.score_board_content {
+.problem_set_problem_content {
   @include common-page-content;
 }
 
-.score_board_body {
+.problem_set_problem_body {
   @include common-page-body;
   display: flex;
   justify-content: center;

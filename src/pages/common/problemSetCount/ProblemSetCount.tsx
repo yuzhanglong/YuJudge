@@ -17,6 +17,7 @@ import ProblemSetTimeLine from "./childCmp/ProblemSetTimeLine";
 import {BaseResponse} from "../../../models/common";
 import {goToResult} from "../../../utils/route";
 import {ResultPageParam} from "../../../common/enumerations";
+import RcQueueAnim from "rc-queue-anim";
 
 interface ProblemSetCountProps {
 
@@ -28,9 +29,11 @@ const ProblemSetCount: React.FunctionComponent<ProblemSetCountProps & RouteCompo
 
   const [problemSetSubmissionCounts, setProblemSetSubmissionCounts] = useState<SubmissionCountInfo[]>([]);
 
+
   useEffect(() => {
     getProblemSetSubmissionCounts(problemSetId);
   }, [problemSetId]);
+
 
   // 获取题目集提交状态
   const getProblemSetSubmissionCounts = (problemSetId: number) => {
@@ -45,31 +48,32 @@ const ProblemSetCount: React.FunctionComponent<ProblemSetCountProps & RouteCompo
   }
 
   return (
-    <div className={style.problem_set_count}>
-      <div className={style.problem_set_count_content}>
-        <Card
-          title={"数据统计"}
-          headStyle={{
-            textAlign: "center"
-          }}>
-          <div className={style.problem_set_count_body}>
-            <div style={{
-              width: 1400
+    <RcQueueAnim>
+      <div className={style.problem_set_count} key={"problem_set_count"}>
+        <div className={style.problem_set_count_content}>
+          <Card
+            title={"数据统计"}
+            headStyle={{
+              textAlign: "center"
             }}>
-              <Card title={"提交趋势"}>
-                <SubmissionCount
-                  showPicker={false}
-                  submissionCounts={problemSetSubmissionCounts}/>
-              </Card>
-              <Card title={"时间轴"} style={{marginTop: 30}}>
-                <ProblemSetTimeLine problemSetId={problemSetId}/>
-              </Card>
+            <div className={style.problem_set_count_body}>
+              <div style={{
+                width: 1300
+              }}>
+                <Card title={"提交趋势"}>
+                  <SubmissionCount
+                    showPicker={false}
+                    submissionCounts={problemSetSubmissionCounts}/>
+                </Card>
+                <Card title={"时间轴"} style={{marginTop: 30}}>
+                  <ProblemSetTimeLine problemSetId={problemSetId}/>
+                </Card>
+              </div>
             </div>
-          </div>
-        </Card>
+          </Card>
+        </div>
       </div>
-
-    </div>
+    </RcQueueAnim>
   )
 }
 

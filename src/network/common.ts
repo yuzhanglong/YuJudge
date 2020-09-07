@@ -25,6 +25,11 @@ export const getGlobalCount = () => {
 // 获取每日一句
 export const getDailyWord = () => {
   return request.get(
-    "/common/get_daily_word"
+    "/common/get_daily_word",
+    {
+      headers: {
+        loading: true
+      }
+    }
   )
 }

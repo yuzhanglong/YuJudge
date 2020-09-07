@@ -10,6 +10,7 @@ import React from "react";
 import {Button, Col, Form, Input, Row} from "antd";
 import {CheckCircleOutlined, LockOutlined, UserOutlined} from "@ant-design/icons";
 import classNames from "classnames";
+import style from "./registerForm.module.scss";
 
 interface registerFormProps {
   onConfirm?: (val: any) => void;
@@ -104,7 +105,7 @@ const RegisterForm: React.FunctionComponent<registerFormProps> = (props) => {
           <Row>
             <Col span={15}>
               <Form.Item
-                className={"check-code-form-item"}
+                className={style.check_code_form_item}
                 rules={[{required: props.validateRequired, message: '请输入验证码!'}]}
                 name="checkCodeContent">
                 <Input
@@ -129,7 +130,7 @@ const RegisterForm: React.FunctionComponent<registerFormProps> = (props) => {
           <Button
             type="primary"
             htmlType="submit"
-            className={"register-form-button"}>
+            className={style.register_form_button}>
             注册
           </Button>
         )}

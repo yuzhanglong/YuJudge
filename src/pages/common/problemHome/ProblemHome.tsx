@@ -103,10 +103,19 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
           {problem.name}
         </div>
         <div className={style.problem_home_title_problem_limitation}>
-          {`时间限制: ${problem.timeLimit} ms / 内存限制: ${problem.memoryLimit} kb / 输出限制: ${problem.cpuTimeLimit} byte`}
+          {`时间限制: ${problem.timeLimit} ms / 内存限制: ${problem.memoryLimit} kb / 输出限制: ${getOutPutLimit(problem.outputLimit || 0)}`}
         </div>
       </div>
     )
+  }
+
+  // 获取输出限制描述
+  const getOutPutLimit = (limit: number) => {
+    // 大于1mb时
+    if (limit > 1048576) {
+      return parseInt(String((limit / 1024 / 1024))).toString() + " MB";
+    }
+    return limit.toString() + " Byte";
   }
 
   // 是否在problem首页
@@ -121,33 +130,33 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
       {
         problem &&
         <div className={style.problem_home} key={"problem_home"}>
-        <Card className={style.problem_home_body}>
-          <div>
-            <div className={style.problem_home_title}>
-              {renderTitle()}
-            </div>
-            <div className={style.problem_home_content}>
-              <div className={style.problem_home_content_route_selector}>
-                <RouteSelector {...props}/>
+          <Card className={style.problem_home_body}>
+            <div>
+              <div className={style.problem_home_title}>
+                {problem && renderTitle()}
               </div>
-              <div className={style.problem_home_content_body}>
-                <Card className={style.problem_home_content_item}>
-                  {isInProblemHome() && <div dangerouslySetInnerHTML={{__html: problem.content || ""}}/>}
-                  {!isInProblemHome() && props.children}
-                </Card>
-                {
-                  isInProblemHome() &&
+              <div className={style.problem_home_content}>
+                <div className={style.problem_home_content_route_selector}>
+                  <RouteSelector {...props}/>
+                </div>
+                <div className={style.problem_home_content_body}>
                   <Card className={style.problem_home_content_item}>
-                    <CodeEditor
-                      allowedLanguage={problemSetInfo?.allowedLanguage || []}
-                      onSubmit={(l, c) => onSubmit(l, c)}/>
+                    {isInProblemHome() && <div dangerouslySetInnerHTML={{__html: problem.content || ""}}/>}
+                    {!isInProblemHome() && props.children}
                   </Card>
-                }
+                  {
+                    isInProblemHome() &&
+                    <Card className={style.problem_home_content_item}>
+                      <CodeEditor
+                        allowedLanguage={problemSetInfo?.allowedLanguage || []}
+                        onSubmit={(l, c) => onSubmit(l, c)}/>
+                    </Card>
+                  }
+                </div>
               </div>
             </div>
-          </div>
-        </Card>
-      </div>
+          </Card>
+        </div>
       }
     </RcQueueAnim>
 

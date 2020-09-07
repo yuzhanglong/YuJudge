@@ -12,11 +12,9 @@ import {RouteComponentProps} from "react-router-dom";
 import {ProblemSet} from "../../../models/problemSet";
 import {getProblemSetInfo} from "../../../network/problemSetRequest";
 import style from "./problemSetHome.module.scss"
-
 import ProblemSetDescription from "./childCmp/ProblemSetDescription";
 import RcQueueAnim from "rc-queue-anim";
 import {BaseResponse} from "../../../models/common";
-import {PROBLEM_SET_FORBIDDEN} from "../../../config/code";
 import {goToResult} from "../../../utils/route";
 import {ResultPageParam} from "../../../common/enumerations";
 
@@ -25,17 +23,18 @@ interface ProblemSetHomeProps {
 }
 
 const ProblemSetHome: React.FunctionComponent<ProblemSetHomeProps & RouteComponentProps> = (props) => {
+
   const params: any = props.match.params;
   const problemSetId: number = params.problemSetId;
-  console.log(params);
+
+  // 题目集基本信息
+  const [problemSetInfo, setProblemSetInfo] = useState<ProblemSet>();
+
 
   useEffect(() => {
     getProblemSetData(problemSetId);
     // eslint-disable-next-line
   }, [problemSetId]);
-
-  // 题目集基本信息
-  const [problemSetInfo, setProblemSetInfo] = useState<ProblemSet>();
 
 
   // 获取题目集信息
@@ -70,9 +69,7 @@ const ProblemSetHome: React.FunctionComponent<ProblemSetHomeProps & RouteCompone
                 <Button
                   onClick={onOverViewProblemsButtonClick}
                   type={"primary"}
-                  style={{
-                    marginTop: 20
-                  }}>
+                  className={style.see_problems_button}>
                   查看问题
                 </Button>
               </div>

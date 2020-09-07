@@ -161,11 +161,12 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
         width={180}
         render={renderCreateTime}/>}
       {props.isShowOperations &&
-      <Table.Column title={"操作"}
-                    key={"操作"}
-                    width={150}
-                    render={renderOperations}
-                    align={"center"}/>}
+      <Table.Column
+        title={"操作"}
+        key={"操作"}
+        width={150}
+        render={renderOperations}
+        align={"center"}/>}
     </Table>
   )
 }

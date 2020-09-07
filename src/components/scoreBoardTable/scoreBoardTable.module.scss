@@ -1,0 +1,34 @@
+/*
+ * File: scoreBoardTable.module.scss
+ * Description: 计分板表格样式
+ * Created: 2020-9-7 16:36:13
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+.score_board_table {
+  max-width: 1000px;
+}
+
+.ant_table_cell {
+  padding: 0 !important;
+  margin: 0;
+}
+
+.problem_cell {
+  padding: 2px 12px;
+  width: 70px;
+  height: 50px;
+}
+
+.accept {
+  background-color: #60e760;
+}
+
+.wrong_answer {
+  background-color: #e87272;
+}
+
+.accept_first {
+  background-color: #1daa1d !important;
+}

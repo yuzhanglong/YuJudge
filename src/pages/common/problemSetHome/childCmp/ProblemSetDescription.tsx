@@ -44,6 +44,18 @@ const ProblemSetDescription: React.FunctionComponent<ProblemSetDescriptionProps>
     }
   }
 
+  // 获取题目集状态
+  const getProblemSetConditionStatus = (condition: string | undefined) => {
+    switch (condition) {
+      case ProblemSetConditionEnum.RUNNING:
+        return "processing";
+      case ProblemSetConditionEnum.CLOSED:
+        return "error";
+      default:
+        return "default";
+    }
+  }
+
   return (
     <Descriptions bordered column={4} size={"middle"}>
       <Descriptions.Item label="题目集名称" span={2}>
@@ -59,7 +71,9 @@ const ProblemSetDescription: React.FunctionComponent<ProblemSetDescriptionProps>
         {timestampToDateTime(props.problemSetInfo.deadline || 0)}
       </Descriptions.Item>
       <Descriptions.Item label="题目集状态" span={2}>
-        <Badge status="processing" text={getProblemSetCondition(props.problemSetInfo.condition)}/>
+        <Badge
+          status={getProblemSetConditionStatus(props.problemSetInfo.condition)}
+          text={getProblemSetCondition(props.problemSetInfo.condition)}/>
       </Descriptions.Item>
       <Descriptions.Item label="是否公共题目集" span={2}>
         {props.problemSetInfo ? "是" : "否"}

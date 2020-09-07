@@ -40,47 +40,47 @@ const ProblemEditor: React.FunctionComponent<ProblemEditorProps> = (props) => {
 
   return (
     <Card title="问题编辑">
-        <Card
-          className={style.cms_problem_edit_item}
-          title={
-            <div className={style.cms_problem_edit_item_title}>
-              基本信息
-            </div>
-          }>
-          <BasicInfoForm problem={props.problem}/>
-        </Card>
-        <Card
-          type="inner"
-          className={style.cms_problem_edit_item}
-          title={
-            <div className={style.cms_problem_edit_item_title}>
-              提交限制
-            </div>
-          }>
-          <LimitationForm problem={props.problem}/>
-        </Card>
-        <Card
-          className={style.cms_problem_edit_item}
-          title={
-            <div className={style.cms_problem_edit_item_title}>
-              测试点
-            </div>
-          } extra={
-          <Button type={"link"} onClick={props.onSolutionAdd}>
-            添加测试点
-          </Button>
+      <Card
+        className={style.cms_problem_edit_item}
+        title={
+          <div className={style.cms_problem_edit_item_title}>
+            基本信息
+          </div>
         }>
-          <TestCaseTable
-            testCases={props.solutions}
-            operations={renderTestCaseTableOperations}
-            showDownLoadUrlColumn/>
-        </Card>
-        <Card
-          key={"cms_problem_edit_item"}
-          className={style.cms_problem_edit_item}
-          title={<div className={style.cms_problem_edit_item_title_danger}>危险项</div>}>
-          <DangerZoneForm problem={props.problem}/>
-        </Card>
+        <BasicInfoForm problem={props.problem}/>
+      </Card>
+      <Card
+        type="inner"
+        className={style.cms_problem_edit_item}
+        title={
+          <div className={style.cms_problem_edit_item_title}>
+            提交限制
+          </div>
+        }>
+        <LimitationForm problem={props.problem}/>
+      </Card>
+      <Card
+        className={style.cms_problem_edit_item}
+        title={
+          <div className={style.cms_problem_edit_item_title}>
+            测试点
+          </div>
+        } extra={
+        <Button type={"link"} onClick={props.onSolutionAdd}>
+          添加测试点
+        </Button>
+      }>
+        <TestCaseTable
+          testCases={props.solutions}
+          operations={renderTestCaseTableOperations}
+          showDownLoadUrlColumn/>
+      </Card>
+      <Card
+        key={"cms_problem_edit_item"}
+        className={style.cms_problem_edit_item}
+        title={<div className={style.cms_problem_edit_item_title_danger}>危险项</div>}>
+        <DangerZoneForm problem={props.problem}/>
+      </Card>
     </Card>
   );
 }

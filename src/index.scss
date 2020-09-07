@@ -2,10 +2,9 @@
 @import '~react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 @import '~antd/dist/antd.css';
 @import "pages/index";
-@import "components/index";
 
 #loading {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;

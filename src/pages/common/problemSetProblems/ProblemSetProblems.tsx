@@ -16,9 +16,8 @@ import {Button, Card, message} from "antd";
 import {RouteComponentProps} from "react-router-dom";
 import ProblemTable from "../../../components/problemTable/ProblemTable";
 import RcQueueAnim from "rc-queue-anim";
-import style from "../problemSetHome/problemSetHome.module.scss"
+import style from "./problemSetProblem.module.scss";
 import {BaseResponse} from "../../../models/common";
-import {PROBLEM_SET_FORBIDDEN} from "../../../config/code";
 import {goToResult} from "../../../utils/route";
 import {ResultPageParam} from "../../../common/enumerations";
 
@@ -35,6 +34,7 @@ const ProblemSetProblems: React.FunctionComponent<ProblemSetProblemsProps & Rout
     getProblemSetProblemData(params.problemSetId, PAGE_BEGIN - 1);
     // eslint-disable-next-line
   }, [params.problemSetId]);
+
 
   // 获取题目集所有题目
   const getProblemSetProblemData = (problemSetId: number, start: number) => {
@@ -58,32 +58,32 @@ const ProblemSetProblems: React.FunctionComponent<ProblemSetProblemsProps & Rout
 
   return (
     <RcQueueAnim>
-      <div className={style.problem_set_home} key={"problem-set-home"}>
-        <Card
-          title={"所有题目"}
-          headStyle={{textAlign: "center"}}
-          bodyStyle={{
-            display: "flex",
-            justifyContent: "center"
-          }}>
-          <ProblemTable
-            isLoading={problemSetProblemPagination.isLoading}
-            problems={problemSetProblemPagination.items}
-            isShowOperations
-            showEditButton={false}
-            onPageChange={(val: number) => getProblemSetProblemData(params.problemSetId, val - 1)}
-            totalPage={problemSetProblemPagination.paginationInfo.totalPage}
-            otherOperations={(content: any) => {
-              return (
-                <Button
-                  type={"link"}
-                  onClick={() => onGotoProblemButtonClick(content)}>
-                  前往
-                </Button>
-              )
-            }}>
-          </ProblemTable>
-        </Card>
+      <div className={style.problem_set_problem} key={"problem-set-home"}>
+        <div className={style.problem_set_problem_content}>
+          <Card
+            title={"所有题目"}
+            headStyle={{textAlign: "center"}}>
+            <div className={style.problem_set_problem_body}>
+              <ProblemTable
+              isLoading={problemSetProblemPagination.isLoading}
+              problems={problemSetProblemPagination.items}
+              isShowOperations
+              showEditButton={false}
+              onPageChange={(val: number) => getProblemSetProblemData(params.problemSetId, val - 1)}
+              totalPage={problemSetProblemPagination.paginationInfo.totalPage}
+              otherOperations={(content: any) => {
+                return (
+                  <Button
+                    type={"link"}
+                    onClick={() => onGotoProblemButtonClick(content)}>
+                    前往
+                  </Button>
+                )
+              }}>
+            </ProblemTable>
+            </div>
+          </Card>
+        </div>
       </div>
     </RcQueueAnim>
   )

@@ -55,7 +55,13 @@ export const createJudgeHost = (requestBody: JudgeHostRequest) => {
 // 开启/关闭判题机
 export const resetJudgeHostCondition = (judgeHostId: number) => {
   return request.put(
-    "/judge_host/reset_active_condition/" + judgeHostId
+    "/judge_host/reset_active_condition/" + judgeHostId,
+    null,
+    {
+      headers: {
+        loading: true
+      }
+    }
   )
 }
 

@@ -20,7 +20,8 @@ export const JUDGE_CONDITION_COLORS: { [key: string]: string; } = {
   [JudgeConditionEnum.WAITING]: "#8c8c8c",
   [JudgeConditionEnum.SEGMENTATION_FAULT]: "#08979c",
   [JudgeConditionEnum.RUNTIME_ERROR]: "#2347d2",
-  [JudgeConditionEnum.UNKNOWN_ERROR]: "#391085"
+  [JudgeConditionEnum.UNKNOWN_ERROR]: "#391085",
+  [JudgeConditionEnum.OUTPUT_LIMIT_EXCEED]: "#d4b106"
 }
 
 export const JUDGE_CONDITION_TAG_NAMES: { [key: string]: string; } = {
@@ -33,7 +34,8 @@ export const JUDGE_CONDITION_TAG_NAMES: { [key: string]: string; } = {
   [JudgeConditionEnum.WAITING]: "WAITING",
   [JudgeConditionEnum.SEGMENTATION_FAULT]: "SEGMENTATION FAULT",
   [JudgeConditionEnum.RUNTIME_ERROR]: "RUNTIME ERROR",
-  [JudgeConditionEnum.UNKNOWN_ERROR]: "UNKNOWN ERROR"
+  [JudgeConditionEnum.UNKNOWN_ERROR]: "UNKNOWN ERROR",
+  [JudgeConditionEnum.OUTPUT_LIMIT_EXCEED]: "OUTPUT LIMIT EXCEED"
 }
 
 
@@ -45,7 +47,8 @@ export const JUDGE_CONDITION_TAG_NAMES_CHINESE: { [key: string]: string; } = {
   [JudgeConditionEnum.TIME_LIMIT_EXCEEDED]: "时间超限",
   [JudgeConditionEnum.SEGMENTATION_FAULT]: "段错误",
   [JudgeConditionEnum.RUNTIME_ERROR]: "运行错误",
-  [JudgeConditionEnum.UNKNOWN_ERROR]: "未知错误"
+  [JudgeConditionEnum.UNKNOWN_ERROR]: "未知错误",
+  [JudgeConditionEnum.OUTPUT_LIMIT_EXCEED]: "输出超限"
 }
 
 
@@ -57,5 +60,6 @@ export const JUDGE_CONDITION_SIMPLE_NAME: { [key: string]: string; } = {
   [JudgeConditionEnum.TIME_LIMIT_EXCEEDED]: "TLE",
   [JudgeConditionEnum.SEGMENTATION_FAULT]: "SF",
   [JudgeConditionEnum.RUNTIME_ERROR]: "RE",
-  [JudgeConditionEnum.UNKNOWN_ERROR]: "UKE"
+  [JudgeConditionEnum.UNKNOWN_ERROR]: "UKE",
+  [JudgeConditionEnum.OUTPUT_LIMIT_EXCEED]: "OLE"
 }

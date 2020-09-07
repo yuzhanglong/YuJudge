@@ -10,6 +10,7 @@ import React from "react";
 import {Button, Col, Form, Input, Row} from "antd";
 import {UserOutlined, LockOutlined, CheckCircleOutlined} from "@ant-design/icons";
 import classNames from "classnames";
+import style from "./loginForm.module.scss";
 
 interface LoginFormProps {
   onConfirm?: (val: any) => void;
@@ -68,7 +69,7 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = (props) => {
           <Row>
             <Col span={15}>
               <Form.Item
-                className={"check-code-form-item"}
+                className={style.check_code_form_item}
                 rules={[{required: props.validateRequired, message: '请输入验证码!'}]}
                 name="checkCodeContent">
                 <Input
@@ -97,7 +98,7 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = (props) => {
           <Button
             type="primary"
             htmlType="submit"
-            className={"login-form-button"}>
+            className={style.login_form_button}>
             登录
           </Button>
         )}

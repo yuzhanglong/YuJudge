@@ -12,6 +12,7 @@ import {Table} from "antd";
 import {tenDecimalToTwentySixDecimal} from "../../utils/math";
 import {UserInfo} from "../../models/user";
 import classNames from "classnames";
+import style from "./scoreBoardTable.module.scss";
 
 interface ScoreBoardTableProps {
   scoreBoardItems: ScoreBoardItem[];
@@ -20,12 +21,13 @@ interface ScoreBoardTableProps {
 
 const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) => {
 
+  // 渲染每一行的信息
   const renderRowInfo = (value: ScoreBoardSolutionInfo, record: any, index: number) => {
-    const cellClassnames = classNames("problem-cell", {
-      "accept": value.isAccepted,
-      "wrong-answer": !value.isAccepted && value.tryAmount > 0,
-      "accept-first": value.isFirstAc
-    })
+    const cellClassnames = classNames(style.problem_cell, {
+      [style.accept]: value.isAccepted,
+      [style.wrong_answer]: !value.isAccepted && value.tryAmount > 0,
+      [style.accept_first]: value.isFirstAc
+    });
     return (
       <div key={index} className={cellClassnames}>
         {
@@ -51,12 +53,13 @@ const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) =
     return amount + (amount > 1 ? "tries" : "try");
   }
 
-
+  // 渲染列
   const renderColumns = () => {
     let res = [];
     for (let i = 0; i < props.problemAmount; i++) {
       res.push(
         <Table.Column
+          className={style.ant_table_cell}
           key={i}
           title={tenDecimalToTwentySixDecimal(i + 1)}
           align={"center"}
@@ -68,17 +71,20 @@ const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) =
     return res;
   }
 
+  // 渲染队伍信息
   const renderTeamInfo = (value: UserInfo) => {
     return <div>{value.nickname}</div>
   }
 
+  // 渲染ac数量
   const renderAcAmount = (value: number) => {
     return <div>{value}</div>
   }
 
   return (
-    <div className={"score-board-table"}>
+    <div className={style.score_board_table}>
       <Table
+        size={"small"}
         bordered
         rowKey={"rank"}
         dataSource={props.scoreBoardItems}>

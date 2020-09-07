@@ -69,6 +69,9 @@ export const getRecentProblems = (size: number) => {
     {
       params: {
         size: size
+      },
+      headers: {
+        loading: true
       }
     }
   )

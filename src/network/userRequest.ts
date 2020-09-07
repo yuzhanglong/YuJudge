@@ -43,15 +43,23 @@ export const getActiveUserInfo = (userAmount: number) => {
     {
       params: {
         amount: userAmount
+      },
+      headers: {
+        loading: true
       }
     }
   )
 }
 
 // 获取用户信息
-export const getUserInfo = () => {
+export const getUserInfo = (uid: number | null = null) => {
   return request.get(
-    "/user/get_user_info"
+    "/user/user_info",
+    {
+      params: {
+        uid: uid
+      }
+    }
   )
 }
 

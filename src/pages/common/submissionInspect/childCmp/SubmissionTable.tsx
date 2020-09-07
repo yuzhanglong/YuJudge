@@ -21,6 +21,7 @@ import {UserInfo} from "../../../../models/user";
 import style from "../submissionInspect.module.scss"
 
 interface SubmissionTableProps {
+  isLoading?: boolean;
   submissions: Submission[];
   total: number;
   activePage: number;
@@ -103,6 +104,7 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
 
   return (
     <Table
+      loading={props.isLoading}
       dataSource={props.submissions}
       rowKey={"id"}
       size="middle"
@@ -151,6 +153,10 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
         render={renderCreator}/>
     </Table>
   )
+}
+
+SubmissionTable.defaultProps = {
+  isLoading: false
 }
 
 export default SubmissionTable;
