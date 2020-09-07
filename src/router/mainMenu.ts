@@ -47,7 +47,7 @@ export const MAIN_MENU: MenuRouterConfig[] = [
         children: [
           {
             key: "submission",
-            component: "Submission",
+            component: "SubmissionInspect",
             title: "提交",
             path: "/common/problem/:problemId/submission",
           },
@@ -103,7 +103,7 @@ export const MAIN_MENU: MenuRouterConfig[] = [
         children: [
           {
             key: "submission",
-            component: "Submission",
+            component: "SubmissionInspect",
             title: "提交",
             path: "/common/problem_set/:problemSetId/problem/:problemId/submission",
           },

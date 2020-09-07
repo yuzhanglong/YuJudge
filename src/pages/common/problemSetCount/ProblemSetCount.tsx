@@ -7,13 +7,16 @@
  */
 
 import React, {useEffect, useState} from "react";
-import {Card} from "antd";
+import {Card, message} from "antd";
 import SubmissionCount from "../../../components/submissionCount/SubmissionCount";
-import {SubmissionCountInfo} from "../../../models/submissionInfo";
+import {SubmissionCountInfo} from "../../../models/submission";
 import {countProblemSetSubmissionInfo} from "../../../network/problemSetRequest";
 import {RouteComponentProps} from "react-router-dom";
 import style from "./problemSetCount.module.scss"
 import ProblemSetTimeLine from "./childCmp/ProblemSetTimeLine";
+import {BaseResponse} from "../../../models/common";
+import {goToResult} from "../../../utils/route";
+import {ResultPageParam} from "../../../common/enumerations";
 
 interface ProblemSetCountProps {
 
@@ -35,6 +38,10 @@ const ProblemSetCount: React.FunctionComponent<ProblemSetCountProps & RouteCompo
       .then(res => {
         setProblemSetSubmissionCounts(res.data.items);
       })
+      .catch((err: BaseResponse) => {
+        message.error(err.message);
+        goToResult(ResultPageParam.PROBLEM_SET_FORBIDDEN);
+      })
   }
 
   return (
@@ -47,7 +54,7 @@ const ProblemSetCount: React.FunctionComponent<ProblemSetCountProps & RouteCompo
           }}>
           <div className={style.problem_set_count_body}>
             <div style={{
-              width:1400
+              width: 1400
             }}>
               <Card title={"提交趋势"}>
                 <SubmissionCount

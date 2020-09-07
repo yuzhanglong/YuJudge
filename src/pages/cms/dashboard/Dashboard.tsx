@@ -21,7 +21,7 @@ import {Problem} from "../../../models/problem";
 import {getRecentSubmission} from "../../../network/submissionRequest";
 import {getActiveUserInfo} from "../../../network/userRequest";
 import moment from "moment";
-import {UserSubmissionCount} from "../../../models/submissionInfo";
+import {UserSubmissionCount} from "../../../models/submission";
 import {UserInfoState} from "../../../hooks/userInfo";
 import {GlobalCount} from "../../../models/common";
 import {getGlobalCount} from "../../../network/common";

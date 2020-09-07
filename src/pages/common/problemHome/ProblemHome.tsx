@@ -16,7 +16,7 @@ import {ProblemSet} from "../../../models/problemSet";
 import style from "./problemHome.module.scss"
 import RouteSelector from "./childCmp/RouteSelector";
 import CodeEditor from "../../../components/codeEditor/CodeEditor";
-import {SubmissionInfo} from "../../../models/submissionInfo";
+import {Submission} from "../../../models/submission";
 import {DEFAULT_JUDGE_PREFERENCE} from "../../../config/config";
 import {submitCode} from "../../../network/submissionRequest";
 import RcQueueAnim from "rc-queue-anim";
@@ -48,7 +48,7 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
 
   // 提交按钮被按下
   const onSubmit = (language: string, code: string) => {
-    const submission: SubmissionInfo = {
+    const submission: Submission = {
       problemId: problem.id,
       codeContent: code,
       language: language,

@@ -7,7 +7,7 @@
  */
 
 import React, {useEffect, useState} from "react";
-import {Button, Card} from "antd";
+import {Button, Card, message} from "antd";
 import {RouteComponentProps} from "react-router-dom";
 import {ProblemSet} from "../../../models/problemSet";
 import {getProblemSetInfo} from "../../../network/problemSetRequest";
@@ -45,11 +45,8 @@ const ProblemSetHome: React.FunctionComponent<ProblemSetHomeProps & RouteCompone
         setProblemSetInfo(res.data);
       })
       .catch((err: BaseResponse) => {
-        if (err.code === PROBLEM_SET_FORBIDDEN) {
-          goToResult(ResultPageParam.PROBLEM_SET_FORBIDDEN);
-        } else {
-          goToResult(ResultPageParam.NOT_FOUND);
-        }
+        message.error(err.message);
+        goToResult(ResultPageParam.PROBLEM_SET_FORBIDDEN);
       })
   }
 

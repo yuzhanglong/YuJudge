@@ -7,7 +7,7 @@
  */
 
 import React from "react";
-import {JudgeResultForSingleTestCase} from "../../models/submissionInfo";
+import {JudgeResultForSingleTestCase} from "../../models/submission";
 import {Tag, Tooltip} from "antd";
 import {
   JUDGE_CONDITION_COLORS,
@@ -43,8 +43,8 @@ const ShowTestCase: React.FunctionComponent<ShowTestCaseProps> = (props) => {
     return props.testCases.map((res, index) => {
       if (res && res.message) {
         return (
-          <Tooltip title={renderTestCaseTagTip(res, index)}>
-            <Tag key={res.stdinPath} color={JUDGE_CONDITION_COLORS[res.message]}>
+          <Tooltip key={index} title={renderTestCaseTagTip(res, index)}>
+            <Tag color={JUDGE_CONDITION_COLORS[res.message]}>
               {JUDGE_CONDITION_SIMPLE_NAME[res.message]}
             </Tag>
           </Tooltip>

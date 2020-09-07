@@ -16,7 +16,7 @@ import {
 import BasicInfo from "./childCmp/BasicInfo";
 import CurrentCondition from "./childCmp/CurrentCondition";
 import SubmissionCount from "../../../components/submissionCount/SubmissionCount";
-import {SubmissionCountInfo} from "../../../models/submissionInfo";
+import {SubmissionCountInfo} from "../../../models/submission";
 import {getDateRangeMomentArray} from "../../../utils/dateTime";
 import {DEFAULT_DATE_TIME_FORMAT} from "../../../config/config";
 import moment from "moment";

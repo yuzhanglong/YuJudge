@@ -15,6 +15,7 @@ import {RouteComponentProps} from "react-router-dom";
 import JudgeHostEditModal from "./childCmp/JudgeHostEditModal";
 import {BaseResponse} from "../../../models/common";
 import {PlusOutlined} from "@ant-design/icons";
+import RcQueueAnim from "rc-queue-anim";
 
 interface JudgeServerManageProps {
 
@@ -61,7 +62,7 @@ const JudgeHostManage: React.FunctionComponent<JudgeServerManageProps & RouteCom
     return (
       <Button
         type={"primary"}
-        onClick={() => setEditModalVisible(true)} icon={<PlusOutlined />}>
+        onClick={() => setEditModalVisible(true)} icon={<PlusOutlined/>}>
         新建判题机
       </Button>
     )
@@ -82,15 +83,20 @@ const JudgeHostManage: React.FunctionComponent<JudgeServerManageProps & RouteCom
 
 
   return (
-    <Card title={"全部判题机"} extra={renderExtra()}>
-      <JudgeHostTable
-        judgeHosts={judgeHostsInfo}
-        operations={renderOperations}/>
-      <JudgeHostEditModal
-        visible={editModalVisible}
-        onCancel={() => setEditModalVisible(false)}
-        onConfirm={(v) => createJudgeHostRequest(v)}/>
-    </Card>
+    <RcQueueAnim>
+      <div key={"judge-host-inspect"}>
+        <Card title={"全部判题机"} extra={renderExtra()}>
+          <JudgeHostTable
+            judgeHosts={judgeHostsInfo}
+            operations={renderOperations}/>
+          <JudgeHostEditModal
+            visible={editModalVisible}
+            onCancel={() => setEditModalVisible(false)}
+            onConfirm={(v) => createJudgeHostRequest(v)}/>
+        </Card>
+      </div>
+    </RcQueueAnim>
+
   )
 }
 

@@ -63,7 +63,7 @@ $cms-content-margin: 90px 50px 30px;
 $cms_operation_card_title_font_size: 15px;
 $cms_operation_card_title_font_weight: bold;
 $cms_operation_card_spacing: 30px;
-$cms-operation_card_danger_color: #ff4d4f;
+$cms_operation_card_danger_color: #ff4d4f;
 
 @mixin cms_operation_card {
   font-weight: $cms_operation_card_title_font_weight;

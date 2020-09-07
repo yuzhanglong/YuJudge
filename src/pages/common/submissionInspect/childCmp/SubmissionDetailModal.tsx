@@ -9,10 +9,11 @@
 
 import React from "react";
 import {Modal, Descriptions, Input} from "antd";
-import {SubmissionDetail} from "../../../../models/submissionInfo";
+import {SubmissionDetail} from "../../../../models/submission";
 import ReactMarkdown from "react-markdown";
 import {timestampToDateTime} from "../../../../utils/dateTime";
 import ShowTestCase from "../../../../components/showTestCase/ShowTestCase";
+import style from "../submissionInspect.module.scss";
 
 interface SubmissionDetailModalProps {
   isVisible: boolean;
@@ -67,7 +68,7 @@ const SubmissionDetailModal: React.FunctionComponent<SubmissionDetailModalProps>
 
 
   return (
-    <div className={"submission-detail-modal"}>
+    <div>
       <Modal
         destroyOnClose
         title="查看提交"
@@ -107,12 +108,12 @@ const SubmissionDetailModal: React.FunctionComponent<SubmissionDetailModalProps>
           <Descriptions.Item label={"用户代码"}
                              span={2}>
             <ReactMarkdown source={"```\n" + props.submission.codeContent + "\n```"}
-                           className={"submission-detail-code"}>
+                           className={style.submission_detail_code}>
             </ReactMarkdown>
           </Descriptions.Item>
           <Descriptions.Item label={"编译器输出"}
                              span={2}>
-            <div className={"compiler-std-out-show"}>
+            <div className={style.compiler_std_out_show}>
               {renderCompilerStdout(props.submission)}
             </div>
           </Descriptions.Item>

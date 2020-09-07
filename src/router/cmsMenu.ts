@@ -29,6 +29,7 @@ export const CMS_MENUS: MenuRouterConfig[] = [
     title: "设置",
     path: "/cms/settings",
     icon: "SettingOutlined",
-    isShowInMenu: true
+    isShowInMenu: true,
+    component: "Settings"
   }
 ]

@@ -7,10 +7,10 @@
  */
 
 import request from "./interceptor";
-import {SubmissionInfo} from "../models/submissionInfo";
+import {Submission} from "../models/submission";
 
 // 提交代码
-export const submitCode = (submission: SubmissionInfo) => {
+export const submitCode = (submission: Submission) => {
   return request.post(
     "/submission/submit_code",
     submission,
@@ -74,4 +74,21 @@ export const getUserJudgeResultCount = (uid: number | null = null) => {
       }
     }
   )
+}
+
+// 获取提交调度线程池相关配置
+export const getSubmissionThreadPoolConfiguration = () => {
+  return request.get(
+    "/submission/thread_pool_config"
+  )
+}
+
+//设置提交线程池最大工作数目
+export const setSubmissionThreadPoolMaxSize = (size: number) => {
+  return request.put(
+    "/submission/thread_pool_max_working_size",
+    {
+      maxWorkingAmount: size
+    }
+  );
 }

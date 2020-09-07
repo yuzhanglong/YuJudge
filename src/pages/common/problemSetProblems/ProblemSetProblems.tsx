@@ -12,7 +12,7 @@ import {UsePaginationState} from "../../../hooks/pagination";
 import {ProblemSetProblemPaginationRequest} from "../../../models/pagination";
 import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from "../../../config/config";
 import {getProblemSetProblems} from "../../../network/problemSetRequest";
-import {Button, Card} from "antd";
+import {Button, Card, message} from "antd";
 import {RouteComponentProps} from "react-router-dom";
 import ProblemTable from "../../../components/problemTable/ProblemTable";
 import RcQueueAnim from "rc-queue-anim";
@@ -45,11 +45,8 @@ const ProblemSetProblems: React.FunctionComponent<ProblemSetProblemsProps & Rout
         problemSetId: problemSetId
       })
       .catch((err: BaseResponse) => {
-        if (err.code === PROBLEM_SET_FORBIDDEN) {
-          goToResult(ResultPageParam.PROBLEM_SET_FORBIDDEN);
-        } else {
-          goToResult(ResultPageParam.NOT_FOUND);
-        }
+        message.error(err.message);
+        goToResult(ResultPageParam.PROBLEM_SET_FORBIDDEN);
       })
   }
 

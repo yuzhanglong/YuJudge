@@ -11,7 +11,7 @@ import {Card, Empty, Row} from "antd";
 import style from "../profile.module.scss";
 import ColumnChart from "../../../../components/charts/ColumnChart";
 import {EMPTY_IMAGE} from "../../../../config/config";
-import {UserJudgeResultCount, UserSubmissionCount} from "../../../../models/submissionInfo";
+import {UserJudgeResultCount, UserSubmissionCount} from "../../../../models/submission";
 import JudgeResultCount from "../../../../components/judgeResultCount/JudgeResultCount";
 import {BulbTwoTone, DashOutlined, FileTextTwoTone, PieChartTwoTone, SmileTwoTone} from "@ant-design/icons";
 import RcQueueAnim from "rc-queue-anim";

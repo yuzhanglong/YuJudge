@@ -7,7 +7,7 @@
  */
 
 import React, {useEffect, useState} from "react";
-import {SubmissionCountInfo} from "../../models/submissionInfo";
+import {SubmissionCountInfo} from "../../models/submission";
 import LineChart from "../charts/LineChart";
 import {Col, DatePicker, Empty, Row, Tag} from "antd";
 import {Moment} from "moment";

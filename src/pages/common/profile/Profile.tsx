@@ -12,7 +12,7 @@ import UserCard from "../../../components/userCard/UserCard";
 import {UserInfoState} from "../../../hooks/userInfo";
 import style from "./profile.module.scss"
 import ProfileCount from "./childCmp/ProfileCount";
-import {UserJudgeResultCount, UserSubmissionCount} from "../../../models/submissionInfo";
+import {UserJudgeResultCount, UserSubmissionCount} from "../../../models/submission";
 import moment from "moment";
 import {DEFAULT_DATE_TIME_FORMAT, RECENT_SUBMISSION_DATES_IN_DASHBOARD_AMOUNT} from "../../../config/config";
 import {getRecentSubmission, getUserJudgeResultCount} from "../../../network/submissionRequest";

@@ -1,5 +1,5 @@
 /*
- * File: SubmissionInfo.tsx
+ * File: submissionInspect.tsx
  * Description: 查看提交的页面
  * Created: 2020-8-26 14:15:08
  * Author: yuzhanglong
@@ -9,9 +9,9 @@
 
 import React, {useEffect, useState} from "react";
 import {RouteComponentProps} from "react-router-dom";
-import SubmissionTable from "../problemHome/childCmp/SubmissionTable";
-import SubmissionDetailModal from "../problemHome/childCmp/SubmissionDetailModal";
-import {SubmissionInfo} from "../../../models/submissionInfo";
+import SubmissionTable from "./childCmp/SubmissionTable";
+import SubmissionDetailModal from "./childCmp/SubmissionDetailModal";
+import {Submission} from "../../../models/submission";
 import {SUBMISSION_REQUEST_TASK_TIME, SUBMISSION_SINGLE_PAGE_SIZE} from "../../../config/config";
 import {getSubmissionById, getSubmissionByProblemId} from "../../../network/submissionRequest";
 import {message} from "antd";
@@ -20,11 +20,11 @@ import {PROBLEM_SET_FORBIDDEN} from "../../../config/code";
 import {goToResult} from "../../../utils/route";
 import {ResultPageParam} from "../../../common/enumerations";
 
-interface SubmissionProps {
+interface SubmissionInspectProps {
 
 }
 
-const Submission: React.FunctionComponent<SubmissionProps & RouteComponentProps> = (props) => {
+const SubmissionInspect: React.FunctionComponent<SubmissionInspectProps & RouteComponentProps> = (props) => {
 
   const params: any = props.match.params;
   const problemId: number = params.problemId;
@@ -33,7 +33,7 @@ const Submission: React.FunctionComponent<SubmissionProps & RouteComponentProps>
   const [activePage, setActivePage] = useState(1);
 
   // 提交表格
-  const [submissions, setSubmissions] = useState<SubmissionInfo[]>([]);
+  const [submissions, setSubmissions] = useState<Submission[]>([]);
 
   // 提交详情是否可视
   const [isSubmissionDetailVisible, setIsSubmissionIsVisible] = useState(false);
@@ -120,4 +120,4 @@ const Submission: React.FunctionComponent<SubmissionProps & RouteComponentProps>
   )
 }
 
-export default Submission;
+export default SubmissionInspect;

@@ -7,7 +7,7 @@
  */
 
 import React from "react";
-import {ScoreBoardItem, ScoreBoardSolutionInfo} from "../../models/submissionInfo";
+import {ScoreBoardItem, ScoreBoardSolutionInfo} from "../../models/submission";
 import {Table} from "antd";
 import {tenDecimalToTwentySixDecimal} from "../../utils/math";
 import {UserInfo} from "../../models/user";

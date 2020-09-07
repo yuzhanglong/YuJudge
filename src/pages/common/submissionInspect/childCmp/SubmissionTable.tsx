@@ -16,11 +16,12 @@ import {JUDGE_CONDITION_COLORS, JUDGE_CONDITION_TAG_NAMES} from "../../../../com
 import {PROGRAM_LANGUAGE_NAME} from "../../../../common/programLanguage";
 import {SUBMISSION_SINGLE_PAGE_SIZE} from "../../../../config/config";
 import classNames from "classnames";
-import {SubmissionInfo} from "../../../../models/submissionInfo";
+import {Submission} from "../../../../models/submission";
 import {UserInfo} from "../../../../models/user";
+import style from "../submissionInspect.module.scss"
 
 interface SubmissionTableProps {
-  submissions: SubmissionInfo[];
+  submissions: Submission[];
   total: number;
   activePage: number;
   onPageChange?: (currentPage: number) => void;
@@ -61,10 +62,14 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
 
   // 渲染判题结果标签
   const renderJudgeCondition = (condition: JudgeConditionEnum, detail: any) => {
-    const isLoading = (condition === JudgeConditionEnum.WAITING || condition === JudgeConditionEnum.PENDING)
-    const className = classNames("judge-condition-tag-wrap", {
-      "judge-condition-tag-wrap-loading": isLoading
-    })
+    const isLoading = (
+      condition === JudgeConditionEnum.WAITING || condition === JudgeConditionEnum.PENDING
+    );
+
+    const className = classNames(style.judge_condition_tag_wrap, {
+      [style.judge_condition_tag_wrap_loading]: isLoading
+    });
+
     return (
       <div>
         <Tag color={getJudgeConditionColor(condition)}

@@ -105,3 +105,6 @@ export const DEFAULT_LANGUAGE = [
   LanguageTypeEnum.JAVA,
   LanguageTypeEnum.PYTHON
 ]
+
+// 同时运行的判题个数设置区间
+export const JUDGE_NUMBER_SETTINGS_RANGE = [1, 15];

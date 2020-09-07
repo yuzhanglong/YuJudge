@@ -8,7 +8,7 @@
 
 
 // 处理用户的提交信息，将其转变为支持表格渲染的数据结构
-import {UserSubmissionCount} from "../models/submissionInfo";
+import {UserSubmissionCount} from "../models/submission";
 
 export const generateUserSubmissionData = (recentSubmission: UserSubmissionCount[]) => {
   let result = [];

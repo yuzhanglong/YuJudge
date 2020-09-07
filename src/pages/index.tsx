@@ -25,10 +25,8 @@ import Common from "../layout/common/Common";
 
 // 待开发
 import Solution from "./common/solution/Solution";
-import Submission from "./common/submission/Submission";
 import Discussion from "./common/discussion/Discussion";
 import Ranking from "./common/ranking/Ranking";
-import Profile from "./common/profile/Profile";
 
 // cms 界面
 const Dashboard = loadable(import('./cms/dashboard/Dashboard'));
@@ -54,7 +52,9 @@ const ScoreBoard = loadable(import("./common/scoreBoard/ScoreBoard"));
 const Login = loadable(import("./common/login/Login"));
 const Landing = loadable(import("./common/landing/Landing"));
 const Problems = loadable(import("./common/problems/Problems"));
-const BasicResult = loadable(import("./common/basicResult/BasicResult"))
+const BasicResult = loadable(import("./common/basicResult/BasicResult"));
+const SubmissionInspect = loadable(import("./common/submissionInspect/submissionInspect"));
+const Profile = loadable(import("./common/profile/Profile"));
 
 
 // 导出
@@ -86,7 +86,7 @@ export default {
   Profile: Profile,
   ProblemSets: ProblemSets,
   Solution: Solution,
-  Submission: Submission,
+  SubmissionInspect: SubmissionInspect,
   Discussion: Discussion,
   Ranking: Ranking,
   BasicResult: BasicResult,

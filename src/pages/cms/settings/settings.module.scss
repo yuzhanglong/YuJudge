@@ -1,0 +1,26 @@
+/*
+ * File: settings.module.scss
+ * Description: 设置页面样式
+ * Created: 2020-9-7 12:51:13
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+@import "src/styles/public";
+
+.cms_settings_edit_item_title {
+  @include cms_operation_card;
+}
+
+.cms_settings_edit_item_title_danger {
+  @include cms_operation_card;
+  color: $cms_operation_card_danger_color;
+}
+
+.cms_settings_item {
+  margin-bottom: 20px;
+}
+
+.cms_settings_slider {
+  width: 200px;
+}

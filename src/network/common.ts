@@ -28,5 +28,3 @@ export const getDailyWord = () => {
     "/common/get_daily_word"
   )
 }
-
-

@@ -1,5 +1,5 @@
 /*
- * File: submissionInfo.ts
+ * File: submission.ts
  * Description: 提交相关的业务模型
  * Created: 2020-7-31 13:35:41
  * Author: yuzhanglong
@@ -11,7 +11,7 @@ import {UserInfo} from "./user";
 import {JudgeHostInfo} from "./judgeHost";
 
 // 一次提交
-export interface SubmissionInfo {
+export interface Submission {
   id?: number;
   problemId?: number;
   codeContent: string;
@@ -46,7 +46,7 @@ export interface JudgeResult {
 }
 
 // 提交细节信息
-export interface SubmissionDetail extends SubmissionInfo {
+export interface SubmissionDetail extends Submission {
   judgeResult: JudgeResult;
   judgeHost?: JudgeHostInfo;
 }
@@ -91,4 +91,11 @@ export interface UserSubmissionCount {
 export interface UserJudgeResultCount {
   amount: number;
   type: string;
+}
+
+// 提交线程池配置
+export interface SubmissionThreadPoolConfiguration {
+  maxPoolSize: number;
+  workingAmount: number;
+  maxQueueAmount: number;
 }
