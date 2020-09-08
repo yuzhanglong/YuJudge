@@ -85,7 +85,7 @@ const ProblemEdit: React.FunctionComponent<ProblemEditProps & RouteComponentProp
   // 测试样例添加cg
   const onTestCaseAddSuccess = () => {
     setIsShowAddSolutionModal(false);
-    window.reactRouter.push("?");
+    initProblemEditEnvironment();
   }
 
   // 移除解决方案

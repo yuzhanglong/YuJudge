@@ -65,7 +65,7 @@ const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) =
           align={"center"}
           dataIndex={["solutionInfo", i]}
           render={renderRowInfo}
-          width={50}/>
+          width={70}/>
       );
     }
     return res;
@@ -84,33 +84,39 @@ const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) =
   return (
     <div className={style.score_board_table}>
       <Table
-        size={"small"}
+        scroll={{x: 1000}}
+        pagination={false}
+        size={"middle"}
         bordered
         rowKey={"rank"}
         dataSource={props.scoreBoardItems}>
         <Table.Column
           title={"排名"}
           align={"center"}
-          width={80}
+          fixed={"left"}
+          width={65}
           render={(value: any, record: any, index: number) => index + 1}/>
         <Table.Column
           title={"用户/队伍"}
           dataIndex={"teamInfo"}
           render={renderTeamInfo}
           align={"center"}
+          fixed={"left"}
           width={160}/>
         <Table.Column
           title={"AC"}
           dataIndex={"totalAcAmount"}
           render={renderAcAmount}
           align={"center"}
+          fixed={"left"}
           width={50}/>
+        {props.scoreBoardItems.length > 0 && renderColumns()}
         <Table.Column
           title={"罚时"}
           dataIndex={"totalTimePenalty"}
           align={"center"}
+          fixed={"right"}
           width={80}/>
-        {props.scoreBoardItems.length > 0 && renderColumns()}
       </Table>
     </div>
   )
