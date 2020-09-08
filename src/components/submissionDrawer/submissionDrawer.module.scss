@@ -1,0 +1,23 @@
+/*
+ * File: submissionDrawer.module.scss
+ * Description: 提交管理抽屉样式
+ * Created: 2020-9-8 22:22:50
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+.drawer_item_title {
+  margin-bottom: 24px;
+  font-weight: bold;
+}
+
+.judge_condition_selector {
+  width: auto;
+  color: red;
+}
+
+.judge_condition_old {
+  font-weight: bold;
+  padding-bottom: 20px;
+  font-size: 18px;
+}

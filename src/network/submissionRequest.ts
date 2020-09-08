@@ -92,3 +92,14 @@ export const setSubmissionThreadPoolMaxSize = (size: number) => {
     }
   );
 }
+
+// 改变提交状态
+export const changeSubmissionCondition = (submissionId: number, condition: string) => {
+  return request.put(
+    "/submission/condition",
+    {
+      condition: condition,
+      submissionId: submissionId
+    }
+  )
+}

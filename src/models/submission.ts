@@ -58,6 +58,7 @@ export interface ScoreBoardSolutionInfo {
   isAccepted: boolean;
   timeCost: number;
   isFirstAc: boolean;
+  submissionId: number;
 }
 
 // 记分板单条项目

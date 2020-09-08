@@ -7,10 +7,10 @@
  */
 
 import React, {useEffect, useState} from "react";
-import {Card} from "antd";
+import {Card, Empty} from "antd";
 import {RouteComponentProps} from "react-router-dom";
 import {getProblemSetScoreBoard} from "../../../network/problemSetRequest";
-import {ScoreBoardInfo} from "../../../models/submission";
+import {ScoreBoardInfo, ScoreBoardSolutionInfo} from "../../../models/submission";
 import ScoreBoardTable from "../../../components/scoreBoardTable/ScoreBoardTable";
 import style from "./scoreBoard.module.scss"
 import {BaseResponse} from "../../../models/common";
@@ -18,6 +18,8 @@ import {PROBLEM_SET_FORBIDDEN} from "../../../config/code";
 import {goToResult} from "../../../utils/route";
 import {ResultPageParam} from "../../../common/enumerations";
 import RcQueueAnim from "rc-queue-anim";
+import {EMPTY_IMAGE} from "../../../config/config";
+import SubmissionDrawer from "../../../components/submissionDrawer/SubmissionDrawer";
 
 interface ScoreBoardProps {
 
@@ -32,6 +34,12 @@ const ScoreBoard: React.FunctionComponent<ScoreBoardProps & RouteComponentProps>
 
   // 记分板数据
   const [scoreBoardInfo, setScoreBoardInfo] = useState<ScoreBoardInfo>();
+
+  // 提交抽屉是否可视
+  const [submissionDrawerVisible, setSubmissionDrawerVisible] = useState<boolean>(false);
+
+  // 活跃的表格
+  const [activeCell, setActiveCell] = useState<ScoreBoardSolutionInfo>();
 
   // 获取记分板数据
   const getScoreBoardInfo = (problemSetId: number) => {
@@ -57,15 +65,24 @@ const ScoreBoard: React.FunctionComponent<ScoreBoardProps & RouteComponentProps>
             headStyle={{textAlign: "center"}}>
             <div className={style.score_board_body}>
               {
-                scoreBoardInfo &&
-                <ScoreBoardTable
-                  scoreBoardItems={scoreBoardInfo.participants}
-                  problemAmount={scoreBoardInfo.problemAmount}>
-                </ScoreBoardTable>
+                scoreBoardInfo ?
+                  <ScoreBoardTable
+                    onCellClick={(rowIndex, colIndex) => {
+                      setSubmissionDrawerVisible(true);
+                      setActiveCell(scoreBoardInfo.participants[rowIndex].solutionInfo[colIndex]);
+                    }}
+                    scoreBoardItems={scoreBoardInfo.participants}
+                    problemAmount={scoreBoardInfo.problemAmount}>
+                  </ScoreBoardTable> : <Empty image={EMPTY_IMAGE}/>
               }
             </div>
           </Card>
         </div>
+        <SubmissionDrawer
+          onChangeSuccess={() => getScoreBoardInfo(params.problemSetId)}
+          activeCell={activeCell}
+          visible={submissionDrawerVisible}
+          onClose={() => setSubmissionDrawerVisible(false)}/>
       </div>
     </RcQueueAnim>
   )

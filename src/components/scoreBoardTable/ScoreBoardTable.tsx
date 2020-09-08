@@ -17,6 +17,7 @@ import style from "./scoreBoardTable.module.scss";
 interface ScoreBoardTableProps {
   scoreBoardItems: ScoreBoardItem[];
   problemAmount: number;
+  onCellClick: (rowIndex: number, colIndex: number) => void;
 }
 
 const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) => {
@@ -53,12 +54,30 @@ const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) =
     return amount + (amount > 1 ? "tries" : "try");
   }
 
+  // 小单元格被单击
+  const onCellClick = (rowIndex: number | undefined, colIndex: number) => {
+    if (rowIndex !== undefined) {
+      props.onCellClick(rowIndex, colIndex);
+    }
+  }
+
   // 渲染列
   const renderColumns = () => {
     let res = [];
     for (let i = 0; i < props.problemAmount; i++) {
       res.push(
         <Table.Column
+          onCell={(record: any, rowIndex: number | undefined) => {
+            return {
+              onClick: () => {
+                onCellClick(rowIndex, i);
+              }, // 点击行
+              onMouseEnter: event => {
+              }, // 鼠标移入行
+              onMouseLeave: event => {
+              },
+            };
+          }}
           className={style.ant_table_cell}
           key={i}
           title={tenDecimalToTwentySixDecimal(i + 1)}

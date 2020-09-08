@@ -9,7 +9,7 @@
 // request的响应时间最大值
 import {BaseResponse} from "../models/common";
 import {Empty} from "antd";
-import {LanguageTypeEnum} from "../common/enumerations";
+import {JudgeConditionEnum, LanguageTypeEnum} from "../common/enumerations";
 
 export const TIME_OUT: number = 5000;
 
@@ -108,3 +108,12 @@ export const DEFAULT_LANGUAGE = [
 
 // 同时运行的判题个数设置区间
 export const JUDGE_NUMBER_SETTINGS_RANGE = [1, 15];
+
+// 判题结果改变可选值
+export const JUDGE_RESULT_CHANGE_ALLOW_DATA = [
+  JudgeConditionEnum.ACCEPT,
+  JudgeConditionEnum.WRONG_ANSWER,
+  JudgeConditionEnum.RUNTIME_ERROR,
+  JudgeConditionEnum.TIME_LIMIT_EXCEEDED,
+  JudgeConditionEnum.MEMORY_LIMIT_EXCEED
+];

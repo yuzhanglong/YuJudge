@@ -69,3 +69,7 @@ $cms_operation_card_danger_color: #ff4d4f;
   font-weight: $cms_operation_card_title_font_weight;
   font-size: $cms_operation_card_title_font_size;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
