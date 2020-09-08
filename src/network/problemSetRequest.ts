@@ -135,5 +135,10 @@ export const getProblemSetTimeline = (problemSetId: number) => {
 export const removeProblemSet = (problemSetId: number) => {
   return request.delete(
     "/problem_set/problem_set/" + problemSetId,
+    {
+      headers: {
+        loading: true
+      }
+    }
   )
 }

@@ -15,7 +15,7 @@ import EditorTip from "../../../../components/editorTip/editorTip";
 import BasicInfoEditor from "./BasicInfoEditor";
 import {ProblemSet} from "../../../../models/problemSet";
 import {dateRangeMomentArrayToTimeStampArray} from "../../../../utils/dateTime";
-import {updateProblemSetBasicInfo} from "../../../../network/problemSetRequest";
+import {removeProblemSet, updateProblemSetBasicInfo} from "../../../../network/problemSetRequest";
 import RcQueueAnim from "rc-queue-anim";
 import style from "../problemSetEdit.module.scss"
 
@@ -61,6 +61,17 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
         .catch(err => {
           console.log(err);
         })
+    }
+  }
+
+  // 移除题目集
+  const onRemoveProblemSetButtonClick = () => {
+    if (props.problemSet.id) {
+      removeProblemSet(props.problemSet.id)
+        .then(() => {
+          message.success("移除成功~");
+        });
+      props.history.replace("/cms/problem_manage/problem_sets");
     }
   }
 
@@ -113,7 +124,7 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
             <EditorTip
               title={"删除这个题目集"}
               content={"此操作不可恢复，注意: 与它相关联的题目不会被删除"}>
-              <Button danger>
+              <Button danger onClick={() => onRemoveProblemSetButtonClick()}>
                 删除
               </Button>
             </EditorTip>
