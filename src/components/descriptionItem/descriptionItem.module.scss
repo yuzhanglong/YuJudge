@@ -1,0 +1,22 @@
+/*
+ * File: descriptionItem.module.scss
+ * Description: 描述样式
+ * Created: 2020-9-8 20:33:41
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+.description_item_wrapper {
+  margin-bottom: 7px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  line-height: 1.5715;
+  display: flex;
+}
+
+
+.description_item_label {
+  display: inline-block;
+  margin-right: 8px;
+  color: rgba(0, 0, 0, 0.85);
+}
