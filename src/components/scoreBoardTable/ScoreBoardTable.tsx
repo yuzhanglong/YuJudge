@@ -18,6 +18,7 @@ interface ScoreBoardTableProps {
   scoreBoardItems: ScoreBoardItem[];
   problemAmount: number;
   onCellClick: (rowIndex: number, colIndex: number) => void;
+  onHeaderClick?: (problemIndex: string) => void;
 }
 
 const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) => {
@@ -34,13 +35,10 @@ const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) =
         {
           value.tryAmount > 0 &&
           <div>
-            <div style={{
-              fontWeight: "bold",
-              height: 24
-            }}>
+            <div className={style.problem_cell_time}>
               {value.timeCost !== 0 ? value.timeCost : " "}
             </div>
-            <div>
+            <div className={style.problem_cell_try_amount}>
               {getTryAmount(value.tryAmount)}
             </div>
           </div>
@@ -69,16 +67,17 @@ const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) =
         <Table.Column
           onCell={(record: any, rowIndex: number | undefined) => {
             return {
-              onClick: () => {
-                onCellClick(rowIndex, i);
-              }, // 点击行
-              onMouseEnter: event => {
-              }, // 鼠标移入行
-              onMouseLeave: event => {
-              },
+              onClick: () => onCellClick(rowIndex, i)
             };
           }}
-          className={style.ant_table_cell}
+          onHeaderCell={(record: any) => {
+            return {
+              onClick: () => {
+                console.log(record);
+              }
+            };
+          }}
+          className={style.score_board_table_cell}
           key={i}
           title={tenDecimalToTwentySixDecimal(i + 1)}
           align={"center"}

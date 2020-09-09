@@ -59,7 +59,7 @@ export const SINGLE_PAGE_SIZE_IN_USER_MANAGE = 10;
 export const DEFAULT_DATE_TIME_FORMAT = "YYYY-MM-DD HH:mm:ss";
 
 // 默认日期格式化
-export const TIME_LINE_IN_PROBLEM_SET_FORMAT = "YYYY-MM-DD HH:mm";
+export const TIME_LINE_IN_PROBLEM_SET_FORMAT = DEFAULT_DATE_TIME_FORMAT;
 
 // 日期格式化 - 小时
 export const DATE_TIME_FORMAT_BY_HOUR = "HH:mm:ss";

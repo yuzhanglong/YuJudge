@@ -9,7 +9,11 @@
 
 import request from "./interceptor";
 import {ProblemSet} from "../models/problemSet";
-import {ProblemSetPaginationRequest, ProblemSetProblemPaginationRequest} from "../models/pagination";
+import {
+  ProblemSetPaginationRequest,
+  ProblemSetProblemPaginationRequest,
+  TimelinePaginationRequest
+} from "../models/pagination";
 
 
 // 获取题目集信息，其中的isLimit代表是否仅展示活跃的题目集
@@ -125,9 +129,12 @@ export const countProblemSetScatter = (problemSetId: number) => {
 }
 
 // 获取题目集时间线
-export const getProblemSetTimeline = (problemSetId: number) => {
+export const getProblemSetTimeline = (requestBody: TimelinePaginationRequest) => {
   return request.get(
-    "/problem_set/timeline/" + problemSetId,
+    "/problem_set/timeline/",
+    {
+      params: requestBody
+    }
   )
 }
 

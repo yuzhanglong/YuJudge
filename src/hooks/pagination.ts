@@ -19,6 +19,7 @@ export const UsePaginationState = <T>(
   const [items, setItems] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [paginationInfo, setPaginationInfo] = useState<Pagination>({
+    items: [],
     count: 0,
     page: 0,
     total: 0,

@@ -41,6 +41,7 @@ const ScoreBoard: React.FunctionComponent<ScoreBoardProps & RouteComponentProps>
   // 活跃的表格
   const [activeCell, setActiveCell] = useState<ScoreBoardSolutionInfo>();
 
+
   // 获取记分板数据
   const getScoreBoardInfo = (problemSetId: number) => {
     getProblemSetScoreBoard(problemSetId)
@@ -56,6 +57,17 @@ const ScoreBoard: React.FunctionComponent<ScoreBoardProps & RouteComponentProps>
       })
   }
 
+  // 某个小格子被单击
+  const onCellClick = (rowIndex: number, colIndex: number) => {
+    if (scoreBoardInfo) {
+      const solutions = scoreBoardInfo.participants[rowIndex].solutionInfo[colIndex];
+      if (solutions.submissionId !== -1) {
+        setSubmissionDrawerVisible(true);
+        setActiveCell(solutions);
+      }
+    }
+  }
+
   return (
     <RcQueueAnim>
       <div className={style.score_board} key={"score_board"}>
@@ -68,8 +80,7 @@ const ScoreBoard: React.FunctionComponent<ScoreBoardProps & RouteComponentProps>
                 scoreBoardInfo ?
                   <ScoreBoardTable
                     onCellClick={(rowIndex, colIndex) => {
-                      setSubmissionDrawerVisible(true);
-                      setActiveCell(scoreBoardInfo.participants[rowIndex].solutionInfo[colIndex]);
+                      onCellClick(rowIndex, colIndex)
                     }}
                     scoreBoardItems={scoreBoardInfo.participants}
                     problemAmount={scoreBoardInfo.problemAmount}>

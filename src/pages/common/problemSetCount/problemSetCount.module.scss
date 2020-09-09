@@ -8,6 +8,8 @@
 
 @import "src/styles/public";
 
+$time_line_item_to_icon_spacing: 20px;
+
 .problem_set_count {
   @include common-page;
 }
@@ -23,20 +25,23 @@
 }
 
 .time_line_body {
-  display: flex;
+  background-color: #f5f6f9;
+  padding: 24px;
+  border-radius: 10px;
+  margin: $time_line_item_to_icon_spacing;
+  text-align: left;
 }
 
 .time_line_tags {
 
 }
 
-.time_line_description {
-  display: flex;
-}
-
-.time_line_description_creator {
+.time_line_description_head {
   font-weight: bold;
-  margin-right: 6px;
+  font-size: 18px;
+  padding-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .time_line_description_content {
@@ -44,5 +49,22 @@
 }
 
 .time_line_time {
-  font-weight: bold;
+  color: #7c7f8c;
+  margin-left: $time_line_item_to_icon_spacing;
+  margin-right: $time_line_item_to_icon_spacing;
+}
+
+.time_line_icon {
+  font-size: 20px;
+}
+
+.time_line_icon_first_ac {
+  font-size: 20px;
+  color: #722ed1;
+}
+
+
+.time_line_pagination {
+  display: flex;
+  justify-content: center;
 }

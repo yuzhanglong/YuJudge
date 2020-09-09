@@ -11,14 +11,12 @@ import {Button, Col, Divider, Drawer, message, Row, Select} from "antd";
 import {ScoreBoardSolutionInfo, SubmissionDetail} from "../../models/submission";
 import {changeSubmissionCondition, getSubmissionById} from "../../network/submissionRequest";
 import DescriptionItem from "../descriptionItem/DescriptionItem";
-import ConditionTag from "../conditionTag/ConditionTag";
-import {JudgeConditionEnum} from "../../common/enumerations";
 import style from "./submissionDrawer.module.scss";
 import moment from "moment";
 import {DEFAULT_DATE_TIME_FORMAT, JUDGE_RESULT_CHANGE_ALLOW_DATA} from "../../config/config";
 import EditorTip from "../editorTip/editorTip";
 import TestCaseList from "../testCaseList/TestCaseList";
-import {JUDGE_CONDITION_TAG_NAMES_CHINESE} from "../../common/judgeCondition";
+import {JUDGE_CONDITION_COLORS, JUDGE_CONDITION_TAG_NAMES_CHINESE} from "../../common/judgeCondition";
 
 interface SubmissionDrawerProps {
   visible: boolean;
@@ -94,10 +92,14 @@ const SubmissionDrawer: React.FunctionComponent<SubmissionDrawerProps> = (props)
               <DescriptionItem
                 title="结果"
                 content={
-                  <ConditionTag
-                    condition={submissionDetail.judgeCondition || JudgeConditionEnum.WAITING}
-                    detail={null}/>
-                }/>
+                  <div className={style.judge_condition_name}>
+                    <div
+                      style={{color: submissionDetail.judgeCondition ? JUDGE_CONDITION_COLORS[submissionDetail.judgeCondition] : undefined}}>
+                      {submissionDetail.judgeCondition}
+                    </div>
+                  </div>
+                }
+              />
             </Col>
             <Col span={12}>
               <DescriptionItem
@@ -112,11 +114,13 @@ const SubmissionDrawer: React.FunctionComponent<SubmissionDrawerProps> = (props)
                 content={moment(submissionDetail.createTime).format(DEFAULT_DATE_TIME_FORMAT)}/>
             </Col>
             <Col span={12}>
-
+              <DescriptionItem
+                title="评测机"
+                content={`${submissionDetail.judgeHost?.name}`}/>
             </Col>
           </Row>
           <Divider/>
-          <p>测试点</p>
+          <p className={style.drawer_item_title}>测试点</p>
           <TestCaseList testCases={submissionDetail.judgeResult.judgeResults}/>
           <Divider/>
           <p className={style.drawer_item_title}>

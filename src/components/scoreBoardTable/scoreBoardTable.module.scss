@@ -10,7 +10,7 @@
 
 }
 
-.ant_table_cell {
+.score_board_table_cell {
   padding: 0 !important;
   margin: 0;
 }
@@ -30,4 +30,15 @@
 
 .accept_first {
   background-color: #1daa1d !important;
+}
+
+.problem_cell_time {
+  font-weight: 700;
+  height: 24px;
+  cursor: pointer;
+}
+
+.problem_cell_try_amount {
+  font-weight: 640;
+  cursor: pointer;
 }

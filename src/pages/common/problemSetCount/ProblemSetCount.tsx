@@ -66,6 +66,7 @@ const ProblemSetCount: React.FunctionComponent<ProblemSetCountProps & RouteCompo
                     submissionCounts={problemSetSubmissionCounts}/>
                 </Card>
                 <Card title={"时间轴"} style={{marginTop: 30}}>
+
                   <ProblemSetTimeLine problemSetId={problemSetId}/>
                 </Card>
               </div>

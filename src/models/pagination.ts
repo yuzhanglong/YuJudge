@@ -16,11 +16,11 @@ export interface PaginationResponse extends BaseResponse {
 
 // 分页响应的基本信息
 export interface Pagination {
-  count?: number;
-  page?: number;
-  total?: number;
-  totalPage?: number;
-  items?: any;
+  count: number;
+  page: number;
+  total: number;
+  totalPage: number;
+  items: any;
 }
 
 // 基础分页对象
@@ -53,4 +53,9 @@ export interface UsersPaginationRequest extends PaginationRequest {
 // 通知相关分页请求
 export interface NoticePaginationRequest extends PaginationRequest {
 
+}
+
+// 时间线分页对象
+export interface TimelinePaginationRequest extends PaginationRequest {
+  problemSetId: number;
 }
