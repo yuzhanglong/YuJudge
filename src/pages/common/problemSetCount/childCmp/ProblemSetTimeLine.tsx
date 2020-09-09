@@ -8,7 +8,7 @@
 
 import React, {useEffect} from "react";
 import {getProblemSetTimeline} from "../../../../network/problemSetRequest";
-import {Empty, message, Pagination, Tag, Timeline} from "antd";
+import {Button, Empty, message, Pagination, Tag, Timeline} from "antd";
 import {CheckCircleOutlined} from "@ant-design/icons";
 import style from "../problemSetCount.module.scss"
 import {tenDecimalToTwentySixDecimal} from "../../../../utils/math";
@@ -48,6 +48,11 @@ const ProblemSetTimeLine: React.FunctionComponent<ProblemSetTimeLineProps> = (pr
       })
   }
 
+  // 前往问题
+  const onProblemIndexClick = (problemId: number) => {
+    window.reactRouter.push(`/common/problem_set/${props.problemSetId}/problem/${problemId}`)
+  }
+
 
   // 渲染时间线
   const renderTimeline = () => {
@@ -72,7 +77,10 @@ const ProblemSetTimeLine: React.FunctionComponent<ProblemSetTimeLineProps> = (pr
               </div>
             </div>
             <div className={style.time_line_description_content}>
-              通过【{tenDecimalToTwentySixDecimal(res.problemIndex + 1)}】题
+              通过【<span className={style.time_line_description_link}
+              onClick={() => onProblemIndexClick(res.problemId)}>
+              {tenDecimalToTwentySixDecimal(res.problemIndex + 1)}
+            </span>】题
             </div>
           </div>
         </Timeline.Item>

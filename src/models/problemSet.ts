@@ -35,4 +35,5 @@ export interface ProblemSetTimelineItem {
   isFirstAc: boolean;
   acTime: number;
   problemIndex: number;
+  problemId: number;
 }

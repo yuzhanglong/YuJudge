@@ -48,6 +48,11 @@ $time_line_item_to_icon_spacing: 20px;
 
 }
 
+.time_line_description_link {
+  cursor: pointer;
+  color: #1890ff;
+}
+
 .time_line_time {
   color: #7c7f8c;
   margin-left: $time_line_item_to_icon_spacing;
