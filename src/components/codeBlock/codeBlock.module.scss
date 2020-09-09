@@ -1,0 +1,39 @@
+/*
+ * File: codeBlock.module.scss
+ * Description: 代码块的样式类
+ * Created: 2020-9-10 01:18:38
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+
+.code_block {
+  background-color: #f8f8f8;
+  border: 1px solid hsl(0, 0%, 91%);
+  padding: 16px;
+
+  :hover {
+    background-color: #ffffff;
+  }
+}
+
+.code_block_language_in {
+
+}
+
+.code_block_language_out {
+
+}
+
+.code_block_tools {
+  position: absolute;
+  right: 8px;
+}
+
+.code_block_tools_wrap {
+  position: relative;
+}
+
+.code_block_code {
+  padding: 16px;
+}
