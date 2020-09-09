@@ -1,5 +1,5 @@
 /*
- * File: math.ts
+ * File: mathFormula.ts
  * Description: 计算相关工具函数
  * Created: 2020-08-11 19:42:03
  * Author: yuzhanglong

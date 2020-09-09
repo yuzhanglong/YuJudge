@@ -12,10 +12,9 @@ import {Problem} from "../../../../../../models/problem";
 import TagGroup from "../../../../../../components/tagGroup/TagGroup";
 import {editProblemBasicInfo} from "../../../../../../network/problemRequests";
 import style from "../../../problemEdit.module.scss";
-import {Editor} from "react-draft-wysiwyg";
-import {ContentState, convertToRaw, EditorState} from "draft-js";
-import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
+import MathFormula from "../../../../../../components/mathFormula/MathFormula";
+
+
 interface BasicInfoFormProps {
   problem: Problem;
 }
@@ -24,8 +23,6 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
   const [form] = Form.useForm();
   // 当前标签
   const [currentTags, setCurrentTags] = useState<string[]>([]);
-  // 编辑器状态
-  const [editorState, setEditorState] = useState<EditorState>();
 
 
   useEffect(() => {
@@ -35,15 +32,7 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
 
 
   useEffect(() => {
-    if (props.problem.content != null) {
-      const draft = htmlToDraft(props.problem.content);
-      if (draft) {
-        const contentState = ContentState.createFromBlockArray(draft.contentBlocks);
-        const editorState = EditorState.createWithContent(contentState);
-        setEditorState(editorState);
-      }
 
-    }
   }, [props.problem])
 
 
@@ -57,24 +46,21 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
 
   // 保存修改
   const onSaveButtonClick = () => {
-    if (editorState) {
-      const content = draftToHtml(convertToRaw(editorState.getCurrentContent()));
-      form.validateFields()
-        .then(res => {
-          let requestBody: Problem = {
-            characterTags: currentTags,
-            content: content,
-            name: res.name,
-            id: props.problem.id
-          }
-          editProblemBasicInfo(requestBody)
-            .then(() => {
-              message.success("保存成功~");
-            });
-        })
-        .catch(() => {
-        })
-    }
+    form.validateFields()
+      .then(res => {
+        let requestBody: Problem = {
+          characterTags: currentTags,
+          content: res.content,
+          name: res.name,
+          id: props.problem.id
+        }
+        editProblemBasicInfo(requestBody)
+          .then(() => {
+            message.success("保存成功~");
+          });
+      })
+      .catch(() => {
+      })
   }
 
   return (
@@ -88,6 +74,7 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
             name={"name"}>
             <Input/>
           </Form.Item>
+          <MathFormula math={"\\int_0^\\infty x^2 dx"}/>
           <Form.Item
             label="题目标签">
             <TagGroup
@@ -98,16 +85,13 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
               onTagRemove={onTagRemove}
               isRefuseLastTagClose/>
           </Form.Item>
+          <Form.Item
+            label="内容"
+            name={"content"}>
+            <Input.TextArea autoSize/>
+          </Form.Item>
         </Form>
       </div>
-      <Editor
-        editorState={editorState}
-        wrapperClassName={style.problem_edit_content_editor}
-        editorClassName={style.problem_edit_content_editor_body}
-        onEditorStateChange={(state) => {
-          setEditorState(state);
-        }}
-      />
       <Button
         type="primary"
         style={{

@@ -21,6 +21,8 @@ import {DEFAULT_JUDGE_PREFERENCE} from "../../../config/config";
 import {submitCode} from "../../../network/submissionRequest";
 import RcQueueAnim from "rc-queue-anim";
 import {BaseResponse} from "../../../models/common";
+import ReactMarkdown from "react-markdown";
+import BetterMarkdown from "../../../components/betterMarkdown/BetterMarkdown";
 
 interface ProblemShowProps {
   children: React.ReactNode;
@@ -141,7 +143,7 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
                 </div>
                 <div className={style.problem_home_content_body}>
                   <Card className={style.problem_home_content_item}>
-                    {isInProblemHome() && <div dangerouslySetInnerHTML={{__html: problem.content || ""}}/>}
+                    {isInProblemHome() && <div>{<BetterMarkdown data={problem.content}/>}</div>}
                     {!isInProblemHome() && props.children}
                   </Card>
                   {
