@@ -122,7 +122,6 @@ const SubmissionDrawer: React.FunctionComponent<SubmissionDrawerProps> = (props)
           <Divider/>
           <p className={style.drawer_item_title}>测试点</p>
           <TestCaseList testCases={submissionDetail.judgeResult.judgeResults}/>
-          <Divider/>
           <p className={style.drawer_item_title}>
             操作
           </p>

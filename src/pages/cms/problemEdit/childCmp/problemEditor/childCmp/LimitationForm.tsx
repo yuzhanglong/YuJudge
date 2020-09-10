@@ -1,5 +1,5 @@
 /*
- * File: limitationForm.tsx
+ * File: LimitationForm.tsx
  * Description: 题目限制相关表单编辑组件
  * Created: 2020-08-15 15:02:16
  * Author: yuzhanglong

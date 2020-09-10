@@ -8,7 +8,7 @@
 
 import React from "react";
 import {JudgeResultForSingleTestCase} from "../../models/submission";
-import {Button, Col, List, Row} from "antd";
+import {Button, Col, Divider, Row} from "antd";
 import ConditionTag from "../conditionTag/ConditionTag";
 import style from "./testCaseList.module.scss";
 import {ClockCircleOutlined, CodeOutlined, DownloadOutlined} from "@ant-design/icons";
@@ -22,7 +22,7 @@ const TestCaseList: React.FunctionComponent<TestCaseListProps> = (props) => {
   // 渲染列表描述
   const renderListItemDescription = (testCase: JudgeResultForSingleTestCase) => {
     return (
-      <div>
+      <div className={style.list_item_description}>
         <Row>
           <Col style={{
             marginRight: 20
@@ -38,34 +38,42 @@ const TestCaseList: React.FunctionComponent<TestCaseListProps> = (props) => {
   }
 
   return (
-    <List
-      pagination={false}
-      itemLayout="horizontal"
-      dataSource={props.testCases}
-      renderItem={(item: JudgeResultForSingleTestCase, index: number) => (
-        <List.Item>
-          <List.Item.Meta
-            avatar={
-              <ConditionTag
-                isEntire={false}
-                condition={item.message || ""}
-                detail={null}/>
-            }
-            title={
-              <div
-                className={style.test_case_title}>
-                {`测试点${index}`}
-              </div>
-            }
-            description={renderListItemDescription(item)}
-          />
-          <Button
-            className={style.download_button}
-            icon={<DownloadOutlined/>}
-            size={"middle"}/>
-        </List.Item>
-      )}
-    />
+    <div>
+      {
+        props.testCases.map((item, index) => {
+          return (
+            <div>
+              <Row align={"middle"}>
+                <Col span={2}>
+                  <ConditionTag
+                    isEntire={false}
+                    condition={item.message || ""}
+                    detail={null}/>
+                </Col>
+                <Col span={18}>
+                  <Row>
+                    <div
+                      className={style.test_case_title}>
+                      {`测试点${index}`}
+                    </div>
+                  </Row>
+                  <Row>
+                    {renderListItemDescription(item)}
+                  </Row>
+                </Col>
+                <Col span={4}>
+                  <Button
+                    className={style.download_button}
+                    icon={<DownloadOutlined/>}
+                    size={"middle"}/>
+                </Col>
+              </Row>
+              <Divider/>
+            </div>
+          )
+        })
+      }
+    </div>
   )
 }
 

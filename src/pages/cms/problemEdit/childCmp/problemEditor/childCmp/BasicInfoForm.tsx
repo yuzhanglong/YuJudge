@@ -1,5 +1,5 @@
 /*
- * File: basicInfoForm.tsx
+ * File: BasicInfoForm.tsx
  * Description: 题目基本信息表单
  * Created: 2020-8-25 15:43:31
  * Author: yuzhanglong

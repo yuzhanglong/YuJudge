@@ -1,9 +1,9 @@
 import React from "react";
 import {Card, Button} from "antd";
 import {Problem, ProblemTestCase} from "../../../../../models/problem";
-import LimitationForm from "./childCmp/limitationForm";
-import BasicInfoForm from "./childCmp/basicInfoForm";
-import DangerZoneForm from "./childCmp/dangerZoneForm";
+import LimitationForm from "./childCmp/LimitationForm";
+import BasicInfoForm from "./childCmp/BasicInfoForm";
+import DangerZoneForm from "./childCmp/DangerZoneForm";
 import TestCaseTable from "../../../../../components/testCaseTable/TestCaseTable";
 import style from "../../problemEdit.module.scss";
 
