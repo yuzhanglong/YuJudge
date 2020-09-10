@@ -137,7 +137,8 @@ module.exports = function (webpackEnv) {
       "@antv/g6": "G6",
       "@antv/g2": "G2",
       "moment": "moment",
-      "katex": "katex"
+      "katex": "katex",
+      "codemirror": "CodeMirror"
     } : {},
     mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
     // Stop compilation early in production
