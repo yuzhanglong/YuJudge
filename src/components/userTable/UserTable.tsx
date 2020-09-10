@@ -26,6 +26,7 @@ interface UserTableProps {
   isLoading?: boolean;
   onPageChange?: (page: number) => void;
   tableSize?: SizeType;
+  userNameCanClick?: boolean;
 }
 
 const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
@@ -93,10 +94,15 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
   }
 
   // 渲染用户名
-  const renderUserName = (name: string) => {
-    return (
-      <div className={style.user_name}>{name}</div>
-    )
+  const renderUserName = (userInfo: UserInfo) => {
+    return props.userNameCanClick ?
+      <a className={style.user_name} onClick={() => {
+        window.reactRouter.push("/common/profile/" + userInfo.id)
+      }}>
+        {userInfo.nickname}
+      </a> : <div className={style.user_name}>
+        {userInfo.nickname}
+      </div>
   }
 
   return (
@@ -113,7 +119,7 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
       }
       <Table.Column
         title={"用户名"}
-        dataIndex={"nickname"} render={renderUserName}/>
+        render={renderUserName}/>
       {
         props.showScope &&
         <Table.Column
@@ -157,7 +163,8 @@ UserTable.defaultProps = {
   showScope: false,
   showEmail: false,
   isLoading: false,
-  tableSize: undefined
+  tableSize: undefined,
+  userNameCanClick: false
 }
 
 export default UserTable;

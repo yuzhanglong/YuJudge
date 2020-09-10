@@ -66,10 +66,7 @@ const AddProblem: React.FunctionComponent<AddProblemProps> = (props) => {
       cancelText: '取消',
       onOk() {
         onAddConfirm();
-      },
-      onCancel() {
-        console.log('Cancel');
-      },
+      }
     })
   }
 

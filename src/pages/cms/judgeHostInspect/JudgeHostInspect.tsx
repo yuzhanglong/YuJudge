@@ -102,7 +102,6 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
   const getSubmissionCountsData = (begin?: string, end?: string) => {
     let b = begin || moment().subtract(1, 'days').format(DEFAULT_DATE_TIME_FORMAT);
     let e = end || moment().format(DEFAULT_DATE_TIME_FORMAT);
-    console.log(moment().format(DEFAULT_DATE_TIME_FORMAT));
     countJudgeHostSubmissionInfo(b, e, params.judgeHostId)
       .then(res => {
         setJudgeHostSubmissionCounts(res.data.items);

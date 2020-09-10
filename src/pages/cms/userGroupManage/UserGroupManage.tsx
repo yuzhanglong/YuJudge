@@ -78,7 +78,6 @@ const UserGroupManage: React.FunctionComponent<UserGroupManageProps> = () => {
 
   // 删除用户组
   const onUserGroupDelete = (value: UserGroupInfo) => {
-    console.log(value);
     Modal.confirm({
       title: '删除确认',
       icon: <ExclamationCircleOutlined/>,

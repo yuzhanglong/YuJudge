@@ -58,8 +58,7 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
         .then(() => {
           message.success("编辑成功");
         })
-        .catch(err => {
-          console.log(err);
+        .catch(() => {
         })
     }
   }

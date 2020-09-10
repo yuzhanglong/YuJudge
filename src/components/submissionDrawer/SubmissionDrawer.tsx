@@ -81,7 +81,7 @@ const SubmissionDrawer: React.FunctionComponent<SubmissionDrawerProps> = (props)
         <Drawer
           width={640}
           visible={props.visible}
-          title={`基本信息 #${props.activeCell.submissionId}`}
+          title={`提交 #${props.activeCell.submissionId}`}
           closable={false}
           onClose={() => props.onClose()}>
           <p className={style.drawer_item_title}>

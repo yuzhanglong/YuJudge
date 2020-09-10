@@ -42,7 +42,7 @@ const SideItem: React.FunctionComponent<SideItemProps> = (props) => {
       </div>
       <div key={"home_content_side_item3"}>
         <Card title={"活跃用户"} className={style.home_content_side_item}>
-          <UserTable userInfo={props.activeUserInfo} tableSize={"middle"}/>
+          <UserTable userInfo={props.activeUserInfo} tableSize={"middle"} userNameCanClick/>
         </Card>
       </div>
     </RcQueueAnim>

@@ -34,8 +34,7 @@ const CodeTool: React.FunctionComponent<CodeToolProps> = (props) => {
   }
 
   return (
-    <div
-      className={props.classNames}>
+    <div className={props.classNames}>
       <CopyToClipboard text={props.code} onCopy={() => onCopySuccess()}>
         <Tooltip placement="left" title={toolTipData}>
           <CopyTwoTone onMouseLeave={() => onMouseMoveFromIcon()}/>

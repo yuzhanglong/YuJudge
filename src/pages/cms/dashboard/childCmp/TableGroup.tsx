@@ -51,7 +51,10 @@ const TableGroup: React.FunctionComponent<DashboardTableGroupProps> = (props) =>
               <DashOutlined/>
             }>
             <div>
-              <UserTable userInfo={props.userInfo} showRanking/>
+              <UserTable
+                userInfo={props.userInfo}
+                showRanking
+                userNameCanClick={true}/>
             </div>
           </Card>
         </Col>

@@ -29,7 +29,6 @@ const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
   const checkRecentSubmissionIsEmpty = () => {
     for (let i = 0; i < props.recentSubmission.length; i++) {
       if (props.recentSubmission[i].totalAmount !== 0) {
-        console.log(props.recentSubmission[i]);
         return false;
       }
     }

@@ -21,7 +21,6 @@ const getClientEnvironment = require('../env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CompressionPlugin = require("compression-webpack-plugin");
 const postcssNormalize = require('postcss-normalize');
@@ -137,7 +136,8 @@ module.exports = function (webpackEnv) {
       "react-dom": "ReactDOM",
       "@antv/g6": "G6",
       "@antv/g2": "G2",
-      "moment": "moment"
+      "moment": "moment",
+      "katex": "katex"
     } : {},
     mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
     // Stop compilation early in production
@@ -542,13 +542,7 @@ module.exports = function (webpackEnv) {
       }),
 
       // 打包数据分析插件
-      isEnvProduction && new BundleAnalyzerPlugin({analyzerPort: 3100}),
-
-      // Monaco代码编辑器
-      new MonacoWebpackPlugin({
-        languages: ['cpp', 'java', 'python'],
-        features: ["coreCommands", "find"]
-      }),
+      isEnvProduction && new BundleAnalyzerPlugin({analyzerPort: 3102}),
 
       // 生成一个带有<script>注入的`index.html`文件。
       new HtmlWebpackPlugin(

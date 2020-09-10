@@ -70,13 +70,6 @@ const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) =
               onClick: () => onCellClick(rowIndex, i)
             };
           }}
-          onHeaderCell={(record: any) => {
-            return {
-              onClick: () => {
-                console.log(record);
-              }
-            };
-          }}
           className={style.score_board_table_cell}
           key={i}
           title={tenDecimalToTwentySixDecimal(i + 1)}

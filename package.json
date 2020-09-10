@@ -19,7 +19,7 @@
     "@types/react-loadable": "^5.5.3",
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.5",
-    "@types/react-syntax-highlighter": "^11.0.4",
+    "@types/react-syntax-highlighter": "^11.0.5",
     "@types/redux": "^3.6.0",
     "@typescript-eslint/eslint-plugin": "^2.10.0",
     "@typescript-eslint/parser": "^2.10.0",
@@ -33,6 +33,7 @@
     "camelcase": "^5.3.1",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
     "classnames": "^2.2.6",
+    "codemirror": "^5.57.0",
     "compression-webpack-plugin": "^5.0.1",
     "css-loader": "3.4.2",
     "dotenv": "8.2.0",
@@ -54,7 +55,6 @@
     "jest-resolve": "24.9.0",
     "jest-watch-typeahead": "0.4.2",
     "mini-css-extract-plugin": "0.9.0",
-    "monaco-editor-webpack-plugin": "^1.9.0",
     "node-sass": "^4.14.1",
     "optimize-css-assets-webpack-plugin": "5.0.3",
     "pnp-webpack-plugin": "1.6.4",
@@ -68,16 +68,16 @@
     "rc-tween-one": "^2.7.3",
     "react": "^16.13.1",
     "react-app-polyfill": "^1.0.6",
+    "react-codemirror2": "^7.2.1",
     "react-copy-to-clipboard": "^5.0.2",
     "react-dev-utils": "^10.2.1",
     "react-dom": "^16.13.1",
     "react-katex": "^2.0.2",
     "react-loadable": "^5.5.0",
     "react-markdown": "^4.3.1",
-    "react-monaco-editor": "^0.40.0",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
-    "react-syntax-highlighter": "^12.2.1",
+    "react-syntax-highlighter": "^13.5.3",
     "redux": "^4.0.5",
     "resolve": "1.15.0",
     "resolve-url-loader": "3.1.1",
@@ -101,7 +101,10 @@
     "buildAndUpload": "node scripts/build.js http://cdn.yuzzl.top"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "jsx-a11y/anchor-is-valid": "off"
+    }
   },
   "browserslist": {
     "production": [

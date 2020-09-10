@@ -9,10 +9,12 @@
 import React, {useEffect, useState} from "react";
 import SubmitToolBar from "../submitToolBar/SubmitToolBar";
 import LanguageSelector from "../../pages/common/problemHome/childCmp/LanguageSelector";
-import MonacoEditor from "react-monaco-editor";
 import style from "./codeEditor.module.scss"
 import {message} from "antd";
 import {DEFAULT_LANGUAGE} from "../../config/config";
+import {UnControlled as CodeMirror} from 'react-codemirror2'
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/xq-light.css';
 
 interface CodeEditorProps {
   allowedLanguage: string[];
@@ -62,22 +64,16 @@ const CodeEditor: React.FunctionComponent<CodeEditorProps> = (props) => {
           }/>
       </div>
       <div className={style.code_editor_editor_wrap}>
-        <MonacoEditor
+        <CodeMirror
+          className={style.code_mirror}
           value={codeContent}
-          height={500}
-          language="cpp"
+          onChange={(editor, data, value) => setCodeContent(value)}
           options={{
-            minimap: {
-              enabled: false
-            },
-            scrollbar: {
-              horizontal: "hidden"
-            },
-            automaticLayout: true
+            mode: 'xml',
+            theme: 'xq-light',
+            lineNumbers: true
           }}
-          onChange={(value) => {
-            setCodeContent(value);
-          }}/>
+        />
       </div>
       <div className={style.code_editor_submit_tools}>
         <SubmitToolBar

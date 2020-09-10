@@ -70,6 +70,14 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
           }
           {
             getProblemSetId() &&
+            <Menu.Item icon={<FileSearchOutlined/>} key={`/common/problem_set/${getProblemSetId()}/problems`}>
+              <Link to={`/common/problem_set/${getProblemSetId()}/problems`}>
+                <span className={style.nav_text}>所有题目</span>
+              </Link>
+            </Menu.Item>
+          }
+          {
+            getProblemSetId() &&
             <Menu.Item icon={<UserOutlined/>} key={`/common/problem_set/${getProblemSetId()}/score_board`}>
               <Link to={`/common/problem_set/${getProblemSetId()}/score_board`}>
                 <span className={style.nav_text}>记分板</span>

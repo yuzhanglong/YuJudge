@@ -7,7 +7,7 @@
  */
 
 import React, {useEffect, useState} from "react";
-import {Button, Card, Input} from "antd";
+import {Card, Input} from "antd";
 import style from "./markdownEditor.module.scss";
 import BetterMarkdown from "../betterMarkdown/BetterMarkdown";
 import classNames from "classnames";

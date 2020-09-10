@@ -40,7 +40,6 @@ const SubmissionCount: React.FunctionComponent<SubmissionCountProps> = (props) =
   // 获取时间格式, 由于时间差的不同，我们需要不同的格式
   const getDateFormat = () => {
     if (currentDateRange && currentDateRange.length === 2) {
-      console.log(currentDateRange);
       const duration = currentDateRange[1].diff(currentDateRange[0], 'days');
       // 超过一天
       if (duration < -1 || duration > 1) {
