@@ -12,6 +12,7 @@ import {Problem} from "../../../../../../models/problem";
 import TagGroup from "../../../../../../components/tagGroup/TagGroup";
 import {editProblemBasicInfo} from "../../../../../../network/problemRequests";
 import style from "../../../problemEdit.module.scss";
+import MarkdownEditor from "../../../../../../components/markdownEditor/MarkdownEditor";
 
 
 interface BasicInfoFormProps {
@@ -23,10 +24,14 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
   // 当前标签
   const [currentTags, setCurrentTags] = useState<string[]>([]);
 
+  // Markdown内容
+  const [content, setContent] = useState<string | undefined>("");
+
 
   useEffect(() => {
     form.setFieldsValue(props.problem);
     setCurrentTags(props.problem.characterTags || []);
+    setContent(props.problem.content);
   }, [form, props.problem]);
 
 
@@ -49,7 +54,7 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
       .then(res => {
         let requestBody: Problem = {
           characterTags: currentTags,
-          content: res.content,
+          content: content,
           name: res.name,
           id: props.problem.id
         }
@@ -73,8 +78,7 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
             name={"name"}>
             <Input/>
           </Form.Item>
-          <Form.Item
-            label="题目标签">
+          <Form.Item label="题目标签">
             <TagGroup
               initTags={currentTags}
               onTagAdd={(e: string[]) => {
@@ -83,13 +87,11 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
               onTagRemove={onTagRemove}
               isRefuseLastTagClose/>
           </Form.Item>
-          <Form.Item
-            label="内容"
-            name={"content"}>
-            <Input.TextArea autoSize/>
-          </Form.Item>
         </Form>
       </div>
+      <MarkdownEditor
+        value={content || ""}
+        onValueChange={(v) => setContent(v)}/>
       <Button
         type="primary"
         style={{
