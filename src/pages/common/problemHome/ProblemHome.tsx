@@ -21,7 +21,6 @@ import {DEFAULT_JUDGE_PREFERENCE} from "../../../config/config";
 import {submitCode} from "../../../network/submissionRequest";
 import RcQueueAnim from "rc-queue-anim";
 import {BaseResponse} from "../../../models/common";
-import ReactMarkdown from "react-markdown";
 import BetterMarkdown from "../../../components/betterMarkdown/BetterMarkdown";
 
 interface ProblemShowProps {
@@ -29,7 +28,6 @@ interface ProblemShowProps {
 }
 
 const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProps> = (props) => {
-  console.log(props);
 
   const params: any = props.match.params;
   const problemId: number = params.problemId;

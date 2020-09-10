@@ -12,7 +12,6 @@ import {Problem} from "../../../../../../models/problem";
 import TagGroup from "../../../../../../components/tagGroup/TagGroup";
 import {editProblemBasicInfo} from "../../../../../../network/problemRequests";
 import style from "../../../problemEdit.module.scss";
-import MathFormula from "../../../../../../components/mathFormula/MathFormula";
 
 
 interface BasicInfoFormProps {
@@ -74,7 +73,6 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
             name={"name"}>
             <Input/>
           </Form.Item>
-          <MathFormula math={"\\int_0^\\infty x^2 dx"}/>
           <Form.Item
             label="题目标签">
             <TagGroup

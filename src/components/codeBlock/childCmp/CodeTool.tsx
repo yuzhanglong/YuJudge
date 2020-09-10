@@ -7,7 +7,7 @@
  */
 
 import React, {useState} from "react";
-import {CopyOutlined} from "@ant-design/icons";
+import {CopyTwoTone} from "@ant-design/icons";
 import CopyToClipboard from 'react-copy-to-clipboard';
 import {Tooltip} from "antd";
 
@@ -22,20 +22,28 @@ const CodeTool: React.FunctionComponent<CodeToolProps> = (props) => {
 
   // 复制成功
   const onCopySuccess = () => {
-    setToolTipData("已复制");
-    setTimeout(() => {
-      setToolTipData("点击复制");
-    }, 2000);
+    setToolTipData("复制成功");
   }
+
+  // 鼠标从复制图标上移开
+  const onMouseMoveFromIcon = () => {
+    // 给个延迟，防止在tooltip收回动画播放时文字改变让人视觉上感到不适
+    setTimeout(() => {
+      setToolTipData("点击复制")
+    }, 500);
+  }
+
   return (
-    <div className={props.classNames}>
+    <div
+      className={props.classNames}>
       <CopyToClipboard text={props.code} onCopy={() => onCopySuccess()}>
         <Tooltip placement="left" title={toolTipData}>
-          <CopyOutlined/>
+          <CopyTwoTone onMouseLeave={() => onMouseMoveFromIcon()}/>
         </Tooltip>
       </CopyToClipboard>
     </div>
   )
 }
+
 
 export default CodeTool;
