@@ -18,12 +18,12 @@ import CurrentCondition from "./childCmp/CurrentCondition";
 import SubmissionCount from "../../../components/submissionCount/SubmissionCount";
 import {SubmissionCountInfo} from "../../../models/submission";
 import {getDateRangeMomentArray} from "../../../utils/dateTime";
-import {DEFAULT_DATE_TIME_FORMAT} from "../../../config/config";
+import {DEFAULT_DATE_TIME_FORMAT, EMPTY_IMAGE} from "../../../config/config";
 import moment from "moment";
 import RcQueueAnim from "rc-queue-anim";
 import style from "./judgeHostInspect.module.scss";
 import Operations from "./childCmp/Operations";
-import {Badge, Card} from "antd";
+import {Badge, Card, Empty} from "antd";
 
 interface JudgeHostInspectProps {
 
@@ -34,25 +34,7 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
   const judgeHostId: number = params.judgeHostId;
 
   // 判题机信息
-  const [judgeHostInfo, setJudgeHostInfo] = useState<JudgeHostInfo>({
-    active: false, baseUrl: "", condition: {
-      cpuCoreAmount: 0,
-      cpuCostPercentage: 0,
-      memoryCostPercentage: 0,
-      port: 0,
-      queueAmount: 0,
-      resolutionPath: "",
-      scriptPath: "",
-      workPath: "",
-      workingAmount: 0,
-      maxWorkingAmount: 0,
-      version: "UNKNOWN"
-    },
-    connection: false,
-    createTime: 0,
-    id: 0,
-    name: ""
-  });
+  const [judgeHostInfo, setJudgeHostInfo] = useState<JudgeHostInfo>();
 
   // 判题机数据统计
   const [judgeHostSubmissionCounts, setJudgeHostSubmissionCounts] = useState<SubmissionCountInfo[]>([]);
@@ -84,17 +66,11 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
 
   // 获取判题机状态描述
   const getConditionDescription = () => {
-    if (!judgeHostInfo.connection) {
-      return "无连接";
-    }
     return judgeHostInfo?.active ? "运行中" : "已暂停";
   }
 
   // 获取判题机状态描述颜色
   const getConditionBadgeStatus = () => {
-    if (!judgeHostInfo.connection) {
-      return "error";
-    }
     return judgeHostInfo?.active ? "processing" : "warning";
   }
 
@@ -123,7 +99,11 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
           <Card
             title={<div className={style.judge_host_edit_item_title}>基本信息</div>}
             className={style.judge_host_inspect_item}>
-            <BasicInfo judgeHostInfo={judgeHostInfo}/>
+            {
+              judgeHostInfo && judgeHostInfo.condition.version ?
+                <BasicInfo judgeHostInfo={judgeHostInfo}/> :
+                <Empty image={EMPTY_IMAGE} description={"该判题服务器无连接"}/>
+            }
           </Card>
         </div>
         <div key={"current-condition"}>
@@ -132,7 +112,11 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
             style={{
               marginBottom: 20
             }}>
-            <CurrentCondition judgeHostInfo={judgeHostInfo}/>
+            {
+              judgeHostInfo && judgeHostInfo.condition.version ?
+                <CurrentCondition judgeHostInfo={judgeHostInfo}/> :
+                <Empty image={EMPTY_IMAGE} description={"该判题服务器无连接"}/>
+            }
           </Card>
         </div>
         <div key={"data"}>
@@ -147,7 +131,11 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
         </div>
         <div key={"operations"}>
           <Card title={<div className={style.judge_host_edit_item_title}>操作</div>}>
-            <Operations judgeHostInfo={judgeHostInfo} onReset={() => getJudgeHostInfo(judgeHostId)}/>
+            {
+              judgeHostInfo ?
+                <Operations judgeHostInfo={judgeHostInfo} onReset={() => getJudgeHostInfo(judgeHostId)}/> :
+                <Empty image={EMPTY_IMAGE} description={"该判题服务器无连接"}/>
+            }
           </Card>
         </div>
       </RcQueueAnim>

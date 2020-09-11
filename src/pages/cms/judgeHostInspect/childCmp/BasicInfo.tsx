@@ -32,7 +32,7 @@ const BasicInfo: React.FunctionComponent<BasicInfoProps> = (props) => {
         {props.judgeHostInfo?.condition.maxWorkingAmount}
       </Descriptions.Item>
       <Descriptions.Item label="判题机版本">
-        <Tag color={"geekblue"}>DEVELOP</Tag>
+        <Tag color={"geekblue"}>{props.judgeHostInfo.condition.version}</Tag>
       </Descriptions.Item>
       <Descriptions.Item label="工作目录">
         {props.judgeHostInfo?.condition.workPath}
