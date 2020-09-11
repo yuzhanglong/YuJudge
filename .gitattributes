@@ -1,2 +1,1 @@
-*.tsx linguist-language=TypeScript
-docs/* linguist-vendored
+docs/* linguist-vendored=true

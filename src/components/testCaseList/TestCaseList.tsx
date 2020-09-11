@@ -15,6 +15,7 @@ import {ClockCircleOutlined, CodeOutlined, DownloadOutlined} from "@ant-design/i
 
 interface TestCaseListProps {
   testCases: JudgeResultForSingleTestCase[];
+  onDownloadButtonClick?: () => void;
 }
 
 const TestCaseList: React.FunctionComponent<TestCaseListProps> = (props) => {
@@ -35,6 +36,13 @@ const TestCaseList: React.FunctionComponent<TestCaseListProps> = (props) => {
         </Row>
       </div>
     )
+  }
+
+  // 下载测试点
+  const onSubmissionButtonClick = () => {
+    if (props.onDownloadButtonClick) {
+      props.onDownloadButtonClick();
+    }
   }
 
   return (
@@ -63,6 +71,7 @@ const TestCaseList: React.FunctionComponent<TestCaseListProps> = (props) => {
                 </Col>
                 <Col span={4}>
                   <Button
+                    onClick={() => onSubmissionButtonClick()}
                     className={style.download_button}
                     icon={<DownloadOutlined/>}
                     size={"middle"}/>

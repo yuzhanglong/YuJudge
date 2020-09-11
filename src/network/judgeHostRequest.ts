@@ -71,3 +71,16 @@ export const deleteJudgeHost = (judgeHostId: number) => {
     "/judge_host/delete_judge_host/" + judgeHostId
   )
 }
+
+// 下载提交
+export const downloadSubmissionFromJudgeHost = (judgeHostId: number, submissionIdInJudgeHost: number) => {
+  return request.get(
+    "/judge_host/submission",
+    {
+      params: {
+        host: judgeHostId,
+        submission: submissionIdInJudgeHost
+      }
+    }
+  )
+}

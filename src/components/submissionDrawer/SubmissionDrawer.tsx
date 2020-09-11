@@ -17,6 +17,7 @@ import {DEFAULT_DATE_TIME_FORMAT, JUDGE_RESULT_CHANGE_ALLOW_DATA} from "../../co
 import EditorTip from "../editorTip/editorTip";
 import TestCaseList from "../testCaseList/TestCaseList";
 import {JUDGE_CONDITION_COLORS, JUDGE_CONDITION_TAG_NAMES_CHINESE} from "../../common/judgeCondition";
+import {downloadSubmissionFromJudgeHost} from "../../network/judgeHostRequest";
 
 interface SubmissionDrawerProps {
   visible: boolean;
@@ -73,6 +74,18 @@ const SubmissionDrawer: React.FunctionComponent<SubmissionDrawerProps> = (props)
     }
   }
 
+  // 下载提交
+  const downloadSubmission = () => {
+    const judgeHost = submissionDetail?.judgeHost?.id;
+    const idInJudgeHost = submissionDetail?.judgeResult.submissionId;
+    if (judgeHost && idInJudgeHost) {
+      downloadSubmissionFromJudgeHost(judgeHost, idInJudgeHost)
+        .catch(() => {
+          message.error("下载失败");
+        })
+    }
+  }
+
 
   return (
     <div>
@@ -121,7 +134,9 @@ const SubmissionDrawer: React.FunctionComponent<SubmissionDrawerProps> = (props)
           </Row>
           <Divider/>
           <p className={style.drawer_item_title}>测试点</p>
-          <TestCaseList testCases={submissionDetail.judgeResult.judgeResults}/>
+          <TestCaseList
+            testCases={submissionDetail.judgeResult.judgeResults}
+            onDownloadButtonClick={() => downloadSubmission()}/>
           <p className={style.drawer_item_title}>
             操作
           </p>
