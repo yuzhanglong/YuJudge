@@ -22,7 +22,7 @@ const ProblemItems: React.FunctionComponent<ProblemItemsProps> = (props) => {
   const renderItems = () => {
     return props.items.map(res => {
       return (
-        <Col style={{fontWeight: "bold"}} span={12}>
+        <Col style={{fontWeight: "bold"}} span={12} key={res.problemId}>
           <Button type={"link"} onClick={() => onProblemClick(res.problemId)}>
             [{res.problemId}]
           </Button>

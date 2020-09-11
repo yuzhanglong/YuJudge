@@ -18,7 +18,7 @@ import {
   SnippetsOutlined,
   UserOutlined
 } from "@ant-design/icons";
-import {COMMON_MENU_LOGO_PATH} from "../../../config/config";
+import {LOGOS} from "../../../config/config";
 
 interface CommonMenuProps {
 
@@ -45,7 +45,7 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
       <Col>
         <Menu mode="horizontal" selectedKeys={[props.location.pathname]}>
           <Menu.Item className={style.logo_wrap} onClick={() => props.history.push("/")}>
-            <img src={COMMON_MENU_LOGO_PATH} alt={"logo"} height={"45"}/>
+            <img src={LOGOS.WITH_TEXT} alt={"logo"} width={120}/>
           </Menu.Item>
           <Menu.Item key="/common/home" icon={<HomeOutlined/>}>
             <Link to={`/common/home`}>

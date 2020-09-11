@@ -10,6 +10,7 @@ import React from "react";
 import style from "../landing.module.scss"
 import TweenOne from "rc-tween-one";
 import {Col, Row} from "antd";
+import {LOGOS} from "../../../../config/config";
 
 interface LandingHeaderProps {
 
@@ -23,14 +24,9 @@ const LandingHeader: React.FunctionComponent<LandingHeaderProps> = () => {
           <Row align={"middle"}>
             <Col>
               <img
-                src={"http://cdn.yuzzl.top/yu_judge_logo.png"}
+                src={LOGOS.WITH_TEXT_AND_VERSION}
                 alt="img"
                 className={style.landing_logo}/>
-            </Col>
-            <Col>
-              <div className={style.landing_logo_text}>
-                YuJudge V1.0
-              </div>
             </Col>
           </Row>
         </TweenOne>
