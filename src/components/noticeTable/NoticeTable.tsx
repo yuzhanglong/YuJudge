@@ -16,8 +16,12 @@ import classNames from "classnames";
 import {UserInfo} from "../../models/user";
 
 interface NoticeTableProps {
+  // 所有公告
   notices: NoticeInfo[];
+  // 是否展示表头
   showHeader?: boolean;
+  // 公告被单击
+  onNoticeClick?: (notice: NoticeInfo) => void;
 }
 
 const NoticeTable: React.FunctionComponent<NoticeTableProps> = (props) => {
@@ -35,10 +39,17 @@ const NoticeTable: React.FunctionComponent<NoticeTableProps> = (props) => {
       [style.notice_table_title_important]: notice.priority === NoticePriority.IMPORTANT,
     });
     return (
-      <div className={className}>
+      <div className={className} onClick={() => onNoticeTitleClick(notice)}>
         {notice.title}
       </div>
     )
+  }
+
+  // 公告标题被单击
+  const onNoticeTitleClick = (notice: NoticeInfo) => {
+    if (props.onNoticeClick) {
+      props.onNoticeClick(notice);
+    }
   }
 
   // 用户被单击

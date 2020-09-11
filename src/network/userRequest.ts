@@ -58,6 +58,9 @@ export const getUserInfo = (uid: number | null = null) => {
     {
       params: {
         uid: uid
+      },
+      headers: {
+        loading: true
       }
     }
   )

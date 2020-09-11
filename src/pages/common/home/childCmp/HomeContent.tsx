@@ -7,7 +7,7 @@
  */
 
 
-import React from "react";
+import React, {useState} from "react";
 import {Button, Card} from "antd";
 import style from "../home.module.scss";
 import NoticeTable from "../../../../components/noticeTable/NoticeTable";
@@ -15,24 +15,45 @@ import ProblemTable from "../../../../components/problemTable/ProblemTable";
 import RcQueueAnim from "rc-queue-anim";
 import {NoticeInfo} from "../../../../models/notice";
 import {Problem} from "../../../../models/problem";
+import NoticeModal from "../../../../components/noticeModal/NoticeModal";
 
 interface HomeContentProps {
+  // 公告列表
   notices: NoticeInfo[];
+  // 问题列表
   problems: Problem[];
 }
 
 const HomeContent: React.FunctionComponent<HomeContentProps> = (props) => {
+
+  // 公告详情是否可见
+  const [noticeModalVisible, setNoticeModalVisible] = useState<boolean>(false);
+
+  // 活跃的公告
+  const [activeNotice, setActiveNotice] = useState<NoticeInfo>();
+
   // 跳转到某个problem
   const onGotoProblemButtonClick = (content: any) => {
     const problemId = content.id;
     window.reactRouter.push(`/common/problem/${problemId}`);
   }
 
+  // 公告被单击
+  const onNoticeTableClick = (notice: NoticeInfo) => {
+    setActiveNotice(notice);
+    setNoticeModalVisible(true);
+  }
+
   return (
     <RcQueueAnim>
       <div key={"home_content_item1"}>
+        <NoticeModal
+          onClose={() => setNoticeModalVisible(false)}
+          visible={noticeModalVisible} notice={activeNotice}/>
         <Card title={"公告"} className={style.home_content_item}>
-          <NoticeTable notices={props.notices}/>
+          <NoticeTable
+            notices={props.notices}
+            onNoticeClick={(notice) => onNoticeTableClick(notice)}/>
         </Card>
       </div>
 

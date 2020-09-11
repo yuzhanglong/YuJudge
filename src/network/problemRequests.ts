@@ -33,7 +33,12 @@ export const getProblems = (requestParams: ProblemPaginationRequest) => {
 // 获取problem的详细信息
 export const getProblemDetailedById = (problemId: number) => {
   return request.get(
-    "/problem/get_problem_detailed_by_id/" + problemId
+    "/problem/get_problem_detailed_by_id/" + problemId,
+    {
+      headers: {
+        loading: true
+      }
+    }
   )
 }
 

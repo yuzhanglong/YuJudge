@@ -14,4 +14,6 @@ export interface NoticeInfo {
   creator: UserInfo;
   priority: string;
   title: string;
+  content: string;
+  createTime: number;
 }
