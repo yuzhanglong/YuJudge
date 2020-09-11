@@ -26,6 +26,9 @@ const JudgeHostManage: React.FunctionComponent<JudgeServerManageProps & RouteCom
   // 所有的判题服务器信息
   const [judgeHostsInfo, setJudgeHostInfo] = useState<JudgeHostInfo[]>([]);
 
+  // loading
+  const [isJudgeHostTableLoading, setIsJudgeHostTableLoading] = useState<boolean>(false);
+
   // 是否展示编辑对话框
   const [editModalVisible, setEditModalVisible] = useState<boolean>(false);
 
@@ -35,10 +38,15 @@ const JudgeHostManage: React.FunctionComponent<JudgeServerManageProps & RouteCom
 
   // 请求判题服务器信息
   const getJudgeHosts = () => {
+    setIsJudgeHostTableLoading(true);
     getJudgeHostsInfo()
       .then(res => {
         setJudgeHostInfo(res.data);
-      });
+        setIsJudgeHostTableLoading(false);
+      })
+      .catch(() => {
+        setIsJudgeHostTableLoading(false);
+      })
   }
 
   // 渲染操作
@@ -87,6 +95,7 @@ const JudgeHostManage: React.FunctionComponent<JudgeServerManageProps & RouteCom
       <div key={"judge-host-inspect"}>
         <Card title={"全部判题机"} extra={renderExtra()}>
           <JudgeHostTable
+            isLoading={isJudgeHostTableLoading}
             judgeHosts={judgeHostsInfo}
             operations={renderOperations}/>
           <JudgeHostEditModal

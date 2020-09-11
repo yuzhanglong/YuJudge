@@ -14,6 +14,7 @@ import {Table, Tag} from "antd";
 interface JudgeHostTable {
   judgeHosts: JudgeHostInfo[];
   operations?: (value: any) => React.ReactNode;
+  isLoading?: boolean;
 }
 
 const JudgeHostTable: React.FunctionComponent<JudgeHostTable> = (props) => {
@@ -86,7 +87,10 @@ const JudgeHostTable: React.FunctionComponent<JudgeHostTable> = (props) => {
   }
 
   return (
-    <Table dataSource={props.judgeHosts} rowKey={"id"}>
+    <Table
+      dataSource={props.judgeHosts}
+      rowKey={"id"}
+      loading={props.isLoading}>
       <Table.Column
         title={"状态"}
         key={"active"}
@@ -130,6 +134,10 @@ const JudgeHostTable: React.FunctionComponent<JudgeHostTable> = (props) => {
       }
     </Table>
   )
+}
+
+JudgeHostTable.defaultProps = {
+  isLoading: false
 }
 
 export default JudgeHostTable;

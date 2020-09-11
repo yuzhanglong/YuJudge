@@ -28,7 +28,9 @@ const MainPart: React.FunctionComponent<MainPartProps> = (props) => {
           </h1>
           <p className={style.main_part_paragraph}>
             Human life,
+            <br/>
             like flood water and do not hear of islands and reefs,
+            <br/>
             it is difficult to create beautiful waves.
           </p>
           <Button

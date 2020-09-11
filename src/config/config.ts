@@ -11,6 +11,10 @@ import {BaseResponse} from "../models/common";
 import {Empty} from "antd";
 import {JudgeConditionEnum, LanguageTypeEnum} from "../common/enumerations";
 
+// logo 路径
+export const COMMON_MENU_LOGO_PATH = "/logo.png";
+
+// 响应时间阈值
 export const TIME_OUT: number = 5000;
 
 // 服务器的baseUrl
@@ -95,7 +99,7 @@ export const NO_CONNECTION_RESPONSE: BaseResponse = {
 // 显示为空的图片
 export const EMPTY_IMAGE = Empty.PRESENTED_IMAGE_SIMPLE;
 
-// 权限请求头键ming
+// 权限请求头key名
 export const AUTHORIZATION_KEY = "Authorization";
 
 // 默认语言
