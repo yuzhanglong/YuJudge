@@ -7,11 +7,15 @@
  */
 
 import React, {useEffect, useState} from "react";
-import {Button, Card, message, Slider} from "antd";
+import {Button, Card, Divider, Input, InputNumber, message, Slider} from "antd";
 import EditorTip from "../../../components/editorTip/editorTip";
 import style from "./settings.module.scss";
 import {JUDGE_NUMBER_SETTINGS_RANGE} from "../../../config/config";
-import {getSubmissionThreadPoolConfiguration, setSubmissionThreadPoolMaxSize} from "../../../network/submissionRequest";
+import {
+  getSubmissionFrequencyControl,
+  getSubmissionThreadPoolConfiguration, setSubmissionFrequencyControl,
+  setSubmissionThreadPoolMaxSize
+} from "../../../network/submissionRequest";
 import {SubmissionThreadPoolConfiguration} from "../../../models/submission";
 import RcQueueAnim from "rc-queue-anim";
 
@@ -20,13 +24,22 @@ interface SettingsProps {
 }
 
 const Settings: React.FunctionComponent<SettingsProps> = (props) => {
+
+  // 提交线程池配置
   const [submissionThreadPoolConfig, setSubmissionThreadPoolConfig] = useState<SubmissionThreadPoolConfiguration>();
+
+  // 最大提交量
   const [maxSubmissionSize, setMaxSubmissionSize] = useState<number>(0);
+
+  // 提交间隔
+  const [submissionFrequency, setSubmissionFrequency] = useState(0);
 
   useEffect(() => {
     getAndSetSubmissionThreadConfig();
+    getSubmissionFrequency();
   }, []);
 
+  // 获取提交线程池配置
   const getAndSetSubmissionThreadConfig = () => {
     getSubmissionThreadPoolConfiguration()
       .then(res => {
@@ -36,11 +49,41 @@ const Settings: React.FunctionComponent<SettingsProps> = (props) => {
       })
   }
 
+  // 获取提交间隔配置
+  const getSubmissionFrequency = () => {
+    getSubmissionFrequencyControl()
+      .then(res => {
+        setSubmissionFrequency(res.data);
+      })
+  }
+
+  // 设置线程池配置
   const setSubmissionThreadPoolSize = (size: number) => {
     setSubmissionThreadPoolMaxSize(size)
       .then(() => {
         message.success("设置成功");
         getAndSetSubmissionThreadConfig();
+      })
+  }
+
+  // 提交间隔配置输入框被改变
+  const onSubmissionFrequencyInputChange = (event: any) => {
+    event.persist();
+    setSubmissionFrequency(event.target.value);
+  }
+
+  // 获取限制文案
+  const getSubmissionFrequencyText = () => {
+    const base = "用户两次提交的间隔时间(秒)，用来防止接口恶意调用、频繁提交";
+    const current = submissionFrequency === 0 ? "无限制" : `${submissionFrequency}秒`
+    return `${base} [当前状态: ${current}]`;
+  }
+
+  // 设置提交间隔
+  const reSetSubmissionFrequencyControl = () => {
+    setSubmissionFrequencyControl(submissionFrequency)
+      .then(() => {
+        message.success("设置成功~");
       })
   }
 
@@ -55,7 +98,7 @@ const Settings: React.FunctionComponent<SettingsProps> = (props) => {
                 className={style.cms_settings_item}>
                 <EditorTip
                   title={"设置同时运行的判题个数"}
-                  content={`同时运行的判题个数，可以根据实际配置进行修改[当前个数: ${submissionThreadPoolConfig?.maxPoolSize || 0}]`}>
+                  content={`同时运行的判题个数，可以根据实际配置进行修改 [当前个数: ${submissionThreadPoolConfig?.maxPoolSize || 0}]`}>
                   <Slider
                     tooltipVisible={true}
                     value={maxSubmissionSize}
@@ -64,6 +107,17 @@ const Settings: React.FunctionComponent<SettingsProps> = (props) => {
                     min={JUDGE_NUMBER_SETTINGS_RANGE[0]}
                     onChange={(v: number) => setMaxSubmissionSize(v)}
                     onAfterChange={() => setSubmissionThreadPoolSize(maxSubmissionSize)}/>
+                </EditorTip>
+                <Divider/>
+                <EditorTip
+                  title={"设置提交间隔时间"}
+                  content={getSubmissionFrequencyText()}>
+                  <Input
+                    onChange={(event) => onSubmissionFrequencyInputChange(event)}
+                    className={style.cms_settings_frequency_input}
+                    suffix={<Button type={"link"} onClick={() => reSetSubmissionFrequencyControl()}>确定</Button>}
+                    value={submissionFrequency}/>
+
                 </EditorTip>
               </Card>
             </div>
