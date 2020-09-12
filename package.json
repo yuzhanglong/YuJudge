@@ -63,6 +63,7 @@
     "postcss-normalize": "8.0.1",
     "postcss-preset-env": "6.7.0",
     "postcss-safe-parser": "4.0.1",
+    "qiniu": "^7.3.2",
     "rc-queue-anim": "^1.8.5",
     "rc-scroll-anim": "^2.7.4",
     "rc-tween-one": "^2.7.3",
@@ -98,7 +99,8 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "buildAndUpload": "node scripts/build.js http://cdn.yuzzl.top"
+    "buildWithPrefix": "node scripts/build.js http://cdn.yuzzl.top",
+    "upload": "node scripts/upload.js"
   },
   "eslintConfig": {
     "extends": "react-app",

@@ -141,11 +141,6 @@ function initBaseUrl() {
   }
 }
 
-// TODO: 静态文件自动上传
-function uploadStaticFile(f) {
-  console.log("开始上传");
-}
-
 
 // 创建生产版本并打印部署信息
 function build(previousFileSizes) {

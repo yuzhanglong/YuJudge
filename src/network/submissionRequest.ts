@@ -103,3 +103,25 @@ export const changeSubmissionCondition = (submissionId: number, condition: strin
     }
   )
 }
+
+// 获取提交频率限制
+export const getSubmissionFrequencyControl = () => {
+  return request.get(
+    "/submission/frequency_control"
+  )
+}
+
+// 设置提交频率限制
+export const setSubmissionFrequencyControl = (frequency: number) => {
+  return request.put(
+    "/submission/frequency_control",
+    {
+      frequency: frequency,
+    },
+    {
+      headers: {
+        loading: true
+      }
+    }
+  )
+}

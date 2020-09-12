@@ -178,11 +178,11 @@ module.exports = function (webpackEnv) {
       // There will be one main bundle, and one file per asynchronous chunk.
       // In development, it does not produce real files.
       filename: isEnvProduction
-        ? 'static/js/[name].[contenthash:8].js'
+        ? 'static/js/[name].[contenthash:10].js'
         : isEnvDevelopment && 'static/js/bundle.js',
       // There are also additional JS chunk files if you use code splitting.
       chunkFilename: isEnvProduction
-        ? 'static/js/[name].[contenthash:8].chunk.js'
+        ? 'static/js/[name].[contenthash:10].chunk.js'
         : isEnvDevelopment && 'static/js/[name].chunk.js',
       // webpack uses `publicPath` to determine where the app is being served from.
       // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -381,7 +381,7 @@ module.exports = function (webpackEnv) {
               loader: require.resolve('url-loader'),
               options: {
                 limit: imageInlineSizeLimit,
-                name: 'static/media/[name].[hash:8].[ext]',
+                name: 'static/media/[name].[hash:10].[ext]',
               },
             },
             // Process application JS with Babel.
@@ -523,7 +523,7 @@ module.exports = function (webpackEnv) {
               // by webpacks internal loaders.
               exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
               options: {
-                name: 'static/media/[name].[hash:8].[ext]',
+                name: 'static/media/[name].[hash:10].[ext]',
               },
             },
             // ** STOP ** Are you adding a new loader?
@@ -602,15 +602,14 @@ module.exports = function (webpackEnv) {
       isEnvProduction && new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional
-        filename: 'static/css/[name].[contenthash:8].css',
-        chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
+        filename: 'static/css/[name].[contenthash:10].css',
+        chunkFilename: 'static/css/[name].[contenthash:10].chunk.css',
       }),
 
       // 生成资源清单文件
       new ManifestPlugin({
         fileName: 'asset-manifest.json',
-        // 如果没有额外设置地址，那么这里的 PUBLIC_URL为 undefined
-        publicPath: process.env.PUBLIC_URL || paths.publicUrlOrPath,
+        publicPath: paths.publicUrlOrPath,
         generate: (seed, files, entrypoints) => {
           const manifestFiles = files.reduce((manifest, file) => {
             manifest[file.name] = file.path;
