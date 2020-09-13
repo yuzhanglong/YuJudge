@@ -7,23 +7,22 @@
  */
 
 import React, {useEffect, useState} from "react";
-import {Button, Card, Divider, Input, InputNumber, message, Slider} from "antd";
-import EditorTip from "../../../components/editorTip/editorTip";
-import style from "./settings.module.scss";
-import {JUDGE_NUMBER_SETTINGS_RANGE} from "../../../config/config";
+import {Card, message} from "antd";
 import {
   getSubmissionFrequencyControl,
-  getSubmissionThreadPoolConfiguration, setSubmissionFrequencyControl,
-  setSubmissionThreadPoolMaxSize
+  getSubmissionThreadPoolConfiguration,
 } from "../../../network/submissionRequest";
 import {SubmissionThreadPoolConfiguration} from "../../../models/submission";
 import RcQueueAnim from "rc-queue-anim";
+import CommonSettings from "./childCmp/CommonSettings";
+import DangerSettings from "./childCmp/DangerSettings";
+import {changeCheckCodeCondition, getCheckCodeCondition} from "../../../network/common";
 
 interface SettingsProps {
 
 }
 
-const Settings: React.FunctionComponent<SettingsProps> = (props) => {
+const Settings: React.FunctionComponent<SettingsProps> = () => {
 
   // 提交线程池配置
   const [submissionThreadPoolConfig, setSubmissionThreadPoolConfig] = useState<SubmissionThreadPoolConfiguration>();
@@ -34,9 +33,14 @@ const Settings: React.FunctionComponent<SettingsProps> = (props) => {
   // 提交间隔
   const [submissionFrequency, setSubmissionFrequency] = useState(0);
 
+  // 验证码需求
+  const [isCheckCodeRequired, setIsCheckCodeRequired] = useState<boolean>(false);
+
+
   useEffect(() => {
     getAndSetSubmissionThreadConfig();
     getSubmissionFrequency();
+    getCheckCodeRequire();
   }, []);
 
   // 获取提交线程池配置
@@ -57,33 +61,20 @@ const Settings: React.FunctionComponent<SettingsProps> = (props) => {
       })
   }
 
-  // 设置线程池配置
-  const setSubmissionThreadPoolSize = (size: number) => {
-    setSubmissionThreadPoolMaxSize(size)
+  // 验证码状态修改
+  const onCheckCodeConditionChange = () => {
+    setIsCheckCodeRequired(!isCheckCodeRequired);
+    changeCheckCodeCondition()
       .then(() => {
-        message.success("设置成功");
-        getAndSetSubmissionThreadConfig();
+        message.success("修改成功");
       })
   }
 
-  // 提交间隔配置输入框被改变
-  const onSubmissionFrequencyInputChange = (event: any) => {
-    event.persist();
-    setSubmissionFrequency(event.target.value);
-  }
-
-  // 获取限制文案
-  const getSubmissionFrequencyText = () => {
-    const base = "用户两次提交的间隔时间(秒)，用来防止接口恶意调用、频繁提交";
-    const current = submissionFrequency === 0 ? "无限制" : `${submissionFrequency}秒`
-    return `${base} [当前状态: ${current}]`;
-  }
-
-  // 设置提交间隔
-  const reSetSubmissionFrequencyControl = () => {
-    setSubmissionFrequencyControl(submissionFrequency)
-      .then(() => {
-        message.success("设置成功~");
+  // 获取验证码限制
+  const getCheckCodeRequire = () => {
+    getCheckCodeCondition()
+      .then(res => {
+        setIsCheckCodeRequired(res.data);
       })
   }
 
@@ -93,43 +84,18 @@ const Settings: React.FunctionComponent<SettingsProps> = (props) => {
         <Card title={"系统设置"}>
           <RcQueueAnim>
             <div key={"common-settings"}>
-              <Card
-                title={<div className={style.cms_settings_edit_item_title}>一般项</div>}
-                className={style.cms_settings_item}>
-                <EditorTip
-                  title={"设置同时运行的判题个数"}
-                  content={`同时运行的判题个数，可以根据实际配置进行修改 [当前个数: ${submissionThreadPoolConfig?.maxPoolSize || 0}]`}>
-                  <Slider
-                    tooltipVisible={true}
-                    value={maxSubmissionSize}
-                    className={style.cms_settings_slider}
-                    max={JUDGE_NUMBER_SETTINGS_RANGE[1]}
-                    min={JUDGE_NUMBER_SETTINGS_RANGE[0]}
-                    onChange={(v: number) => setMaxSubmissionSize(v)}
-                    onAfterChange={() => setSubmissionThreadPoolSize(maxSubmissionSize)}/>
-                </EditorTip>
-                <Divider/>
-                <EditorTip
-                  title={"设置提交间隔时间"}
-                  content={getSubmissionFrequencyText()}>
-                  <Input
-                    onChange={(event) => onSubmissionFrequencyInputChange(event)}
-                    className={style.cms_settings_frequency_input}
-                    suffix={<Button type={"link"} onClick={() => reSetSubmissionFrequencyControl()}>确定</Button>}
-                    value={submissionFrequency}/>
-
-                </EditorTip>
-              </Card>
+              <CommonSettings
+                submissionThreadPoolConfig={submissionThreadPoolConfig}
+                submissionFrequency={submissionFrequency}
+                onThreadConfigChange={() => getAndSetSubmissionThreadConfig()}
+                onSubmissionFrequencyChange={(v) => setSubmissionFrequency(v)}
+                maxSubmissionSize={maxSubmissionSize}
+                onSubmissionSizeChange={(v) => setMaxSubmissionSize(v)}/>
             </div>
-
             <div key={"danger-settings"}>
-              <Card title={<div className={style.cms_settings_edit_item_title_danger}>危险项</div>}>
-                <EditorTip
-                  title={"关闭所有判题服务"}
-                  content={"所有用户将无法提交代码至判题机"}>
-                  <Button danger disabled>关闭</Button>
-                </EditorTip>
-              </Card>
+              <DangerSettings
+                isCheckCodeOpen={isCheckCodeRequired}
+                resetCheckCodeOpenCondition={() => onCheckCodeConditionChange()}/>
             </div>
           </RcQueueAnim>
         </Card>

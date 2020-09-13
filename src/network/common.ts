@@ -33,3 +33,22 @@ export const getDailyWord = () => {
     }
   )
 }
+
+// 切换验证码验证
+export const changeCheckCodeCondition = () => {
+  return request.put(
+    "/common/check_code_condition",
+    {
+      headers: {
+        loading: true
+      }
+    }
+  )
+}
+
+// 获取验证码验证
+export const getCheckCodeCondition = () => {
+  return request.get(
+    "/common/check_code_condition"
+  )
+}
