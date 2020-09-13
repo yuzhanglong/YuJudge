@@ -8,7 +8,6 @@
 
 import React from "react";
 import {Descriptions, Tag} from "antd";
-import {getIpAddress} from "../../../../utils/regex";
 import {timestampToDateTime} from "../../../../utils/dateTime";
 import {JudgeHostInfo} from "../../../../models/judgeHost";
 
@@ -19,8 +18,11 @@ interface BasicInfoProps {
 const BasicInfo: React.FunctionComponent<BasicInfoProps> = (props) => {
   return (
     <Descriptions bordered>
+      <Descriptions.Item label="编号">
+        {props.judgeHostInfo.id}
+      </Descriptions.Item>
       <Descriptions.Item label="地址">
-        {getIpAddress(props.judgeHostInfo.baseUrl)}
+        {props.judgeHostInfo.baseUrl}
       </Descriptions.Item>
       <Descriptions.Item label="端口号">
         {props.judgeHostInfo?.condition.port}
@@ -33,9 +35,6 @@ const BasicInfo: React.FunctionComponent<BasicInfoProps> = (props) => {
       </Descriptions.Item>
       <Descriptions.Item label="判题机版本">
         <Tag color={"geekblue"}>{props.judgeHostInfo.condition.version}</Tag>
-      </Descriptions.Item>
-      <Descriptions.Item label="工作目录">
-        {props.judgeHostInfo?.condition.workPath}
       </Descriptions.Item>
       <Descriptions.Item label="解决方案存放目录" span={3}>
         {props.judgeHostInfo?.condition.resolutionPath}

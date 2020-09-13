@@ -21,6 +21,7 @@ import {UserGroupInfo} from "../../../models/UserGroup";
 import {getUserGroups} from "../../../network/userGroupRequest";
 import CreateUserModal from "./childCmp/CreateUserModal";
 import AllocateUserGroupsModal from "./childCmp/AllocateUserGroupsModal";
+import UserEditModal from "./childCmp/UserEditModal";
 
 interface UserManageProps {
 
@@ -41,6 +42,10 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
 
   // 当前选中用户
   const [activeUser, setActiveUser] = useState<UserInfo | null>(null);
+
+  // 待编辑用户
+  const [userToEdit, setUserToEdit] = useState<UserInfo | null>();
+
 
   useEffect(() => {
     getUserInfo(PAGE_BEGIN - 1, activeUserGroup);
@@ -80,10 +85,12 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
         <Button type={"link"} onClick={() => setActiveUser(content)}>
           分配用户组
         </Button>
+        <Button type={"link"} onClick={() => setUserToEdit(content)}>
+          编辑
+        </Button>
         <Button type={"link"} danger onClick={() => onUserRemoveButtonClick(content)}>
           删除
         </Button>
-
       </div>
     )
   }
@@ -179,6 +186,13 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
           isVisible={true}
           userInfo={activeUser}
           totalUserGroups={userGroupItems}/>
+      }
+      {
+        userToEdit &&
+        <UserEditModal
+          visible
+          onCancel={() => setUserToEdit(null)}
+          userInfo={userToEdit}/>
       }
     </Card>
   )

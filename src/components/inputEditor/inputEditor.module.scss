@@ -1,0 +1,26 @@
+/*
+ * File: inputEditor.module.scss
+ * Description: 简单的编辑器样式
+ * Created: 2020-9-13 22:13:42
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+.input_editor {
+  display: flex;
+  align-items: center;
+}
+
+.input_editor_icon {
+  color: #8c8c8c;
+  cursor: pointer;
+}
+
+
+.input_editor_title {
+  padding-right: 10px;
+}
+
+.input_editor_input {
+  width: auto;
+  margin-right: 10px;
+}

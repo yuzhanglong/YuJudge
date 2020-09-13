@@ -8,7 +8,7 @@
 
 
 import request from "./interceptor";
-import {LoginFormData, RegisterFormData} from "../models/user";
+import {LoginFormData, RegisterFormData, UserInfo} from "../models/user";
 import {UsersPaginationRequest} from "../models/pagination";
 
 
@@ -105,6 +105,17 @@ export const allocateUserUserGroup = (userId: number, userGroupIds: string[]) =>
     {
       userId: userId,
       userGroupIds: userGroupIds
+    }
+  );
+}
+
+// 编辑用户
+export const editUser = (uid: number, nickname: string, password: string) => {
+  return request.put(
+    "/user/user/" + uid,
+    {
+      nickname: nickname,
+      password: password
     }
   );
 }
