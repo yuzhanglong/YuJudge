@@ -32,7 +32,7 @@ const getMimeType = (fileName) => {
     return "text/css";
   }
   if (fileName.endsWith("woff2")) {
-    return "font / woff2";
+    return "font/woff2";
   }
   return "application/javascript";
 }
