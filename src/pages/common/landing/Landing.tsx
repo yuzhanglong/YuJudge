@@ -14,6 +14,8 @@ import MainPart from "./childCmp/MainPart";
 import Feature from "./childCmp/Feature";
 import Footer from "./childCmp/LandingFooter";
 import style from "./landing.module.scss"
+import {getTokenFromStorage} from "../../../utils/dataPersistence";
+import {message} from "antd";
 
 interface LandingProps {
 
@@ -22,7 +24,12 @@ interface LandingProps {
 const Landing: React.FunctionComponent<LandingProps & RouteComponentProps> = (props) => {
   // 前往首页
   const goHome = () => {
-    props.history.push("/login");
+    if (getTokenFromStorage() == null) {
+      message.info("请登录");
+      gotoRegister();
+      return;
+    }
+    props.history.push("/common/home");
   }
 
   // 前往注册/登录

@@ -11,6 +11,7 @@ import React from "react";
 import {Radio} from "antd";
 import {ExperimentOutlined, FormOutlined, OrderedListOutlined} from "@ant-design/icons";
 import {RouteComponentProps, withRouter} from "react-router-dom";
+import style from "../problemHome.module.scss";
 
 interface RouteSelectorProps {
 
@@ -42,7 +43,7 @@ const RouteSelector: React.FunctionComponent<RouteSelectorProps & RouteComponent
           props.history.push(`/common/problem/${problemId}`);
         }
       }}>
-        <FormOutlined/>
+        <FormOutlined className={style.problem_home_content_route_selector_icon}/>
         问题
       </Radio.Button>
       <Radio.Button
@@ -54,7 +55,7 @@ const RouteSelector: React.FunctionComponent<RouteSelectorProps & RouteComponent
             props.history.push(`/common/problem/${problemId}/submission`);
           }
         }}>
-        <OrderedListOutlined/>
+        <OrderedListOutlined className={style.problem_home_content_route_selector_icon}/>
         提交记录
       </Radio.Button>
       <Radio.Button
@@ -66,7 +67,7 @@ const RouteSelector: React.FunctionComponent<RouteSelectorProps & RouteComponent
             props.history.push(`/common/problem/${problemId}/solution`);
           }
         }}>
-        <ExperimentOutlined/>
+        <ExperimentOutlined className={style.problem_home_content_route_selector_icon}/>
         题解
       </Radio.Button>
     </Radio.Group>

@@ -20,16 +20,16 @@
 
 .problem_home_title {
   text-align: center;
+}
 
-  .problem_home_title_problem_name {
-    font-weight: bold;
-    font-size: 24px;
-    padding-bottom: 5px;
-  }
+.problem_home_title_problem_name {
+  font-weight: bold;
+  font-size: 26px;
+  padding-bottom: 6px;
+}
 
-  .problem_home_title_problem_limitation {
-
-  }
+.problem_home_title_problem_limitation {
+  color: #8c8c8c;
 }
 
 .problem_home_content {
@@ -40,6 +40,7 @@
 
 
   .problem_home_content_route_selector {
+    padding-top: 10px;
     padding-bottom: 15px;
   }
 
@@ -51,4 +52,8 @@
   .problem_home_content_item {
     margin-bottom: 25px;
   }
+}
+
+.problem_home_content_route_selector_icon {
+  padding-right: 6px;
 }

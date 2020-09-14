@@ -12,10 +12,11 @@ import LoginForm from "../../../components/loginForm/LoginForm";
 import {getCheckCodeInfo, getUserInfo, login, register} from "../../../network/userRequest";
 import {CheckCodeData, LoginFormData, LoginResponseData, RegisterFormData} from "../../../models/user";
 import {BaseResponse} from "../../../models/common";
-import {Button, Card, message} from "antd";
+import {Button, Card, Col, message, Row} from "antd";
 import {getTokenFromStorage, saveUserInfo, setToken} from "../../../utils/dataPersistence";
 import RegisterForm from "../../../components/registerForm/RegisterForm";
 import style from "./loginPage.module.scss"
+import RcQueueAnim from "rc-queue-anim";
 
 interface LoginProps {
 
@@ -118,49 +119,54 @@ const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = (props)
 
   return (
     <div className={style.login_page}>
-      <div className={style.login}>
-        <div>
-          <img
-            src={"http://cdn.yuzzl.top/Completed.svg"}
-            alt={"confirmation"}
-            className={style.login_page_image}/>
-        </div>
-        <div className={"login-page-login-area"}>
-          <Card>
-            <div className={style.login_area_title}>
-              <div className={style.login_area_title_main}>
-                {activeForm === formType.LOGIN ? "用户登录" : "用户注册"}
+      <div className={style.login_card_wrap}>
+        <Card bodyStyle={{padding: 0}} className={style.login_card}>
+          <Row>
+            <Col>
+              <img
+                src={"/image/login.jpg"}
+                alt={"confirmation"}
+                className={style.login_page_image}/>
+            </Col>
+            <Col>
+              <div className={style.login_area}>
+                <div className={style.login_area_title}>
+                  <div className={style.login_area_title_main}>
+                    {activeForm === formType.LOGIN ? "用户登录" : "用户注册"}
+                  </div>
+                  <div>
+                    <Button type={"link"} onClick={() => showRegisterForm()}>
+                      {activeForm === formType.LOGIN ? "没有账号? 点我注册" : "去登录"}
+                    </Button>
+                  </div>
+                </div>
+                <div>
+                  {
+                    activeForm === formType.LOGIN &&
+                    <LoginForm
+                      checkCode={checkCodeInfo?.image}
+                      validateRequired onConfirm={onLogin}
+                      onCheckCodeClick={resetCheckCode}
+                      className={style.login_form}>
+                    </LoginForm>
+                  }
+                  {
+                    activeForm === formType.REGISTER &&
+                    <RegisterForm
+                      checkCode={checkCodeInfo?.image}
+                      validateRequired onConfirm={onRegister}
+                      onCheckCodeClick={resetCheckCode}
+                      className={style.login_form}>
+                    </RegisterForm>
+                  }
+                </div>
               </div>
-              <div className={"register-link"}>
-                <Button type={"link"} onClick={() => showRegisterForm()}>
-                  {activeForm === formType.LOGIN ? "没有账号? 点我注册" : "去登录"}
-                </Button>
-              </div>
-            </div>
-            <div>
-              {
-                activeForm === formType.LOGIN &&
-                <LoginForm
-                  checkCode={checkCodeInfo?.image}
-                  validateRequired onConfirm={onLogin}
-                  onCheckCodeClick={resetCheckCode}
-                  className={style.login_form}>
-                </LoginForm>
-              }
-              {
-                activeForm === formType.REGISTER &&
-                <RegisterForm
-                  checkCode={checkCodeInfo?.image}
-                  validateRequired onConfirm={onRegister}
-                  onCheckCodeClick={resetCheckCode}
-                  className={style.login_form}>
-                </RegisterForm>
-              }
-            </div>
-          </Card>
-        </div>
+            </Col>
+          </Row>
+        </Card>
       </div>
     </div>
+
   )
 }
 

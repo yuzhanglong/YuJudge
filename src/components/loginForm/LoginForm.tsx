@@ -7,10 +7,12 @@
  */
 
 import React from "react";
-import {Button, Col, Form, Input, Row} from "antd";
+import {Button, Col, Empty, Form, Input, Row, Spin} from "antd";
 import {UserOutlined, LockOutlined, CheckCircleOutlined} from "@ant-design/icons";
 import classNames from "classnames";
 import style from "./loginForm.module.scss";
+import {EMPTY_IMAGE} from "../../config/config";
+import RcQueueAnim from "rc-queue-anim";
 
 interface LoginFormProps {
   onConfirm?: (val: any) => void;
@@ -41,69 +43,74 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = (props) => {
   }
 
   return (
-    <Form
-      className={className}
-      layout="horizontal"
-      form={form} size={"large"}
-      onFinish={onLoginConfirmed}>
-      <Form.Item
-        rules={[{required: props.validateRequired, message: '请输入用户名!'}]}
-        name="nickname">
-        <Input
-          prefix={<UserOutlined/>}
-          placeholder="请输入用户名"/>
-      </Form.Item>
+    <RcQueueAnim>
+      <div key={"login-form"}>
+        <Form
+          className={className}
+          layout="horizontal"
+          form={form} size={"large"}
+          onFinish={onLoginConfirmed}>
 
-      <Form.Item
-        rules={[{required: props.validateRequired, message: '请输入密码!'}]}
-        name="password">
-        <Input
-          prefix={<LockOutlined/>}
-          type="password"
-          placeholder="请输入密码"
-        />
-      </Form.Item>
+          <Form.Item
+            rules={[{required: props.validateRequired, message: '请输入用户名!'}]}
+            name="nickname">
+            <Input
+              prefix={<UserOutlined/>}
+              placeholder="请输入用户名"/>
+          </Form.Item>
 
-      {
-        props.checkCode && <Form.Item>
-          <Row>
-            <Col span={15}>
-              <Form.Item
-                className={style.check_code_form_item}
-                rules={[{required: props.validateRequired, message: '请输入验证码!'}]}
-                name="checkCodeContent">
-                <Input
-                  prefix={<CheckCircleOutlined/>}
-                  placeholder="请输入验证码"/>
-              </Form.Item>
-            </Col>
-            <Col span={9}>
-              <img
-                src={props.checkCode}
-                alt={"checkCode"}
-                onClick={() => onCheckCodeClick()}/>
-            </Col>
-          </Row>
-        </Form.Item>
-      }
+          <Form.Item
+            rules={[{required: props.validateRequired, message: '请输入密码!'}]}
+            name="password">
+            <Input
+              prefix={<LockOutlined/>}
+              type="password"
+              placeholder="请输入密码"
+            />
+          </Form.Item>
+
+          {
+            <Form.Item>
+              <Row>
+                <Col span={14}>
+                  <Form.Item
+                    className={style.check_code_form_item}
+                    rules={[{required: props.validateRequired, message: '请输入验证码!'}]}
+                    name="checkCodeContent">
+                    <Input
+                      prefix={<CheckCircleOutlined/>}
+                      placeholder="请输入验证码"/>
+                  </Form.Item>
+                </Col>
+                <Col span={9}>
+                  {props.checkCode && <img
+                    src={props.checkCode}
+                    alt={"checkCode"}
+                    onClick={() => onCheckCodeClick()}/>}
+                </Col>
+              </Row>
+            </Form.Item>
+          }
 
 
-      <div className={"check-code-image-wrap"} onClick={() => onCheckCodeClick()}>
+          <div className={"check-code-image-wrap"} onClick={() => onCheckCodeClick()}>
 
+          </div>
+
+          <Form.Item
+            shouldUpdate={true}>
+            {() => (
+              <Button
+                type="primary"
+                htmlType="submit"
+                className={style.login_form_button}>
+                登录
+              </Button>
+            )}
+          </Form.Item>
+        </Form>
       </div>
-
-      <Form.Item
-        shouldUpdate={true}>
-        {() => (
-          <Button
-            type="primary"
-            htmlType="submit"
-            className={style.login_form_button}>
-            登录
-          </Button>
-        )}
-      </Form.Item>
-    </Form>
+    </RcQueueAnim>
   )
 }
 

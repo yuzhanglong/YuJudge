@@ -8,7 +8,7 @@
 
 
 import request from "./interceptor";
-import {LoginFormData, RegisterFormData, UserInfo} from "../models/user";
+import {LoginFormData, RegisterFormData} from "../models/user";
 import {UsersPaginationRequest} from "../models/pagination";
 
 

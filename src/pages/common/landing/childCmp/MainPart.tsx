@@ -9,16 +9,27 @@
 import React from "react";
 import {Button} from "antd";
 import style from "../landing.module.scss"
+import {GithubOutlined} from "@ant-design/icons";
 
 
 interface MainPartProps {
+  // 主按钮被单击
   onMainButtonClick?: () => void;
+  // 次按钮被单击
   onSubButtonClick?: () => void;
+  // 主按钮文案
   mainButtonText?: string;
+  // 次按钮文案
   subButtonText?: string;
 }
 
 const MainPart: React.FunctionComponent<MainPartProps> = (props) => {
+
+  // github被单击
+  const onGithubClick = () => {
+    window.open("https://github.com/yuzhanglong/YuJudge");
+  }
+
   return (
     <div className={style.main_part}>
       <div className={style.main_part_content_wrap}>
@@ -33,22 +44,28 @@ const MainPart: React.FunctionComponent<MainPartProps> = (props) => {
             <br/>
             it is difficult to create beautiful waves.
           </p>
-          <Button
-            size="large"
-            type="primary"
-            style={{marginRight: 12}}
-            className={style.main_part_button}
-            onClick={() => props.onMainButtonClick ? props.onMainButtonClick() : null}>
-            {props.mainButtonText}
-          </Button>
-          <Button
-            size="large"
-            className={style.main_part_button}
-            onClick={() => props.onSubButtonClick ? props.onSubButtonClick() : null}>
-            {props.subButtonText}
-          </Button>
-        </div>
+          <div className={style.main_part_button_groups}>
+            <Button
+              size="large"
+              type="primary"
+              style={{marginRight: 12}}
+              className={style.main_part_button}
+              onClick={() => props.onMainButtonClick ? props.onMainButtonClick() : null}>
+              {props.mainButtonText}
+            </Button>
+            <Button
+              size="large"
+              className={style.main_part_button}
+              style={{marginRight: 20}}
+              onClick={() => props.onSubButtonClick ? props.onSubButtonClick() : null}>
+              {props.subButtonText}
+            </Button>
+            <div className={style.main_part_button_github} onClick={() => onGithubClick()}>
+              <GithubOutlined height={42}/>
+            </div>
+          </div>
 
+        </div>
         <div>
           <img
             alt={"codeTyping"}

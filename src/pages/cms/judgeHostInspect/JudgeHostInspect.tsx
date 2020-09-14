@@ -24,7 +24,6 @@ import RcQueueAnim from "rc-queue-anim";
 import style from "./judgeHostInspect.module.scss";
 import Operations from "./childCmp/Operations";
 import {Badge, Card, Empty} from "antd";
-import InputEditor from "../../../components/inputEditor/InputEditor";
 
 interface JudgeHostInspectProps {
 

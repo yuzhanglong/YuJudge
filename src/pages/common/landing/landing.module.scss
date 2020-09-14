@@ -63,13 +63,6 @@
     margin-right: 15px;
     border: none;
   }
-
-  .main_part_button {
-    width: 100px;
-    border-radius: 4px;
-    font-size: 16px;
-    height: 42px;
-  }
 }
 
 .main_part_left {
@@ -248,4 +241,23 @@
       }
     }
   }
+}
+
+.main_part_button {
+  width: 100px;
+  border-radius: 4px;
+  font-size: 16px;
+  height: 42px;
+}
+
+.main_part_button_groups {
+  display: flex;
+  align-items: center;
+}
+
+
+.main_part_button_github {
+  cursor: pointer;
+  font-size: 36px;
+  color: #7c7f8c;
 }

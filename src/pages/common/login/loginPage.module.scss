@@ -1,10 +1,41 @@
-.login_page_image {
-  width: 350px;
-}
+/*
+ * File: loginPage.module.scss
+ * Description: 登录页面样式
+ * Created: 2020-9-14 11:36:21
+ * Author: yuzhanglong
+ * Email: yuzl1123@163.com
+ */
+
+@import "src/styles/public";
 
 .login_page {
+}
+
+.login_page_image {
+  width: 500px;
+  border-radius: 10px;
+}
+
+.login_card_wrap {
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding-top: 10vh;
+}
+
+.login_area_subtitle {
+  font-size: 15px;
+  color: #999797;
+  padding-bottom: 30px;
+}
+
+.login_card {
+  border-radius: 10px;
+  box-shadow: $header-box-shadow;
+}
+
+.login_area {
+  padding: 30px;
 }
 
 .login_area_title_main {
@@ -13,19 +44,13 @@
 }
 
 .login_form {
-  width: 380px;
+  width: 400px;
 }
 
 .login_area_title {
   display: flex;
   justify-content: space-between;
   line-height: 75px;
-}
-
-.login {
-  width: 880px;
-  display: flex;
-  justify-content: space-between;
-  padding-top: 100px;
+  padding-bottom: 16px;
 }
 
