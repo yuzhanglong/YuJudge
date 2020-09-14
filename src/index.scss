@@ -1,7 +1,7 @@
 @import "src/styles/normalize.scss";
 @import '~antd/dist/antd.css';
 @import "pages/index";
-
+@import "src/styles/public";
 
 #loading {
   position: fixed;
@@ -15,4 +15,12 @@
   justify-content: center;
   z-index: 9999;
   font-size: 20px;
+}
+
+.ant-card {
+  box-shadow: $public-box-shadow;
+}
+
+.ant-card-head {
+  font-weight: bold;
 }

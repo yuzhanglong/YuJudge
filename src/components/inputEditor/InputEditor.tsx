@@ -6,11 +6,10 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {CheckOutlined, EditOutlined} from "@ant-design/icons";
 import style from "./inputEditor.module.scss";
 import {Input} from "antd";
-import {compiler} from "webpack";
 
 interface InputEditorProps {
   // 绑定值

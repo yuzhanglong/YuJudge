@@ -16,11 +16,9 @@ $profile-item-height: 300px;
 $profile-item-spacing: 20px;
 
 .profile {
-  @include common-page;
 }
 
 .profile_content {
-  @include common-page-content;
 }
 
 .profile_user_info {

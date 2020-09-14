@@ -9,10 +9,20 @@
 @import "src/styles/public";
 
 // common 布局
-
 .problem_set_layout_menu {
-  box-shadow: $header-box-shadow;
+  box-shadow: $public-box-shadow;
   background-color: #ffffff;
+  margin-bottom: 2px;
+}
+
+.common_content {
+  background-image: url("http://cdn.yuzzl.top/bbbbbb.png");
+}
+
+.common_content_mask {
+  background-color: $common-page-mask-background-color;
+  min-height: calc(100vh - 51px);
+  padding: $common-page-padding;
 }
 
 .nav_text {
@@ -24,7 +34,6 @@
   margin: 0 !important;
   border-bottom: 2px solid transparent !important;
 }
-
 
 // cms 布局
 
@@ -43,7 +52,7 @@
   background-color: #ffffff;
   padding: 0;
   z-index: 666;
-  box-shadow: $header-box-shadow;
+  box-shadow: $public-box-shadow;
   position: fixed;
   height: 64px;
   width: calc(100vw - 230px);

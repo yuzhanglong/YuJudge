@@ -10,11 +10,9 @@
 
 
 .problem_home {
-  @include common-page;
 }
 
 .problem_home_body {
-  @include common-page-content;
 }
 
 
@@ -24,12 +22,13 @@
 
 .problem_home_title_problem_name {
   font-weight: bold;
-  font-size: 26px;
+  font-size: 28px;
   padding-bottom: 6px;
 }
 
 .problem_home_title_problem_limitation {
   color: #8c8c8c;
+  font-size: 15px;
 }
 
 .problem_home_content {

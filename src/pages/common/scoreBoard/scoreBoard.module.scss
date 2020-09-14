@@ -9,15 +9,12 @@
 @import "src/styles/public";
 
 .score_board {
-  @include common-page;
 }
 
 .score_board_content {
-  @include common-page-content;
 }
 
 .score_board_body {
-  @include common-page-body;
   padding-left: 10vw;
   padding-right: 10vw;
 }

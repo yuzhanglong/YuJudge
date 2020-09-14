@@ -7,11 +7,10 @@
  */
 
 import React from "react";
-import {Button, Col, Empty, Form, Input, Row, Spin} from "antd";
+import {Button, Col, Form, Input, Row} from "antd";
 import {UserOutlined, LockOutlined, CheckCircleOutlined} from "@ant-design/icons";
 import classNames from "classnames";
 import style from "./loginForm.module.scss";
-import {EMPTY_IMAGE} from "../../config/config";
 import RcQueueAnim from "rc-queue-anim";
 
 interface LoginFormProps {

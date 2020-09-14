@@ -10,12 +10,11 @@ import React from "react";
 import {Affix, Layout} from "antd";
 import CommonMenu from "./childCmp/CommonMenu";
 import {RouteComponentProps} from "react-router-dom";
-import RcQueueAnim from "rc-queue-anim";
+import style from "../layout.module.scss"
 
 interface ProblemLayoutProps {
   children: React.ReactNode;
 }
-
 
 const Common: React.FunctionComponent<ProblemLayoutProps & RouteComponentProps> = (props) => {
   return (
@@ -25,14 +24,12 @@ const Common: React.FunctionComponent<ProblemLayoutProps & RouteComponentProps> 
           <CommonMenu {...props}/>
         </div>
       </Affix>
-      <div>
-        <RcQueueAnim type={"bottom"}>
-          <div key={"content"}>
-            {props.children}
-          </div>
-        </RcQueueAnim>
-      </div>
+      <div key={"content"} className={style.common_content}>
+        <div className={style.common_content_mask}>
+          {props.children}
+        </div>
 
+      </div>
     </Layout>
   )
 }

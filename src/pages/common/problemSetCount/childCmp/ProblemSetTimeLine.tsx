@@ -78,7 +78,7 @@ const ProblemSetTimeLine: React.FunctionComponent<ProblemSetTimeLineProps> = (pr
             </div>
             <div className={style.time_line_description_content}>
               通过【<span className={style.time_line_description_link}
-              onClick={() => onProblemIndexClick(res.problemId)}>
+                       onClick={() => onProblemIndexClick(res.problemId)}>
               {tenDecimalToTwentySixDecimal(res.problemIndex + 1)}
             </span>】题
             </div>
@@ -97,9 +97,8 @@ const ProblemSetTimeLine: React.FunctionComponent<ProblemSetTimeLineProps> = (pr
       <div className={style.time_line_pagination}>
         <Pagination
           showSizeChanger={false}
-          onChange={(v) => getTimeline(props.problemSetId, v)}
-          total={problemSetTimelinePagination.paginationInfo.total - problemSetTimelinePagination.paginationInfo.count}
-          pageSize={problemSetTimelinePagination.paginationInfo.count}/>
+          onChange={(v) => getTimeline(props.problemSetId, v - 1)}
+          total={problemSetTimelinePagination.paginationInfo.total}/>
       </div>
     </div>
   )

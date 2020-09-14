@@ -7,7 +7,7 @@
  */
 
 import React, {useEffect, useState} from "react";
-import {Card, message, Tag} from "antd";
+import {Card, message} from "antd";
 import {RouteComponentProps} from "react-router-dom";
 import {Problem} from "../../../models/problem";
 import {getProblemDetailedById} from "../../../network/problemRequests";
@@ -100,12 +100,10 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
     return (
       <div>
         <div className={style.problem_home_title_problem_name}>
-          {`P${problem.id} ${problem.name}`}
+          {problem.name}
         </div>
         <div className={style.problem_home_title_problem_limitation}>
-          <Tag color={"#9254de"}>{`时间限制: ${problem.timeLimit} ms`}</Tag>
-          <Tag color={"#1890ff"}>{`内存限制: ${problem.memoryLimit} ms`}</Tag>
-          <Tag color={"#13c2c2"}>{`输出限制: ${getOutPutLimit(problem.outputLimit || 0)}`}</Tag>
+          {`时间限制: ${problem.timeLimit} ms / 内存限制: ${problem.memoryLimit} kb / 输出限制: ${getOutPutLimit(problem.outputLimit || 0)}`}
         </div>
       </div>
     )

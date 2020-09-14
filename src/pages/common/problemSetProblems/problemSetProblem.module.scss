@@ -9,15 +9,12 @@
 @import "src/styles/public";
 
 .problem_set_problem {
-  @include common-page;
 }
 
 .problem_set_problem_content {
-  @include common-page-content;
 }
 
 .problem_set_problem_body {
-  @include common-page-body;
   display: flex;
   justify-content: center;
 }

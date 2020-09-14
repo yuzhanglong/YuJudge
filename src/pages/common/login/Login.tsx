@@ -16,7 +16,6 @@ import {Button, Card, Col, message, Row} from "antd";
 import {getTokenFromStorage, saveUserInfo, setToken} from "../../../utils/dataPersistence";
 import RegisterForm from "../../../components/registerForm/RegisterForm";
 import style from "./loginPage.module.scss"
-import RcQueueAnim from "rc-queue-anim";
 
 interface LoginProps {
 

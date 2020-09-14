@@ -29,13 +29,6 @@ export enum LanguageTypeEnum {
   PYTHON = "PYTHON",
 }
 
-// problemHome页面左侧导航的key
-export enum ProblemHoneTabKeyEnum {
-  PROBLEM = "problem",
-  SOLUTION = "solutions",
-  SUBMISSION = "submission",
-}
-
 // 排名颜色
 export enum RankingColorEnum {
   RANKING_FIRST = "#f5222d",

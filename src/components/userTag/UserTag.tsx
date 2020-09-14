@@ -42,9 +42,6 @@ const UserTag: React.FunctionComponent<UserInfoProps> = (props) => {
             <div className={style.user_tag_user_name}>
               {props.userName}
             </div>
-            <div className={style.user_tag_description}>
-              {props.description}
-            </div>
           </div>
         </div>
       </div>

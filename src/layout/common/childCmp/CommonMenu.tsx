@@ -42,7 +42,7 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
 
   return (
     <Row justify={"space-between"} className={style.problem_set_layout_menu}>
-      <Col>
+      <Col span={24}>
         <Menu mode="horizontal" selectedKeys={[props.location.pathname]}>
           <Menu.Item className={style.logo_wrap} onClick={() => props.history.push("/")}>
             <img src={LOGOS.WITH_TEXT} alt={"logo"} width={120}/>
@@ -97,16 +97,16 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
               </Link>
             </Menu.Item>
           }
+          <Menu.Item style={{float: "right"}} disabled>
+            <UserTag
+              {...props}
+              height={46}
+              showGotoCms={!userInfoState.isCommonUser()}
+              userName={userInfoState.userInfo?.nickname}
+              description={userInfoState.userInfo?.userGroups ? userInfoState.userInfo?.userGroups[0].description : ""}
+              avatar={userInfoState.userInfo?.avatar}/>
+          </Menu.Item>
         </Menu>
-      </Col>
-      <Col>
-        <UserTag
-          {...props}
-          height={48}
-          showGotoCms={!userInfoState.isCommonUser()}
-          userName={userInfoState.userInfo?.nickname}
-          description={userInfoState.userInfo?.userGroups ? userInfoState.userInfo?.userGroups[0].description : ""}
-          avatar={userInfoState.userInfo?.avatar}/>
       </Col>
     </Row>
   )
