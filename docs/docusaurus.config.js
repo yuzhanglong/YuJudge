@@ -1,12 +1,12 @@
 module.exports = {
   title: 'YuJudge',
   tagline: 'Enjoy Coding And Get Happiness',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'http://YuJudge.github.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   favicon: 'img/favicon.ico',
-  organizationName: 'YuZhangLong', // Usually your GitHub org/user name.
-  projectName: 'YuJudge', // Usually your repo name.
+  organizationName: 'yuzhanglong',
+  projectName: 'YuJudge',
   themeConfig: {
     navbar: {
       title: 'YuJudge',
@@ -16,13 +16,19 @@ module.exports = {
       },
       items: [
         {
-          to: 'docs/',
+          to: '/',
           activeBasePath: 'docs',
           label: '文档',
           position: 'left',
         },
         {
-          href: 'https://github.com/yuzhanglong',
+          to: 'http://oj.yuzzl.top',
+          activeBasePath: 'docs',
+          label: 'DEMO',
+          position: 'left',
+        },
+        {
+          href: 'https://github.com/yuzhanglong/YuJudge',
           label: 'GitHub',
           position: 'right',
         },
@@ -33,24 +39,7 @@ module.exports = {
       links: [
         {
           title: 'Docs',
-          items: [
-            {
-              label: 'Web(前端)',
-              to: '/docs/API',
-            },
-            {
-              label: 'JudgeServer(服务端)',
-              to: '/docs/API',
-            },
-            {
-              label: 'JudgeHost(判题服务器)',
-              to: '/docs/API',
-            },
-            {
-              label: 'JudgeCore(判题核心)',
-              to: '/docs/API',
-            },
-          ],
+          items: [],
         },
         {
           title: 'More',
@@ -66,7 +55,7 @@ module.exports = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com',
+              href: 'https://github.com/yuzhanglong',
             },
           ],
         },
@@ -82,7 +71,8 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl:
-            'https://github.com',
+            'https://github.com/yuzhanglong/YuJudge',
+          routeBasePath: "/"
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

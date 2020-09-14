@@ -18,7 +18,7 @@ module.exports = {
     {
       type: 'category',
       label: '判题服务器(JudgeHost)',
-      items: ["judgeHostApi"],
+      items: ["judgeHostApi", "judgeHostDevelop"],
     }
   ],
 };

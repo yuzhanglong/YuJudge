@@ -1,8 +1,8 @@
 ---
-title: 快速开始
+title: 快速上手
 slug: /
 ---
-## 部署服务端
+## 服务端
 
 项目的部署依赖**docker**、**docker-compose**
 
@@ -24,9 +24,9 @@ wget http://cdn.yuzzl.top/docker-compose-single.yml
 docker compose -f docker-compose-single.yml up -d 
 ```
 
-项目将在大概**十几秒**后在服务器后台正常运行。
+项目将在大概**二十秒**后在服务器后台正常运行。
 
-部署完成之后，整个项目结构如下所示，尝试访问这些端口，或者去部署**前端项目**。
+部署完成之后，整个项目结构如下所示，可尝试使用数据库管理工具、浏览器访问各个部分，或者去尝试**前端项目**。
 
 ![image-20200912212555137](http://cdn.yuzzl.top/single-server.png)
 
@@ -43,7 +43,11 @@ docker compose -f docker-compose-single.yml up -d
 
 
 
-## 部署前端
+## 前端
+
+如果你只想尝试一下，你可以访问本项目的**在线demo**或者**codeSandbox**
+
+
 
 
 

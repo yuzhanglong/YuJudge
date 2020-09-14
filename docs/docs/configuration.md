@@ -4,7 +4,7 @@ title: 配置项
 
 ## 前端配置项
 
-以下是前端配置项，你可以按需修改，其中比较重要的配置我们以高亮的形式表示，请务必修改或者重视。
+以下是前端配置项，你可以按需修改，其中比较重要的配置我们以高亮的形式表示，请**务必修改或者重视**。
 
 ```typescript {39-40,24-25,36-37}
 /*
@@ -136,9 +136,9 @@ export const JUDGE_RESULT_CHANGE_ALLOW_DATA = [
 ];
 ```
 
-## 服务端部署脚本
+## 服务端部署脚本配置
 
-以下是服务端单台服务器的部署脚本，你可以按需修改，其中比较重要的配置我们以高亮的形式表示，请务必修改或者重视。
+以下是服务端的部署脚本，你可以按需修改，其中比较重要的配置我们以高亮的形式表示，请**务必修改或者重视**。
 
 ```yml {15,18-21,34-36,46}
 version: '3'
@@ -159,9 +159,10 @@ services:
       MYSQL_URL: jdbc:mysql://mysql:3306/yu-judge?characterEncoding=utf-8&serverTimezone=GMT%2B8
       MYSQL_USER_NAME: root
       MYSQL_PASSWORD: yzl520  # mysql root密码, 务必修改
-      QN_ACCESS_KEY: o4fgM7P2lPEyo3FZ7s_NGdo_xJVNDdKf55apCubX # 项目使用了七牛云存储服务，每个月有50G免费用量,请自行注册, 这里的值已作废
-      QN_SECRET_KEY: YxRkcS8o-GSLMo1ajWuLjeFxFsMo1WKnOvyrLjB8
-      QN_BUCKET: yzlyzl123
+      QN_ACCESS_KEY: o4fgM7P2lPE已作废yo3Kf55apCubX 
+      # 项目使用了七牛云存储服务，每个月有50G免费用量,请自行注册, 这里的值
+      QN_SECRET_KEY: YxRkcS8o-GSLM已作废o1ajWuLjeFxFsMo1WKnOvyrLjB8
+      QN_BUCKET: yzlyz已作废l123
   judge-host:
     image: registry.cn-shenzhen.aliyuncs.com/coderyzl/judge-host:1.0
     ports:
