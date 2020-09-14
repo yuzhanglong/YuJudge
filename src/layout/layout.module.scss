@@ -16,12 +16,12 @@
 }
 
 .common_content {
-  background-image: url("http://cdn.yuzzl.top/bbbbbb.png");
+  background-image: $common-page-background-image;
 }
 
 .common_content_mask {
   background-color: $common-page-mask-background-color;
-  min-height: calc(100vh - 51px);
+  min-height: $common-page-min-height;
   padding: $common-page-padding;
 }
 

@@ -19,6 +19,18 @@ $common-page-mask-background-color: rgba(217, 217, 217, 0.4);
 $common-nav-font-weight: bold;
 
 
+// common页面背景图片
+$common-page-background-image: url("http://cdn.yuzzl.top/bbbbbb.png");
+
+// common页面基础高度
+$common-page-min-height: calc(100vh - 51px);
+
+// common页面基础高度
+$common-problem-home-page-title-card-min-height: calc(100vh - 51px - 90px);
+
+// common页面基础高度
+$common-page-title-card-min-height: calc(100vh - 51px - 90px);
+
 // 后台侧边栏宽度
 $cms-sider-width: 230px;
 

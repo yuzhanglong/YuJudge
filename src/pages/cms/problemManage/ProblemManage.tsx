@@ -18,6 +18,7 @@ import {Button, Card, message} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
 import CreateProblemModal from "./childCmp/CreateProblemModal";
 import {BaseResponse} from "../../../models/common";
+import RcQueueAnim from "rc-queue-anim";
 
 
 const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
@@ -81,18 +82,23 @@ const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
   }
 
   return (
-    <Card title={"题目管理"} extra={renderCreateProblemButton()}>
-      <CreateProblemModal
-        onConfirm={(name) => createProblemConfirm(name)}
-        visible={createButtonModalVisible}
-        onCancel={() => setCreateButtonModalVisible(false)}/>
-      <ProblemTable
-        isShowProblemOrder={false}
-        onProblemEdit={gotoEditProblem}
-        problems={problemPagination.items}
-        totalPage={problemPagination.paginationInfo.totalPage}
-        onPageChange={onPageChange}/>
-    </Card>
+    <RcQueueAnim>
+      <div key={"problem_manage"}>
+        <Card title={"题目管理"} extra={renderCreateProblemButton()}>
+          <CreateProblemModal
+            onConfirm={(name) => createProblemConfirm(name)}
+            visible={createButtonModalVisible}
+            onCancel={() => setCreateButtonModalVisible(false)}/>
+          <ProblemTable
+            isShowProblemOrder={false}
+            onProblemEdit={gotoEditProblem}
+            problems={problemPagination.items}
+            totalPage={problemPagination.paginationInfo.totalPage}
+            onPageChange={onPageChange}/>
+        </Card>
+      </div>
+    </RcQueueAnim>
+
   )
 }
 

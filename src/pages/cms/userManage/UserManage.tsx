@@ -22,6 +22,7 @@ import {getUserGroups} from "../../../network/userGroupRequest";
 import CreateUserModal from "./childCmp/CreateUserModal";
 import AllocateUserGroupsModal from "./childCmp/AllocateUserGroupsModal";
 import UserEditModal from "./childCmp/UserEditModal";
+import RcQueueAnim from "rc-queue-anim";
 
 interface UserManageProps {
 
@@ -161,40 +162,44 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
   }
 
   return (
-    <Card title={"用户管理"} extra={renderAddUserButton()}>
-      <UserManageToolBar
-        onSelectorChange={onSelectorChange}
-        selectorItems={userGroupItems}/>
-      <UserTable
-        onPageChange={(page: number) => getUserInfo(page - 1, activeUserGroup)}
-        showScope
-        showEmail
-        isLoading={usersPaginationState.isLoading}
-        pagination={usersPaginationState.paginationInfo}
-        userInfo={usersPaginationState.items}
-        showRanking={false}
-        operations={renderUserOperations}/>
-      <CreateUserModal
-        isVisible={isCreateUserModalVisible}
-        onClose={() => setIsCreateUserModalVisible(false)}
-        onCreateConfirm={createUserConfirm}/>
-      {
-        activeUser &&
-        <AllocateUserGroupsModal
-          onConfirm={(res) => allocateUserGroups(res)}
-          onCancel={() => setActiveUser(null)}
-          isVisible={true}
-          userInfo={activeUser}
-          totalUserGroups={userGroupItems}/>
-      }
-      {
-        userToEdit &&
-        <UserEditModal
-          visible
-          onCancel={() => setUserToEdit(null)}
-          userInfo={userToEdit}/>
-      }
-    </Card>
+    <RcQueueAnim>
+      <div key={"user_manage"}>
+        <Card title={"用户管理"} extra={renderAddUserButton()}>
+          <UserManageToolBar
+            onSelectorChange={onSelectorChange}
+            selectorItems={userGroupItems}/>
+          <UserTable
+            onPageChange={(page: number) => getUserInfo(page - 1, activeUserGroup)}
+            showScope
+            showEmail
+            isLoading={usersPaginationState.isLoading}
+            pagination={usersPaginationState.paginationInfo}
+            userInfo={usersPaginationState.items}
+            showRanking={false}
+            operations={renderUserOperations}/>
+          <CreateUserModal
+            isVisible={isCreateUserModalVisible}
+            onClose={() => setIsCreateUserModalVisible(false)}
+            onCreateConfirm={createUserConfirm}/>
+          {
+            activeUser &&
+            <AllocateUserGroupsModal
+              onConfirm={(res) => allocateUserGroups(res)}
+              onCancel={() => setActiveUser(null)}
+              isVisible={true}
+              userInfo={activeUser}
+              totalUserGroups={userGroupItems}/>
+          }
+          {
+            userToEdit &&
+            <UserEditModal
+              visible
+              onCancel={() => setUserToEdit(null)}
+              userInfo={userToEdit}/>
+          }
+        </Card>
+      </div>
+    </RcQueueAnim>
   )
 }
 

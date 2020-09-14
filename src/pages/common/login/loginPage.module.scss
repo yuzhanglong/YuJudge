@@ -9,11 +9,18 @@
 @import "src/styles/public";
 
 .login_page {
+  background-image: $common-page-background-image;
+  height: 100vh;
 }
 
 .login_page_image {
   width: 500px;
   border-radius: 10px;
+}
+
+.login_page_mask {
+  background-color: $common-page-mask-background-color;
+  height: 100vh;
 }
 
 .login_card_wrap {

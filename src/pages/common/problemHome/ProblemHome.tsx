@@ -130,8 +130,8 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
       {
         problem &&
         <div className={style.problem_home} key={"problem_home"}>
-          <Card className={style.problem_home_body}>
-            <div>
+          <Card>
+            <div className={style.problem_home_body}>
               <div className={style.problem_home_title}>
                 {problem && renderTitle()}
               </div>

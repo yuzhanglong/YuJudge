@@ -19,6 +19,7 @@ import {UsePaginationState} from "../../../hooks/pagination";
 import {ProblemSetPaginationRequest} from "../../../models/pagination";
 import {dateRangeMomentArrayToTimeStampArray} from "../../../utils/dateTime";
 import style from "./problemSetManage.module.scss"
+import RcQueueAnim from "rc-queue-anim";
 
 
 const ProblemSetManage: React.FunctionComponent<RouteComponentProps> = (props) => {
@@ -100,23 +101,27 @@ const ProblemSetManage: React.FunctionComponent<RouteComponentProps> = (props) =
   }
 
   return (
-    <Card title={"题目集管理"}>
-      <div className={style.problem_set_tool_bar_wrap}>
-        <ProblemSetToolBar
-          onCheckBoxChange={onProblemSetsLimitationChange}
-          showModal={isShowEditForm}
-          onFormFinish={formData => onCreateProblemSet(formData)}
-          onCreateButtonClick={() => setIsShowEditForm(true)}
-          onCancel={() => setIsShowEditForm(false)}
-          onSearch={onSearchButtonClick}/>
+    <RcQueueAnim>
+      <div key={"problem_set_manage"}>
+        <Card title={"题目集管理"}>
+          <div className={style.problem_set_tool_bar_wrap}>
+            <ProblemSetToolBar
+              onCheckBoxChange={onProblemSetsLimitationChange}
+              showModal={isShowEditForm}
+              onFormFinish={formData => onCreateProblemSet(formData)}
+              onCreateButtonClick={() => setIsShowEditForm(true)}
+              onCancel={() => setIsShowEditForm(false)}
+              onSearch={onSearchButtonClick}/>
+          </div>
+          <ProblemSetTable
+            onEditButtonClick={onProblemEdit}
+            isLoading={paginationState.isLoading}
+            problemSets={paginationState.items}
+            totalPage={paginationState.paginationInfo.totalPage}
+            onPageChange={onPageChange}/>
+        </Card>
       </div>
-      <ProblemSetTable
-        onEditButtonClick={onProblemEdit}
-        isLoading={paginationState.isLoading}
-        problemSets={paginationState.items}
-        totalPage={paginationState.paginationInfo.totalPage}
-        onPageChange={onPageChange}/>
-    </Card>
+    </RcQueueAnim>
   )
 }
 

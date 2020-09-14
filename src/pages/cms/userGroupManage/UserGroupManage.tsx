@@ -17,6 +17,7 @@ import UserGroupEditModal from "./childCmp/UserGroupEditModal";
 import {PermissionInfo} from "../../../models/permission";
 import {getPermissions} from "../../../network/permissionRequest";
 import AuthorizeModal from "./childCmp/AuthorizeModal";
+import RcQueueAnim from "rc-queue-anim";
 
 interface UserGroupManageProps {
 
@@ -147,32 +148,36 @@ const UserGroupManage: React.FunctionComponent<UserGroupManageProps> = () => {
   }
 
   return (
-    <Card
-      title={"用户组信息"}
-      extra={
-        <Button
-          type={"primary"}
-          icon={<PlusOutlined/>}
-          onClick={() => {
-            setIsUserGroupVisible(true);
-          }}>
-          创建用户组
-        </Button>
-      }>
-      <UserGroupTable
-        userGroups={userGroups}
-        operations={renderOperations}/>
-      <UserGroupEditModal
-        dataToEdit={userGroupInfoToEdit}
-        onConfirm={(res: UserGroupInfo) => onCreateOrEditUserGroupConfirm(res)}
-        visible={isUserGroupVisible}
-        onCancel={() => onEditFormDestroy()}/>
-      <AuthorizeModal
-        onCancel={() => setIsPermissionModalVisible(false)}
-        totalPermissions={permissionToAllocate}
-        userGroupId={activeUserGroup}
-        visible={isPermissionModalVisible}/>
-    </Card>
+    <RcQueueAnim>
+      <div key={"user_group"}>
+        <Card
+          title={"用户组信息"}
+          extra={
+            <Button
+              type={"primary"}
+              icon={<PlusOutlined/>}
+              onClick={() => {
+                setIsUserGroupVisible(true);
+              }}>
+              创建用户组
+            </Button>
+          }>
+          <UserGroupTable
+            userGroups={userGroups}
+            operations={renderOperations}/>
+          <UserGroupEditModal
+            dataToEdit={userGroupInfoToEdit}
+            onConfirm={(res: UserGroupInfo) => onCreateOrEditUserGroupConfirm(res)}
+            visible={isUserGroupVisible}
+            onCancel={() => onEditFormDestroy()}/>
+          <AuthorizeModal
+            onCancel={() => setIsPermissionModalVisible(false)}
+            totalPermissions={permissionToAllocate}
+            userGroupId={activeUserGroup}
+            visible={isPermissionModalVisible}/>
+        </Card>
+      </div>
+    </RcQueueAnim>
   )
 }
 

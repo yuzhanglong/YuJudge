@@ -118,51 +118,53 @@ const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = (props)
 
   return (
     <div className={style.login_page}>
-      <div className={style.login_card_wrap}>
-        <Card bodyStyle={{padding: 0}} className={style.login_card}>
-          <Row>
-            <Col>
-              <img
-                src={"/image/login.jpg"}
-                alt={"confirmation"}
-                className={style.login_page_image}/>
-            </Col>
-            <Col>
-              <div className={style.login_area}>
-                <div className={style.login_area_title}>
-                  <div className={style.login_area_title_main}>
-                    {activeForm === formType.LOGIN ? "用户登录" : "用户注册"}
+      <div className={style.login_page_mask}>
+        <div className={style.login_card_wrap}>
+          <Card bodyStyle={{padding: 0}} className={style.login_card}>
+            <Row>
+              <Col>
+                <img
+                  src={"/image/login.jpg"}
+                  alt={"confirmation"}
+                  className={style.login_page_image}/>
+              </Col>
+              <Col>
+                <div className={style.login_area}>
+                  <div className={style.login_area_title}>
+                    <div className={style.login_area_title_main}>
+                      {activeForm === formType.LOGIN ? "用户登录" : "用户注册"}
+                    </div>
+                    <div>
+                      <Button type={"link"} onClick={() => showRegisterForm()}>
+                        {activeForm === formType.LOGIN ? "没有账号? 点我注册" : "去登录"}
+                      </Button>
+                    </div>
                   </div>
                   <div>
-                    <Button type={"link"} onClick={() => showRegisterForm()}>
-                      {activeForm === formType.LOGIN ? "没有账号? 点我注册" : "去登录"}
-                    </Button>
+                    {
+                      activeForm === formType.LOGIN &&
+                      <LoginForm
+                        checkCode={checkCodeInfo?.image}
+                        validateRequired onConfirm={onLogin}
+                        onCheckCodeClick={resetCheckCode}
+                        className={style.login_form}>
+                      </LoginForm>
+                    }
+                    {
+                      activeForm === formType.REGISTER &&
+                      <RegisterForm
+                        checkCode={checkCodeInfo?.image}
+                        validateRequired onConfirm={onRegister}
+                        onCheckCodeClick={resetCheckCode}
+                        className={style.login_form}>
+                      </RegisterForm>
+                    }
                   </div>
                 </div>
-                <div>
-                  {
-                    activeForm === formType.LOGIN &&
-                    <LoginForm
-                      checkCode={checkCodeInfo?.image}
-                      validateRequired onConfirm={onLogin}
-                      onCheckCodeClick={resetCheckCode}
-                      className={style.login_form}>
-                    </LoginForm>
-                  }
-                  {
-                    activeForm === formType.REGISTER &&
-                    <RegisterForm
-                      checkCode={checkCodeInfo?.image}
-                      validateRequired onConfirm={onRegister}
-                      onCheckCodeClick={resetCheckCode}
-                      className={style.login_form}>
-                    </RegisterForm>
-                  }
-                </div>
-              </div>
-            </Col>
-          </Row>
-        </Card>
+              </Col>
+            </Row>
+          </Card>
+        </div>
       </div>
     </div>
 
