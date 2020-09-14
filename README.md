@@ -1,6 +1,6 @@
 <p align="center">
   <a href="">
-    <img src="http://cdn.yuzzl.top/judge.png">
+    <img src="https://github.com/yuzhanglong/YuJudge/blob/master/public/logo/logo-text-with-version.svg" width="240px">
   </a>
 </p>
 
@@ -8,10 +8,13 @@
   <a href="#快速上手">快速上手</a>&nbsp;|&nbsp;<a href="#调试与部署">调试与部署</a>&nbsp;|&nbsp;<a href="#版本日志">版本日志</a>
 </p>
 
+<p align="center">
+  <a href="https://img.shields.io/github/package-json/v/yuzhanglong/YuJudge"><img src="https://img.shields.io/github/package-json/v/yuzhanglong/YuJudge" alt="package-json"></a>
+  <a href="https://img.shields.io/badge/react-16.13.1-blue?logo=react"><img src="https://img.shields.io/badge/react-16.13.1-blue?logo=react" alt="react"></a>
+  <a href="https://img.shields.io/badge/typescript-3.7.2-blue?logo=typescript"><img src="https://img.shields.io/badge/typescript-3.7.2-blue?logo=typescript" alt="typescript"></a>
+</p>
 
-![package-json](https://img.shields.io/github/package-json/v/yuzhanglong/YuJudge)
-![react](https://img.shields.io/badge/react-16.13.1-blue?logo=react)
-![typescript](https://img.shields.io/badge/typescript-3.7.2-blue?logo=typescript)
+<h2 align="center"></h2>
 
 ### 快速上手
 
@@ -19,7 +22,8 @@
 
 ### 在线DEMO
 
-[点击访问](http://oj.yuzzl.top/)
+[测试网站](http://oj.yuzzl.top/)
+[CodeSandbox(可修改代码实时预览)](https://codesandbox.io/s/adoring-blackburn-ru7kr)
 
 ###  调试与部署
 

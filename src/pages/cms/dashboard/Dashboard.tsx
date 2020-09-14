@@ -34,7 +34,6 @@ interface DashboardProps {
 }
 
 const Dashboard: React.FunctionComponent<DashboardProps & RouteComponentProps> = () => {
-
   // 最新问题
   const [recentProblems, setRecentProblems] = useState<Problem[]>([]);
   // 近期提交统计
