@@ -2,6 +2,18 @@ const uploader = require("qiniu");
 const fs = require('fs');
 const paths = require('../config/paths');
 
+const MIME_TYPE_MAP = {
+  "css": "text/css",
+  "ico": "image/x-icon",
+  "jpe": "image/jpeg",
+  "jpeg": "image/jpeg",
+  "jpg": "image/jpeg",
+  "js": "application/javascript",
+  "svg": "image/svg+xml",
+  "json": "application/json",
+  "woff2": "font/woff2"
+}
+
 // 打包完成文件路径
 const BUILD_PATH = paths.appBuild;
 const BUILD_MANIFEST_JSON_PATH = `${BUILD_PATH}/asset-manifest.json`;
@@ -27,14 +39,9 @@ let manifest = JSON.parse(fs.readFileSync(BUILD_MANIFEST_JSON_PATH).toString());
 
 // 获取 mimeType
 const getMimeType = (fileName) => {
-  console.log(fileName);
-  if (fileName.endsWith("css")) {
-    return "text/css";
-  }
-  if (fileName.endsWith("woff2")) {
-    return "font/woff2";
-  }
-  return "application/javascript";
+  let fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+  let type = MIME_TYPE_MAP[fileExtension];
+  return type ? type : "application/javascript";
 }
 
 // 文件上传

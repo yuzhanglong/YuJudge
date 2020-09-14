@@ -28,7 +28,6 @@ const Common: React.FunctionComponent<ProblemLayoutProps & RouteComponentProps> 
         <div className={style.common_content_mask}>
           {props.children}
         </div>
-
       </div>
     </Layout>
   )

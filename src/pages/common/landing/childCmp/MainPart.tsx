@@ -10,6 +10,7 @@ import React from "react";
 import {Button} from "antd";
 import style from "../landing.module.scss"
 import {GithubOutlined} from "@ant-design/icons";
+import mainPartImage from "../../../../assets/images/code-typing.svg"
 
 
 interface MainPartProps {
@@ -69,7 +70,7 @@ const MainPart: React.FunctionComponent<MainPartProps> = (props) => {
         <div>
           <img
             alt={"codeTyping"}
-            src={"http://cdn.yuzzl.top/codeTyping.svg"}
+            src={mainPartImage}
             className={style.main_part_illustration_image}/>
         </div>
       </div>

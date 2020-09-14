@@ -15,7 +15,8 @@ import {BaseResponse} from "../../../models/common";
 import {Button, Card, Col, message, Row} from "antd";
 import {getTokenFromStorage, saveUserInfo, setToken} from "../../../utils/dataPersistence";
 import RegisterForm from "../../../components/registerForm/RegisterForm";
-import style from "./loginPage.module.scss"
+import style from "./loginPage.module.scss";
+import loginImage from "../../../assets/images/login.jpg"
 
 interface LoginProps {
 
@@ -124,7 +125,7 @@ const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = (props)
             <Row>
               <Col>
                 <img
-                  src={"/image/login.jpg"}
+                  src={loginImage}
                   alt={"confirmation"}
                   className={style.login_page_image}/>
               </Col>
