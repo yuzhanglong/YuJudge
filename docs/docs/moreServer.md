@@ -22,7 +22,7 @@ docker-compose -f docker-compose-judge-host.yml up -d
 
 ![image-20200913161249447](http://cdn.yuzzl.top/judge-host.png)
 
-其中，使用浏览器访问服务器的**8081端口**（JudgeServer，判题服务器），看到以下内容,  说明部署成功
+其中，使用浏览器访问服务器的**8080端口**（JudgeServer，判题服务器），看到以下内容,  说明部署成功
 
 ```json
 {

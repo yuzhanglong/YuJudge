@@ -65,8 +65,8 @@ export const LandingFooterDataSource = {
         title: {children: '相关资料'},
         childWrapper: {
           children: [
-            {href: '#', name: 'link0', children: '项目介绍文档'},
-            {href: '#', name: 'link1', children: '二次开发'},
+            {href: 'http://docs.yuzzl.top', name: 'link0', children: '项目介绍文档'},
+            {href: 'http://docs.yuzzl.top', name: 'link1', children: '二次开发'},
           ],
         },
       },

@@ -1,6 +1,6 @@
 <p align="center">
   <a href="">
-    <img src="https://github.com/yuzhanglong/YuJudge/blob/master/public/logo/logo-text-with-version.svg" width="240px">
+    <img src="http://cdn.yuzzl.top/logo-text.svg" width="240px">
   </a>
 </p>
 
