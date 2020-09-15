@@ -110,7 +110,6 @@ const Profile: React.FunctionComponent<profileProps & RouteComponentProps> = (pr
   return (
     <RcQueueAnim>
       <div title={"个人中心"} className={style.profile} key={"profile"}>
-        <Card className={style.profile_content}>
           <Row>
             <Col className={style.profile_user_info}>
               {currentUser && <UserCard userInfo={currentUser}/>}
@@ -125,7 +124,6 @@ const Profile: React.FunctionComponent<profileProps & RouteComponentProps> = (pr
               </div>
             </Col>
           </Row>
-        </Card>
       </div>
     </RcQueueAnim>
   )

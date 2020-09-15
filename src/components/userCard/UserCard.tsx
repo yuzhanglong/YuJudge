@@ -45,6 +45,17 @@ const UserCard: React.FunctionComponent<userCardProps> = (props) => {
               {props.userInfo.acAmount}
             </div>
           </Row>
+          <Row justify={"space-between"}>
+            <div>
+              通过率
+            </div>
+            <div>
+              {
+                props.userInfo.submissionAmount ?
+                  ((props.userInfo.acAmount / props.userInfo.submissionAmount) * 100).toFixed(2) : 0
+              } %
+            </div>
+          </Row>
         </div>
       </div>
     </Card>

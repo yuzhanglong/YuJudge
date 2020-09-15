@@ -50,7 +50,7 @@ const TestCaseList: React.FunctionComponent<TestCaseListProps> = (props) => {
       {
         props.testCases.map((item, index) => {
           return (
-            <div>
+            <div key={index}>
               <Row align={"middle"}>
                 <Col span={2}>
                   <ConditionTag

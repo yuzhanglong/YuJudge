@@ -13,7 +13,9 @@ import ColumnChart from "../../../../components/charts/ColumnChart";
 import {EMPTY_IMAGE} from "../../../../config/config";
 import {UserJudgeResultCount, UserSubmissionCount} from "../../../../models/submission";
 import JudgeResultCount from "../../../../components/judgeResultCount/JudgeResultCount";
-import {BulbTwoTone, DashOutlined, FileTextTwoTone, PieChartTwoTone, SmileTwoTone} from "@ant-design/icons";
+import {
+  BulbOutlined, DashOutlined, FileTextOutlined, PieChartOutlined, SmileOutlined,
+} from "@ant-design/icons";
 import RcQueueAnim from "rc-queue-anim";
 import CommonTitle from "../../../../components/commonTitle/CommonTitle";
 import {ProblemCountItem} from "../../../../models/problem";
@@ -44,7 +46,7 @@ const ProfileCount: React.FunctionComponent<ProfileCountProps> = (props) => {
       <div key={"profile_group_item_1"}>
         <Row className={style.profile_group_item}>
           <Card
-            title={<CommonTitle title={"已通过"} icon={<SmileTwoTone/>}/>}
+            title={<CommonTitle title={"已通过"} icon={<SmileOutlined/>}/>}
             className={style.profile_user_have_pass}
             extra={
               <DashOutlined/>
@@ -56,7 +58,7 @@ const ProfileCount: React.FunctionComponent<ProfileCountProps> = (props) => {
             }
           </Card>
           <Card
-            title={<CommonTitle title={"尝试过"} icon={<BulbTwoTone/>}/>}
+            title={<CommonTitle title={"尝试过"} icon={<BulbOutlined/>}/>}
             className={style.profile_user_have_tried}
             extra={
               <DashOutlined/>
@@ -70,7 +72,7 @@ const ProfileCount: React.FunctionComponent<ProfileCountProps> = (props) => {
       <div key={"profile_group_item_2"}>
         <Row>
           <Card
-            title={<CommonTitle title={"近期提交"} icon={<FileTextTwoTone/>}/>}
+            title={<CommonTitle title={"近期提交"} icon={<FileTextOutlined/>}/>}
             className={style.profile_recent_submission}
             extra={
               <DashOutlined/>
@@ -89,7 +91,7 @@ const ProfileCount: React.FunctionComponent<ProfileCountProps> = (props) => {
             }
           </Card>
           <Card
-            title={<CommonTitle title={"判题统计"} icon={<PieChartTwoTone/>}/>}
+            title={<CommonTitle title={"判题统计"} icon={<PieChartOutlined/>}/>}
             className={style.profile_recent_judge_result_count}
             extra={<DashOutlined/>}>
             {

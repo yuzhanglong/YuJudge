@@ -15,10 +15,10 @@ $profile-item-height: 300px;
 // 内容间距
 $profile-item-spacing: 20px;
 
-.profile {
-}
 
 .profile_content {
+  display: flex;
+  justify-content: center;
 }
 
 .profile_user_info {
