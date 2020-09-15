@@ -19,8 +19,8 @@ const BUILD_PATH = paths.appBuild;
 const BUILD_MANIFEST_JSON_PATH = `${BUILD_PATH}/asset-manifest.json`;
 
 // 上传凭证以及配置
-const ACCESS_KEY = 'o4fgM7P2lPEyo3FZ7s_NGdo_xJVNDdKf55apCubX';
-const SECRET_KEY = 'YxRkcS8o-GSLMo1ajWuLjeFxFsMo1WKnOvyrLjB8';
+const ACCESS_KEY = 'o4fgM7P2lPEyo3FZ7s_N已作废Gdo_xJVNDdKf55apCubX';
+const SECRET_KEY = 'YxRkcS8o-GSLMo1ajWu已作废LjeFxFsMo1WKnOvyrLjB8';
 const options = {
   scope: "yzlyzl123",
 };

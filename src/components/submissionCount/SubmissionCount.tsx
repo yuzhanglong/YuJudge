@@ -11,7 +11,12 @@ import {SubmissionCountInfo} from "../../models/submission";
 import LineChart from "../charts/LineChart";
 import {Col, DatePicker, Empty, Row, Tag} from "antd";
 import {Moment} from "moment";
-import {DATE_TIME_FORMAT_BY_HOUR, DEFAULT_DATE_TIME_FORMAT, EMPTY_IMAGE} from "../../config/config";
+import {
+  DATE_TIME_FORMAT_BY_HOUR,
+  DATE_TIME_FORMAT_WITHOUT_TIME,
+  DEFAULT_DATE_TIME_FORMAT,
+  EMPTY_IMAGE
+} from "../../config/config";
 import moment from "moment";
 
 interface SubmissionCountProps {
@@ -27,24 +32,20 @@ const SubmissionCount: React.FunctionComponent<SubmissionCountProps> = (props) =
 
   useEffect(() => {
     // 如果传入了时间，我们需要初始化这些时间
-    if (props.initialTimeRange) {
-      setCurrentDataRange(props.initialTimeRange);
-    }
-    // 只初始化一次
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    setCurrentDataRange(props.initialTimeRange);
+  }, [props.initialTimeRange]);
 
 
-  const [currentDateRange, setCurrentDataRange] = useState<Moment[]>([]);
+  const [currentDateRange, setCurrentDataRange] = useState<[Moment, Moment]>();
 
   // 获取时间格式, 由于时间差的不同，我们需要不同的格式
   const getDateFormat = () => {
-    if (currentDateRange && currentDateRange.length === 2) {
-      const duration = currentDateRange[1].diff(currentDateRange[0], 'days');
-      // 超过一天
-      if (duration < -1 || duration > 1) {
-        return DEFAULT_DATE_TIME_FORMAT;
-      }
+    const start = moment(props.submissionCounts[0].time);
+    const end = moment(props.submissionCounts[props.submissionCounts.length - 1].time);
+    const duration = start.diff(end, 'days');
+    // 超过一天
+    if (duration < -1 || duration > 1) {
+      return DATE_TIME_FORMAT_WITHOUT_TIME;
     }
     return DATE_TIME_FORMAT_BY_HOUR;
   }
@@ -63,7 +64,7 @@ const SubmissionCount: React.FunctionComponent<SubmissionCountProps> = (props) =
   }
 
   // 当选择器发生改变时
-  const onPickerChange = (event: Moment[]) => {
+  const onPickerChange = (event: [Moment, Moment]) => {
     if (!event || event.length !== 2 || !props.onPickerChange) {
       return;
     }
@@ -98,6 +99,7 @@ const SubmissionCount: React.FunctionComponent<SubmissionCountProps> = (props) =
             <DatePicker.RangePicker
               showTime
               defaultValue={props.initialTimeRange}
+              value={currentDateRange}
               onChange={(value: any) => onPickerChange(value)}/>
           }
         </Col>

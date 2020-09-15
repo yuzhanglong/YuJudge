@@ -7,7 +7,7 @@
  */
 
 import React, {useEffect, useState} from "react";
-import {Card, Col, message, Row} from "antd";
+import {Col, message, Row} from "antd";
 import UserCard from "../../../components/userCard/UserCard";
 import style from "./profile.module.scss"
 import ProfileCount from "./childCmp/ProfileCount";

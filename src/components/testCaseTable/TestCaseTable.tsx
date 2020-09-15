@@ -10,6 +10,7 @@ import React from "react";
 import {Button, Table} from "antd";
 import {ProblemTestCase} from "../../models/problem";
 import {DownloadOutlined} from "@ant-design/icons";
+import {getUrlPostfix} from "../../utils/string";
 
 interface TestCaseTableProps {
   testCases: ProblemTestCase[];
@@ -32,7 +33,7 @@ const TestCaseTable: React.FunctionComponent<TestCaseTableProps> = (props) => {
   const renderTestCaseDownLoad = (url: string) => {
     return (
       <div>
-        {url}
+        {getUrlPostfix(url)}
         <Button
           icon={<DownloadOutlined/>}
           style={{

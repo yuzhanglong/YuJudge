@@ -72,6 +72,9 @@ export const TIME_LINE_IN_PROBLEM_SET_FORMAT = DEFAULT_DATE_TIME_FORMAT;
 // 日期格式化 - 小时
 export const DATE_TIME_FORMAT_BY_HOUR = "HH:mm:ss";
 
+// 日期格式化 - 小时
+export const DATE_TIME_FORMAT_WITHOUT_TIME = "YYYY-MM-DD";
+
 // 默认端口
 export const JUDGE_HOST_DEFAULT_PORT = 8080;
 
