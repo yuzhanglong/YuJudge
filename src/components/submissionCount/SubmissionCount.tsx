@@ -112,10 +112,12 @@ const SubmissionCount: React.FunctionComponent<SubmissionCountProps> = (props) =
             xKey={"hour"}
             yKey={"submissionAmount"}
             yDescription={"提交数量"}/> :
-          <Empty
-            description={"该时间段无提交"}
-            image={EMPTY_IMAGE}>
-          </Empty>
+          <div style={{display: "flex", justifyContent: "center"}}>
+            <Empty
+              description={"该时间段无提交"}
+              image={EMPTY_IMAGE}>
+            </Empty>
+          </div>
       }
     </div>
   )

@@ -9,13 +9,13 @@ title: 集群部署(多个判题机)
 ### 获取部署脚本
 
 ```shell
-wget http://cdn.yuzzl.top/docker-compose-single.yml
+wget https://cdn.jsdelivr.net/gh/yuzhanglong/YuJudge-JudgeServer/deploy/docker-compose-judge-host.yml
 ```
 
 ### 执行部署
 
 ```shell
-docker-compose up -d
+docker-compose -f docker-compose-judge-host.yml up -d
 ```
 
 部署完成之后，整个项目结构如下所示：

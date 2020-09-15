@@ -47,14 +47,14 @@ yarn build
 
 ### 带外链的生产环境打包
 
-打开`package.json`，修改**http://cdn.yuzzl.top**为你的外链地址。
+打开`package.json`，修改 **buildWithPrefix**
 
 ```json {5}
 "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "buildWithPrefix": "node scripts/build.js http://cdn.yuzzl.top",
+    "buildWithPrefix": "node scripts/build.js http://cdn.yuzzl.top(你的外链地址)",
     "upload": "node scripts/upload.js"
 }
 ```
@@ -65,7 +65,7 @@ yarn build
 yarn buildWithPrefix
 ```
 
-此时打包出来的所有js、css等依赖，均指向你的**外链地址**而不是`build`文件夹的根目录。
+此时打包出来的所有js、css、图片(public文件夹内的静态文件除外)等依赖，均指向你的**外链地址**而不是`build`文件夹的根目录。
 
 ### 集成七牛存储服务
 

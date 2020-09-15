@@ -133,3 +133,7 @@ python contest.py
 
 ### 查看结果
 
+进入计分板，可以看到本次提交测试的大体状况，我的测试结果如下图。
+
+
+![](http://cdn.yuzzl.top/score_board.png)

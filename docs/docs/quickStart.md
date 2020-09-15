@@ -28,13 +28,13 @@ yum install -y docker docker-compose  // centos
 ### 获取docker-compose配置文件
 
 ```shell
-wget http://cdn.yuzzl.top/docker-compose-single.yml
+wget https://cdn.jsdelivr.net/gh/yuzhanglong/YuJudge-JudgeServer/deploy/docker-compose-single.yml
 ```
 
 ### 执行部署
 
 ```shell
-docker compose -f docker-compose-single.yml up -d 
+docker compose -f docker-compose-single.yml up -d
 ```
 
 项目将在大概**二十秒**后在服务器后台正常运行。
@@ -98,6 +98,11 @@ yarn build
 ## 大功告成
 
 进入首页，你将看到以下内容，说明前端项目部署成功，我们已经为你初始化了一名**管理员用户**，用户名为**admin**，密码为**password**，你可以点击**登录**按钮查看项目。
+
+Landing页面
+![首页](http://cdn.yuzzl.top/homepage.png)
+登录页
+![登录页](http://cdn.yuzzl.top/login_page.png)
 
 ## 接下来...
 

@@ -3,7 +3,7 @@ module.exports = {
     {
       type: 'category',
       label: '介绍',
-      items: ["quickStart", "submission", "configuration", "moreServer", "upload"],
+      items: ["quickStart", "submission", "upload", "configuration", "moreServer", "additions"],
     },
     {
       type: 'category',

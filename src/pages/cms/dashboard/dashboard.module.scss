@@ -34,10 +34,18 @@ $dash_board_head_card_font_weight: 300;
 // 图表区
 .dashboard_charts {
   padding-top: $dash_board_item_spacing;
+}
 
-  .dashboard_charts_item {
-    height: 300px;
-  }
+.dashboard_charts_item {
+  height: 320px;
+}
+
+.dashboard_charts_item_empty {
+  height: 288px;
+}
+
+.dashboard_charts_item_empty_image {
+  padding-top: 20px;
 }
 
 // 表格区

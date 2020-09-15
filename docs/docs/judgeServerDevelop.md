@@ -10,7 +10,7 @@ title: 针对服务端的二次开发
 YuJudge-JudgeServer                               // 根目录
 ├─ deploy                                         // 部署相关
 ├─ help                                           // 帮助文件
-src下
+-------------------src------------------
 ├─ bo                                             // 业务对象
 ├─ controller                                     // 控制层
 │  ├─ v1                                          // v1接口
