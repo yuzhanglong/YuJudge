@@ -15,7 +15,6 @@
 </p>
 
 <h2 align="center"></h2>
-
 ### 快速上手
 
 [点击访问](http://docs.yuzzl.top/)
@@ -32,6 +31,17 @@
 webpack配置文件位于`config/webpack`目录之下。
 
 yarn脚本文件位于`script`目录之下。
+
+### 安装
+```shell
+yarn install
+```
+
+### 安装无法运行可以尝试（node-sass安装的问题）
+```
+npm install -g mirror-config-china --registry=http://registry.npm.taobao.org
+yarn install
+```
 
 ### 开发环境运行
 
