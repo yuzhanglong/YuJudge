@@ -543,7 +543,7 @@ module.exports = function (webpackEnv) {
       }),
 
       // 打包数据分析插件
-      isEnvProduction && new BundleAnalyzerPlugin({analyzerPort: 3102}),
+      isEnvDevelopment && new BundleAnalyzerPlugin({analyzerPort: 3102}),
 
       // 生成一个带有<script>注入的`index.html`文件。
       new HtmlWebpackPlugin(
