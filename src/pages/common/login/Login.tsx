@@ -37,18 +37,19 @@ const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = (props)
 
 
   useEffect(() => {
-    getCheckCode();
-    checkUserIsLogin();
+    if (isUserLogin()) {
+      props.history.push("/common/home");
+    } else {
+      getCheckCode();
+    }
     // eslint-disable-next-line
   }, []);
 
   // 检测用户是否已经登录
-  const checkUserIsLogin = () => {
+  const isUserLogin = (): boolean => {
     const token = getTokenFromStorage();
-    if (token) {
-      // 在下个页面向服务器验证token的有效性，如果token无效则会返回
-      props.history.push("/common/home");
-    }
+    // 在下个页面向服务器验证token的有效性，如果token无效则会返回
+    return !!token;
   }
 
   // 执行登录操作
