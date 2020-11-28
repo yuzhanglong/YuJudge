@@ -25,6 +25,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const CompressionPlugin = require("compression-webpack-plugin");
 const postcssNormalize = require('postcss-normalize');
 const appPackageJson = require(paths.appPackageJson);
+const HtmlExternalWebpackPlugin = require("../plugins/htmlExternalWebpackPlugin");
 
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
@@ -552,6 +553,14 @@ module.exports = function (webpackEnv) {
             inject: true,
             template: paths.appHtml,
           },
+          {
+            meta: {
+              // 临时使用此方法来适应手机端，OJ适配手机端并不是一个刚需
+              'viewport': 'width=720,initial-scale=0.5, minimum-scale=0.1, maximum-scale=1.0, user-scalable=yes',
+              'description': 'A good online judge',
+              'theme-color': '#000000'
+            }
+          },
           isEnvProduction ? {
             minify: {
               removeComments: true,
@@ -568,6 +577,17 @@ module.exports = function (webpackEnv) {
           } : undefined
         )
       ),
+      // 生产环境下插入external模块的CDN脚本
+      isEnvProduction && new HtmlExternalWebpackPlugin(HtmlWebpackPlugin, [
+        "https://cdn.jsdelivr.net/npm/react@16.13.1/umd/react.production.min.js",
+        "https://cdn.jsdelivr.net/npm/react-dom@16.13.1/umd/react-dom.production.min.js",
+        "https://cdn.jsdelivr.net/npm/react-router@5.2.0/umd/react-router.min.js",
+        "https://cdn.jsdelivr.net/npm/moment@2.27.0/min/moment.min.js",
+        "https://cdn.jsdelivr.net/npm/@antv/g6@3.7.1/dist/g6.min.js",
+        "https://cdn.jsdelivr.net/npm/@antv/g2@4.0.9/dist/g2.min.js",
+        "https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js",
+        "https://cdn.jsdelivr.net/npm/codemirror@5.57.0/lib/codemirror.min.js"
+      ]),
       // Makes some environment variables available in index.html.
       // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
       // <link rel="icon" href="%PUBLIC_URL%/favicon.ico">
