@@ -34,7 +34,7 @@ wget https://cdn.jsdelivr.net/gh/yuzhanglong/YuJudge-JudgeServer/deploy/docker-c
 ### 执行部署
 
 ```shell
-docker compose -f docker-compose-single.yml up -d
+docker-compose -f docker-compose-single.yml up -d
 ```
 
 项目将在大概**二十秒**后在服务器后台正常运行。
