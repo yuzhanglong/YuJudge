@@ -7,7 +7,7 @@
  */
 
 
-import React from 'react';
+import React, {Suspense} from 'react';
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import zhCN from 'antd/es/locale/zh_CN';
 import {ConfigProvider} from "antd";
@@ -22,7 +22,9 @@ const App: React.FunctionComponent<RouteComponentProps> = (props) => {
     <ConfigProvider locale={zhCN}>
       <div className="App">
         <Provider store={store}>
-          <MyRouter></MyRouter>
+          <Suspense fallback={null}>
+            <MyRouter></MyRouter>
+          </Suspense>
         </Provider>
       </div>
     </ConfigProvider>

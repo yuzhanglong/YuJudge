@@ -25,7 +25,6 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const CompressionPlugin = require("compression-webpack-plugin");
 const postcssNormalize = require('postcss-normalize');
 const appPackageJson = require(paths.appPackageJson);
-const InlineChunkHtmlPlugin = require("react-dev-utils/InlineChunkHtmlPlugin");
 
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
@@ -543,7 +542,7 @@ module.exports = function (webpackEnv) {
       }),
 
       // 打包数据分析插件
-      isEnvDevelopment && new BundleAnalyzerPlugin({analyzerPort: 3102}),
+      isEnvProduction && new BundleAnalyzerPlugin({analyzerPort: 3102}),
 
       // 生成一个带有<script>注入的`index.html`文件。
       new HtmlWebpackPlugin(
@@ -569,9 +568,6 @@ module.exports = function (webpackEnv) {
           } : undefined
         )
       ),
-      isEnvProduction &&
-      shouldInlineRuntimeChunk &&
-      new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime-.+[.]js/]),
       // Makes some environment variables available in index.html.
       // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
       // <link rel="icon" href="%PUBLIC_URL%/favicon.ico">
