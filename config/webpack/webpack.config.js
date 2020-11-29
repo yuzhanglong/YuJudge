@@ -22,10 +22,10 @@ const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const CompressionPlugin = require("compression-webpack-plugin");
+const CompressionPlugin = require('compression-webpack-plugin');
 const postcssNormalize = require('postcss-normalize');
 const appPackageJson = require(paths.appPackageJson);
-const HtmlExternalWebpackPlugin = require("../plugins/htmlExternalWebpackPlugin");
+const HtmlExternalsWebpackPlugin = require('html-externals-webpack-plugin');
 
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
@@ -131,14 +131,14 @@ module.exports = function (webpackEnv) {
   };
   return {
     externals: isEnvProduction ? {
-      "react": "React",
-      "react-router": "ReactRouter",
-      "react-dom": "ReactDOM",
-      "@antv/g6": "G6",
-      "@antv/g2": "G2",
-      "moment": "moment",
-      "katex": "katex",
-      "codemirror": "CodeMirror"
+      'react': 'React',
+      'react-router': 'ReactRouter',
+      'react-dom': 'ReactDOM',
+      '@antv/g6': 'G6',
+      '@antv/g2': 'G2',
+      'moment': 'moment',
+      'katex': 'katex',
+      'codemirror': 'CodeMirror'
     } : {},
     mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
     // Stop compilation early in production
@@ -535,8 +535,8 @@ module.exports = function (webpackEnv) {
     plugins: [
       // gzip 压缩插件
       isEnvProduction && new CompressionPlugin({
-        filename: "[path].gz[query]",
-        algorithm: "gzip",
+        filename: '[path].gz[query]',
+        algorithm: 'gzip',
         test: /\.js$|\.css$|\.html$/,
         threshold: 10240,
         minRatio: 0.8
@@ -578,15 +578,15 @@ module.exports = function (webpackEnv) {
         )
       ),
       // 生产环境下插入external模块的CDN脚本
-      isEnvProduction && new HtmlExternalWebpackPlugin(HtmlWebpackPlugin, [
-        "https://cdn.jsdelivr.net/npm/react@16.13.1/umd/react.production.min.js",
-        "https://cdn.jsdelivr.net/npm/react-dom@16.13.1/umd/react-dom.production.min.js",
-        "https://cdn.jsdelivr.net/npm/react-router@5.2.0/umd/react-router.min.js",
-        "https://cdn.jsdelivr.net/npm/moment@2.27.0/min/moment.min.js",
-        "https://cdn.jsdelivr.net/npm/@antv/g6@3.7.1/dist/g6.min.js",
-        "https://cdn.jsdelivr.net/npm/@antv/g2@4.0.9/dist/g2.min.js",
-        "https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js",
-        "https://cdn.jsdelivr.net/npm/codemirror@5.57.0/lib/codemirror.min.js"
+      isEnvProduction && new HtmlExternalsWebpackPlugin(HtmlWebpackPlugin, [
+        'https://cdn.jsdelivr.net/npm/react@16.13.1/umd/react.production.min.js',
+        'https://cdn.jsdelivr.net/npm/react-dom@16.13.1/umd/react-dom.production.min.js',
+        'https://cdn.jsdelivr.net/npm/react-router@5.2.0/umd/react-router.min.js',
+        'https://cdn.jsdelivr.net/npm/moment@2.27.0/min/moment.min.js',
+        'https://cdn.jsdelivr.net/npm/@antv/g6@3.7.1/dist/g6.min.js',
+        'https://cdn.jsdelivr.net/npm/@antv/g2@4.0.9/dist/g2.min.js',
+        'https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js',
+        'https://cdn.jsdelivr.net/npm/codemirror@5.57.0/lib/codemirror.min.js'
       ]),
       // Makes some environment variables available in index.html.
       // The public URL is available as %PUBLIC_URL% in index.html, e.g.:

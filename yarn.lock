@@ -6332,6 +6332,11 @@ html-escaper@^2.0.0:
   resolved "https://registry.npm.taobao.org/html-escaper/download/html-escaper-2.0.2.tgz#dfd60027da36a36dfcbe236262c00a5822681453"
   integrity sha1-39YAJ9o2o238viNiYsAKWCJoFFM=
 
+html-externals-webpack-plugin@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.npmjs.org/html-externals-webpack-plugin/-/html-externals-webpack-plugin-0.0.2.tgz#72e7a343d327858ddd267963e463e74367fb2fe9"
+  integrity sha512-IMJujJ7pm6iUDYPsL3oZAra5cR1p32T1TS4ANsmqhk5G4wC+1jLm3UwYON2jO8UeipdhGpYMoE2IFqUHKw4FPA==
+
 html-minifier-terser@^5.0.1:
   version "5.1.1"
   resolved "https://registry.npm.taobao.org/html-minifier-terser/download/html-minifier-terser-5.1.1.tgz#922e96f1f3bb60832c2634b79884096389b1f054"
