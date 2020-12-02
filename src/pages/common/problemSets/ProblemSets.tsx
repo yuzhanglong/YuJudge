@@ -39,7 +39,6 @@ const ProblemSets: React.FunctionComponent<ProblemSetsProps> = () => {
         start: 0
       })
       .catch((e) => {
-        console.log(e);
       });
   }
 
