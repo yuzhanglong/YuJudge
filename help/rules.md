@@ -4,13 +4,13 @@
 
 - 学习自Angular.js规范
 ```
-<type>: <short summary>
-  │           │
-  │           │
-  │           │
-  │           └─⫸ 摘要，最后没有句号。       
+<type>(<scope>): <short summary>
+  │       │             │
+  │       │             └─⫸ Summary in present tense. Not capitalized. No period at the end.
+  │       │
+  │       └─⫸ Commit Scope
   │
-  └─⫸ 提交类型: build|ci|docs|feat|fix|perf|refactor|style|test
+  └─⫸ Commit Type: build|ci|docs|feat|fix|perf|refactor|test
 ```
 
 
