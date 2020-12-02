@@ -61,7 +61,7 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
         setUserGroupItems(res.data);
       })
       .catch((e) => {
-        console.log(e);
+
       });
   }
 
@@ -75,7 +75,7 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
 
     usersPaginationState.changeCurrentPage(requestBody)
       .catch((err: BaseResponse) => {
-        console.log(err);
+
       });
   }
 
