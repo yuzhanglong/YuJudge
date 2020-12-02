@@ -100,18 +100,8 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "buildWithPrefix": "node scripts/build.js http://cdn.yuzzl.top",
-    "upload": "node scripts/upload.js"
-  },
-  "eslintConfig": {
-    "extends": "react-app",
-    "rules": {
-      "jsx-a11y/anchor-is-valid": "off",
-      "quotes": [
-        "warn",
-        "single"
-      ],
-      "strict": 0
-    }
+    "upload": "node scripts/upload.js",
+    "lint": "eslint --ext .tsx --ext .ts ./"
   },
   "browserslist": {
     "production": [
