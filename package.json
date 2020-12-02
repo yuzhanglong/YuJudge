@@ -110,10 +110,6 @@
         "warn",
         "single"
       ],
-      "indent": [
-        "error",
-        2
-      ],
       "strict": 0
     }
   },
