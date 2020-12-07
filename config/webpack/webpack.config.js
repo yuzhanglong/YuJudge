@@ -26,17 +26,10 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const postcssNormalize = require('postcss-normalize');
 const appPackageJson = require(paths.appPackageJson);
 const HtmlExternalsWebpackPlugin = require('html-externals-webpack-plugin');
+const HappyPack = require('happypack');
 
-
-// Source maps are resource heavy and can cause out of memory issue for large source files.
-// const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
-
-const shouldUseSourceMap = false;
-// Some apps do not need the benefits of saving a web request, so not inlining the chunk
-// makes for a smoother build process.
-const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false';
-
-const isExtendingEslintConfig = process.env.EXTEND_ESLINT === 'true';
+// 多线程打包配置
+const CPU_CORES_AMOUNT = 8;
 
 
 const imageInlineSizeLimit = parseInt(
@@ -57,7 +50,7 @@ const sassModuleRegex = /\.module\.(scss|sass)$/;
 module.exports = function (webpackEnv) {
   const isEnvDevelopment = webpackEnv === 'development';
   const isEnvProduction = webpackEnv === 'production';
-
+  const shouldUseSourceMap = isEnvDevelopment;
   // Variable used for enabling profiling in Production
   // passed into alias object. Uses a flag if passed into the build command
   const isEnvProductionProfile =
@@ -129,6 +122,7 @@ module.exports = function (webpackEnv) {
     }
     return loaders;
   };
+
   return {
     externals: isEnvProduction ? {
       'react': 'React',
@@ -347,8 +341,11 @@ module.exports = function (webpackEnv) {
       strictExportPresence: true,
       rules: [
         // Disable require.ensure as it's not a standard language feature.
-        {parser: {requireEnsure: false}},
-
+        {
+          parser: {
+            requireEnsure: false
+          }
+        },
         // First, run the linter.
         // It's important to do this before Babel processes the JS.
         {
@@ -372,9 +369,6 @@ module.exports = function (webpackEnv) {
           // match the requirements. When no loader matches it will fall
           // back to the "file" loader at the end of the loader list.
           oneOf: [
-            // "url" loader works like "file" loader except that it embeds assets
-            // smaller than specified limit in bytes as data URLs to avoid requests.
-            // A missing `test` is equivalent to a match.
             {
               test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
               loader: require.resolve('url-loader'),
@@ -388,12 +382,11 @@ module.exports = function (webpackEnv) {
             {
               test: /\.(js|mjs|jsx|ts|tsx)$/,
               include: paths.appSrc,
-              loader: require.resolve('babel-loader'),
+              loader: 'happypack/loader',
               options: {
                 customize: require.resolve(
                   'babel-preset-react-app/webpack-overrides'
                 ),
-
                 plugins: [
                   [
                     require.resolve('babel-plugin-named-asset-import'),
@@ -421,7 +414,7 @@ module.exports = function (webpackEnv) {
             {
               test: /\.(js|mjs)$/,
               exclude: /@babel(?:\/|\\{1,2})runtime/,
-              loader: require.resolve('babel-loader'),
+              loader: 'happypack/loader',
               options: {
                 babelrc: false,
                 configFile: false,
@@ -429,7 +422,9 @@ module.exports = function (webpackEnv) {
                 presets: [
                   [
                     require.resolve('babel-preset-react-app/dependencies'),
-                    {helpers: true},
+                    {
+                      helpers: true
+                    },
                   ],
                 ],
                 cacheDirectory: true,
@@ -532,6 +527,10 @@ module.exports = function (webpackEnv) {
       ],
     },
     plugins: [
+      new HappyPack({
+        loaders: ['babel-loader'],
+        threads: CPU_CORES_AMOUNT,
+      }),
       // gzip 压缩插件
       isEnvProduction && new CompressionPlugin({
         filename: '[path].gz[query]',
