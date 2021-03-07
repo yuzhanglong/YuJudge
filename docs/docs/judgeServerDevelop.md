@@ -6,7 +6,7 @@ title: 针对服务端的二次开发
 
 以下是项目的大致目录结构，只列举主要枝干，细节文件略去。
 
-```
+```plain
 YuJudge-JudgeServer                               // 根目录
 ├─ deploy                                         // 部署相关
 ├─ help                                           // 帮助文件
@@ -97,7 +97,7 @@ public enum PermissionEnum {
 }
 ```
 
-如果要添加一个权限，只需要**增加一条枚举记录**就可以了，每次springboot项目启动时，这些权限会被**自动写入数据**库中。
+如果要添加一个权限，只需要**增加一条枚举记录**就可以了，每次 springboot 项目启动时，这些权限会被**自动写入数据**库中。
 
 :::danger 不要删除默认的权限
 
@@ -131,7 +131,7 @@ public enum PermissionEnum {
 
 :::tip 轻松从数据库生成实体类
 
-Idea这款IDE中的**Persistence**工具内置了这个功能，如果不知道的话可以了解一下。
+Idea 这款 IDE 中的**Persistence**工具内置了这个功能，如果不知道的话可以了解一下。
 
 :::
 
@@ -139,7 +139,7 @@ Idea这款IDE中的**Persistence**工具内置了这个功能，如果不知道�
 
 软删除即不真正删除数据库中的数据, 我们通过`deleteTime`这个公共字段来实行软删除。
 
-如果某张表要开启**软删除**模式，则让实体类继承`model`包下的`SoftDeleteEntity`，让CRUD类继承`repository`包下的`SoftDeleteRepository`即可。
+如果某张表要开启**软删除**模式，则让实体类继承`model`包下的`SoftDeleteEntity`，让 CRUD 类继承`repository`包下的`SoftDeleteRepository`即可。
 
 :::caution 不要缺少默认的字段，否则程序无法启动！
 
@@ -152,16 +152,16 @@ Idea这款IDE中的**Persistence**工具内置了这个功能，如果不知道�
 
 #### 总述
 
-redis的**基础类**`RedisOperations`位于`utils`包下。
+redis 的**基础类**`RedisOperations`位于`utils`包下。
 
-redis的**操作类**位于`store/redis`包下，以 **业务名 + Cache表示**，例如**JudgeHostCache**表示与判题机相关的缓存处理类，操作类主要负责CRUD，对于数据的二次加工我留给**service**层完成。
+redis 的**操作类**位于`store/redis`包下，以 **业务名 + Cache 表示**，例如**JudgeHostCache**表示与判题机相关的缓存处理类，操作类主要负责 CRUD，对于数据的二次加工我留给**service**层完成。
 
-本项目一般通过**service层**来调用**redis操作类**。
+本项目一般通过**service 层**来调用**redis 操作类**。
 
-:::caution 对于缓存操作，注意**读写锁**，否则就会出现一些bug
+:::caution 对于缓存操作，注意**读写锁**，否则就会出现一些 bug
 
 - **读-读 可以共存** , **读-写 不能共存**。
-- 可使用 concurrent包下的**ReadWriteLock**进行处理，具体可查看`JudgeHostCache`类
+- 可使用 concurrent 包下的**ReadWriteLock**进行处理，具体可查看`JudgeHostCache`类
 
 :::
 

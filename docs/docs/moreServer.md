@@ -22,7 +22,7 @@ docker-compose -f docker-compose-judge-host.yml up -d
 
 ![image-20200913161249447](http://cdn.yuzzl.top/judge-host.png)
 
-其中，使用浏览器访问服务器的**8080端口**（JudgeServer，判题服务器），看到以下内容,  说明部署成功
+其中，使用浏览器访问服务器的**8080 端口**（JudgeServer，判题服务器），看到以下内容,  说明部署成功
 
 ```json
 {
@@ -47,6 +47,6 @@ docker-compose -f docker-compose-judge-host.yml up -d
 
 :::tip 并没有新增记录
 
-主服务器（JudgeServer）每隔**2秒钟**会访问一次所有的判题服务器来测试连接，可能存在一定的延迟，你可以刷新页面试试
+主服务器（JudgeServer）每隔**2 秒钟**会访问一次所有的判题服务器来测试连接，可能存在一定的延迟，你可以刷新页面试试
 
 :::

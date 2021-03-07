@@ -2,18 +2,18 @@
 title: 快速上手
 slug: /
 ---
-## 体验一下DEMO
+## 体验一下 DEMO
 ### 测试网址
 
 点击下面的链接便可访问(建议使用**电脑端**访问以获得最佳体验), 测试用户名为**User**, 密码为**password**，权限为【一般用户】
 
-[测试DEMO](http://oj.yuzzl.top/)
+[测试 DEMO](http://oj.yuzzl.top/)
 
 ### CodeSandbox
 
-你也可以使用**CodeSandbox**访问，由于网络原因，可能需要等待几秒钟来加载。使用CodeSandbox，你可以轻松修改源代码且无需配置开发环境。
+你也可以使用**CodeSandbox**访问，由于网络原因，可能需要等待几秒钟来加载。使用 CodeSandbox，你可以轻松修改源代码且无需配置开发环境。
 
-[CodeSandbox版DEMO](https://codesandbox.io/s/adoring-blackburn-ru7kr)
+[CodeSandbox 版 DEMO](https://codesandbox.io/s/adoring-blackburn-ru7kr)
 
 ## 部署服务端
 
@@ -25,7 +25,7 @@ slug: /
 yum install -y docker docker-compose  // centos
 ```
 
-### 获取docker-compose配置文件
+### 获取 docker-compose 配置文件
 
 ```shell
 wget https://cdn.jsdelivr.net/gh/yuzhanglong/YuJudge-JudgeServer/deploy/docker-compose-single.yml
@@ -43,7 +43,7 @@ docker-compose -f docker-compose-single.yml up -d
 
 ![image-20200912212555137](http://cdn.yuzzl.top/single-server.png)
 
-其中，使用浏览器访问服务器的**8081端口**（JudgeServer，主服务器）和**8080端口**（JudgeHost，判题服务器），看到以下内容,  说明部署成功
+其中，使用浏览器访问服务器的**8081 端口**（JudgeServer，主服务器）和**8080 端口**（JudgeHost，判题服务器），看到以下内容,  说明部署成功
 
 ```json
 {
@@ -58,13 +58,13 @@ docker-compose -f docker-compose-single.yml up -d
 
 ## 部署前端
 
-### 使用CodeSandbox
+### 使用 CodeSandbox
 
 :::tip 更快地得到体验
 
 如果你对**nodejs**不了解，你可以点击下面链接，使用**CodeSandbox**来在线部署运行。
 
-[CodeSandbox版DEMO](https://codesandbox.io/s/adoring-blackburn-ru7kr)
+[CodeSandbox 版 DEMO](https://codesandbox.io/s/adoring-blackburn-ru7kr)
 
 进入页面后，打开`src/config/config.ts`,  修改**下面的内容**为**你已经部署成功的服务器地址**，保存即可体验。
 
@@ -99,12 +99,12 @@ yarn build
 
 进入首页，你将看到以下内容，说明前端项目部署成功，我们已经为你初始化了一名**管理员用户**，用户名为**admin**，密码为**password**，你可以点击**登录**按钮查看项目。
 
-Landing页面
+Landing 页面
 ![首页](http://cdn.yuzzl.top/homepage.png)
 登录页
 ![登录页](http://cdn.yuzzl.top/login_page.png)
 
-## 接下来...
+## 接下来
 
 [尝试提交](/submission)
 

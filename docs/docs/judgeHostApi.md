@@ -2,10 +2,10 @@
 title: 判题服务器API
 ---
 ## 总述
-###  对API的一些说明
-1） URL路径代表一种资源，只能为名词，推荐使用复数，不能为动词，请求方法已经表达动作意义。
+###  对 API 的一些说明
+1） URL 路径代表一种资源，只能为名词，推荐使用复数，不能为动词，请求方法已经表达动作意义。
 
-2） URL路径不能使用大写，单词如果需要分隔，统一使用下划线。
+2） URL 路径不能使用大写，单词如果需要分隔，统一使用下划线。
 
 3） **GET**：从服务器取出资源。
 
@@ -38,13 +38,13 @@ B1007: 文件不存在
 2） 文档提供了`【A+B Problem】`的四种语言代码请求方式，其中，服务端响应的信息在`java`的版本中可以找到，其他的版本**将被略去**。
 
 ### 参考资料
-- 阿里巴巴Java开发手册（嵩山版）
+- 阿里巴巴 Java 开发手册（嵩山版）
 
 ## 接口详情
 
 ### 执行判题 -- A + B Problem(JAVA)
-**请求URL：** 
-- ` 47.106.202.255:8080/judge/result `
+**请求 URL：** 
+- `47.106.202.255:8080/judge/result`
   
 
 **请求方式：**
@@ -112,21 +112,21 @@ B1007: 文件不存在
 | judgeResults |array  | 判题结果合集列表 |
 | realTimeCost | string| 消耗时间 |
 | memoryCost | string| 消耗内存 |
-| cpuTimeCost | string| 消耗cpu时间 |
+| cpuTimeCost | string| 消耗 cpu 时间 |
 | condition | number| 判题结果 |
 | stdInPath | string| 判题服务器上的标准输入路径 |
 | stdOutPath | string| 判题服务器上的标准输出路径 |
 | stdErrPath | string| 判题服务器上的标准错误路径 |
 | message | string| 判题结果描述, 例如 [ACCEPT],表示通过 |
-| submissionId | string| 本次提交的id |
+| submissionId | string| 本次提交的 id |
 | judgeEndTime | number| 本次判题完成的时间 |
 | extraInfo |object  | 额外信息(当前为编译器输出信息) |
 
 
 ### 执行判题 -- A + B Problem(C)
-**请求URL：** 
+**请求 URL：** 
 
-- ` 47.106.202.255:8080/judge/result `
+- `47.106.202.255:8080/judge/result`
 
 **请求方式：**
 - POST 
@@ -160,9 +160,9 @@ B1007: 文件不存在
 
 ### 执行判题 -- A + B Problem(C_PLUS_PLUS)
 
-**请求URL：** 
+**请求 URL：** 
 
-- ` 47.106.202.255:8080/judge/result `
+- `47.106.202.255:8080/judge/result`
 
 **请求方式：**
 
@@ -195,8 +195,8 @@ B1007: 文件不存在
 
 ### 执行判题 -- A + B Problem(PYTHON)
 
-**请求URL：** 
-- ` 47.106.202.255:8080/judge/result `
+**请求 URL：** 
+- `47.106.202.255:8080/judge/result`
 
 **请求方式：**
 - POST 
@@ -228,7 +228,7 @@ B1007: 文件不存在
 
 ### 连接测试, 并获取基本信息
 
-**请求URL：** 
+**请求 URL：** 
 - ` 47.106.202.255:8080/common/connection_test `
 
 **请求方式：**
@@ -267,17 +267,17 @@ B1007: 文件不存在
 | resolutionPath       | string | 解决方案(正确测试点)目录   |
 | port                 | number | 判题机端口                 |
 | workingAmount        | number | 当前工作数目               |
-| cpuCoreAmount        | number | 判题机cpu核心数目          |
+| cpuCoreAmount        | number | 判题机 cpu 核心数目          |
 | memoryCostPercentage | number | 内存消耗百分比             |
-| cpuCostPercentage    | number | cpu消耗百分比              |
+| cpuCostPercentage    | number | cpu 消耗百分比              |
 | queueAmount          | number | 判题机等候判题队列最大数目 |
 | maxWorkingAmount     | number | 判题机最大工作数目         |
 | version              | string | 判题机版本号               |
 
 ### 清空解决方案目录
 
-**请求URL：** 
-- ` 47.106.202.255:8080/file/solution_path `
+**请求 URL：** 
+- `47.106.202.255:8080/file/solution_path`
 
 **请求方式：**
 - DELETE 
@@ -295,7 +295,7 @@ B1007: 文件不存在
 
 ### 清空提交目录
 
-**请求URL**：
+**请求 URL**：
 
 - ` 47.106.202.255:8080/file/submission_path `
 
@@ -317,9 +317,9 @@ B1007: 文件不存在
 
 ### 下载某个提交
 
-**请求URL**：
+**请求 URL**：
 
-- ` 47.106.202.255:8080/file/{submissionId} `
+- `47.106.202.255:8080/file/{submissionId}`
 
 **请求方式：**
 
@@ -327,7 +327,7 @@ B1007: 文件不存在
 
 **下载文件描述**：
 
-``` 
+```plain
 result               // 压缩包名称，为submissionId
 ├─ build.sh          // 编译脚本
 ├─ compile.err       // 编译错误输出
@@ -376,9 +376,9 @@ result               // 压缩包名称，为submissionId
 
 ### 验证判题服务器接口调用凭据
 
-**请求URL**
+**请求 URL**
 
-##### 请求URL
+##### 请求 URL
 
 - ` /auth/examination `
 

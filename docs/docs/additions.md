@@ -2,7 +2,7 @@
 title: 其他事项
 ---
 
-### mysql、redis的数据、用户的提交代码被存放在哪里了?
+### mysql、redis 的数据、用户的提交代码被存放在哪里了
 这些资源被存放在`home/YuJudge`目录下，其中有以下子目录:
 
 #### mysql
@@ -13,7 +13,7 @@ title: 其他事项
 
 存放**redis**的数据，挂载了镜像的`/data`目录
 
-#### resolutions(有JudgeHost时会有该目录)
+#### resolutions(有 JudgeHost 时会有该目录)
 
 所有从远程服务器下载的（测试点）资源
 
@@ -23,7 +23,7 @@ title: 其他事项
 
 :::tip 及时清理不需要的文件
 
-**JudgeHost**项目提供了2个与此相关的API可供调用，你可以点击下面的链接: 
+**JudgeHost**项目提供了 2 个与此相关的 API 可供调用，你可以点击下面的链接: 
 
 - [(DELETE)清空解决方案目录](/judgeHostApi#清空解决方案目录)
 - [(DELETE)清空提交目录](/judgeHostApi#清空解决方案目录)

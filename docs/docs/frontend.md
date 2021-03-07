@@ -6,7 +6,7 @@ title: 针对前端的二次开发
 
 只选取了项目的主体部分，细节目录结构全部略去。
 
-```
+```plain
 YuJudge                                                            
 ├─ config                                       // 项目打包构建(例如webpack)的一些配置
 ├─ docs                                         // 项目文档
@@ -45,24 +45,24 @@ YuJudge
 - 常量全部使用大写字母加下划线的形式。
 - 组件/页面的基本目录结构如下所示, 页面分类存放于`page`目录下，组件存放于`components`目录下
 
-```
+```plain
 │  ├─ component           // 组件名称
 │  │  ├─ childCmp         // 依赖的子组件文件夹，一般为该组件特有，如果具有公共性则另起一个组件文件夹
 │  │  ├─ component.module.scss  // 组件样式
 │  │  └─ Component.tsx          // 组件名称
 ```
 
-- css 基于scss，采用 **CSS Modules**的方式编写，具体规范如下：
+- css 基于 scss，采用 **CSS Modules**的方式编写，具体规范如下：
 
   - 无论是组件或者页面，如果需要样式，则在其目录下新建`组件名 + module.scss`文件，导入时统一使用**import style from "./xxxxx.module.scss;**
-  - 一个独立的组件/页面最多一个css文件，防止混乱。
-- 项目统一使用函数式组件，全面使用Hooks
+  - 一个独立的组件/页面最多一个 css 文件，防止混乱。
+- 项目统一使用函数式组件，全面使用 Hooks
 - 组件内部的代码编写顺序（自上而下）
   - 注释（作者信息）
   - 常量
   - hooks
   - 业务逻辑
-  - tsx代码
+  - tsx 代码
 
 ### 路由
 
@@ -83,7 +83,7 @@ export interface MenuRouterConfig {
 }
 ```
 
-你只需要将要新增页面的相关信息添加至**路由表**中（ps.路由表文件名分版块表示，在router目录下）, 例如:
+你只需要将要新增页面的相关信息添加至**路由表**中（ps.路由表文件名分版块表示，在 router 目录下）, 例如:
 
 ```typescript
 export const CMS_USERS_MENU: MenuRouterConfig = {
@@ -160,7 +160,7 @@ export default {
 
 :::tip
 
-loadable包裹的Import表示这个页面实行**路由懒加载**，即在需要的时候进行加载,  加快app首次加载速度。
+loadable 包裹的 Import 表示这个页面实行**路由懒加载**，即在需要的时候进行加载,  加快 app 首次加载速度。
 
 :::
 
@@ -236,11 +236,11 @@ xxxPagination.paginationInfo // 对象，包括以下内容：
 
 ## 调试与部署
 
-项目打包基于**webpack**，当前分支已经运行了`yarn eject`，webpack配置需要开发者自行管理。
+项目打包基于**webpack**，当前分支已经运行了`yarn eject`，webpack 配置需要开发者自行管理。
 
-webpack配置文件位于`config/webpack`目录之下。
+webpack 配置文件位于`config/webpack`目录之下。
 
-yarn脚本文件位于`script`目录之下。
+yarn 脚本文件位于`script`目录之下。
 
 ### 开发环境运行
 
@@ -274,7 +274,7 @@ yarn build
 yarn buildWithPrefix
 ```
 
-此时打包出来的所有js、css等依赖，均指向你的**外链地址**而不是`build`文件夹的根目录。
+此时打包出来的所有 js、css 等依赖，均指向你的**外链地址**而不是`build`文件夹的根目录。
 
 ### 集成七牛存储服务
 
@@ -306,7 +306,7 @@ yarn buildWithPrefix
 yarn upload
 ```
 
-所有css、js等静态文件会被**自动上传至七牛服务器**，你只需要将**index.html**、一些图标文件传上服务器进行托管即可。
+所有 css、js 等静态文件会被**自动上传至七牛服务器**，你只需要将**index.html**、一些图标文件传上服务器进行托管即可。
 
 :::tip 显示白屏
 
