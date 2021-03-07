@@ -104,7 +104,7 @@
     "buildWithPrefix": "node scripts/build.js http://cdn.yuzzl.top",
     "upload": "node scripts/upload.js",
     "lint": "eslint --ext .tsx --ext .ts ./",
-    "lint:md": "lint-md ./docs",
+    "lint:md": "lint-md ./docs --config lintmdrc.json",
     "lint:md-fix": "lint-md ./docs --fix"
   },
   "browserslist": {
