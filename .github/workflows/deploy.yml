@@ -1,0 +1,32 @@
+# main.yml
+name: deploy blog
+on:
+  push:
+    branches:
+      - docs
+jobs:
+  deploy-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup node.js environment
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: '14'
+
+      - name: Install and build docs
+        run: |
+          cd ./docs
+          yarn install
+          yarn docusaurus build
+
+      - name: Deploy by ssh
+        uses: easingthemes/ssh-deploy@v2.1.5
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN }}
+          ARGS: "-avz --delete"
+          SOURCE: "./docs/build/"
+          REMOTE_HOST: "47.106.202.255"
+          REMOTE_USER: "root"
+          TARGET: "/home/oj-docs-deploy"
