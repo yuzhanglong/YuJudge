@@ -1,0 +1,24 @@
+name: Lint Code
+
+on:
+  [ pull_request ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup node.js environment
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: '14'
+
+      - name: Install modules
+        run: yarn install
+
+      - name: Run eslint
+        run: yarn lint
+
+      - name: Run markdown lint
+        run: yarn lint:md
