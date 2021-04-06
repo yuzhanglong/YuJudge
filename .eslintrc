@@ -6,7 +6,6 @@
       "warn",
       "single"
     ],
-    "strict": 0,
-    "no-console": "error"
+    "no-console": "off"
   }
 }

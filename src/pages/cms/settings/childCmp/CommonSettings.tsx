@@ -6,13 +6,16 @@
  * Email: yuzl1123@163.com
  */
 
-import React from 'react';
-import style from '../settings.module.scss';
-import EditorTip from '../../../../components/editorTip/editorTip';
-import {Button, Card, Divider, Input, message, Slider} from 'antd';
-import {JUDGE_NUMBER_SETTINGS_RANGE} from '../../../../config/config';
-import {setSubmissionFrequencyControl, setSubmissionThreadPoolMaxSize} from '../../../../network/submissionRequest';
-import {SubmissionThreadPoolConfiguration} from '../../../../models/submission';
+import React from 'react'
+import style from '../settings.module.scss'
+import EditorTip from '../../../../components/editorTip/editorTip'
+import { Button, Card, Divider, Input, message, Slider } from 'antd'
+import { JUDGE_NUMBER_SETTINGS_RANGE } from '../../../../config/config'
+import { setSubmissionFrequencyControl, setSubmissionThreadPoolMaxSize } from '../../../../network/submissionRequest'
+import { SubmissionThreadPoolConfiguration } from '../../../../models/submission'
+import { languageChangeAction } from '../../../../store/action'
+import { useStore, useDispatch, useSelector } from 'react-redux'
+import { AppStore } from '../../../../store/reducer'
 
 interface CommonSettingsProps {
   submissionThreadPoolConfig?: SubmissionThreadPoolConfiguration;
@@ -24,36 +27,50 @@ interface CommonSettingsProps {
 }
 
 const CommonSettings: React.FunctionComponent<CommonSettingsProps> = (props) => {
+  const store = useStore()
+  // @ts-ignore
+  const language = useSelector(state => state.language)
+  const dispatch = useDispatch()
 
   // 设置线程池配置
   const setSubmissionThreadPoolSize = (size: number) => {
     setSubmissionThreadPoolMaxSize(size)
       .then(() => {
-        message.success('设置成功');
-        props.onThreadConfigChange();
+        message.success('设置成功')
+        props.onThreadConfigChange()
       })
   }
 
   // 提交间隔配置输入框被改变
   const onSubmissionFrequencyInputChange = (event: any) => {
-    event.persist();
-    props.onSubmissionFrequencyChange(event.target.value);
+    event.persist()
+    props.onSubmissionFrequencyChange(event.target.value)
   }
 
   // 获取限制文案
   const getSubmissionFrequencyText = () => {
-    const base = '用户两次提交的间隔时间(秒)，用来防止接口恶意调用、频繁提交';
+    const base = '用户两次提交的间隔时间(秒)，用来防止接口恶意调用、频繁提交'
     const current = props.submissionFrequency === 0 ? '无限制' : `${props.submissionFrequency}秒`
-    return `${base} [当前状态: ${current}]`;
+    return `${base} [当前状态: ${current}]`
   }
 
   // 设置提交间隔
   const reSetSubmissionFrequencyControl = () => {
     setSubmissionFrequencyControl(props.submissionFrequency)
       .then(() => {
-        message.success('设置成功~');
+        message.success('设置成功~')
       })
   }
+
+  // 语言切换
+  const onLanguageChange = () => {
+    if (language === 'zh-CN') {
+      dispatch(languageChangeAction('en-US'))
+    } else {
+      dispatch(languageChangeAction('zh-CN'))
+    }
+  }
+
 
   return (
     <Card
@@ -69,9 +86,9 @@ const CommonSettings: React.FunctionComponent<CommonSettingsProps> = (props) => 
           max={JUDGE_NUMBER_SETTINGS_RANGE[1]}
           min={JUDGE_NUMBER_SETTINGS_RANGE[0]}
           onChange={(v: number) => props.onSubmissionSizeChange(v)}
-          onAfterChange={() => setSubmissionThreadPoolSize(props.maxSubmissionSize)}/>
+          onAfterChange={() => setSubmissionThreadPoolSize(props.maxSubmissionSize)} />
       </EditorTip>
-      <Divider/>
+      <Divider />
       <EditorTip
         title={'设置提交间隔时间'}
         content={getSubmissionFrequencyText()}>
@@ -79,10 +96,16 @@ const CommonSettings: React.FunctionComponent<CommonSettingsProps> = (props) => 
           onChange={(event) => onSubmissionFrequencyInputChange(event)}
           className={style.cms_settings_frequency_input}
           suffix={<Button type={'link'} onClick={() => reSetSubmissionFrequencyControl()}>确定</Button>}
-          value={props.submissionFrequency}/>
+          value={props.submissionFrequency} />
+      </EditorTip>
+      <Divider />
+      <EditorTip
+        title={'设置语言'}
+        content={`当前语言：${language}`}>
+        <Button onClick={() => onLanguageChange()}>切换</Button>
       </EditorTip>
     </Card>
   )
 }
 
-export default CommonSettings;
+export default CommonSettings
