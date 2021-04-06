@@ -11,6 +11,9 @@ import React from 'react'
 import style from '../userTag.module.scss'
 import { Menu, message } from 'antd'
 import { clearStorage } from '../../../utils/dataPersistence'
+import { useDispatch, useSelector } from 'react-redux'
+import { languageChangeAction } from '../../../store/action'
+import { AppStore } from '../../../store/reducer'
 
 interface UserTagMenuProps {
   menuHeight: number;
@@ -18,6 +21,9 @@ interface UserTagMenuProps {
 }
 
 const UserTagMenu: React.FunctionComponent<UserTagMenuProps> = (props) => {
+  const language = useSelector<AppStore>(state => state.language)
+  const dispatch = useDispatch()
+
   // 注销标签被单击
   const onLogOut = () => {
     clearStorage()
@@ -35,9 +41,22 @@ const UserTagMenu: React.FunctionComponent<UserTagMenuProps> = (props) => {
     window.reactRouter.push('/cms')
   }
 
+  // 语言切换
+  const onLanguageChange = () => {
+    if (language === 'zh-CN') {
+      dispatch(languageChangeAction('en-US'))
+    } else {
+      dispatch(languageChangeAction('zh-CN'))
+    }
+  }
 
   return (
     <Menu className={style.user_tag_drop_down_menu} style={{ marginTop: props.menuHeight }}>
+      <Menu.Item>
+        <div onClick={() => onLanguageChange()}>
+          语言：{language === 'zh-CN' ? '中文' : 'English'}
+        </div>
+      </Menu.Item>
       <Menu.Item>
         <div onClick={() => onSeeProfile()}>
           个人信息
