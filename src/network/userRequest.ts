@@ -7,15 +7,15 @@
  */
 
 
-import request from "./interceptor";
-import {LoginFormData, RegisterFormData} from "../models/user";
-import {UsersPaginationRequest} from "../models/pagination";
+import request from './interceptor';
+import {LoginFormData, RegisterFormData} from '../models/user';
+import {UsersPaginationRequest} from '../models/pagination';
 
 
 // 获取验证码相关信息
 export const getCheckCodeInfo = () => {
   return request.get(
-    "/user/get_check_code"
+    '/user/get_check_code'
   )
 }
 
@@ -23,7 +23,7 @@ export const getCheckCodeInfo = () => {
 // 用户登录
 export const login = (loginFormData: LoginFormData) => {
   return request.post(
-    "/user/login",
+    '/user/login',
     loginFormData
   )
 }
@@ -31,7 +31,7 @@ export const login = (loginFormData: LoginFormData) => {
 // 用户注册
 export const register = (registerFormData: RegisterFormData) => {
   return request.post(
-    "/user/register",
+    '/user/register',
     registerFormData
   )
 }
@@ -39,7 +39,7 @@ export const register = (registerFormData: RegisterFormData) => {
 // 获取活跃用户
 export const getActiveUserInfo = (userAmount: number) => {
   return request.get(
-    "/user/get_active_user",
+    '/user/get_active_user',
     {
       params: {
         amount: userAmount
@@ -54,7 +54,7 @@ export const getActiveUserInfo = (userAmount: number) => {
 // 获取用户信息
 export const getUserInfo = (uid: number | null = null) => {
   return request.get(
-    "/user/user_info",
+    '/user/user_info',
     {
       params: {
         uid: uid
@@ -69,7 +69,7 @@ export const getUserInfo = (uid: number | null = null) => {
 // 分页获取多个用户信息
 export const getUsers = (params: UsersPaginationRequest) => {
   return request.get(
-    "/user/get_users",
+    '/user/get_users',
     {
       params: {
         start: params.start,
@@ -83,14 +83,14 @@ export const getUsers = (params: UsersPaginationRequest) => {
 // 删除用户
 export const deleteUser = (userId: number) => {
   return request.delete(
-    "/user/delete_user/" + userId
+    '/user/delete_user/' + userId
   )
 }
 
 // 创建用户
 export const createUser = (nickname: string, password: string) => {
   return request.post(
-    "/user/user",
+    '/user/user',
     {
       nickname: nickname,
       password: password
@@ -101,7 +101,7 @@ export const createUser = (nickname: string, password: string) => {
 // 分配用户组
 export const allocateUserUserGroup = (userId: number, userGroupIds: string[]) => {
   return request.put(
-    "/user/user_user_groups",
+    '/user/user_user_groups',
     {
       userId: userId,
       userGroupIds: userGroupIds
@@ -112,7 +112,7 @@ export const allocateUserUserGroup = (userId: number, userGroupIds: string[]) =>
 // 编辑用户
 export const editUser = (uid: number, nickname: string, password: string) => {
   return request.put(
-    "/user/user/" + uid,
+    '/user/user/' + uid,
     {
       nickname: nickname,
       password: password

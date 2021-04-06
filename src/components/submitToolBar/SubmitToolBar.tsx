@@ -1,5 +1,5 @@
-import React from "react";
-import {Button} from "antd";
+import React from 'react';
+import {Button} from 'antd';
 
 interface SubmitToolBarProps {
   onSubmit?: () => void;
@@ -11,10 +11,10 @@ interface SubmitToolBarProps {
 
 const SubmitToolBar: React.FunctionComponent<SubmitToolBarProps> = (props) => {
   return (
-    <div style={{display: "flex"}}>
+    <div style={{display: 'flex'}}>
       <div>
         <Button
-          type={"primary"}
+          type={'primary'}
           style={{marginRight: 10}}
           onClick={props.onSubmit}
           disabled={!props.isButtonActive}>

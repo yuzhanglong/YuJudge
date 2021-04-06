@@ -6,9 +6,9 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Card, Col, Row} from "antd";
-import style from "../dashboard.module.scss";
+import React from 'react';
+import {Card, Col, Row} from 'antd';
+import style from '../dashboard.module.scss';
 
 interface HeadCardItemProps {
   topic: string;
@@ -22,14 +22,14 @@ const HeadCardItem: React.FunctionComponent<HeadCardItemProps> = (props) => {
     <Card hoverable={props.hover} bodyStyle={{
       padding: 20
     }}>
-      <Row justify={"space-between"} align={"middle"}>
+      <Row justify={'space-between'} align={'middle'}>
         <Col>
           <div className={style.head_card_item_icon}>
             {props.icon}
           </div>
         </Col>
         <Col>
-          <Row justify={"end"}>
+          <Row justify={'end'}>
             <div className={style.head_card_item_content}>
               {props.content}
             </div>

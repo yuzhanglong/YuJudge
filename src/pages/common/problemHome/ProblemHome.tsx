@@ -6,22 +6,22 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect, useState} from "react";
-import {Card, message} from "antd";
-import {RouteComponentProps} from "react-router-dom";
-import {Problem} from "../../../models/problem";
-import {getProblemDetailedById} from "../../../network/problemRequests";
-import {getProblemSetInfo} from "../../../network/problemSetRequest";
-import {ProblemSet} from "../../../models/problemSet";
-import style from "./problemHome.module.scss"
-import RouteSelector from "./childCmp/RouteSelector";
-import CodeEditor from "../../../components/codeEditor/CodeEditor";
-import {Submission} from "../../../models/submission";
-import {DEFAULT_JUDGE_PREFERENCE} from "../../../config/config";
-import {submitCode} from "../../../network/submissionRequest";
-import RcQueueAnim from "rc-queue-anim";
-import {BaseResponse} from "../../../models/common";
-import BetterMarkdown from "../../../components/betterMarkdown/BetterMarkdown";
+import React, {useEffect, useState} from 'react';
+import {Card, message} from 'antd';
+import {RouteComponentProps} from 'react-router-dom';
+import {Problem} from '../../../models/problem';
+import {getProblemDetailedById} from '../../../network/problemRequests';
+import {getProblemSetInfo} from '../../../network/problemSetRequest';
+import {ProblemSet} from '../../../models/problemSet';
+import style from './problemHome.module.scss'
+import RouteSelector from './childCmp/RouteSelector';
+import CodeEditor from '../../../components/codeEditor/CodeEditor';
+import {Submission} from '../../../models/submission';
+import {DEFAULT_JUDGE_PREFERENCE} from '../../../config/config';
+import {submitCode} from '../../../network/submissionRequest';
+import RcQueueAnim from 'rc-queue-anim';
+import {BaseResponse} from '../../../models/common';
+import BetterMarkdown from '../../../components/betterMarkdown/BetterMarkdown';
 
 interface ProblemShowProps {
   children: React.ReactNode;
@@ -58,7 +58,7 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
     // 发送提交请求
     submitCode(submission)
       .then(() => {
-        message.success("提交成功~");
+        message.success('提交成功~');
         if (problemSetId) {
           props.history.push(`/common/problem_set/${problemSetId}/problem/${problemId}/submission`);
         } else {
@@ -90,8 +90,8 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
         setProblem(p);
       })
       .catch(() => {
-        message.error("这个问题不存在");
-        props.history.replace("/result/404");
+        message.error('这个问题不存在');
+        props.history.replace('/result/404');
       })
   }
 
@@ -113,15 +113,15 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
   const getOutPutLimit = (limit: number) => {
     // 大于1mb时
     if (limit > 1048576) {
-      return parseInt(String((limit / 1024 / 1024))).toString() + " MB";
+      return parseInt(String((limit / 1024 / 1024))).toString() + ' MB';
     }
-    return limit.toString() + " Byte";
+    return limit.toString() + ' Byte';
   }
 
   // 是否在problem首页
   const isInProblemHome = () => {
-    const isInSubmission = props.location.pathname.includes("submission");
-    const isInSolution = props.location.pathname.includes("solution");
+    const isInSubmission = props.location.pathname.includes('submission');
+    const isInSolution = props.location.pathname.includes('solution');
     return !(isInSolution || isInSubmission);
   }
 
@@ -129,7 +129,7 @@ const ProblemHome: React.FunctionComponent<ProblemShowProps & RouteComponentProp
     <RcQueueAnim>
       {
         problem &&
-        <div className={style.problem_home} key={"problem_home"}>
+        <div className={style.problem_home} key={'problem_home'}>
           <Card>
             <div className={style.problem_home_body}>
               <div className={style.problem_home_title}>

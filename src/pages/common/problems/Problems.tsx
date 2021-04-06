@@ -6,16 +6,16 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect} from "react";
-import {Button, Card, message} from "antd";
-import ProblemTable from "../../../components/problemTable/ProblemTable";
-import RcQueueAnim from "rc-queue-anim";
-import {UsePaginationState} from "../../../hooks/pagination";
-import {ProblemPaginationRequest} from "../../../models/pagination";
-import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from "../../../config/config";
-import {RouteComponentProps} from "react-router-dom";
-import {getProblems} from "../../../network/problemRequests";
-import style from "./problems.module.scss"
+import React, {useEffect} from 'react';
+import {Button, Card, message} from 'antd';
+import ProblemTable from '../../../components/problemTable/ProblemTable';
+import RcQueueAnim from 'rc-queue-anim';
+import {UsePaginationState} from '../../../hooks/pagination';
+import {ProblemPaginationRequest} from '../../../models/pagination';
+import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from '../../../config/config';
+import {RouteComponentProps} from 'react-router-dom';
+import {getProblems} from '../../../network/problemRequests';
+import style from './problems.module.scss'
 
 interface ProblemsProps {
 
@@ -50,12 +50,12 @@ const Problems: React.FunctionComponent<ProblemsProps & RouteComponentProps> = (
 
   return (
     <RcQueueAnim>
-      <div className={style.problems} key={"problem-set-home"}>
+      <div className={style.problems} key={'problem-set-home'}>
         <div className={style.problems_content}>
-          <Card title={"所有题目"} headStyle={{textAlign: "center"}}>
+          <Card title={'所有题目'} headStyle={{textAlign: 'center'}}>
             <div className={style.problems_table_wrap}>
               <ProblemTable
-                tableSize={"middle"}
+                tableSize={'middle'}
                 isShowProblemOrder={false}
                 isLoading={problemPagination.isLoading}
                 problems={problemPagination.items}
@@ -66,7 +66,7 @@ const Problems: React.FunctionComponent<ProblemsProps & RouteComponentProps> = (
                 otherOperations={(content: any) => {
                   return (
                     <Button
-                      type={"link"}
+                      type={'link'}
                       onClick={() => onGotoProblemButtonClick(content)}>
                       前往
                     </Button>

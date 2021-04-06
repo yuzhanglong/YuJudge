@@ -7,7 +7,7 @@
  */
 
 
-import React from "react";
+import React from 'react';
 import 'katex/dist/katex.min.css';
 // @ts-ignore -- ps.没有声明文件
 import {InlineMath, BlockMath} from 'react-katex';

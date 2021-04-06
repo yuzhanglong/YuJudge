@@ -7,12 +7,12 @@
  */
 
 
-import React from "react";
-import EditorTip from "../../../../components/editorTip/editorTip";
-import {Button, Divider, message, Modal} from "antd";
-import {JudgeHostInfo} from "../../../../models/judgeHost";
-import {deleteJudgeHost, resetJudgeHostCondition} from "../../../../network/judgeHostRequest";
-import {ExclamationCircleOutlined} from "@ant-design/icons";
+import React from 'react';
+import EditorTip from '../../../../components/editorTip/editorTip';
+import {Button, Divider, message, Modal} from 'antd';
+import {JudgeHostInfo} from '../../../../models/judgeHost';
+import {deleteJudgeHost, resetJudgeHostCondition} from '../../../../network/judgeHostRequest';
+import {ExclamationCircleOutlined} from '@ant-design/icons';
 
 interface OperationsProps {
   judgeHostInfo: JudgeHostInfo;
@@ -26,7 +26,7 @@ const Operations: React.FunctionComponent<OperationsProps> = (props) => {
     resetJudgeHostCondition(props.judgeHostInfo.id)
       .then(() => {
         props.onReset();
-        message.success("修改判题机状态成功");
+        message.success('修改判题机状态成功');
       })
   }
 
@@ -38,9 +38,9 @@ const Operations: React.FunctionComponent<OperationsProps> = (props) => {
       content: '您确定要删除这个判题机吗？',
       onOk() {
         deleteJudgeHost(props.judgeHostInfo.id).then(() => {
-          message.success("删除成功");
+          message.success('删除成功');
           // 路由回切
-          window.reactRouter.replace("/cms/judge_hosts");
+          window.reactRouter.replace('/cms/judge_hosts');
         })
       }
     })
@@ -49,18 +49,18 @@ const Operations: React.FunctionComponent<OperationsProps> = (props) => {
   return (
     <div>
       <EditorTip
-        title={`${props.judgeHostInfo.active ? "关闭" : "打开"}这个判题服务器`}
-        content={`${props.judgeHostInfo.active ? "这个判题服务器将不再接受任何任务直到重新启动" : "允许判题服务器接受任务"}`}>
+        title={`${props.judgeHostInfo.active ? '关闭' : '打开'}这个判题服务器`}
+        content={`${props.judgeHostInfo.active ? '这个判题服务器将不再接受任何任务直到重新启动' : '允许判题服务器接受任务'}`}>
         <Button
-          type={!props.judgeHostInfo.active ? "primary" : "default"}
+          type={!props.judgeHostInfo.active ? 'primary' : 'default'}
           danger={props.judgeHostInfo.active}
           onClick={() => resetJudgeHost()}>
-          {props.judgeHostInfo.active ? "关闭" : "开启"}
+          {props.judgeHostInfo.active ? '关闭' : '开启'}
         </Button>
       </EditorTip>
       <Divider></Divider>
-      <EditorTip title={"删除这个判题服务器"}
-                 content={"注意: 这个操作不可恢复"}>
+      <EditorTip title={'删除这个判题服务器'}
+                 content={'注意: 这个操作不可恢复'}>
         <Button danger onClick={() => removeJudgeHost()}>删除</Button>
       </EditorTip>
     </div>

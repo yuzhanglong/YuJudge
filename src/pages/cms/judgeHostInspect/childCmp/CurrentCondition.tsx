@@ -6,9 +6,9 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Descriptions} from "antd";
-import {JudgeHostInfo} from "../../../../models/judgeHost";
+import React from 'react';
+import {Descriptions} from 'antd';
+import {JudgeHostInfo} from '../../../../models/judgeHost';
 
 interface CurrentConditionProps {
   judgeHostInfo: JudgeHostInfo;
@@ -18,13 +18,13 @@ const CurrentCondition: React.FunctionComponent<CurrentConditionProps> = (props)
   return (
     <Descriptions bordered>
       <Descriptions.Item label="连接状态">
-        {props.judgeHostInfo.condition ? "连接成功" : "连接失败"}
+        {props.judgeHostInfo.condition ? '连接成功' : '连接失败'}
       </Descriptions.Item>
       <Descriptions.Item label="CPU占用">
-        {props.judgeHostInfo.condition.cpuCostPercentage + "%"}
+        {props.judgeHostInfo.condition.cpuCostPercentage + '%'}
       </Descriptions.Item>
       <Descriptions.Item label="内存占用">
-        {props.judgeHostInfo.condition.memoryCostPercentage + "%"}
+        {props.judgeHostInfo.condition.memoryCostPercentage + '%'}
       </Descriptions.Item>
       <Descriptions.Item label="当前判题数">
         {props.judgeHostInfo.condition.workingAmount}

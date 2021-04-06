@@ -6,19 +6,19 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Col, Menu, Row} from "antd";
-import {Link, RouteComponentProps} from "react-router-dom";
-import {UserInfoState} from "../../../hooks/userInfo";
-import UserTag from "../../../components/userTag/UserTag";
-import style from "../../layout.module.scss";
+import React from 'react';
+import {Col, Menu, Row} from 'antd';
+import {Link, RouteComponentProps} from 'react-router-dom';
+import {UserInfoState} from '../../../hooks/userInfo';
+import UserTag from '../../../components/userTag/UserTag';
+import style from '../../layout.module.scss';
 import {
   AreaChartOutlined, FileSearchOutlined,
   HomeOutlined, QuestionCircleOutlined,
   SnippetsOutlined,
   UserOutlined
-} from "@ant-design/icons";
-import {LOGOS} from "../../../config/config";
+} from '@ant-design/icons';
+import {LOGOS} from '../../../config/config';
 
 interface CommonMenuProps {
 
@@ -32,35 +32,35 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
   // 是否渲染题目集相关操作目录
   const getProblemSetId = () => {
     // 在题目集内
-    if (props.location.pathname.includes("/common/problem_set/")) {
+    if (props.location.pathname.includes('/common/problem_set/')) {
       const a = props.location.pathname;
-      let arr = a.split("/");
+      let arr = a.split('/');
       return arr[3];
     }
     return null;
   }
 
   return (
-    <Row justify={"space-between"} className={style.problem_set_layout_menu}>
+    <Row justify={'space-between'} className={style.problem_set_layout_menu}>
       <Col span={24}>
         <Menu mode="horizontal" selectedKeys={[props.location.pathname]}>
-          <Menu.Item className={style.logo_wrap} onClick={() => props.history.push("/")}>
-            <img src={LOGOS.WITH_TEXT} alt={"logo"} width={120}/>
+          <Menu.Item className={style.logo_wrap} onClick={() => props.history.push('/')}>
+            <img src={LOGOS.WITH_TEXT} alt={'logo'} width={120}/>
           </Menu.Item>
           <Menu.Item key="/common/home" icon={<HomeOutlined/>}>
-            <Link to={`/common/home`}>
+            <Link to={'/common/home'}>
               <span className={style.nav_text}>首页</span>
             </Link>
           </Menu.Item>
 
           <Menu.Item key="/common/problem" icon={<QuestionCircleOutlined/>}>
-            <Link to={"/common/problem"}>
+            <Link to={'/common/problem'}>
               <span className={style.nav_text}>问题</span>
             </Link>
           </Menu.Item>
 
           <Menu.Item key="/common/problem_sets" icon={<SnippetsOutlined/>}>
-            <Link to={`/common/problem_sets`}>
+            <Link to={'/common/problem_sets'}>
               <span className={style.nav_text}>题目集</span>
             </Link>
           </Menu.Item>
@@ -97,13 +97,13 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
               </Link>
             </Menu.Item>
           }
-          <Menu.Item style={{float: "right"}} disabled>
+          <Menu.Item style={{float: 'right'}} disabled>
             <UserTag
               {...props}
               height={46}
               showGotoCms={!userInfoState.isCommonUser()}
               userName={userInfoState.userInfo?.nickname}
-              description={userInfoState.userInfo?.userGroups ? userInfoState.userInfo?.userGroups[0].description : ""}
+              description={userInfoState.userInfo?.userGroups ? userInfoState.userInfo?.userGroups[0].description : ''}
               avatar={userInfoState.userInfo?.avatar}/>
           </Menu.Item>
         </Menu>

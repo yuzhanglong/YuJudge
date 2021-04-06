@@ -7,11 +7,11 @@
  */
 
 
-import React from "react";
-import {Radio} from "antd";
-import {ExperimentOutlined, FormOutlined, OrderedListOutlined} from "@ant-design/icons";
-import {RouteComponentProps, withRouter} from "react-router-dom";
-import style from "../problemHome.module.scss";
+import React from 'react';
+import {Radio} from 'antd';
+import {ExperimentOutlined, FormOutlined, OrderedListOutlined} from '@ant-design/icons';
+import {RouteComponentProps, withRouter} from 'react-router-dom';
+import style from '../problemHome.module.scss';
 
 interface RouteSelectorProps {
 
@@ -25,13 +25,13 @@ const RouteSelector: React.FunctionComponent<RouteSelectorProps & RouteComponent
 
   // 活跃的标签
   const getActiveValue = () => {
-    if (props.location.pathname.includes("submission")) {
-      return "submission";
+    if (props.location.pathname.includes('submission')) {
+      return 'submission';
     }
-    if (props.location.pathname.includes("solution")) {
-      return "solution";
+    if (props.location.pathname.includes('solution')) {
+      return 'solution';
     }
-    return "problem";
+    return 'problem';
   }
 
   return (

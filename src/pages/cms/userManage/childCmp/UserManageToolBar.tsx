@@ -6,9 +6,9 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Row, Select, Space} from "antd";
-import {UserGroupInfo} from "../../../../models/UserGroup";
+import React from 'react';
+import {Row, Select, Space} from 'antd';
+import {UserGroupInfo} from '../../../../models/UserGroup';
 
 interface UserManageToolBarProps {
   onSelectorChange: (value: number) => void;
@@ -41,12 +41,12 @@ const UserManageToolBar: React.FunctionComponent<UserManageToolBarProps> = (prop
         筛选用户类型:
         <Select
           defaultValue={-1}
-          placeholder={"选择一个用户类型"}
+          placeholder={'选择一个用户类型'}
           style={{
             minWidth: 160
           }}
           onChange={onSelectorChange}>
-          <Select.Option key={"all"} value={-1}>
+          <Select.Option key={'all'} value={-1}>
             所有用户
           </Select.Option>
           {renderOptions()}

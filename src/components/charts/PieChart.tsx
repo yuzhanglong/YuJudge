@@ -6,9 +6,9 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Pie} from "@ant-design/charts";
-import {PieConfig} from "@ant-design/charts/es/pie";
+import React from 'react';
+import {Pie} from '@ant-design/charts';
+import {PieConfig} from '@ant-design/charts/es/pie';
 
 interface PieChartProps {
   data: any[];
@@ -24,8 +24,8 @@ const PieChart: React.FunctionComponent<PieChartProps> = (props) => {
     forceFit: props.forceFit,
     pixelRatio: 1,
     data: props.data,
-    angleField: props.angleField || "key",
-    colorField: props.colorField || "value",
+    angleField: props.angleField || 'key',
+    colorField: props.colorField || 'value',
     color: props.colorRender,
     radius:1.0,
     label: {

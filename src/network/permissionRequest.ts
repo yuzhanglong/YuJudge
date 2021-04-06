@@ -6,13 +6,13 @@
  * Email: yuzl1123@163.com
  */
 
-import request from "./interceptor";
+import request from './interceptor';
 
 
 // 获取可以分配的权限
 export const getPermissions = () => {
   return request.get(
-    "/permission/get_permissions"
+    '/permission/get_permissions'
   )
 }
 
@@ -20,14 +20,14 @@ export const getPermissions = () => {
 // 通过用户组id寻找权限
 export const getPermissionByUserGroupId = (userGroupId: number) => {
   return request.get(
-    "/permission/get_permission_by_user_group/" + userGroupId
+    '/permission/get_permission_by_user_group/' + userGroupId
   )
 }
 
 // 更新用户组权限
 export const updateUserGroupPermission = (userGroupId: number, permissions: string[]) => {
   return request.put(
-    "/permission/edit_user_group_permission/" + userGroupId,
+    '/permission/edit_user_group_permission/' + userGroupId,
     {
       permissions: permissions
     }

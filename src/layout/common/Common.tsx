@@ -6,11 +6,11 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Affix, Layout} from "antd";
-import CommonMenu from "./childCmp/CommonMenu";
-import {RouteComponentProps} from "react-router-dom";
-import style from "../layout.module.scss"
+import React from 'react';
+import {Affix, Layout} from 'antd';
+import CommonMenu from './childCmp/CommonMenu';
+import {RouteComponentProps} from 'react-router-dom';
+import style from '../layout.module.scss'
 
 interface ProblemLayoutProps {
   children: React.ReactNode;
@@ -24,7 +24,7 @@ const Common: React.FunctionComponent<ProblemLayoutProps & RouteComponentProps> 
           <CommonMenu {...props}/>
         </div>
       </Affix>
-      <div key={"content"} className={style.common_content}>
+      <div key={'content'} className={style.common_content}>
         <div className={style.common_content_mask}>
           {props.children}
         </div>

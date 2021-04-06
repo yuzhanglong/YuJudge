@@ -6,22 +6,22 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect} from "react";
-import {getProblemSetTimeline} from "../../../../network/problemSetRequest";
-import {Empty, message, Pagination, Tag, Timeline} from "antd";
-import {CheckCircleOutlined} from "@ant-design/icons";
-import style from "../problemSetCount.module.scss"
-import {tenDecimalToTwentySixDecimal} from "../../../../utils/math";
-import moment from "moment";
+import React, {useEffect} from 'react';
+import {getProblemSetTimeline} from '../../../../network/problemSetRequest';
+import {Empty, message, Pagination, Tag, Timeline} from 'antd';
+import {CheckCircleOutlined} from '@ant-design/icons';
+import style from '../problemSetCount.module.scss'
+import {tenDecimalToTwentySixDecimal} from '../../../../utils/math';
+import moment from 'moment';
 import {
   EMPTY_IMAGE,
   PAGE_BEGIN,
   TIME_LINE_IN_PROBLEM_SET_FORMAT
-} from "../../../../config/config";
-import {UsePaginationState} from "../../../../hooks/pagination";
-import {TimelinePaginationRequest} from "../../../../models/pagination";
-import {BaseResponse} from "../../../../models/common";
-import {ProblemSetTimelineItem} from "../../../../models/problemSet";
+} from '../../../../config/config';
+import {UsePaginationState} from '../../../../hooks/pagination';
+import {TimelinePaginationRequest} from '../../../../models/pagination';
+import {BaseResponse} from '../../../../models/common';
+import {ProblemSetTimelineItem} from '../../../../models/problemSet';
 
 interface ProblemSetTimeLineProps {
   problemSetId: number;
@@ -91,7 +91,7 @@ const ProblemSetTimeLine: React.FunctionComponent<ProblemSetTimeLineProps> = (pr
 
   return (
     <div>
-      <Timeline mode={"alternate"}>
+      <Timeline mode={'alternate'}>
         {problemSetTimelinePagination.items.length ? renderTimeline() : <Empty image={EMPTY_IMAGE}/>}
       </Timeline>
       <div className={style.time_line_pagination}>

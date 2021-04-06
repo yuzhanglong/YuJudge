@@ -6,10 +6,10 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useState} from "react";
-import {CheckOutlined, EditOutlined} from "@ant-design/icons";
-import style from "./inputEditor.module.scss";
-import {Input} from "antd";
+import React, {useState} from 'react';
+import {CheckOutlined, EditOutlined} from '@ant-design/icons';
+import style from './inputEditor.module.scss';
+import {Input} from 'antd';
 
 interface InputEditorProps {
   // 绑定值
@@ -44,7 +44,7 @@ const InputEditor: React.FunctionComponent<InputEditorProps> = (props) => {
   const onInputChange = (event: any) => {
     event.persist();
     if (props.onChange) {
-      props.onChange(event.target.value || "");
+      props.onChange(event.target.value || '');
     }
   }
 

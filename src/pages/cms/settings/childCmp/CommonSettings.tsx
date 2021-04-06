@@ -6,13 +6,13 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import style from "../settings.module.scss";
-import EditorTip from "../../../../components/editorTip/editorTip";
-import {Button, Card, Divider, Input, message, Slider} from "antd";
-import {JUDGE_NUMBER_SETTINGS_RANGE} from "../../../../config/config";
-import {setSubmissionFrequencyControl, setSubmissionThreadPoolMaxSize} from "../../../../network/submissionRequest";
-import {SubmissionThreadPoolConfiguration} from "../../../../models/submission";
+import React from 'react';
+import style from '../settings.module.scss';
+import EditorTip from '../../../../components/editorTip/editorTip';
+import {Button, Card, Divider, Input, message, Slider} from 'antd';
+import {JUDGE_NUMBER_SETTINGS_RANGE} from '../../../../config/config';
+import {setSubmissionFrequencyControl, setSubmissionThreadPoolMaxSize} from '../../../../network/submissionRequest';
+import {SubmissionThreadPoolConfiguration} from '../../../../models/submission';
 
 interface CommonSettingsProps {
   submissionThreadPoolConfig?: SubmissionThreadPoolConfiguration;
@@ -29,7 +29,7 @@ const CommonSettings: React.FunctionComponent<CommonSettingsProps> = (props) => 
   const setSubmissionThreadPoolSize = (size: number) => {
     setSubmissionThreadPoolMaxSize(size)
       .then(() => {
-        message.success("设置成功");
+        message.success('设置成功');
         props.onThreadConfigChange();
       })
   }
@@ -42,8 +42,8 @@ const CommonSettings: React.FunctionComponent<CommonSettingsProps> = (props) => 
 
   // 获取限制文案
   const getSubmissionFrequencyText = () => {
-    const base = "用户两次提交的间隔时间(秒)，用来防止接口恶意调用、频繁提交";
-    const current = props.submissionFrequency === 0 ? "无限制" : `${props.submissionFrequency}秒`
+    const base = '用户两次提交的间隔时间(秒)，用来防止接口恶意调用、频繁提交';
+    const current = props.submissionFrequency === 0 ? '无限制' : `${props.submissionFrequency}秒`
     return `${base} [当前状态: ${current}]`;
   }
 
@@ -51,7 +51,7 @@ const CommonSettings: React.FunctionComponent<CommonSettingsProps> = (props) => 
   const reSetSubmissionFrequencyControl = () => {
     setSubmissionFrequencyControl(props.submissionFrequency)
       .then(() => {
-        message.success("设置成功~");
+        message.success('设置成功~');
       })
   }
 
@@ -60,7 +60,7 @@ const CommonSettings: React.FunctionComponent<CommonSettingsProps> = (props) => 
       title={<div className={style.cms_settings_edit_item_title}>一般项</div>}
       className={style.cms_settings_item}>
       <EditorTip
-        title={"设置同时运行的判题个数"}
+        title={'设置同时运行的判题个数'}
         content={`同时运行的判题个数，可以根据实际配置进行修改 [当前个数: ${props.submissionThreadPoolConfig?.maxPoolSize || 0}]`}>
         <Slider
           tooltipVisible={true}
@@ -73,12 +73,12 @@ const CommonSettings: React.FunctionComponent<CommonSettingsProps> = (props) => 
       </EditorTip>
       <Divider/>
       <EditorTip
-        title={"设置提交间隔时间"}
+        title={'设置提交间隔时间'}
         content={getSubmissionFrequencyText()}>
         <Input
           onChange={(event) => onSubmissionFrequencyInputChange(event)}
           className={style.cms_settings_frequency_input}
-          suffix={<Button type={"link"} onClick={() => reSetSubmissionFrequencyControl()}>确定</Button>}
+          suffix={<Button type={'link'} onClick={() => reSetSubmissionFrequencyControl()}>确定</Button>}
           value={props.submissionFrequency}/>
       </EditorTip>
     </Card>

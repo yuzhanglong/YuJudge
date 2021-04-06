@@ -6,11 +6,11 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useState} from "react";
-import {Button, Form, Input, InputNumber, Modal, Select} from "antd";
-import {isUrlValidated} from "../../../../utils/regex";
-import {JudgeHostRequest} from "../../../../models/judgeHost";
-import {JUDGE_HOST_DEFAULT_URL_SCHEME} from "../../../../config/config";
+import React, {useState} from 'react';
+import {Button, Form, Input, InputNumber, Modal, Select} from 'antd';
+import {isUrlValidated} from '../../../../utils/regex';
+import {JudgeHostRequest} from '../../../../models/judgeHost';
+import {JUDGE_HOST_DEFAULT_URL_SCHEME} from '../../../../config/config';
 
 interface JudgeHostFormProps {
   visible: boolean;
@@ -30,7 +30,7 @@ const JudgeHostEditModal: React.FunctionComponent<JudgeHostFormProps> = (props) 
           取消
         </Button>
         <Button
-          type={"primary"}
+          type={'primary'}
           onClick={() => onFormConfirm()}>
           确定
         </Button>
@@ -68,39 +68,39 @@ const JudgeHostEditModal: React.FunctionComponent<JudgeHostFormProps> = (props) 
       maskClosable={false}
       destroyOnClose
       onCancel={props.onCancel}
-      title={"判题机信息"} footer={renderFooter()}>
+      title={'判题机信息'} footer={renderFooter()}>
       <Form form={form}>
-        <Form.Item label={"名称"} name="name" rules={[{
+        <Form.Item label={'名称'} name="name" rules={[{
           required: true,
-          message: "请输入名称"
+          message: '请输入名称'
         }]}>
           <Input/>
         </Form.Item>
-        <Form.Item label={"地址"} name="url" rules={[
+        <Form.Item label={'地址'} name="url" rules={[
           {
             required: true,
-            message: "请输入地址"
+            message: '请输入地址'
           },
           {
-            message: "无效的地址",
+            message: '无效的地址',
             validator: (rule, value) => {
-              return isUrlValidated(`${urlScheme}://${value}`) ? Promise.resolve() : Promise.reject("无效的ip地址");
+              return isUrlValidated(`${urlScheme}://${value}`) ? Promise.resolve() : Promise.reject('无效的ip地址');
             }
           }
         ]}>
           <Input addonBefore={urlSchemeSelector}/>
         </Form.Item>
         <Form.Item
-          label={"端口"}
+          label={'端口'}
           name="port"
           rules={[
             {
               required: true,
-              message: "端口不得为空",
+              message: '端口不得为空',
             },
             {
-              message: "请输入正确的端口, 介于0和65536之间",
-              type: "number",
+              message: '请输入正确的端口, 介于0和65536之间',
+              type: 'number',
               max: 65535,
               min: 1
             }

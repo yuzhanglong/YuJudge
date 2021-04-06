@@ -7,15 +7,15 @@
  */
 
 
-import React, {useState} from "react";
-import {Button, Card} from "antd";
-import style from "../home.module.scss";
-import NoticeTable from "../../../../components/noticeTable/NoticeTable";
-import ProblemTable from "../../../../components/problemTable/ProblemTable";
-import RcQueueAnim from "rc-queue-anim";
-import {NoticeInfo} from "../../../../models/notice";
-import {Problem} from "../../../../models/problem";
-import NoticeModal from "../../../../components/noticeModal/NoticeModal";
+import React, {useState} from 'react';
+import {Button, Card} from 'antd';
+import style from '../home.module.scss';
+import NoticeTable from '../../../../components/noticeTable/NoticeTable';
+import ProblemTable from '../../../../components/problemTable/ProblemTable';
+import RcQueueAnim from 'rc-queue-anim';
+import {NoticeInfo} from '../../../../models/notice';
+import {Problem} from '../../../../models/problem';
+import NoticeModal from '../../../../components/noticeModal/NoticeModal';
 
 interface HomeContentProps {
   // 公告列表
@@ -46,19 +46,19 @@ const HomeContent: React.FunctionComponent<HomeContentProps> = (props) => {
 
   return (
     <RcQueueAnim>
-      <div key={"home_content_item1"}>
+      <div key={'home_content_item1'}>
         <NoticeModal
           onClose={() => setNoticeModalVisible(false)}
           visible={noticeModalVisible} notice={activeNotice}/>
-        <Card title={"公告"} className={style.home_content_item}>
+        <Card title={'公告'} className={style.home_content_item}>
           <NoticeTable
             notices={props.notices}
             onNoticeClick={(notice) => onNoticeTableClick(notice)}/>
         </Card>
       </div>
 
-      <div key={"home_content_item2"}>
-        <Card title={"最近更新"} className={style.home_content_item}>
+      <div key={'home_content_item2'}>
+        <Card title={'最近更新'} className={style.home_content_item}>
           <ProblemTable
             isShowProblemOrder={false}
             problems={props.problems}
@@ -66,11 +66,11 @@ const HomeContent: React.FunctionComponent<HomeContentProps> = (props) => {
             showEditButton={false}
             isShowTags={false}
             showPagination={false}
-            tableSize={"middle"}
+            tableSize={'middle'}
             otherOperations={(content: any) => {
               return (
                 <Button
-                  type={"link"}
+                  type={'link'}
                   onClick={() => onGotoProblemButtonClick(content)}>
                   前往
                 </Button>

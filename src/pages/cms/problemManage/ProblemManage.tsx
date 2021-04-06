@@ -7,18 +7,18 @@
  */
 
 
-import React, {useEffect, useState} from "react";
-import ProblemTable from "../../../components/problemTable/ProblemTable";
-import {RouteComponentProps} from "react-router-dom";
-import {createProblem, getProblems} from "../../../network/problemRequests";
-import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from "../../../config/config";
-import {UsePaginationState} from "../../../hooks/pagination";
-import {ProblemPaginationRequest} from "../../../models/pagination";
-import {Button, Card, message} from "antd";
-import {PlusOutlined} from "@ant-design/icons";
-import CreateProblemModal from "./childCmp/CreateProblemModal";
-import {BaseResponse} from "../../../models/common";
-import RcQueueAnim from "rc-queue-anim";
+import React, {useEffect, useState} from 'react';
+import ProblemTable from '../../../components/problemTable/ProblemTable';
+import {RouteComponentProps} from 'react-router-dom';
+import {createProblem, getProblems} from '../../../network/problemRequests';
+import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from '../../../config/config';
+import {UsePaginationState} from '../../../hooks/pagination';
+import {ProblemPaginationRequest} from '../../../models/pagination';
+import {Button, Card, message} from 'antd';
+import {PlusOutlined} from '@ant-design/icons';
+import CreateProblemModal from './childCmp/CreateProblemModal';
+import {BaseResponse} from '../../../models/common';
+import RcQueueAnim from 'rc-queue-anim';
 
 
 const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
@@ -61,7 +61,7 @@ const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
     return (
       <Button
         onClick={() => setCreateButtonModalVisible(true)}
-        type={"primary"}
+        type={'primary'}
         icon={<PlusOutlined/>}>
         创建题目
       </Button>
@@ -72,7 +72,7 @@ const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
   const createProblemConfirm = (name: string) => {
     createProblem(name)
       .then(() => {
-        message.success("创建成功~");
+        message.success('创建成功~');
         setCreateButtonModalVisible(false);
         getProblemsData(0, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE, null);
       })
@@ -83,8 +83,8 @@ const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
 
   return (
     <RcQueueAnim>
-      <div key={"problem_manage"}>
-        <Card title={"题目管理"} extra={renderCreateProblemButton()}>
+      <div key={'problem_manage'}>
+        <Card title={'题目管理'} extra={renderCreateProblemButton()}>
           <CreateProblemModal
             onConfirm={(name) => createProblemConfirm(name)}
             visible={createButtonModalVisible}

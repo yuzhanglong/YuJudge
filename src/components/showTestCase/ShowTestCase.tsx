@@ -6,14 +6,14 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {JudgeResultForSingleTestCase} from "../../models/submission";
-import {Tag, Tooltip} from "antd";
+import React from 'react';
+import {JudgeResultForSingleTestCase} from '../../models/submission';
+import {Tag, Tooltip} from 'antd';
 import {
   JUDGE_CONDITION_COLORS,
   JUDGE_CONDITION_SIMPLE_NAME,
   JUDGE_CONDITION_TAG_NAMES_CHINESE
-} from "../../common/judgeCondition";
+} from '../../common/judgeCondition';
 
 interface ShowTestCaseProps {
   // 所有测试样例

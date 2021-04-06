@@ -7,13 +7,13 @@
  */
 
 
-import request from "./interceptor";
-import {NoticePaginationRequest} from "../models/pagination";
+import request from './interceptor';
+import {NoticePaginationRequest} from '../models/pagination';
 
 // 通过id来获取problem的基本信息
 export const getNotices = (requestBody: NoticePaginationRequest) => {
   return request.get(
-    "/notice/get_notices",
+    '/notice/get_notices',
     {
       headers: {
         loading: true

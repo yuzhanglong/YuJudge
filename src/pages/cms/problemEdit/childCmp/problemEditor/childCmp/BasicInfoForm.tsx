@@ -6,13 +6,13 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect, useState} from "react";
-import {Button, Form, Input, message} from "antd";
-import {Problem} from "../../../../../../models/problem";
-import TagGroup from "../../../../../../components/tagGroup/TagGroup";
-import {editProblemBasicInfo} from "../../../../../../network/problemRequests";
-import style from "../../../problemEdit.module.scss";
-import MarkdownEditor from "../../../../../../components/markdownEditor/MarkdownEditor";
+import React, {useEffect, useState} from 'react';
+import {Button, Form, Input, message} from 'antd';
+import {Problem} from '../../../../../../models/problem';
+import TagGroup from '../../../../../../components/tagGroup/TagGroup';
+import {editProblemBasicInfo} from '../../../../../../network/problemRequests';
+import style from '../../../problemEdit.module.scss';
+import MarkdownEditor from '../../../../../../components/markdownEditor/MarkdownEditor';
 
 
 interface BasicInfoFormProps {
@@ -25,7 +25,7 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
   const [currentTags, setCurrentTags] = useState<string[]>([]);
 
   // Markdown内容
-  const [content, setContent] = useState<string | undefined>("");
+  const [content, setContent] = useState<string | undefined>('');
 
 
   useEffect(() => {
@@ -60,7 +60,7 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
         }
         editProblemBasicInfo(requestBody)
           .then(() => {
-            message.success("保存成功~");
+            message.success('保存成功~');
           });
       })
       .catch(() => {
@@ -71,11 +71,11 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
     <div className={style.problem_edit_basic_info_wrap}>
       <div className={style.problem_edit_basic_info_form}>
         <Form
-          layout={"vertical"}
+          layout={'vertical'}
           form={form}>
           <Form.Item
             label="题目名称"
-            name={"name"}>
+            name={'name'}>
             <Input/>
           </Form.Item>
           <Form.Item label="题目标签">
@@ -90,7 +90,7 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
         </Form>
       </div>
       <MarkdownEditor
-        value={content || ""}
+        value={content || ''}
         onValueChange={(v) => setContent(v)}/>
       <Button
         type="primary"

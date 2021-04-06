@@ -6,8 +6,8 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Card, Empty} from "antd";
+import React from 'react';
+import {Card, Empty} from 'antd';
 
 interface RankingProps {
 
@@ -15,7 +15,7 @@ interface RankingProps {
 const Ranking: React.FunctionComponent<RankingProps> = () => {
   return (
     <Card>
-      <Empty description={"排名板块开发中...."}/>
+      <Empty description={'排名板块开发中....'}/>
     </Card>
   )
 }

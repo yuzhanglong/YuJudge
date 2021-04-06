@@ -6,13 +6,13 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect} from "react";
-import {Button, Form, Input, message, Modal, Upload} from "antd";
-import {UploadOutlined} from "@ant-design/icons";
-import {DOWNLOAD_SERVER_BASE_URL, UPLOAD_SERVER_BASE_URL} from "../../../../config/config";
-import {ProblemTestCase} from "../../../../models/problem";
-import {UploadFile} from "antd/es/upload/interface";
-import {createSolution} from "../../../../network/problemRequests";
+import React, {useEffect} from 'react';
+import {Button, Form, Input, message, Modal, Upload} from 'antd';
+import {UploadOutlined} from '@ant-design/icons';
+import {DOWNLOAD_SERVER_BASE_URL, UPLOAD_SERVER_BASE_URL} from '../../../../config/config';
+import {ProblemTestCase} from '../../../../models/problem';
+import {UploadFile} from 'antd/es/upload/interface';
+import {createSolution} from '../../../../network/problemRequests';
 
 interface TestCaseModalProps {
   isShow: boolean;
@@ -42,7 +42,7 @@ const TestCaseModal: React.FunctionComponent<TestCaseModalProps> = (props) => {
 
   // 构造上传表单
   const getUploadForm = (type: UPLOADER) => {
-    const extensionName = (type === UPLOADER.STD_IN ? ".in" : ".out");
+    const extensionName = (type === UPLOADER.STD_IN ? '.in' : '.out');
     return {
       token: props.uploadToken,
       key: new Date().getTime().toString() + extensionName
@@ -71,7 +71,7 @@ const TestCaseModal: React.FunctionComponent<TestCaseModalProps> = (props) => {
 
     createSolution(props.problemId, addSolutionForm)
       .then(() => {
-        message.success("创建成功～");
+        message.success('创建成功～');
         props.onConfirmed();
       })
   }
@@ -120,7 +120,7 @@ const TestCaseModal: React.FunctionComponent<TestCaseModalProps> = (props) => {
               {
                 required: true,
                 message: '请上传标准输入',
-                validator: (r, s) => uploadSuccessValidator(s, "请上传标准输入")
+                validator: (r, s) => uploadSuccessValidator(s, '请上传标准输入')
               }
             ]}>
             <Upload
@@ -139,7 +139,7 @@ const TestCaseModal: React.FunctionComponent<TestCaseModalProps> = (props) => {
               {
                 required: true,
                 message: '请上传期望输出',
-                validator: (r, s) => uploadSuccessValidator(s, "请上传期望输出")
+                validator: (r, s) => uploadSuccessValidator(s, '请上传期望输出')
               }
             ]}>
             <Upload
@@ -160,7 +160,7 @@ const TestCaseModal: React.FunctionComponent<TestCaseModalProps> = (props) => {
 
 TestCaseModal.defaultProps = {
   isShow: false,
-  uploadToken: ""
+  uploadToken: ''
 }
 
 export default TestCaseModal;

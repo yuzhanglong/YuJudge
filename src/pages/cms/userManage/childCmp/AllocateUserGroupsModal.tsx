@@ -7,11 +7,11 @@
  */
 
 
-import React, {useEffect, useState} from "react";
-import {Modal, Transfer} from "antd";
-import {UserGroupInfo} from "../../../../models/UserGroup";
-import {TransferItem} from "antd/es/transfer";
-import {UserInfo} from "../../../../models/user";
+import React, {useEffect, useState} from 'react';
+import {Modal, Transfer} from 'antd';
+import {UserGroupInfo} from '../../../../models/UserGroup';
+import {TransferItem} from 'antd/es/transfer';
+import {UserInfo} from '../../../../models/user';
 
 interface AllocateUserGroupsModalProps {
   isVisible: boolean;
@@ -65,7 +65,7 @@ const AllocateUserGroupsModal: React.FunctionComponent<AllocateUserGroupsModalPr
       destroyOnClose
       visible={props.isVisible}
       width={800}
-      title={"分配用户组"}
+      title={'分配用户组'}
       onCancel={() => props.onCancel()}
       onOk={() => props.onConfirm(userGroupsKeys)}>
       <Transfer

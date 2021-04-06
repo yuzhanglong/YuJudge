@@ -6,10 +6,10 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect} from "react";
-import {UserInfo} from "../../../../models/user";
-import {Form, Input, message, Modal} from "antd";
-import {editUser} from "../../../../network/userRequest";
+import React, {useEffect} from 'react';
+import {UserInfo} from '../../../../models/user';
+import {Form, Input, message, Modal} from 'antd';
+import {editUser} from '../../../../network/userRequest';
 
 interface UserEditModalProps {
   userInfo?: UserInfo;
@@ -36,7 +36,7 @@ const UserEditModal: React.FunctionComponent<UserEditModalProps> = (props) => {
         if (props.userInfo?.id) return editUser(props.userInfo.id, res.nickname, res.password)
       })
       .then(() => {
-        message.success("编辑成功");
+        message.success('编辑成功');
         props.onCancel();
       });
   }
@@ -49,22 +49,22 @@ const UserEditModal: React.FunctionComponent<UserEditModalProps> = (props) => {
       onOk={() => onConfirm()}>
       <Form form={form}>
         <Form.Item
-          label={"用户名"}
+          label={'用户名'}
           name="nickname"
           rules={[{
             required: true,
-            message: "请输入用户名"
+            message: '请输入用户名'
           }]}>
           <Input/>
         </Form.Item>
         <Form.Item
-          label={"新密码"}
+          label={'新密码'}
           name="password"
           rules={[{
             required: true,
-            message: "请输入密码"
+            message: '请输入密码'
           }]}>
-          <Input placeholder={"请输入新密码"}/>
+          <Input placeholder={'请输入新密码'}/>
         </Form.Item>
       </Form>
     </Modal>

@@ -6,11 +6,11 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
+import React from 'react';
 
-import Loading from "../components/loading/Loading";
-import ReactDOM from "react-dom";
-import {LOADING_DOM_ID} from "../config/config";
+import Loading from '../components/loading/Loading';
+import ReactDOM from 'react-dom';
+import {LOADING_DOM_ID} from '../config/config';
 
 
 // 展示一个全局loading, 依赖自定义的组件

@@ -7,8 +7,8 @@
  */
 
 
-import React from "react";
-import {Spin} from "antd";
+import React from 'react';
+import {Spin} from 'antd';
 
 interface LoadingProps {
 
@@ -16,7 +16,7 @@ interface LoadingProps {
 
 const Loading: React.FunctionComponent<LoadingProps> = () => {
   return (
-    <Spin size="large" tip={"拼命加载中~"}/>
+    <Spin size="large" tip={'拼命加载中~'}/>
   )
 }
 

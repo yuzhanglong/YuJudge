@@ -7,14 +7,14 @@
  */
 
 
-import React from "react";
-import {Modal} from "antd";
-import {NoticeInfo} from "../../models/notice";
-import BetterMarkdown from "../betterMarkdown/BetterMarkdown";
-import style from "./noticeModal.module.scss";
-import {DEFAULT_DATE_TIME_FORMAT} from "../../config/config";
-import moment from "moment";
-import {UserOutlined} from "@ant-design/icons";
+import React from 'react';
+import {Modal} from 'antd';
+import {NoticeInfo} from '../../models/notice';
+import BetterMarkdown from '../betterMarkdown/BetterMarkdown';
+import style from './noticeModal.module.scss';
+import {DEFAULT_DATE_TIME_FORMAT} from '../../config/config';
+import moment from 'moment';
+import {UserOutlined} from '@ant-design/icons';
 
 interface NoticeModalProps {
   visible: boolean;

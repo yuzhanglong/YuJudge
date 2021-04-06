@@ -6,18 +6,18 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect, useState} from "react";
-import {Button, Col, Divider, Drawer, message, Row, Select} from "antd";
-import {ScoreBoardSolutionInfo, SubmissionDetail} from "../../models/submission";
-import {changeSubmissionCondition, getSubmissionById} from "../../network/submissionRequest";
-import DescriptionItem from "../descriptionItem/DescriptionItem";
-import style from "./submissionDrawer.module.scss";
-import moment from "moment";
-import {DEFAULT_DATE_TIME_FORMAT, JUDGE_RESULT_CHANGE_ALLOW_DATA} from "../../config/config";
-import EditorTip from "../editorTip/editorTip";
-import TestCaseList from "../testCaseList/TestCaseList";
-import {JUDGE_CONDITION_COLORS, JUDGE_CONDITION_TAG_NAMES_CHINESE} from "../../common/judgeCondition";
-import {downloadSubmissionFromJudgeHost} from "../../network/judgeHostRequest";
+import React, {useEffect, useState} from 'react';
+import {Button, Col, Divider, Drawer, message, Row, Select} from 'antd';
+import {ScoreBoardSolutionInfo, SubmissionDetail} from '../../models/submission';
+import {changeSubmissionCondition, getSubmissionById} from '../../network/submissionRequest';
+import DescriptionItem from '../descriptionItem/DescriptionItem';
+import style from './submissionDrawer.module.scss';
+import moment from 'moment';
+import {DEFAULT_DATE_TIME_FORMAT, JUDGE_RESULT_CHANGE_ALLOW_DATA} from '../../config/config';
+import EditorTip from '../editorTip/editorTip';
+import TestCaseList from '../testCaseList/TestCaseList';
+import {JUDGE_CONDITION_COLORS, JUDGE_CONDITION_TAG_NAMES_CHINESE} from '../../common/judgeCondition';
+import {downloadSubmissionFromJudgeHost} from '../../network/judgeHostRequest';
 
 interface SubmissionDrawerProps {
   visible: boolean;
@@ -66,7 +66,7 @@ const SubmissionDrawer: React.FunctionComponent<SubmissionDrawerProps> = (props)
     if (submissionDetail && activeJudgeCondition && submissionDetail.id) {
       changeSubmissionCondition(submissionDetail.id, activeJudgeCondition)
         .then(() => {
-          message.success("修改成功~");
+          message.success('修改成功~');
           props.onClose();
           setShowOperationModal(false);
           props.onChangeSuccess();
@@ -81,7 +81,7 @@ const SubmissionDrawer: React.FunctionComponent<SubmissionDrawerProps> = (props)
     if (judgeHost && idInJudgeHost) {
       downloadSubmissionFromJudgeHost(judgeHost, idInJudgeHost)
         .catch(() => {
-          message.error("下载失败");
+          message.error('下载失败');
         })
     }
   }
@@ -140,7 +140,7 @@ const SubmissionDrawer: React.FunctionComponent<SubmissionDrawerProps> = (props)
           <p className={style.drawer_item_title}>
             操作
           </p>
-          <EditorTip title={"修改判题结果"} content={"管理员可以修改本次判题结果，请谨慎处理"}>
+          <EditorTip title={'修改判题结果'} content={'管理员可以修改本次判题结果，请谨慎处理'}>
             <Button danger onClick={() => setShowOperationModal(true)}>
               修改
             </Button>
@@ -148,11 +148,11 @@ const SubmissionDrawer: React.FunctionComponent<SubmissionDrawerProps> = (props)
           <Drawer
             width={500}
             visible={showOperationModal}
-            title={"修改判题结果"}
+            title={'修改判题结果'}
             closable={false}
             onClose={() => setShowOperationModal(false)}>
             <div className={style.judge_condition_old}>
-              原结果: {JUDGE_CONDITION_TAG_NAMES_CHINESE[submissionDetail.judgeCondition || ""]}
+              原结果: {JUDGE_CONDITION_TAG_NAMES_CHINESE[submissionDetail.judgeCondition || '']}
             </div>
             <div className={style.judge_condition_old}>
               修改为: <Select
@@ -162,7 +162,7 @@ const SubmissionDrawer: React.FunctionComponent<SubmissionDrawerProps> = (props)
             </Select>
             </div>
             <div>
-              <Button type={"primary"} onClick={() => resetCondition()}>
+              <Button type={'primary'} onClick={() => resetCondition()}>
                 确定
               </Button>
             </div>

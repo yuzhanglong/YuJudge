@@ -6,12 +6,12 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Badge, Descriptions} from "antd";
-import {timestampToDateTime} from "../../../../utils/dateTime";
-import {ProblemSet} from "../../../../models/problemSet";
-import {PROGRAM_LANGUAGE_NAME} from "../../../../common/programLanguage";
-import {ProblemSetConditionEnum} from "../../../../common/enumerations";
+import React from 'react';
+import {Badge, Descriptions} from 'antd';
+import {timestampToDateTime} from '../../../../utils/dateTime';
+import {ProblemSet} from '../../../../models/problemSet';
+import {PROGRAM_LANGUAGE_NAME} from '../../../../common/programLanguage';
+import {ProblemSetConditionEnum} from '../../../../common/enumerations';
 
 interface ProblemSetDescriptionProps {
   problemSetInfo: ProblemSet;
@@ -21,12 +21,12 @@ const ProblemSetDescription: React.FunctionComponent<ProblemSetDescriptionProps>
 
   // 获取允许的编程语言信息
   const getAllowedLanguageInfo = (languages: string[]) => {
-    let res = "";
+    let res = '';
     const len = languages.length;
     for (let i = 0; i < len; i++) {
       res = res + PROGRAM_LANGUAGE_NAME[languages[i]];
       if (i < len - 1) {
-        res += " / ";
+        res += ' / ';
       }
     }
     return res;
@@ -36,11 +36,11 @@ const ProblemSetDescription: React.FunctionComponent<ProblemSetDescriptionProps>
   const getProblemSetCondition = (condition: string | undefined) => {
     switch (condition) {
       case ProblemSetConditionEnum.RUNNING:
-        return "进行中";
+        return '进行中';
       case ProblemSetConditionEnum.CLOSED:
-        return "已关闭";
+        return '已关闭';
       default:
-        return "未开始";
+        return '未开始';
     }
   }
 
@@ -48,16 +48,16 @@ const ProblemSetDescription: React.FunctionComponent<ProblemSetDescriptionProps>
   const getProblemSetConditionStatus = (condition: string | undefined) => {
     switch (condition) {
       case ProblemSetConditionEnum.RUNNING:
-        return "processing";
+        return 'processing';
       case ProblemSetConditionEnum.CLOSED:
-        return "error";
+        return 'error';
       default:
-        return "default";
+        return 'default';
     }
   }
 
   return (
-    <Descriptions bordered column={4} size={"middle"}>
+    <Descriptions bordered column={4} size={'middle'}>
       <Descriptions.Item label="题目集名称" span={2}>
         {props.problemSetInfo.name}
       </Descriptions.Item>
@@ -76,7 +76,7 @@ const ProblemSetDescription: React.FunctionComponent<ProblemSetDescriptionProps>
           text={getProblemSetCondition(props.problemSetInfo.condition)}/>
       </Descriptions.Item>
       <Descriptions.Item label="是否公共题目集" span={2}>
-        {props.problemSetInfo ? "是" : "否"}
+        {props.problemSetInfo ? '是' : '否'}
       </Descriptions.Item>
       <Descriptions.Item label="判题偏好" span={2}>
         {props.problemSetInfo.judgePreference}

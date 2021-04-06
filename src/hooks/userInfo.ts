@@ -7,10 +7,10 @@
  */
 
 
-import {useEffect, useState} from "react";
-import {UserInfo} from "../models/user";
-import {clearStorage, getUserInfoFromStorage, saveUserInfo} from "../utils/dataPersistence";
-import {getUserInfo} from "../network/userRequest";
+import {useEffect, useState} from 'react';
+import {UserInfo} from '../models/user';
+import {clearStorage, getUserInfoFromStorage, saveUserInfo} from '../utils/dataPersistence';
+import {getUserInfo} from '../network/userRequest';
 
 export const UserInfoState = () => {
   useEffect(() => {
@@ -43,7 +43,7 @@ export const UserInfoState = () => {
   const isCommonUser = () => {
     if (userInfo) {
       for (let i = 0; i < userInfo.userGroups.length; i++) {
-        if (userInfo.userGroups[i].name === "COMMON") {
+        if (userInfo.userGroups[i].name === 'COMMON') {
           return true;
         }
       }

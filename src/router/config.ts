@@ -8,8 +8,8 @@
 
 
 // cms目录菜单路由配置
-import {CMS_MENUS} from "./cmsMenu";
-import {COMMON_MENUS} from "./commonMenu";
+import {CMS_MENUS} from './cmsMenu';
+import {COMMON_MENUS} from './commonMenu';
 
 // 目录路由配置
 export interface MenuRouterConfig {

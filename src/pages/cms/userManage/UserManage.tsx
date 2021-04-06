@@ -6,23 +6,23 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect, useState} from "react";
-import {Button, Card, message, Modal} from "antd";
-import UserTable from "../../../components/userTable/UserTable";
-import {allocateUserUserGroup, createUser, deleteUser, getUsers} from "../../../network/userRequest";
-import {UsePaginationState} from "../../../hooks/pagination";
-import {UsersPaginationRequest} from "../../../models/pagination";
-import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_USER_MANAGE} from "../../../config/config";
-import {UserInfo} from "../../../models/user";
-import {BaseResponse} from "../../../models/common";
-import {ExclamationCircleOutlined, PlusOutlined} from "@ant-design/icons";
-import UserManageToolBar from "./childCmp/UserManageToolBar";
-import {UserGroupInfo} from "../../../models/UserGroup";
-import {getUserGroups} from "../../../network/userGroupRequest";
-import CreateUserModal from "./childCmp/CreateUserModal";
-import AllocateUserGroupsModal from "./childCmp/AllocateUserGroupsModal";
-import UserEditModal from "./childCmp/UserEditModal";
-import RcQueueAnim from "rc-queue-anim";
+import React, {useEffect, useState} from 'react';
+import {Button, Card, message, Modal} from 'antd';
+import UserTable from '../../../components/userTable/UserTable';
+import {allocateUserUserGroup, createUser, deleteUser, getUsers} from '../../../network/userRequest';
+import {UsePaginationState} from '../../../hooks/pagination';
+import {UsersPaginationRequest} from '../../../models/pagination';
+import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_USER_MANAGE} from '../../../config/config';
+import {UserInfo} from '../../../models/user';
+import {BaseResponse} from '../../../models/common';
+import {ExclamationCircleOutlined, PlusOutlined} from '@ant-design/icons';
+import UserManageToolBar from './childCmp/UserManageToolBar';
+import {UserGroupInfo} from '../../../models/UserGroup';
+import {getUserGroups} from '../../../network/userGroupRequest';
+import CreateUserModal from './childCmp/CreateUserModal';
+import AllocateUserGroupsModal from './childCmp/AllocateUserGroupsModal';
+import UserEditModal from './childCmp/UserEditModal';
+import RcQueueAnim from 'rc-queue-anim';
 
 interface UserManageProps {
 
@@ -83,13 +83,13 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
   const renderUserOperations = (content: any) => {
     return (
       <div>
-        <Button type={"link"} onClick={() => setActiveUser(content)}>
+        <Button type={'link'} onClick={() => setActiveUser(content)}>
           分配用户组
         </Button>
-        <Button type={"link"} onClick={() => setUserToEdit(content)}>
+        <Button type={'link'} onClick={() => setUserToEdit(content)}>
           编辑
         </Button>
-        <Button type={"link"} danger onClick={() => onUserRemoveButtonClick(content)}>
+        <Button type={'link'} danger onClick={() => onUserRemoveButtonClick(content)}>
           删除
         </Button>
       </div>
@@ -106,7 +106,7 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
       onOk() {
         deleteUser(userId)
           .then(() => {
-            message.success("移除用户成功~");
+            message.success('移除用户成功~');
             getUserInfo(PAGE_BEGIN - 1, activeUserGroup);
           })
           .catch((err: BaseResponse) => {
@@ -121,7 +121,7 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
     return (
       <Button
         onClick={() => setIsCreateUserModalVisible(true)}
-        type={"primary"}
+        type={'primary'}
         icon={<PlusOutlined/>}>
         创建用户
       </Button>
@@ -138,7 +138,7 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
   const createUserConfirm = (n: string, p: string) => {
     createUser(n, p)
       .then(() => {
-        message.success("创建用户成功");
+        message.success('创建用户成功');
         getUserInfo(PAGE_BEGIN - 1, activeUserGroup);
       })
       .catch((err: BaseResponse) => {
@@ -151,20 +151,20 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
     if (activeUser) {
       allocateUserUserGroup(activeUser.id, userGroupsIds)
         .then(() => {
-          message.success("分配成功~");
+          message.success('分配成功~');
           setActiveUser(null);
           getUserInfo(PAGE_BEGIN - 1, activeUserGroup);
         })
         .catch(() => {
-          message.error("分配失败");
+          message.error('分配失败');
         });
     }
   }
 
   return (
     <RcQueueAnim>
-      <div key={"user_manage"}>
-        <Card title={"用户管理"} extra={renderAddUserButton()}>
+      <div key={'user_manage'}>
+        <Card title={'用户管理'} extra={renderAddUserButton()}>
           <UserManageToolBar
             onSelectorChange={onSelectorChange}
             selectorItems={userGroupItems}/>

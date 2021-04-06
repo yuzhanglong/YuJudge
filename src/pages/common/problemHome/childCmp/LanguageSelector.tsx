@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
-import {Button, Select, Modal} from "antd";
+import React, {useEffect, useState} from 'react';
+import {Button, Select, Modal} from 'antd';
 import {InfoOutlined} from '@ant-design/icons';
-import LanguageTip from "./LanguageTip";
-import {LanguageTypeEnum} from "../../../../common/enumerations";
-import {C_PLUS_PLUS_NICK_NAME} from "../../../../common/programLanguage";
+import LanguageTip from './LanguageTip';
+import {LanguageTypeEnum} from '../../../../common/enumerations';
+import {C_PLUS_PLUS_NICK_NAME} from '../../../../common/programLanguage';
 
 interface LanguageSelectorProps {
   allowedLanguage: string[];
@@ -54,7 +54,7 @@ const LanguageSelector: React.FunctionComponent<LanguageSelectorProps> = (props)
     <div>
       <Button shape="circle"
               icon={<InfoOutlined/>}
-              size={"small"}
+              size={'small'}
               disabled={!currentLanguage}
               onClick={onLanguageSelectorTipButtonClick}>
       </Button>
@@ -64,8 +64,8 @@ const LanguageSelector: React.FunctionComponent<LanguageSelectorProps> = (props)
           paddingLeft: 10
         }}
         value={currentLanguage}
-        placeholder={"请选择"}
-        size={"small"} onChange={onSelectorChange}>
+        placeholder={'请选择'}
+        size={'small'} onChange={onSelectorChange}>
         {renderSelector(languages)}
       </Select>
       <Modal

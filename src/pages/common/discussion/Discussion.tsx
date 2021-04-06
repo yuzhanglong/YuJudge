@@ -6,7 +6,7 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
+import React from 'react';
 
 interface DiscussionProps {
 

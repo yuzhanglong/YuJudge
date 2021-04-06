@@ -6,10 +6,10 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Avatar, Card, Row} from "antd";
-import {UserInfo} from "../../models/user";
-import style from "./userCard.module.scss"
+import React from 'react';
+import {Avatar, Card, Row} from 'antd';
+import {UserInfo} from '../../models/user';
+import style from './userCard.module.scss'
 
 interface userCardProps {
   userInfo: UserInfo;
@@ -29,7 +29,7 @@ const UserCard: React.FunctionComponent<userCardProps> = (props) => {
           {props.userInfo.userGroups[0].description}
         </div>
         <div className={style.user_card_count}>
-          <Row justify={"space-between"}>
+          <Row justify={'space-between'}>
             <div>
               提交数目
             </div>
@@ -37,7 +37,7 @@ const UserCard: React.FunctionComponent<userCardProps> = (props) => {
               {props.userInfo.submissionAmount}
             </div>
           </Row>
-          <Row justify={"space-between"}>
+          <Row justify={'space-between'}>
             <div>
               AC数目
             </div>
@@ -45,7 +45,7 @@ const UserCard: React.FunctionComponent<userCardProps> = (props) => {
               {props.userInfo.acAmount}
             </div>
           </Row>
-          <Row justify={"space-between"}>
+          <Row justify={'space-between'}>
             <div>
               通过率
             </div>

@@ -6,9 +6,9 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Table} from "antd";
-import {UserGroupInfo} from "../../models/UserGroup";
+import React from 'react';
+import {Table} from 'antd';
+import {UserGroupInfo} from '../../models/UserGroup';
 
 interface UserGroupTableProps {
   // 用户组信息列表
@@ -31,24 +31,24 @@ const UserGroupTable: React.FunctionComponent<UserGroupTableProps> = (props) => 
   return (
     <Table
       dataSource={props.userGroups}
-      rowKey={"id"}>
+      rowKey={'id'}>
       <Table.Column
-        title={"名称"}
-        key={"name"}
-        dataIndex={"name"}
+        title={'名称'}
+        key={'name'}
+        dataIndex={'name'}
         width={250}/>
       />
       <Table.Column
-        title={"描述"}
-        dataIndex={"description"}
-        key={"description"}/>
+        title={'描述'}
+        dataIndex={'description'}
+        key={'description'}/>
       />
       <Table.Column
-        title={"操作"}
-        key={"description"}
-        align={"center"}
+        title={'操作'}
+        key={'description'}
+        align={'center'}
         width={300}
-        fixed={"right"}
+        fixed={'right'}
         render={renderOperations}/>
       />
     </Table>

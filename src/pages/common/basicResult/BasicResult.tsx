@@ -6,11 +6,11 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Button, Result} from "antd";
-import {RouteComponentProps} from "react-router-dom";
-import style from "./basicResult.module.scss";
-import {ResultPageParam} from "../../../common/enumerations";
+import React from 'react';
+import {Button, Result} from 'antd';
+import {RouteComponentProps} from 'react-router-dom';
+import style from './basicResult.module.scss';
+import {ResultPageParam} from '../../../common/enumerations';
 
 interface BasicResultProps {
 
@@ -22,17 +22,17 @@ const BasicResult: React.FunctionComponent<BasicResultProps & RouteComponentProp
 
   // 返回首页
   const goHome = () => {
-    props.history.replace("/common/home");
+    props.history.replace('/common/home');
   }
 
   // 前往登录
   const gotoLogin = () => {
-    props.history.replace("/login");
+    props.history.replace('/login');
   }
 
   // 去题目集首页
   const goToProblemSets = () => {
-    props.history.replace("/common/problem_sets");
+    props.history.replace('/common/problem_sets');
   }
 
   // 获取结果

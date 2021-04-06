@@ -6,8 +6,8 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import style from "./commonTitle.module.scss"
+import React from 'react';
+import style from './commonTitle.module.scss'
 
 interface CommonTitleProps {
   icon?: React.ReactNode;

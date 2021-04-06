@@ -6,16 +6,16 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect, useState} from "react";
-import {Button, Card, message} from "antd";
-import {createJudgeHost, getJudgeHostsInfo} from "../../../network/judgeHostRequest";
-import {JudgeHostInfo, JudgeHostRequest} from "../../../models/judgeHost";
-import JudgeHostTable from "../../../components/judgeHostTable/JudgeHostTable";
-import {RouteComponentProps} from "react-router-dom";
-import JudgeHostEditModal from "./childCmp/JudgeHostEditModal";
-import {BaseResponse} from "../../../models/common";
-import {PlusOutlined} from "@ant-design/icons";
-import RcQueueAnim from "rc-queue-anim";
+import React, {useEffect, useState} from 'react';
+import {Button, Card, message} from 'antd';
+import {createJudgeHost, getJudgeHostsInfo} from '../../../network/judgeHostRequest';
+import {JudgeHostInfo, JudgeHostRequest} from '../../../models/judgeHost';
+import JudgeHostTable from '../../../components/judgeHostTable/JudgeHostTable';
+import {RouteComponentProps} from 'react-router-dom';
+import JudgeHostEditModal from './childCmp/JudgeHostEditModal';
+import {BaseResponse} from '../../../models/common';
+import {PlusOutlined} from '@ant-design/icons';
+import RcQueueAnim from 'rc-queue-anim';
 
 interface JudgeServerManageProps {
 
@@ -53,7 +53,7 @@ const JudgeHostManage: React.FunctionComponent<JudgeServerManageProps & RouteCom
   const renderOperations = (value: JudgeHostInfo) => {
     return (
       <div>
-        <Button type={"link"} onClick={() => onSeeDetailButtonClick(value.id)}>
+        <Button type={'link'} onClick={() => onSeeDetailButtonClick(value.id)}>
           查看详情
         </Button>
       </div>
@@ -69,7 +69,7 @@ const JudgeHostManage: React.FunctionComponent<JudgeServerManageProps & RouteCom
   const renderExtra = () => {
     return (
       <Button
-        type={"primary"}
+        type={'primary'}
         onClick={() => setEditModalVisible(true)} icon={<PlusOutlined/>}>
         新建判题机
       </Button>
@@ -80,7 +80,7 @@ const JudgeHostManage: React.FunctionComponent<JudgeServerManageProps & RouteCom
   const createJudgeHostRequest = (value: JudgeHostRequest) => {
     createJudgeHost(value)
       .then(() => {
-        message.success("创建成功~");
+        message.success('创建成功~');
         setEditModalVisible(false);
         getJudgeHosts();
       })
@@ -92,8 +92,8 @@ const JudgeHostManage: React.FunctionComponent<JudgeServerManageProps & RouteCom
 
   return (
     <RcQueueAnim>
-      <div key={"judge-host-inspect"}>
-        <Card title={"全部判题机"} extra={renderExtra()}>
+      <div key={'judge-host-inspect'}>
+        <Card title={'全部判题机'} extra={renderExtra()}>
           <JudgeHostTable
             isLoading={isJudgeHostTableLoading}
             judgeHosts={judgeHostsInfo}

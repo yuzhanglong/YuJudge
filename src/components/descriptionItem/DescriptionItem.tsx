@@ -6,8 +6,8 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import style from "./descriptionItem.module.scss"
+import React from 'react';
+import style from './descriptionItem.module.scss'
 
 interface DescriptionItemProps {
   title: string;

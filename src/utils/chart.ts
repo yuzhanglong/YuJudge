@@ -8,7 +8,7 @@
 
 
 // 处理用户的提交信息，将其转变为支持表格渲染的数据结构
-import {UserSubmissionCount} from "../models/submission";
+import {UserSubmissionCount} from '../models/submission';
 
 export const generateUserSubmissionData = (recentSubmission: UserSubmissionCount[]) => {
   let result = [];
@@ -17,14 +17,14 @@ export const generateUserSubmissionData = (recentSubmission: UserSubmissionCount
     const d = new Date(tmp.time);
     result.push(
       {
-        date: d.getMonth() + 1 + "." + d.getDate(),
+        date: d.getMonth() + 1 + '.' + d.getDate(),
         amount: tmp.totalAmount,
-        type: "通过",
+        type: '通过',
       },
       {
-        date: d.getMonth() + 1 + "." + d.getDate(),
+        date: d.getMonth() + 1 + '.' + d.getDate(),
         amount: tmp.totalAmount - tmp.acceptAmount,
-        type: "未通过",
+        type: '未通过',
       },
     )
   }

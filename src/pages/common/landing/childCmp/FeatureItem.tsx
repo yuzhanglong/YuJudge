@@ -6,9 +6,9 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import style from "../landing.module.scss";
-import {ExperimentTwoTone} from "@ant-design/icons";
+import React from 'react';
+import style from '../landing.module.scss';
+import {ExperimentTwoTone} from '@ant-design/icons';
 
 interface FeatureItemProps {
   title: string;

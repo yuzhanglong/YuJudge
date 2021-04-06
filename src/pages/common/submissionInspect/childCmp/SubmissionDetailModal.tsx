@@ -7,12 +7,12 @@
  */
 
 
-import React from "react";
-import {Modal, Descriptions, Input} from "antd";
-import {SubmissionDetail} from "../../../../models/submission";
-import {timestampToDateTime} from "../../../../utils/dateTime";
-import ShowTestCase from "../../../../components/showTestCase/ShowTestCase";
-import style from "../submissionInspect.module.scss";
+import React from 'react';
+import {Modal, Descriptions, Input} from 'antd';
+import {SubmissionDetail} from '../../../../models/submission';
+import {timestampToDateTime} from '../../../../utils/dateTime';
+import ShowTestCase from '../../../../components/showTestCase/ShowTestCase';
+import style from '../submissionInspect.module.scss';
 
 interface SubmissionDetailModalProps {
   isVisible: boolean;
@@ -41,16 +41,16 @@ const SubmissionDetailModal: React.FunctionComponent<SubmissionDetailModalProps>
     }
 
     // 遍历编译器输出数组
-    let compilerStdOut = "";
+    let compilerStdOut = '';
 
     // 没有输出，需要告知用户
     if (!submission.judgeResult.extraInfo.length) {
-      compilerStdOut = "编译器没有输出O(∩_∩)O~";
+      compilerStdOut = '编译器没有输出O(∩_∩)O~';
     } else {
       const size = submission.judgeResult.extraInfo.length;
       for (let i = 0; i < size; i++) {
         const info = submission.judgeResult.extraInfo[i];
-        i === size - 1 ? (compilerStdOut += info) : (compilerStdOut += info + "\n");
+        i === size - 1 ? (compilerStdOut += info) : (compilerStdOut += info + '\n');
       }
     }
 
@@ -59,7 +59,7 @@ const SubmissionDetailModal: React.FunctionComponent<SubmissionDetailModalProps>
         value={compilerStdOut}
         style={{
           height: 100,
-          backgroundColor: "#f5f5f5"
+          backgroundColor: '#f5f5f5'
         }}>
       </Input.TextArea>
     )
@@ -75,7 +75,7 @@ const SubmissionDetailModal: React.FunctionComponent<SubmissionDetailModalProps>
         onCancel={props.onClose}
         footer={null}
         width={950}>
-        <Descriptions bordered column={2} size={"small"}>
+        <Descriptions bordered column={2} size={'small'}>
           <Descriptions.Item label="提交时间" span={1}>
             {renderCreateTime(props.submission.createTime)}
           </Descriptions.Item>
@@ -86,31 +86,31 @@ const SubmissionDetailModal: React.FunctionComponent<SubmissionDetailModalProps>
             {props.submission.judgePreference}
           </Descriptions.Item>
           <Descriptions.Item label="时间消耗" span={1}>
-            {props.submission.timeCost ? props.submission.timeCost : "--"} ms
+            {props.submission.timeCost ? props.submission.timeCost : '--'} ms
           </Descriptions.Item>
           <Descriptions.Item label="内存消耗" span={1}>
-            {props.submission.memoryCost ? props.submission.memoryCost : "--"} kb
+            {props.submission.memoryCost ? props.submission.memoryCost : '--'} kb
           </Descriptions.Item>
-          <Descriptions.Item label={"编译器"}
+          <Descriptions.Item label={'编译器'}
                              span={1}>
             {props.submission.language}
           </Descriptions.Item>
-          <Descriptions.Item label={"判题机"}
+          <Descriptions.Item label={'判题机'}
                              span={2}>
             {props.submission.judgeHost?.name}
           </Descriptions.Item>
-          <Descriptions.Item label={"测试点"}
+          <Descriptions.Item label={'测试点'}
                              span={2}>
             {props.submission.judgeResult.judgeResults &&
             <ShowTestCase testCases={props.submission.judgeResult.judgeResults}/>}
           </Descriptions.Item>
-          <Descriptions.Item label={"用户代码"}
+          <Descriptions.Item label={'用户代码'}
                              span={2}>
             <Input.TextArea value={props.submission.codeContent} rows={15}>
 
             </Input.TextArea>
           </Descriptions.Item>
-          <Descriptions.Item label={"编译器输出"}
+          <Descriptions.Item label={'编译器输出'}
                              span={2}>
             <div className={style.compiler_std_out_show}>
               {renderCompilerStdout(props.submission)}
@@ -125,9 +125,9 @@ const SubmissionDetailModal: React.FunctionComponent<SubmissionDetailModalProps>
 SubmissionDetailModal.defaultProps = {
   isVisible: false,
   submission: {
-    codeContent: "",
-    judgePreference: "",
-    language: "",
+    codeContent: '',
+    judgePreference: '',
+    language: '',
     problemId: 0,
     judgeResult: {
       extraInfo: [],

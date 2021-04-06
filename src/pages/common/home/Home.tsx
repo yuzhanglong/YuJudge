@@ -7,25 +7,25 @@
  */
 
 
-import React, {useEffect, useState} from "react";
-import {message} from "antd";
-import style from "./home.module.scss";
-import {UsePaginationState} from "../../../hooks/pagination";
+import React, {useEffect, useState} from 'react';
+import {message} from 'antd';
+import style from './home.module.scss';
+import {UsePaginationState} from '../../../hooks/pagination';
 import {
   PAGE_BEGIN,
   RECENT_ACTIVE_USER_IN_DASHBOARD_AMOUNT,
   RECENT_PROBLEM_IN_DASHBOARD_AMOUNT
-} from "../../../config/config";
-import {getNotices} from "../../../network/noticeRequest";
-import {NoticePaginationRequest} from "../../../models/pagination";
-import {RouteComponentProps} from "react-router-dom";
-import {getActiveUserInfo} from "../../../network/userRequest";
-import {getRecentProblems} from "../../../network/problemRequests";
-import {Problem} from "../../../models/problem";
-import {getDailyWord} from "../../../network/common";
-import {DailyWord} from "../../../models/common";
-import SideItem from "./childCmp/SideItem";
-import HomeContent from "./childCmp/HomeContent";
+} from '../../../config/config';
+import {getNotices} from '../../../network/noticeRequest';
+import {NoticePaginationRequest} from '../../../models/pagination';
+import {RouteComponentProps} from 'react-router-dom';
+import {getActiveUserInfo} from '../../../network/userRequest';
+import {getRecentProblems} from '../../../network/problemRequests';
+import {Problem} from '../../../models/problem';
+import {getDailyWord} from '../../../network/common';
+import {DailyWord} from '../../../models/common';
+import SideItem from './childCmp/SideItem';
+import HomeContent from './childCmp/HomeContent';
 
 
 interface HomeProps {
@@ -61,7 +61,7 @@ const Home: React.FunctionComponent<HomeProps & RouteComponentProps> = () => {
     noticePaginationState
       .changeCurrentPage({start: start, count: 5})
       .catch(() => {
-        message.error("获取公告失败");
+        message.error('获取公告失败');
       })
   }
 

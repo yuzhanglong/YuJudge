@@ -6,11 +6,11 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Column, StackedColumn} from "@ant-design/charts";
-import {DataItem, LegendPosition} from "@antv/g2plot";
-import {StackedColumnConfig} from "@ant-design/charts/es/stackedColumn";
-import {ColumnConfig} from "@ant-design/charts/es/column";
+import React from 'react';
+import {Column, StackedColumn} from '@ant-design/charts';
+import {DataItem, LegendPosition} from '@antv/g2plot';
+import {StackedColumnConfig} from '@ant-design/charts/es/stackedColumn';
+import {ColumnConfig} from '@ant-design/charts/es/column';
 
 
 interface ColumnChartProps {
@@ -28,7 +28,7 @@ interface ColumnChartProps {
 
 const ColumnChart: React.FunctionComponent<ColumnChartProps> = (props) => {
   const config: StackedColumnConfig & ColumnConfig = {
-    stackField: props.stackField || "",
+    stackField: props.stackField || '',
     data: props.data,
     forceFit: props.forceFit,
     height: props.height,
@@ -55,7 +55,7 @@ const ColumnChart: React.FunctionComponent<ColumnChartProps> = (props) => {
     },
     label: {
       visible: true,
-      position: "top",
+      position: 'top',
       offsetX: 0,
       offsetY: 0,
       style: {

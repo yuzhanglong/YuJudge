@@ -6,8 +6,8 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {MenuRouterConfig} from "../../../router/config";
+import React from 'react';
+import {MenuRouterConfig} from '../../../router/config';
 
 
 const WithRouteConfig = (

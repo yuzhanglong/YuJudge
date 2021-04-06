@@ -7,7 +7,7 @@
  */
 
 
-import {UserInfo} from "./user";
+import {UserInfo} from './user';
 
 export interface NoticeInfo {
   id: number;

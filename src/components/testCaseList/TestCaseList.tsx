@@ -6,12 +6,12 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {JudgeResultForSingleTestCase} from "../../models/submission";
-import {Button, Col, Divider, Row} from "antd";
-import ConditionTag from "../conditionTag/ConditionTag";
-import style from "./testCaseList.module.scss";
-import {ClockCircleOutlined, CodeOutlined, DownloadOutlined} from "@ant-design/icons";
+import React from 'react';
+import {JudgeResultForSingleTestCase} from '../../models/submission';
+import {Button, Col, Divider, Row} from 'antd';
+import ConditionTag from '../conditionTag/ConditionTag';
+import style from './testCaseList.module.scss';
+import {ClockCircleOutlined, CodeOutlined, DownloadOutlined} from '@ant-design/icons';
 
 interface TestCaseListProps {
   testCases: JudgeResultForSingleTestCase[];
@@ -51,11 +51,11 @@ const TestCaseList: React.FunctionComponent<TestCaseListProps> = (props) => {
         props.testCases.map((item, index) => {
           return (
             <div key={index}>
-              <Row align={"middle"}>
+              <Row align={'middle'}>
                 <Col span={2}>
                   <ConditionTag
                     isEntire={false}
-                    condition={item.message || ""}
+                    condition={item.message || ''}
                     detail={null}/>
                 </Col>
                 <Col span={18}>
@@ -74,7 +74,7 @@ const TestCaseList: React.FunctionComponent<TestCaseListProps> = (props) => {
                     onClick={() => onSubmissionButtonClick()}
                     className={style.download_button}
                     icon={<DownloadOutlined/>}
-                    size={"middle"}/>
+                    size={'middle'}/>
                 </Col>
               </Row>
               <Divider/>

@@ -8,7 +8,7 @@
 
 
 // 验证码相关信息
-import {UserGroupInfo} from "./UserGroup";
+import {UserGroupInfo} from './UserGroup';
 
 export interface CheckCodeData {
   image: string;

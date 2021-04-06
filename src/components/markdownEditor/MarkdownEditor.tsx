@@ -6,12 +6,12 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect, useState} from "react";
-import {Card, Input} from "antd";
-import style from "./markdownEditor.module.scss";
-import BetterMarkdown from "../betterMarkdown/BetterMarkdown";
-import classNames from "classnames";
-import {FullscreenExitOutlined, FullscreenOutlined} from "@ant-design/icons";
+import React, {useEffect, useState} from 'react';
+import {Card, Input} from 'antd';
+import style from './markdownEditor.module.scss';
+import BetterMarkdown from '../betterMarkdown/BetterMarkdown';
+import classNames from 'classnames';
+import {FullscreenExitOutlined, FullscreenOutlined} from '@ant-design/icons';
 
 interface MarkdownEditorProps {
   value: string;
@@ -21,7 +21,7 @@ interface MarkdownEditorProps {
 const MarkdownEditor: React.FunctionComponent<MarkdownEditorProps> = (props) => {
 
   // 内容
-  const [markdownValue, setMarkdownValue] = useState<string>("");
+  const [markdownValue, setMarkdownValue] = useState<string>('');
 
   // 是否全屏
   const [isFullScreen, setIsFullScreen] = useState<boolean>(false);

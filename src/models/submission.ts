@@ -6,9 +6,9 @@
  * Email: yuzl1123@163.com
  */
 
-import {JudgeConditionEnum} from "../common/enumerations";
-import {UserInfo} from "./user";
-import {JudgeHostInfo} from "./judgeHost";
+import {JudgeConditionEnum} from '../common/enumerations';
+import {UserInfo} from './user';
+import {JudgeHostInfo} from './judgeHost';
 
 // 一次提交
 export interface Submission {

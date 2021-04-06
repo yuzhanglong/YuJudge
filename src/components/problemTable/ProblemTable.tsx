@@ -7,14 +7,14 @@
  */
 
 
-import React, {useState} from "react";
-import {timestampToDateTime} from "../../utils/dateTime";
-import {Button, Table, Tag} from "antd";
-import {Problem} from "../../models/problem";
-import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from "../../config/config";
-import {TablePaginationConfig} from "antd/lib/table/interface";
-import {SizeType} from "antd/lib/config-provider/SizeContext";
-import {tenDecimalToTwentySixDecimal} from "../../utils/math";
+import React, {useState} from 'react';
+import {timestampToDateTime} from '../../utils/dateTime';
+import {Button, Table, Tag} from 'antd';
+import {Problem} from '../../models/problem';
+import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from '../../config/config';
+import {TablePaginationConfig} from 'antd/lib/table/interface';
+import {SizeType} from 'antd/lib/config-provider/SizeContext';
+import {tenDecimalToTwentySixDecimal} from '../../utils/math';
 
 interface ProblemTableProps {
   isShowCreateTime?: boolean;
@@ -58,7 +58,7 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
           tags.map((tag) => {
             // TODO: 具体颜色信息应该由服务端传过来
             return (
-              <Tag color={tag === "入门" ? "purple" : "geekblue"} key={tag}>
+              <Tag color={tag === '入门' ? 'purple' : 'geekblue'} key={tag}>
                 {tag}
               </Tag>
             );
@@ -122,51 +122,51 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
   return (
     <Table
       dataSource={props.problems}
-      rowKey={"id"}
+      rowKey={'id'}
       loading={props.isLoading}
       pagination={props.showPagination ? paginationProp : false}
       onChange={(e: TablePaginationConfig) => onPageChange(e)}
       size={props.tableSize}
       rowSelection={
         props.isShowCheckBoxGroup ? {
-          type: "checkbox",
+          type: 'checkbox',
           ...rowSelection,
         } : undefined}>
       {
         props.isShowProblemOrder &&
         <Table.Column
-          title={"序号"} width={150}
+          title={'序号'} width={150}
           render={renderProblemOrder}/>
       }
       <Table.Column
-        title={"题目ID"} dataIndex={"id"}
-        key={"number"} width={150}/>
+        title={'题目ID'} dataIndex={'id'}
+        key={'number'} width={150}/>
       <Table.Column
-        title={"问题名称"}
-        dataIndex={"name"}
-        key={"name"}
+        title={'问题名称'}
+        dataIndex={'name'}
+        key={'name'}
         width={150}/>
       {props.isShowTags &&
       <Table.Column
-        title={"标签"}
-        dataIndex={"characterTags"}
-        key={"标签"}
+        title={'标签'}
+        dataIndex={'characterTags'}
+        key={'标签'}
         width={250}
         render={(value: any) => renderTags(value)}/>}
       {props.isShowCreateTime &&
       <Table.Column
-        title={"创建时间"}
-        dataIndex={"createTime"}
-        key={"创建时间"}
+        title={'创建时间'}
+        dataIndex={'createTime'}
+        key={'创建时间'}
         width={180}
         render={renderCreateTime}/>}
       {props.isShowOperations &&
       <Table.Column
-        title={"操作"}
-        key={"操作"}
+        title={'操作'}
+        key={'操作'}
         width={150}
         render={renderOperations}
-        align={"center"}/>}
+        align={'center'}/>}
     </Table>
   )
 }

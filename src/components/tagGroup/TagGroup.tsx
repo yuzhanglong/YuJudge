@@ -6,9 +6,9 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useState} from "react";
-import {Input, Tag} from "antd";
-import {PlusOutlined} from "@ant-design/icons";
+import React, {useState} from 'react';
+import {Input, Tag} from 'antd';
+import {PlusOutlined} from '@ant-design/icons';
 
 interface TagGroupProps {
   initTags: string[];
@@ -19,18 +19,18 @@ interface TagGroupProps {
 
 const TagGroup: React.FunctionComponent<TagGroupProps> = (props) => {
   const [isShowAddInput, setIsShowAddInput] = useState<boolean>(false);
-  const [inputValue, setInputValue] = useState<string>("");
+  const [inputValue, setInputValue] = useState<string>('');
 
   // 当输入框失去焦点时，我们准备添加标签
   const onInputBlur = () => {
-    if (inputValue && inputValue !== "" && props.onTagAdd) {
+    if (inputValue && inputValue !== '' && props.onTagAdd) {
       let res: string[] = [];
       res.push(...props.initTags);
       res.push(inputValue);
       props.onTagAdd(res);
     }
     // 把输入框的内容置为空
-    setInputValue("");
+    setInputValue('');
     setIsShowAddInput(false);
   }
 
@@ -83,7 +83,7 @@ const TagGroup: React.FunctionComponent<TagGroupProps> = (props) => {
           style={{
             width: 78,
             marginRight: 8,
-            verticalAlign: "top"
+            verticalAlign: 'top'
           }}
           type="text"
           size="small"

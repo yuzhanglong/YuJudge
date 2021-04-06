@@ -6,14 +6,14 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {NoticeInfo} from "../../models/notice";
-import {Avatar, Col, Row, Table} from "antd";
-import {timestampToDateTime} from "../../utils/dateTime";
-import style from "./noticeTable.module.scss";
-import {NoticePriority} from "../../common/enumerations";
-import classNames from "classnames";
-import {UserInfo} from "../../models/user";
+import React from 'react';
+import {NoticeInfo} from '../../models/notice';
+import {Avatar, Col, Row, Table} from 'antd';
+import {timestampToDateTime} from '../../utils/dateTime';
+import style from './noticeTable.module.scss';
+import {NoticePriority} from '../../common/enumerations';
+import classNames from 'classnames';
+import {UserInfo} from '../../models/user';
 
 interface NoticeTableProps {
   // 所有公告
@@ -54,13 +54,13 @@ const NoticeTable: React.FunctionComponent<NoticeTableProps> = (props) => {
 
   // 用户被单击
   const onUserClick = (uid: number) => {
-    window.reactRouter.push("/common/profile/" + uid);
+    window.reactRouter.push('/common/profile/' + uid);
   }
 
   // 渲染作者
   const renderCreator = (user: UserInfo) => {
     return (
-      <Row align={"middle"} onClick={() => onUserClick(user.id)}>
+      <Row align={'middle'} onClick={() => onUserClick(user.id)}>
         <Col>
           <div
             className={style.notice_table_creator}>
@@ -69,7 +69,7 @@ const NoticeTable: React.FunctionComponent<NoticeTableProps> = (props) => {
         </Col>
         <Col>
           <Avatar
-            size={"small"}
+            size={'small'}
             src={user.avatar}
             className={style.notice_table_avatar}/>
         </Col>
@@ -80,23 +80,23 @@ const NoticeTable: React.FunctionComponent<NoticeTableProps> = (props) => {
   return (
     <div>
       <Table
-        size={"middle"}
-        rowKey={"id"}
+        size={'middle'}
+        rowKey={'id'}
         dataSource={props.notices}>
         <Table.Column
-          title={"标题"}
-          key={"title"}
+          title={'标题'}
+          key={'title'}
           render={renderNoticeTitle}/>
         <Table.Column
-          title={"作者"}
-          dataIndex={"creator"}
-          key={"creator"}
+          title={'作者'}
+          dataIndex={'creator'}
+          key={'creator'}
           render={renderCreator}/>
         <Table.Column
-          title={"发布时间"}
-          dataIndex={"createTime"}
-          key={"createTime"}
-          fixed={"right"}
+          title={'发布时间'}
+          dataIndex={'createTime'}
+          key={'createTime'}
+          fixed={'right'}
           width={200}
           render={renderTime}/>
       </Table>

@@ -7,8 +7,8 @@
  */
 
 
-import React from "react";
-import MathFormula from "../mathFormula/MathFormula";
+import React from 'react';
+import MathFormula from '../mathFormula/MathFormula';
 
 interface MathBlockProps {
   value: string;

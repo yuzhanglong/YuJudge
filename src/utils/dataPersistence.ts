@@ -7,8 +7,8 @@
  */
 
 
-import {TOKEN_KEY, USER_INFO_KEY} from "../config/config";
-import {UserInfo} from "../models/user";
+import {TOKEN_KEY, USER_INFO_KEY} from '../config/config';
+import {UserInfo} from '../models/user';
 
 
 // 清空localstorage

@@ -6,16 +6,16 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Card, Col, Empty, Row} from "antd";
-import {DashOutlined} from "@ant-design/icons";
-import ColumnChart from "../../../../components/charts/ColumnChart";
-import {UserInfo} from "../../../../models/user";
-import {SubmissionCountInfo, UserSubmissionCount} from "../../../../models/submission";
-import SubmissionCount from "../../../../components/submissionCount/SubmissionCount";
-import style from "../dashboard.module.scss";
-import {EMPTY_IMAGE} from "../../../../config/config";
-import {generateUserSubmissionData} from "../../../../utils/chart";
+import React from 'react';
+import {Card, Col, Empty, Row} from 'antd';
+import {DashOutlined} from '@ant-design/icons';
+import ColumnChart from '../../../../components/charts/ColumnChart';
+import {UserInfo} from '../../../../models/user';
+import {SubmissionCountInfo, UserSubmissionCount} from '../../../../models/submission';
+import SubmissionCount from '../../../../components/submissionCount/SubmissionCount';
+import style from '../dashboard.module.scss';
+import {EMPTY_IMAGE} from '../../../../config/config';
+import {generateUserSubmissionData} from '../../../../utils/chart';
 
 interface ChartGroupProps {
   recentSubmission: UserSubmissionCount[];
@@ -38,7 +38,7 @@ const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
 
   return (
     <div>
-      <Row justify={"space-between"} gutter={25}>
+      <Row justify={'space-between'} gutter={25}>
         <Col span={8}>
           <Card
             hoverable
@@ -53,10 +53,10 @@ const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
                 !checkRecentSubmissionIsEmpty() ?
                   <ColumnChart
                     isStack
-                    stackField={"type"}
-                    xKey={"date"}
-                    yKey={"amount"}
-                    yKeyDesc={"提交数"}
+                    stackField={'type'}
+                    xKey={'date'}
+                    yKey={'amount'}
+                    yKeyDesc={'提交数'}
                     data={generateUserSubmissionData(props.recentSubmission)}/>
                   : <Empty image={EMPTY_IMAGE} className={style.dashboard_charts_item_empty_image}/>
               }

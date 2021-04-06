@@ -1,6 +1,6 @@
-import React from "react";
-import {LanguageTypeEnum} from "../../../../common/enumerations";
-import {C_PLUS_PLUS_NICK_NAME, PROGRAM_LANGUAGE_SCRIPT_CONTENT} from "../../../../common/programLanguage";
+import React from 'react';
+import {LanguageTypeEnum} from '../../../../common/enumerations';
+import {C_PLUS_PLUS_NICK_NAME, PROGRAM_LANGUAGE_SCRIPT_CONTENT} from '../../../../common/programLanguage';
 
 
 interface LanguageTipProps {

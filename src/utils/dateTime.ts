@@ -6,8 +6,8 @@
  * Email: yuzl1123@163.com
  */
 
-import moment from "moment";
-import {Moment} from "moment";
+import moment from 'moment';
+import {Moment} from 'moment';
 
 export const timestampToDateTime = (timestamp: number): string => {
   let time = new Date(timestamp);

@@ -7,9 +7,9 @@
  */
 
 
-import {ResultPageParam} from "../common/enumerations";
+import {ResultPageParam} from '../common/enumerations';
 
 // 前往结果页
 export const goToResult = (route: ResultPageParam) => {
-  window.reactRouter.replace("/result/" + route);
+  window.reactRouter.replace('/result/' + route);
 }

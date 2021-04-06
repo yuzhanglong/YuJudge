@@ -6,17 +6,17 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Table} from "antd";
+import React from 'react';
+import {Table} from 'antd';
 
-import {timestampToDateTime} from "../../../../utils/dateTime";
-import {TablePaginationConfig} from "antd/lib/table/interface";
-import {JudgeConditionEnum} from "../../../../common/enumerations";
-import {PROGRAM_LANGUAGE_NAME} from "../../../../common/programLanguage";
-import {SUBMISSION_SINGLE_PAGE_SIZE} from "../../../../config/config";
-import {Submission} from "../../../../models/submission";
-import ConditionTag from "../../../../components/conditionTag/ConditionTag";
-import {UserInfo} from "../../../../models/user";
+import {timestampToDateTime} from '../../../../utils/dateTime';
+import {TablePaginationConfig} from 'antd/lib/table/interface';
+import {JudgeConditionEnum} from '../../../../common/enumerations';
+import {PROGRAM_LANGUAGE_NAME} from '../../../../common/programLanguage';
+import {SUBMISSION_SINGLE_PAGE_SIZE} from '../../../../config/config';
+import {Submission} from '../../../../models/submission';
+import ConditionTag from '../../../../components/conditionTag/ConditionTag';
+import {UserInfo} from '../../../../models/user';
 
 
 interface SubmissionTableProps {
@@ -37,12 +37,12 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
 
   // 渲染时间信息
   const renderTimeCost = (timeCost: number) => {
-    return <div>{timeCost ? timeCost : "--"} ms</div>
+    return <div>{timeCost ? timeCost : '--'} ms</div>
   }
 
   // 渲染内存信息
   const renderMemoryCost = (memoryCost: number) => {
-    return <div>{memoryCost ? memoryCost : "--"} kb</div>
+    return <div>{memoryCost ? memoryCost : '--'} kb</div>
   }
 
 
@@ -81,7 +81,7 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
     <Table
       loading={props.isLoading}
       dataSource={props.submissions}
-      rowKey={"id"}
+      rowKey={'id'}
       size="middle"
       pagination={{
         total: props.total,
@@ -91,39 +91,39 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
       }}
       onChange={refreshPagination}>
       <Table.Column
-        title={"提交时间"} align={"center"}
-        dataIndex={"createTime"}
-        key={"createTime"}
+        title={'提交时间'} align={'center'}
+        dataIndex={'createTime'}
+        key={'createTime'}
         width={150}
         render={renderCreateTime}/>
       <Table.Column
-        title={"状态"} align={"center"}
-        dataIndex={"judgeCondition"}
-        key={"judgeCondition"}
+        title={'状态'} align={'center'}
+        dataIndex={'judgeCondition'}
+        key={'judgeCondition'}
         width={150}
         render={renderJudgeCondition}/>
       <Table.Column
-        title={"编译器"} align={"center"}
-        dataIndex={"language"}
-        key={"language"}
+        title={'编译器'} align={'center'}
+        dataIndex={'language'}
+        key={'language'}
         width={150}
         render={renderCompilerContent}/>
       <Table.Column
-        title={"时间消耗"} align={"center"}
-        dataIndex={"timeCost"}
-        key={"timeCost"}
+        title={'时间消耗'} align={'center'}
+        dataIndex={'timeCost'}
+        key={'timeCost'}
         render={renderTimeCost}
         width={150}/>
       <Table.Column
-        title={"内存消耗"} align={"center"}
-        dataIndex={"memoryCost"}
-        key={"memoryCost"}
+        title={'内存消耗'} align={'center'}
+        dataIndex={'memoryCost'}
+        key={'memoryCost'}
         width={150}
         render={renderMemoryCost}/>
       <Table.Column
-        title={"提交用户"} align={"center"}
-        dataIndex={"creator"}
-        key={"creator"}
+        title={'提交用户'} align={'center'}
+        dataIndex={'creator'}
+        key={'creator'}
         width={150}
         render={renderCreator}/>
     </Table>

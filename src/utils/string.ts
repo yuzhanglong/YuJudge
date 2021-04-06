@@ -8,6 +8,6 @@
 
 // 截取 url 后缀
 export const getUrlPostfix = (url: string) => {
-  const index = url.lastIndexOf("/");
+  const index = url.lastIndexOf('/');
   return index ? url.substring(index + 1) : url;
 }

@@ -6,24 +6,24 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect, useState} from "react";
-import {RouteComponentProps} from "react-router-dom";
-import {JudgeHostInfo} from "../../../models/judgeHost";
+import React, {useEffect, useState} from 'react';
+import {RouteComponentProps} from 'react-router-dom';
+import {JudgeHostInfo} from '../../../models/judgeHost';
 import {
   countJudgeHostSubmissionInfo,
   getJudgeHostInfoById,
-} from "../../../network/judgeHostRequest";
-import BasicInfo from "./childCmp/BasicInfo";
-import CurrentCondition from "./childCmp/CurrentCondition";
-import SubmissionCount from "../../../components/submissionCount/SubmissionCount";
-import {SubmissionCountInfo} from "../../../models/submission";
-import {getDateRangeMomentArray} from "../../../utils/dateTime";
-import {DEFAULT_DATE_TIME_FORMAT, EMPTY_IMAGE} from "../../../config/config";
-import moment from "moment";
-import RcQueueAnim from "rc-queue-anim";
-import style from "./judgeHostInspect.module.scss";
-import Operations from "./childCmp/Operations";
-import {Badge, Card, Empty} from "antd";
+} from '../../../network/judgeHostRequest';
+import BasicInfo from './childCmp/BasicInfo';
+import CurrentCondition from './childCmp/CurrentCondition';
+import SubmissionCount from '../../../components/submissionCount/SubmissionCount';
+import {SubmissionCountInfo} from '../../../models/submission';
+import {getDateRangeMomentArray} from '../../../utils/dateTime';
+import {DEFAULT_DATE_TIME_FORMAT, EMPTY_IMAGE} from '../../../config/config';
+import moment from 'moment';
+import RcQueueAnim from 'rc-queue-anim';
+import style from './judgeHostInspect.module.scss';
+import Operations from './childCmp/Operations';
+import {Badge, Card, Empty} from 'antd';
 
 interface JudgeHostInspectProps {
 
@@ -66,12 +66,12 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
 
   // 获取判题机状态描述
   const getConditionDescription = () => {
-    return judgeHostInfo?.active ? "运行中" : "已暂停";
+    return judgeHostInfo?.active ? '运行中' : '已暂停';
   }
 
   // 获取判题机状态描述颜色
   const getConditionBadgeStatus = () => {
-    return judgeHostInfo?.active ? "processing" : "warning";
+    return judgeHostInfo?.active ? 'processing' : 'warning';
   }
 
   // 获取判题机提交统计信息
@@ -96,18 +96,18 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
     <Card title={judgeHostInfo?.name}
           extra={renderCardExtra()}>
       <RcQueueAnim>
-        <div key={"BasicResult"}>
+        <div key={'BasicResult'}>
           <Card
             title={<div className={style.judge_host_edit_item_title}>基本信息</div>}
             className={style.judge_host_inspect_item}>
             {
               judgeHostInfo && judgeHostInfo.condition.version ?
                 <BasicInfo judgeHostInfo={judgeHostInfo}/> :
-                <Empty image={EMPTY_IMAGE} description={"该判题服务器无连接"}/>
+                <Empty image={EMPTY_IMAGE} description={'该判题服务器无连接'}/>
             }
           </Card>
         </div>
-        <div key={"current-condition"}>
+        <div key={'current-condition'}>
           <Card
             title={<div className={style.judge_host_edit_item_title}>实时状态</div>}
             style={{
@@ -116,11 +116,11 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
             {
               judgeHostInfo && judgeHostInfo.condition.version ?
                 <CurrentCondition judgeHostInfo={judgeHostInfo}/> :
-                <Empty image={EMPTY_IMAGE} description={"该判题服务器无连接"}/>
+                <Empty image={EMPTY_IMAGE} description={'该判题服务器无连接'}/>
             }
           </Card>
         </div>
-        <div key={"data"}>
+        <div key={'data'}>
           <Card
             title={<div className={style.judge_host_edit_item_title}>数据统计</div>}
             className={style.judge_host_inspect_item}>
@@ -130,12 +130,12 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
               onPickerChange={(res) => getSubmissionCountsData(res[0], res[1])}/>
           </Card>
         </div>
-        <div key={"operations"}>
+        <div key={'operations'}>
           <Card title={<div className={style.judge_host_edit_item_title}>操作</div>}>
             {
               judgeHostInfo ?
                 <Operations judgeHostInfo={judgeHostInfo} onReset={() => getJudgeHostInfo(judgeHostId)}/> :
-                <Empty image={EMPTY_IMAGE} description={"该判题服务器无连接"}/>
+                <Empty image={EMPTY_IMAGE} description={'该判题服务器无连接'}/>
             }
           </Card>
         </div>

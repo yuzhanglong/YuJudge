@@ -7,29 +7,29 @@
  */
 
 
-import {MenuRouterConfig} from "./config";
-import {CMS_USERS_MENU} from "./cmsUserMenu";
-import {CMS_PROBLEM_AND_PROBLEM_SET_MENU} from "./cmsProblemMenu";
-import {JUDGE_HOST_MANAGE_MENU} from "./cmsJudgeHostMenu";
+import {MenuRouterConfig} from './config';
+import {CMS_USERS_MENU} from './cmsUserMenu';
+import {CMS_PROBLEM_AND_PROBLEM_SET_MENU} from './cmsProblemMenu';
+import {JUDGE_HOST_MANAGE_MENU} from './cmsJudgeHostMenu';
 
 export const CMS_MENUS: MenuRouterConfig[] = [
   {
-    key: "/cms",
-    component: "Dashboard",
-    title: "控制台",
-    path: "/cms",
-    icon: "DashboardOutlined",
+    key: '/cms',
+    component: 'Dashboard',
+    title: '控制台',
+    path: '/cms',
+    icon: 'DashboardOutlined',
     isShowInMenu: true
   },
   CMS_USERS_MENU,
   CMS_PROBLEM_AND_PROBLEM_SET_MENU,
   ...JUDGE_HOST_MANAGE_MENU,
   {
-    key: "/cms/settings",
-    title: "设置",
-    path: "/cms/settings",
-    icon: "SettingOutlined",
+    key: '/cms/settings',
+    title: '设置',
+    path: '/cms/settings',
+    icon: 'SettingOutlined',
     isShowInMenu: true,
-    component: "Settings"
+    component: 'Settings'
   }
 ]

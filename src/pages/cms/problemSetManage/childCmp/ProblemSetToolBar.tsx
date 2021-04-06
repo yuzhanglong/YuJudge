@@ -6,9 +6,9 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Button, Checkbox, Col, DatePicker, Form, Input, Modal, Row, Space} from "antd";
-import {PlusOutlined} from "@ant-design/icons";
+import React from 'react';
+import {Button, Checkbox, Col, DatePicker, Form, Input, Modal, Row, Space} from 'antd';
+import {PlusOutlined} from '@ant-design/icons';
 
 const {RangePicker} = DatePicker;
 
@@ -47,7 +47,7 @@ const ProblemSetToolBar: React.FunctionComponent<ProblemSetManageToolsProps> = (
 
   return (
     <div>
-      <Row align={"middle"} justify={"space-between"}>
+      <Row align={'middle'} justify={'space-between'}>
         <Col>
           <Input.Search
             placeholder="搜索题目集"
@@ -65,7 +65,7 @@ const ProblemSetToolBar: React.FunctionComponent<ProblemSetManageToolsProps> = (
 
         <Col>
           <Button
-            type={"primary"}
+            type={'primary'}
             onClick={props.onCreateButtonClick}
             icon={<PlusOutlined/>}>
             创建题目集
@@ -79,7 +79,7 @@ const ProblemSetToolBar: React.FunctionComponent<ProblemSetManageToolsProps> = (
         onCancel={props.onCancel}
         footer={false}>
         <Form
-          labelAlign={"left"}
+          labelAlign={'left'}
           form={form}
           name="basic"
           labelCol={{

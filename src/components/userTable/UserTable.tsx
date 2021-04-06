@@ -6,15 +6,15 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {UserInfo} from "../../models/user";
-import {Badge, Table, Tag} from "antd";
-import {RankingColorEnum} from "../../common/enumerations";
-import {TablePaginationConfig} from "antd/lib/table/interface";
-import {Pagination} from "../../models/pagination";
-import {UserGroupInfo} from "../../models/UserGroup";
-import {SizeType} from "antd/lib/config-provider/SizeContext";
-import style from "./userTable.module.scss"
+import React from 'react';
+import {UserInfo} from '../../models/user';
+import {Badge, Table, Tag} from 'antd';
+import {RankingColorEnum} from '../../common/enumerations';
+import {TablePaginationConfig} from 'antd/lib/table/interface';
+import {Pagination} from '../../models/pagination';
+import {UserGroupInfo} from '../../models/UserGroup';
+import {SizeType} from 'antd/lib/config-provider/SizeContext';
+import style from './userTable.module.scss'
 
 interface UserTableProps {
   userInfo: UserInfo[];
@@ -76,7 +76,7 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
 
   // 渲染身份信息
   const renderUserGroups = (content: UserGroupInfo[]) => {
-    if (!content || !content.length) return "无所在用户组";
+    if (!content || !content.length) return '无所在用户组';
     return content.map(res => {
       return (
         <Tag color="geekblue" key={res.id}>
@@ -97,7 +97,7 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
   const renderUserName = (userInfo: UserInfo) => {
     return props.userNameCanClick ?
       <a className={style.user_name} onClick={() => {
-        window.reactRouter.push("/common/profile/" + userInfo.id)
+        window.reactRouter.push('/common/profile/' + userInfo.id)
       }}>
         {userInfo.nickname}
       </a> : <div className={style.user_name}>
@@ -109,49 +109,49 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
     <Table
       size={props.tableSize}
       dataSource={props.userInfo}
-      rowKey={"nickname"}
+      rowKey={'nickname'}
       pagination={props.pagination ? paginationProp : false}
       onChange={(e: TablePaginationConfig) => onPageChange(e)}>
       {
         props.showRanking && <Table.Column
-          title={"排名"}
+          title={'排名'}
           render={(value: any, record: any, index: number) => renderUserRanking(index)}/>
       }
       <Table.Column
-        title={"用户名"}
+        title={'用户名'}
         render={renderUserName}/>
       {
         props.showScope &&
         <Table.Column
-          title={"所在用户组"}
-          dataIndex={"userGroups"}
+          title={'所在用户组'}
+          dataIndex={'userGroups'}
           render={renderUserGroups}/>
       }
       {
         props.showEmail &&
         <Table.Column
-          title={"邮箱"}
-          dataIndex={"email"}
-          render={(res) => res ? res : "未提供"}/>
+          title={'邮箱'}
+          dataIndex={'email'}
+          render={(res) => res ? res : '未提供'}/>
       }
       {
         props.showRanking &&
         <Table.Column
-          title={"提交数"}
-          dataIndex={"submissionAmount"}/>
+          title={'提交数'}
+          dataIndex={'submissionAmount'}/>
       }
       {
         props.showRanking &&
         <Table.Column
-          title={"AC数"}
-          dataIndex={"acAmount"}/>
+          title={'AC数'}
+          dataIndex={'acAmount'}/>
       }
       {
         props.operations &&
         <Table.Column
           width={300}
-          align={"center"}
-          title={"操作"}
+          align={'center'}
+          title={'操作'}
           render={renderOperations}/>
       }
     </Table>

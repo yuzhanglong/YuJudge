@@ -11,7 +11,7 @@ import TweenOne from 'rc-tween-one';
 import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
 import QueueAnim from 'rc-queue-anim';
 import {Button, Col, Row} from 'antd';
-import {LandingFooterDataSource} from "./LandingData";
+import {LandingFooterDataSource} from './LandingData';
 
 interface LandingFooterProps {
 

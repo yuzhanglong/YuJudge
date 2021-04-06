@@ -6,15 +6,15 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Card} from "antd";
-import style from "../home.module.scss";
-import {Meta} from "antd/es/list/Item";
-import QuickStart from "./QuickStart";
-import UserTable from "../../../../components/userTable/UserTable";
-import RcQueueAnim from "rc-queue-anim";
-import {DailyWord} from "../../../../models/common";
-import {UserInfo} from "../../../../models/user";
+import React from 'react';
+import {Card} from 'antd';
+import style from '../home.module.scss';
+import {Meta} from 'antd/es/list/Item';
+import QuickStart from './QuickStart';
+import UserTable from '../../../../components/userTable/UserTable';
+import RcQueueAnim from 'rc-queue-anim';
+import {DailyWord} from '../../../../models/common';
+import {UserInfo} from '../../../../models/user';
 
 interface SideItemProps {
   dailyWord?: DailyWord;
@@ -30,19 +30,19 @@ const SideItem: React.FunctionComponent<SideItemProps> = (props) => {
 
   return (
     <RcQueueAnim>
-      <div key={"home_content_side_item1"}>
-        <Card title={"每日一句"} className={style.home_content_side_item}>
+      <div key={'home_content_side_item1'}>
+        <Card title={'每日一句'} className={style.home_content_side_item}>
           <Meta title={props.dailyWord?.title} description={props.dailyWord?.content}/>
         </Card>
       </div>
-      <div key={"home_content_side_item2"}>
-        <Card title={"快速开始"} className={style.home_content_side_item}>
+      <div key={'home_content_side_item2'}>
+        <Card title={'快速开始'} className={style.home_content_side_item}>
           <QuickStart onSearch={(value) => onSearch(value)}/>
         </Card>
       </div>
-      <div key={"home_content_side_item3"}>
-        <Card title={"活跃用户"} className={style.home_content_side_item}>
-          <UserTable userInfo={props.activeUserInfo} tableSize={"middle"} userNameCanClick/>
+      <div key={'home_content_side_item3'}>
+        <Card title={'活跃用户'} className={style.home_content_side_item}>
+          <UserTable userInfo={props.activeUserInfo} tableSize={'middle'} userNameCanClick/>
         </Card>
       </div>
     </RcQueueAnim>

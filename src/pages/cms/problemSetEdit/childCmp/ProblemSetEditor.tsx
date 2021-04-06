@@ -6,18 +6,18 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Button, Card, message, Popconfirm as PopConfirm} from "antd";
-import ProblemTable from "../../../../components/problemTable/ProblemTable";
-import {Problem} from "../../../../models/problem";
-import {RouteComponentProps} from "react-router-dom";
-import EditorTip from "../../../../components/editorTip/editorTip";
-import BasicInfoEditor from "./BasicInfoEditor";
-import {ProblemSet} from "../../../../models/problemSet";
-import {dateRangeMomentArrayToTimeStampArray} from "../../../../utils/dateTime";
-import {removeProblemSet, updateProblemSetBasicInfo} from "../../../../network/problemSetRequest";
-import RcQueueAnim from "rc-queue-anim";
-import style from "../problemSetEdit.module.scss"
+import React from 'react';
+import {Button, Card, message, Popconfirm as PopConfirm} from 'antd';
+import ProblemTable from '../../../../components/problemTable/ProblemTable';
+import {Problem} from '../../../../models/problem';
+import {RouteComponentProps} from 'react-router-dom';
+import EditorTip from '../../../../components/editorTip/editorTip';
+import BasicInfoEditor from './BasicInfoEditor';
+import {ProblemSet} from '../../../../models/problemSet';
+import {dateRangeMomentArrayToTimeStampArray} from '../../../../utils/dateTime';
+import {removeProblemSet, updateProblemSetBasicInfo} from '../../../../network/problemSetRequest';
+import RcQueueAnim from 'rc-queue-anim';
+import style from '../problemSetEdit.module.scss'
 
 interface ProblemSetEditorProps {
   problems: Problem[];
@@ -56,7 +56,7 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
       }
       updateProblemSetBasicInfo(problemSet)
         .then(() => {
-          message.success("编辑成功");
+          message.success('编辑成功');
         })
         .catch(() => {
         })
@@ -68,16 +68,16 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
     if (props.problemSet.id) {
       removeProblemSet(props.problemSet.id)
         .then(() => {
-          message.success("移除成功~");
+          message.success('移除成功~');
         });
-      props.history.replace("/cms/problem_manage/problem_sets");
+      props.history.replace('/cms/problem_manage/problem_sets');
     }
   }
 
   return (
-    <Card title={"题目集编辑"}>
+    <Card title={'题目集编辑'}>
       <RcQueueAnim>
-        <div key={"problem-editor-basic-info"}>
+        <div key={'problem-editor-basic-info'}>
           <Card
             type="inner"
             title={<div className={style.cms_problem_set_edit_item_title}>基本信息</div>}>
@@ -86,13 +86,13 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
               onEditConfirm={onEditConfirm}/>
           </Card>
         </div>
-        <div key={"problem-editor-problems"}>
+        <div key={'problem-editor-problems'}>
           <Card
             type="inner"
             style={{marginTop: 10}}
             title={<div className={style.cms_problem_set_edit_item_title}>拥有的题目</div>}
             extra={
-              <Button type={"link"} onClick={() => props.onProblemAdd()}>
+              <Button type={'link'} onClick={() => props.onProblemAdd()}>
                 添加已有问题
               </Button>
             }>
@@ -108,21 +108,21 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
                   okText="确定"
                   cancelText="取消"
                   onConfirm={() => onRemoveButtonClick(content)}>
-                  <Button type={"link"} danger>
+                  <Button type={'link'} danger>
                     从题目集中移除
                   </Button>
                 </PopConfirm>
               )}/>
           </Card>
         </div>
-        <div key={"problem-editor-danger"}>
+        <div key={'problem-editor-danger'}>
           <Card
             type="inner"
             style={{marginTop: 10}}
             title={<div className={style.cms_problem_set_edit_item_title_danger}>危险项</div>}>
             <EditorTip
-              title={"删除这个题目集"}
-              content={"此操作不可恢复，注意: 与它相关联的题目不会被删除"}>
+              title={'删除这个题目集'}
+              content={'此操作不可恢复，注意: 与它相关联的题目不会被删除'}>
               <Button danger onClick={() => onRemoveProblemSetButtonClick()}>
                 删除
               </Button>

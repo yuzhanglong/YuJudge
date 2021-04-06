@@ -7,12 +7,12 @@
  */
 
 
-import React, {useEffect, useState} from "react";
-import {message, Modal, Transfer} from "antd";
-import {PermissionInfo} from "../../../../models/permission";
-import {getPermissionByUserGroupId, updateUserGroupPermission} from "../../../../network/permissionRequest";
-import {TransferItem} from "antd/es/transfer";
-import {BaseResponse} from "../../../../models/common";
+import React, {useEffect, useState} from 'react';
+import {message, Modal, Transfer} from 'antd';
+import {PermissionInfo} from '../../../../models/permission';
+import {getPermissionByUserGroupId, updateUserGroupPermission} from '../../../../network/permissionRequest';
+import {TransferItem} from 'antd/es/transfer';
+import {BaseResponse} from '../../../../models/common';
 
 interface AuthorizeModalProps {
   // 所有可供分配的permission
@@ -76,7 +76,7 @@ const AuthorizeModal: React.FunctionComponent<AuthorizeModalProps> = (props) => 
     if (props.userGroupId) {
       updateUserGroupPermission(props.userGroupId, userGroupPermissionKeys)
         .then(() => {
-          message.success("授权成功~");
+          message.success('授权成功~');
           props.onCancel();
         })
         .catch((err:BaseResponse) => {
@@ -88,7 +88,7 @@ const AuthorizeModal: React.FunctionComponent<AuthorizeModalProps> = (props) => 
   return (
     <Modal
       width={800}
-      title={"用户组授权"}
+      title={'用户组授权'}
       destroyOnClose
       visible={props.visible}
       onCancel={props.onCancel}

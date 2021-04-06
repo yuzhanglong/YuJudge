@@ -6,17 +6,17 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect, useState} from "react";
-import {Button, Card, message} from "antd";
-import {RouteComponentProps} from "react-router-dom";
-import {ProblemSet} from "../../../models/problemSet";
-import {getProblemSetInfo} from "../../../network/problemSetRequest";
-import style from "./problemSetHome.module.scss"
-import ProblemSetDescription from "./childCmp/ProblemSetDescription";
-import RcQueueAnim from "rc-queue-anim";
-import {BaseResponse} from "../../../models/common";
-import {goToResult} from "../../../utils/route";
-import {ResultPageParam} from "../../../common/enumerations";
+import React, {useEffect, useState} from 'react';
+import {Button, Card, message} from 'antd';
+import {RouteComponentProps} from 'react-router-dom';
+import {ProblemSet} from '../../../models/problemSet';
+import {getProblemSetInfo} from '../../../network/problemSetRequest';
+import style from './problemSetHome.module.scss'
+import ProblemSetDescription from './childCmp/ProblemSetDescription';
+import RcQueueAnim from 'rc-queue-anim';
+import {BaseResponse} from '../../../models/common';
+import {goToResult} from '../../../utils/route';
+import {ResultPageParam} from '../../../common/enumerations';
 
 interface ProblemSetHomeProps {
 
@@ -57,9 +57,9 @@ const ProblemSetHome: React.FunctionComponent<ProblemSetHomeProps & RouteCompone
 
   return (
     <RcQueueAnim>
-      {problemSetInfo && <div className={style.problem_set_home} key={"problem-set-home"}>
+      {problemSetInfo && <div className={style.problem_set_home} key={'problem-set-home'}>
         <div className={style.problem_set_home_content}>
-          <Card title={"题目集概况"} headStyle={{textAlign: "center"}}>
+          <Card title={'题目集概况'} headStyle={{textAlign: 'center'}}>
             <div className={style.problem_set_home_body}>
               <div className={style.problem_set_home_description}>
                 <ProblemSetDescription
@@ -68,7 +68,7 @@ const ProblemSetHome: React.FunctionComponent<ProblemSetHomeProps & RouteCompone
               <div>
                 <Button
                   onClick={onOverViewProblemsButtonClick}
-                  type={"primary"}
+                  type={'primary'}
                   className={style.see_problems_button}>
                   查看问题
                 </Button>

@@ -8,12 +8,12 @@
 
 
 import React, {Suspense} from 'react';
-import {RouteComponentProps, withRouter} from "react-router-dom";
+import {RouteComponentProps, withRouter} from 'react-router-dom';
 import zhCN from 'antd/es/locale/zh_CN';
-import {ConfigProvider} from "antd";
-import MyRouter from "./router/MyRouter";
-import {Provider} from "react-redux";
-import store from "./store"
+import {ConfigProvider} from 'antd';
+import MyRouter from './router/MyRouter';
+import {Provider} from 'react-redux';
+import store from './store'
 
 const App: React.FunctionComponent<RouteComponentProps> = (props) => {
   // 挂载全局路由

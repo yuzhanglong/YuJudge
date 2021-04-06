@@ -6,11 +6,11 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Button, Table} from "antd";
-import {ProblemTestCase} from "../../models/problem";
-import {DownloadOutlined} from "@ant-design/icons";
-import {getUrlPostfix} from "../../utils/string";
+import React from 'react';
+import {Button, Table} from 'antd';
+import {ProblemTestCase} from '../../models/problem';
+import {DownloadOutlined} from '@ant-design/icons';
+import {getUrlPostfix} from '../../utils/string';
 
 interface TestCaseTableProps {
   testCases: ProblemTestCase[];
@@ -38,7 +38,7 @@ const TestCaseTable: React.FunctionComponent<TestCaseTableProps> = (props) => {
           icon={<DownloadOutlined/>}
           style={{
             marginLeft: 15
-          }} size={"small"}
+          }} size={'small'}
           onClick={() => onEditButtonClick(url)}/>
 
       </div>
@@ -54,33 +54,33 @@ const TestCaseTable: React.FunctionComponent<TestCaseTableProps> = (props) => {
     <Table
       pagination={false}
       dataSource={props.testCases}
-      rowKey={"id"}>
+      rowKey={'id'}>
       <Table.Column
-        title={"编号"}
+        title={'编号'}
         render={((value, record, index) => (index + 1))}
       />
       <Table.Column
-        title={"描述"}
-        dataIndex={"description"}
+        title={'描述'}
+        dataIndex={'description'}
       />
       {props.showDownLoadUrlColumn &&
       <Table.Column
-        title={"标准输入"}
-        dataIndex={"stdIn"}
+        title={'标准输入'}
+        dataIndex={'stdIn'}
         render={renderTestCaseDownLoad}
       />}
       {props.showDownLoadUrlColumn &&
       <Table.Column
-        title={"标准输出"}
-        dataIndex={"expectedStdOut"}
+        title={'标准输出'}
+        dataIndex={'expectedStdOut'}
         render={renderTestCaseDownLoad}
       />}
       <Table.Column
-        title={"操作"}
-        key={"number"}
+        title={'操作'}
+        key={'number'}
         width={150}
         render={renderOperations}
-        align={"center"}/>
+        align={'center'}/>
       />
     </Table>
   )

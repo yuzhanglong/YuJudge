@@ -6,21 +6,21 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect, useState} from "react";
-import {RouteComponentProps} from "react-router-dom";
-import ProblemSetEditor from "./childCmp/ProblemSetEditor";
+import React, {useEffect, useState} from 'react';
+import {RouteComponentProps} from 'react-router-dom';
+import ProblemSetEditor from './childCmp/ProblemSetEditor';
 import {
   getProblemSetInfo,
   getProblemSetProblems,
   removeProblemFormProblemSet
-} from "../../../network/problemSetRequest";
-import AddProblem from "./childCmp/AddProblem";
-import {UsePaginationState} from "../../../hooks/pagination";
-import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from "../../../config/config";
-import {getProblems} from "../../../network/problemRequests";
-import {ProblemPaginationRequest, ProblemSetProblemPaginationRequest} from "../../../models/pagination";
-import {message} from "antd";
-import {ProblemSet} from "../../../models/problemSet";
+} from '../../../network/problemSetRequest';
+import AddProblem from './childCmp/AddProblem';
+import {UsePaginationState} from '../../../hooks/pagination';
+import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from '../../../config/config';
+import {getProblems} from '../../../network/problemRequests';
+import {ProblemPaginationRequest, ProblemSetProblemPaginationRequest} from '../../../models/pagination';
+import {message} from 'antd';
+import {ProblemSet} from '../../../models/problemSet';
 
 interface ProblemSetEditProps {
 
@@ -94,7 +94,7 @@ const ProblemSetEdit: React.FunctionComponent<ProblemSetEditProps & RouteCompone
   const onRemoveFormProblemSet = (problemId: number) => {
     removeProblemFormProblemSet(problemSetId, problemId)
       .then(() => {
-        message.success("移除成功~");
+        message.success('移除成功~');
         getProblemsData(PAGE_BEGIN - 1, searchContent);
         getProblemSetProblemData(PAGE_BEGIN - 1);
       });

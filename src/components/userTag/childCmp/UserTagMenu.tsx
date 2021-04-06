@@ -7,10 +7,10 @@
  */
 
 
-import React from "react";
-import style from "../userTag.module.scss";
-import {Menu, message} from "antd";
-import {clearStorage} from "../../../utils/dataPersistence";
+import React from 'react';
+import style from '../userTag.module.scss';
+import {Menu, message} from 'antd';
+import {clearStorage} from '../../../utils/dataPersistence';
 
 interface UserTagMenuProps {
   menuHeight: number;
@@ -22,18 +22,18 @@ const UserTagMenu: React.FunctionComponent<UserTagMenuProps> = (props) => {
   // 注销标签被单击
   const onLogOut = () => {
     clearStorage();
-    window.reactRouter.replace("/");
-    message.success("您已成功退出");
+    window.reactRouter.replace('/');
+    message.success('您已成功退出');
   }
 
   // 个人信息标签被单击
   const onSeeProfile = () => {
-    window.reactRouter.push("/common/profile/me");
+    window.reactRouter.push('/common/profile/me');
   }
 
   // 前往后台
   const gotoCms = () => {
-    window.reactRouter.push("/cms");
+    window.reactRouter.push('/cms');
   }
 
   return (

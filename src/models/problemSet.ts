@@ -6,7 +6,7 @@
  * Email: yuzl1123@163.com
  */
 
-import {UserInfo} from "./user";
+import {UserInfo} from './user';
 
 export interface ProblemSet {
   name?: string;

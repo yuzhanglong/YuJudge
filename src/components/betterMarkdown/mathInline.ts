@@ -8,7 +8,7 @@
  * Email: yuzl1123@163.com
  */
 
-import util from "../../utils/markdown";
+import util from '../../utils/markdown';
 
 // constants
 const TAB = 9 // '\t'

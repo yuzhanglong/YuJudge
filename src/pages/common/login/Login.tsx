@@ -6,17 +6,17 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect, useState} from "react";
-import {RouteComponentProps} from "react-router-dom";
-import LoginForm from "../../../components/loginForm/LoginForm";
-import {getCheckCodeInfo, getUserInfo, login, register} from "../../../network/userRequest";
-import {CheckCodeData, LoginFormData, LoginResponseData, RegisterFormData} from "../../../models/user";
-import {BaseResponse} from "../../../models/common";
-import {Button, Card, Col, message, Row} from "antd";
-import {getTokenFromStorage, saveUserInfo, setToken} from "../../../utils/dataPersistence";
-import RegisterForm from "../../../components/registerForm/RegisterForm";
-import style from "./loginPage.module.scss";
-import loginImage from "../../../assets/images/login.jpg"
+import React, {useEffect, useState} from 'react';
+import {RouteComponentProps} from 'react-router-dom';
+import LoginForm from '../../../components/loginForm/LoginForm';
+import {getCheckCodeInfo, getUserInfo, login, register} from '../../../network/userRequest';
+import {CheckCodeData, LoginFormData, LoginResponseData, RegisterFormData} from '../../../models/user';
+import {BaseResponse} from '../../../models/common';
+import {Button, Card, Col, message, Row} from 'antd';
+import {getTokenFromStorage, saveUserInfo, setToken} from '../../../utils/dataPersistence';
+import RegisterForm from '../../../components/registerForm/RegisterForm';
+import style from './loginPage.module.scss';
+import loginImage from '../../../assets/images/login.jpg'
 
 interface LoginProps {
 
@@ -38,7 +38,7 @@ const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = (props)
 
   useEffect(() => {
     if (isUserLogin()) {
-      props.history.push("/common/home");
+      props.history.push('/common/home');
     } else {
       getCheckCode();
     }
@@ -69,9 +69,9 @@ const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = (props)
         return getUserInfo();
       })
       .then((res: BaseResponse) => {
-        message.success("登录成功～");
+        message.success('登录成功～');
         saveUserInfo(res.data);
-        props.history.replace("/common/home");
+        props.history.replace('/common/home');
       })
       .catch((err: BaseResponse) => {
         message.error(err.message);
@@ -88,7 +88,7 @@ const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = (props)
     }
     register(registerForm)
       .then(() => {
-        message.success("注册成功，2秒后自动前往登录页面");
+        message.success('注册成功，2秒后自动前往登录页面');
         setTimeout(() => {
           setActiveForm(formType.LOGIN);
         }, 2000);
@@ -127,18 +127,18 @@ const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = (props)
               <Col>
                 <img
                   src={loginImage}
-                  alt={"confirmation"}
+                  alt={'confirmation'}
                   className={style.login_page_image}/>
               </Col>
               <Col>
                 <div className={style.login_area}>
                   <div className={style.login_area_title}>
                     <div className={style.login_area_title_main}>
-                      {activeForm === formType.LOGIN ? "用户登录" : "用户注册"}
+                      {activeForm === formType.LOGIN ? '用户登录' : '用户注册'}
                     </div>
                     <div>
-                      <Button type={"link"} onClick={() => showRegisterForm()}>
-                        {activeForm === formType.LOGIN ? "没有账号? 点我注册" : "去登录"}
+                      <Button type={'link'} onClick={() => showRegisterForm()}>
+                        {activeForm === formType.LOGIN ? '没有账号? 点我注册' : '去登录'}
                       </Button>
                     </div>
                   </div>

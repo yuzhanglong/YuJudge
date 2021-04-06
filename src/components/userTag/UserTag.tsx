@@ -7,10 +7,10 @@
  */
 
 
-import React from "react";
-import {Avatar, Dropdown} from "antd";
-import style from "./userTag.module.scss"
-import UserTagMenu from "./childCmp/UserTagMenu";
+import React from 'react';
+import {Avatar, Dropdown} from 'antd';
+import style from './userTag.module.scss'
+import UserTagMenu from './childCmp/UserTagMenu';
 
 interface UserInfoProps {
   userName?: string;
@@ -28,7 +28,7 @@ const UserTag: React.FunctionComponent<UserInfoProps> = (props) => {
           menuHeight={props.height}
           showGotoCms={props.showGotoCms || false}/>
       }
-      placement={"bottomCenter"}
+      placement={'bottomCenter'}
       trigger={['click']}>
       <div>
         <div className={style.user_tag_drop_down} style={{height: props.height}}>
@@ -36,7 +36,7 @@ const UserTag: React.FunctionComponent<UserInfoProps> = (props) => {
             <Avatar
               size="large"
               src={props.avatar}
-              style={{backgroundColor: "#ffffff"}}/>
+              style={{backgroundColor: '#ffffff'}}/>
           </div>
           <div>
             <div className={style.user_tag_user_name}>

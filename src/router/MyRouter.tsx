@@ -11,11 +11,11 @@
  *
  */
 
-import React from "react";
-import routerConfig, {MenuRouterConfig} from "./config";
+import React from 'react';
+import routerConfig, {MenuRouterConfig} from './config';
 import AllComponents from '../pages';
-import {Redirect, Route, Switch} from "react-router-dom";
-import CMSLayout from "../layout/cms/CMSLayout";
+import {Redirect, Route, Switch} from 'react-router-dom';
+import CMSLayout from '../layout/cms/CMSLayout';
 
 
 interface MyRouterProps {
@@ -58,24 +58,24 @@ const MyRouter: React.FunctionComponent<MyRouterProps> = () => {
   }
 
   // 根据key来渲染路由组件
-  const createRouteByKey = (key: "menus" | "common") => {
+  const createRouteByKey = (key: 'menus' | 'common') => {
     return createRoute(key);
   }
 
   // render
   return (
     <Switch>
-      {createRouteByKey("common")}
+      {createRouteByKey('common')}
       <Route
-        key={"cms"}
-        path={"/cms"}
+        key={'cms'}
+        path={'/cms'}
         render={(props: any) => {
           return (
             <CMSLayout
               {...props}
               children={
                 <div>
-                  {createRouteByKey("menus")}
+                  {createRouteByKey('menus')}
                 </div>
               }/>
           )

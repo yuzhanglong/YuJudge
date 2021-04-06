@@ -7,7 +7,7 @@
  */
 
 
-import {BaseResponse} from "./common";
+import {BaseResponse} from './common';
 
 // 带有分页请求的响应
 export interface PaginationResponse extends BaseResponse {

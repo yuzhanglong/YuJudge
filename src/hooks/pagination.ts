@@ -6,9 +6,9 @@
  * Email: yuzl1123@163.com
  */
 
-import {useState} from "react";
-import {AxiosResponse} from "axios";
-import {Pagination} from "../models/pagination";
+import {useState} from 'react';
+import {AxiosResponse} from 'axios';
+import {Pagination} from '../models/pagination';
 
 
 export const UsePaginationState = <T>(

@@ -6,10 +6,10 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Descriptions, Tag} from "antd";
-import {timestampToDateTime} from "../../../../utils/dateTime";
-import {JudgeHostInfo} from "../../../../models/judgeHost";
+import React from 'react';
+import {Descriptions, Tag} from 'antd';
+import {timestampToDateTime} from '../../../../utils/dateTime';
+import {JudgeHostInfo} from '../../../../models/judgeHost';
 
 interface BasicInfoProps {
   judgeHostInfo: JudgeHostInfo;
@@ -34,7 +34,7 @@ const BasicInfo: React.FunctionComponent<BasicInfoProps> = (props) => {
         {props.judgeHostInfo?.condition.maxWorkingAmount}
       </Descriptions.Item>
       <Descriptions.Item label="判题机版本">
-        <Tag color={"geekblue"}>{props.judgeHostInfo.condition.version}</Tag>
+        <Tag color={'geekblue'}>{props.judgeHostInfo.condition.version}</Tag>
       </Descriptions.Item>
       <Descriptions.Item label="解决方案存放目录" span={3}>
         {props.judgeHostInfo?.condition.resolutionPath}

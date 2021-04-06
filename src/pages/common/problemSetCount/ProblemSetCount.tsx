@@ -6,18 +6,18 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect, useState} from "react";
-import {Card, message} from "antd";
-import SubmissionCount from "../../../components/submissionCount/SubmissionCount";
-import {SubmissionCountInfo} from "../../../models/submission";
-import {countProblemSetSubmissionInfo} from "../../../network/problemSetRequest";
-import {RouteComponentProps} from "react-router-dom";
-import style from "./problemSetCount.module.scss"
-import ProblemSetTimeLine from "./childCmp/ProblemSetTimeLine";
-import {BaseResponse} from "../../../models/common";
-import {goToResult} from "../../../utils/route";
-import {ResultPageParam} from "../../../common/enumerations";
-import RcQueueAnim from "rc-queue-anim";
+import React, {useEffect, useState} from 'react';
+import {Card, message} from 'antd';
+import SubmissionCount from '../../../components/submissionCount/SubmissionCount';
+import {SubmissionCountInfo} from '../../../models/submission';
+import {countProblemSetSubmissionInfo} from '../../../network/problemSetRequest';
+import {RouteComponentProps} from 'react-router-dom';
+import style from './problemSetCount.module.scss'
+import ProblemSetTimeLine from './childCmp/ProblemSetTimeLine';
+import {BaseResponse} from '../../../models/common';
+import {goToResult} from '../../../utils/route';
+import {ResultPageParam} from '../../../common/enumerations';
+import RcQueueAnim from 'rc-queue-anim';
 
 interface ProblemSetCountProps {
 
@@ -49,23 +49,23 @@ const ProblemSetCount: React.FunctionComponent<ProblemSetCountProps & RouteCompo
 
   return (
     <RcQueueAnim>
-      <div className={style.problem_set_count} key={"problem_set_count"}>
+      <div className={style.problem_set_count} key={'problem_set_count'}>
         <div className={style.problem_set_count_content}>
           <Card
-            title={"数据统计"}
+            title={'数据统计'}
             headStyle={{
-              textAlign: "center"
+              textAlign: 'center'
             }}>
             <div className={style.problem_set_count_body}>
               <div style={{
                 width: 1300
               }}>
-                <Card title={"提交趋势"}>
+                <Card title={'提交趋势'}>
                   <SubmissionCount
                     showPicker={false}
                     submissionCounts={problemSetSubmissionCounts}/>
                 </Card>
-                <Card title={"时间轴"} style={{marginTop: 30}}>
+                <Card title={'时间轴'} style={{marginTop: 30}}>
 
                   <ProblemSetTimeLine problemSetId={problemSetId}/>
                 </Card>

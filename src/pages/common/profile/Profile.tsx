@@ -6,30 +6,30 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect, useState} from "react";
-import {Col, message, Row} from "antd";
-import UserCard from "../../../components/userCard/UserCard";
-import style from "./profile.module.scss"
-import ProfileCount from "./childCmp/ProfileCount";
-import {UserJudgeResultCount, UserSubmissionCount} from "../../../models/submission";
-import moment from "moment";
-import {DEFAULT_DATE_TIME_FORMAT, RECENT_SUBMISSION_DATES_IN_DASHBOARD_AMOUNT} from "../../../config/config";
-import {getRecentSubmission, getUserJudgeResultCount} from "../../../network/submissionRequest";
-import RcQueueAnim from "rc-queue-anim";
-import {getUserAcProblemIds, getUserTriedProblemIds} from "../../../network/problemRequests";
-import {ProblemCountItem} from "../../../models/problem";
-import {RouteComponentProps} from "react-router-dom";
-import {BaseResponse} from "../../../models/common";
-import {USER_NOT_EXIST} from "../../../config/code";
-import {getUserInfo} from "../../../network/userRequest";
-import {UserInfo} from "../../../models/user";
+import React, {useEffect, useState} from 'react';
+import {Col, message, Row} from 'antd';
+import UserCard from '../../../components/userCard/UserCard';
+import style from './profile.module.scss'
+import ProfileCount from './childCmp/ProfileCount';
+import {UserJudgeResultCount, UserSubmissionCount} from '../../../models/submission';
+import moment from 'moment';
+import {DEFAULT_DATE_TIME_FORMAT, RECENT_SUBMISSION_DATES_IN_DASHBOARD_AMOUNT} from '../../../config/config';
+import {getRecentSubmission, getUserJudgeResultCount} from '../../../network/submissionRequest';
+import RcQueueAnim from 'rc-queue-anim';
+import {getUserAcProblemIds, getUserTriedProblemIds} from '../../../network/problemRequests';
+import {ProblemCountItem} from '../../../models/problem';
+import {RouteComponentProps} from 'react-router-dom';
+import {BaseResponse} from '../../../models/common';
+import {USER_NOT_EXIST} from '../../../config/code';
+import {getUserInfo} from '../../../network/userRequest';
+import {UserInfo} from '../../../models/user';
 
 interface profileProps {
 
 }
 
 const Profile: React.FunctionComponent<profileProps & RouteComponentProps> = (props) => {
-  const uid = (props.match.params as any).userId === "me" ? null : (props.match.params as any).userId;
+  const uid = (props.match.params as any).userId === 'me' ? null : (props.match.params as any).userId;
 
   // 用户提交统计
   const [userJudgeResultCount, setUserJudgeResultCount] = useState<UserJudgeResultCount[]>([]);
@@ -57,11 +57,11 @@ const Profile: React.FunctionComponent<profileProps & RouteComponentProps> = (pr
 
   // 获取最近提交统计信息
   const getAndSetRecentSubmissionCount = (uid: number | null) => {
-    const end = moment().add(1, "days").format(DEFAULT_DATE_TIME_FORMAT);
+    const end = moment().add(1, 'days').format(DEFAULT_DATE_TIME_FORMAT);
     // 默认提早七天
     const start = moment().add(
       RECENT_SUBMISSION_DATES_IN_DASHBOARD_AMOUNT * (-1),
-      "days").format(DEFAULT_DATE_TIME_FORMAT);
+      'days').format(DEFAULT_DATE_TIME_FORMAT);
 
     getRecentSubmission(start, end, uid)
       .then(res => {
@@ -86,7 +86,7 @@ const Profile: React.FunctionComponent<profileProps & RouteComponentProps> = (pr
       .catch((err: BaseResponse) => {
         if (err.code === USER_NOT_EXIST) {
           message.error(err.message);
-          props.history.replace("/result/404");
+          props.history.replace('/result/404');
         }
       })
   }
@@ -109,13 +109,13 @@ const Profile: React.FunctionComponent<profileProps & RouteComponentProps> = (pr
 
   return (
     <RcQueueAnim>
-      <div title={"个人中心"} className={style.profile} key={"profile"}>
+      <div title={'个人中心'} className={style.profile} key={'profile'}>
           <Row>
             <Col className={style.profile_user_info}>
               {currentUser && <UserCard userInfo={currentUser}/>}
             </Col>
             <Col>
-              <div key={"ProfileCount"}>
+              <div key={'ProfileCount'}>
                 <ProfileCount
                   acCount={acCount}
                   triedCount={triedCount}

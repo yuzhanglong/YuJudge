@@ -12,7 +12,7 @@ export const tenDecimalToTwentySixDecimal = (number: number) => {
   const MOD_BASE = 26;
   const ASCII_A = 65;
   let end = number;
-  let res: string = "";
+  let res: string = '';
   do {
     let modRes = end % MOD_BASE;
     if (modRes === 0) modRes = 26;

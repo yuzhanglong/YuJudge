@@ -6,12 +6,12 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect, useState} from "react";
-import {Button, DatePicker, Form, Input, Switch, Checkbox} from "antd";
-import {ProblemSet} from "../../../../models/problemSet";
-import {getDateRangeMomentArray} from "../../../../utils/dateTime";
-import {LanguageTypeEnum} from "../../../../common/enumerations";
-import {PROGRAM_LANGUAGE_NAME} from "../../../../common/programLanguage";
+import React, {useEffect, useState} from 'react';
+import {Button, DatePicker, Form, Input, Switch, Checkbox} from 'antd';
+import {ProblemSet} from '../../../../models/problemSet';
+import {getDateRangeMomentArray} from '../../../../utils/dateTime';
+import {LanguageTypeEnum} from '../../../../common/enumerations';
+import {PROGRAM_LANGUAGE_NAME} from '../../../../common/programLanguage';
 
 interface BasicInfoEditorProps {
   problemSet: ProblemSet;
@@ -56,20 +56,20 @@ const BasicInfoEditor: React.FunctionComponent<BasicInfoEditorProps> = (props) =
   ];
 
   return (
-    <Form form={form} labelAlign={"left"} onFinish={(val: any) => onFormFinish(val)}>
+    <Form form={form} labelAlign={'left'} onFinish={(val: any) => onFormFinish(val)}>
       <Form.Item
         label="题目名称"
-        name={"name"}>
+        name={'name'}>
         <Input/>
       </Form.Item>
       <Form.Item
         label="时间限制"
-        name={"timeRange"}>
+        name={'timeRange'}>
         <DatePicker.RangePicker showTime/>
       </Form.Item>
       <Form.Item
         label="内容描述"
-        name={"description"}>
+        name={'description'}>
         <Input.TextArea/>
       </Form.Item>
       <Form.Item

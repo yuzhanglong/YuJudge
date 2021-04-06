@@ -6,18 +6,18 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect, useState} from "react";
-import {SubmissionCountInfo} from "../../models/submission";
-import LineChart from "../charts/LineChart";
-import {Col, DatePicker, Empty, Row, Tag} from "antd";
-import {Moment} from "moment";
+import React, {useEffect, useState} from 'react';
+import {SubmissionCountInfo} from '../../models/submission';
+import LineChart from '../charts/LineChart';
+import {Col, DatePicker, Empty, Row, Tag} from 'antd';
+import {Moment} from 'moment';
 import {
   DATE_TIME_FORMAT_BY_HOUR,
   DATE_TIME_FORMAT_WITHOUT_TIME,
   DEFAULT_DATE_TIME_FORMAT,
   EMPTY_IMAGE
-} from "../../config/config";
-import moment from "moment";
+} from '../../config/config';
+import moment from 'moment';
 
 interface SubmissionCountProps {
   submissionCounts: SubmissionCountInfo[];
@@ -79,8 +79,8 @@ const SubmissionCount: React.FunctionComponent<SubmissionCountProps> = (props) =
   return (
     <div>
       <Row
-        justify={"space-between"}
-        align={"middle"}
+        justify={'space-between'}
+        align={'middle'}
         style={{marginBottom: 20}}>
         <Col>
           {
@@ -111,12 +111,12 @@ const SubmissionCount: React.FunctionComponent<SubmissionCountProps> = (props) =
             mask={getDateFormat()}
             isTime
             data={publishData()}
-            xKey={"hour"}
-            yKey={"submissionAmount"}
-            yDescription={"提交数量"}/> :
-          <div style={{display: "flex", justifyContent: "center"}}>
+            xKey={'hour'}
+            yKey={'submissionAmount'}
+            yDescription={'提交数量'}/> :
+          <div style={{display: 'flex', justifyContent: 'center'}}>
             <Empty
-              description={"该时间段无提交"}
+              description={'该时间段无提交'}
               image={EMPTY_IMAGE}>
             </Empty>
           </div>

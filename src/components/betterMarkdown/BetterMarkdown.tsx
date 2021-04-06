@@ -6,11 +6,11 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import ReactMarkdown from "react-markdown";
-import CodeBlock from "../codeBlock/CodeBlock";
-import mathInline from "./mathInline";
-import MathBlock from "../mathBlock/MathBlock";
+import React from 'react';
+import ReactMarkdown from 'react-markdown';
+import CodeBlock from '../codeBlock/CodeBlock';
+import mathInline from './mathInline';
+import MathBlock from '../mathBlock/MathBlock';
 
 interface BetterMarkdownProps {
   data?: string;

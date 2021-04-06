@@ -7,10 +7,10 @@
  */
 
 
-import React from "react";
-import {UserJudgeResultCount} from "../../models/submission";
-import PieChart from "../charts/PieChart";
-import {JUDGE_CONDITION_TAG_NAMES_CHINESE} from "../../common/judgeCondition";
+import React from 'react';
+import {UserJudgeResultCount} from '../../models/submission';
+import PieChart from '../charts/PieChart';
+import {JUDGE_CONDITION_TAG_NAMES_CHINESE} from '../../common/judgeCondition';
 
 interface JudgeResultCountProps {
   resultCounts: UserJudgeResultCount[];
@@ -31,8 +31,8 @@ const JudgeResultCount: React.FunctionComponent<JudgeResultCountProps> = (props)
   return (
     <PieChart
       data={publishResultCounts()}
-      angleField={"amount"}
-      colorField={"type"}/>
+      angleField={'amount'}
+      colorField={'type'}/>
   )
 }
 JudgeResultCount.defaultProps = {

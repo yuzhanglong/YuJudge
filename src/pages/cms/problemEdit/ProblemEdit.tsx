@@ -7,16 +7,16 @@
  */
 
 
-import React, {useEffect, useState} from "react";
-import ProblemEditor from "./childCmp/problemEditor/ProblemEditor";
-import {RouteComponentProps} from "react-router-dom";
-import {deleteTestCase, getProblemDetailedById, getSolutionByProblemId} from "../../../network/problemRequests";
-import {Problem, ProblemTestCase} from "../../../models/problem";
-import {message, Modal} from "antd";
-import TestCaseModal from "./childCmp/TestCaseModal";
-import {getUploadToken} from "../../../network/common";
-import {UploadTokenData} from "../../../models/common";
-import {ExclamationCircleOutlined} from "@ant-design/icons";
+import React, {useEffect, useState} from 'react';
+import ProblemEditor from './childCmp/problemEditor/ProblemEditor';
+import {RouteComponentProps} from 'react-router-dom';
+import {deleteTestCase, getProblemDetailedById, getSolutionByProblemId} from '../../../network/problemRequests';
+import {Problem, ProblemTestCase} from '../../../models/problem';
+import {message, Modal} from 'antd';
+import TestCaseModal from './childCmp/TestCaseModal';
+import {getUploadToken} from '../../../network/common';
+import {UploadTokenData} from '../../../models/common';
+import {ExclamationCircleOutlined} from '@ant-design/icons';
 
 interface ProblemEditProps {
 
@@ -36,7 +36,7 @@ const ProblemEdit: React.FunctionComponent<ProblemEditProps & RouteComponentProp
   const [isShowAddSolutionModal, setIsShowAddSolutionModal] = useState(false);
 
   // 上传凭证
-  const [uploadToken, setUploadToken] = useState<string>("");
+  const [uploadToken, setUploadToken] = useState<string>('');
 
   // problem相关请求的综合，使用promise all 封装
   const getProblemRequiredData = (problemId: number) => {
@@ -59,7 +59,7 @@ const ProblemEdit: React.FunctionComponent<ProblemEditProps & RouteComponentProp
         setUploadToken(resp.uploadToken);
       })
       .catch(() => {
-        message.error("获取上传凭证失败");
+        message.error('获取上传凭证失败');
       })
   }
 
@@ -97,7 +97,7 @@ const ProblemEdit: React.FunctionComponent<ProblemEditProps & RouteComponentProp
       onOk() {
         deleteTestCase(value)
           .then(() => {
-            message.success("删除成功~");
+            message.success('删除成功~');
             // 重新初始化数据
             initProblemEditEnvironment();
           })

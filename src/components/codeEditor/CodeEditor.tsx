@@ -6,12 +6,12 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect, useState} from "react";
-import SubmitToolBar from "../submitToolBar/SubmitToolBar";
-import LanguageSelector from "../../pages/common/problemHome/childCmp/LanguageSelector";
-import style from "./codeEditor.module.scss"
-import {message} from "antd";
-import {DEFAULT_LANGUAGE} from "../../config/config";
+import React, {useEffect, useState} from 'react';
+import SubmitToolBar from '../submitToolBar/SubmitToolBar';
+import LanguageSelector from '../../pages/common/problemHome/childCmp/LanguageSelector';
+import style from './codeEditor.module.scss'
+import {message} from 'antd';
+import {DEFAULT_LANGUAGE} from '../../config/config';
 import {UnControlled as CodeMirror} from 'react-codemirror2'
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/xq-light.css';
@@ -27,7 +27,7 @@ const CodeEditor: React.FunctionComponent<CodeEditorProps> = (props) => {
   const [activeLanguage, setActiveLanguage] = useState<string>();
 
   // 代码内容
-  const [codeContent, setCodeContent] = useState<string>("");
+  const [codeContent, setCodeContent] = useState<string>('');
 
   // 提交代码
   const onSubmit = () => {
@@ -48,8 +48,8 @@ const CodeEditor: React.FunctionComponent<CodeEditorProps> = (props) => {
 
   // 清空按钮被按下
   const onClearButtonClick = () => {
-    setCodeContent("");
-    message.success("代码区已清空");
+    setCodeContent('');
+    message.success('代码区已清空');
   }
 
   return (
@@ -79,7 +79,7 @@ const CodeEditor: React.FunctionComponent<CodeEditorProps> = (props) => {
         <SubmitToolBar
           onSubmit={() => onSubmit()}
           onClear={() => onClearButtonClick()}
-          isButtonActive={codeContent != null && codeContent !== ""}/>
+          isButtonActive={codeContent != null && codeContent !== ''}/>
       </div>
     </div>
   )

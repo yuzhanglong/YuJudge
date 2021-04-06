@@ -6,16 +6,16 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {JudgeConditionEnum} from "../../common/enumerations";
-import classNames from "classnames";
-import {Tag} from "antd";
-import style from "./conditionTag.module.scss";
+import React from 'react';
+import {JudgeConditionEnum} from '../../common/enumerations';
+import classNames from 'classnames';
+import {Tag} from 'antd';
+import style from './conditionTag.module.scss';
 import {
   JUDGE_CONDITION_COLORS,
   JUDGE_CONDITION_SIMPLE_NAME,
   JUDGE_CONDITION_TAG_NAMES
-} from "../../common/judgeCondition";
+} from '../../common/judgeCondition';
 
 interface ConditionTagProps {
   condition: string;

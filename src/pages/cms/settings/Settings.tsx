@@ -6,17 +6,17 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect, useState} from "react";
-import {Card, message} from "antd";
+import React, {useEffect, useState} from 'react';
+import {Card, message} from 'antd';
 import {
   getSubmissionFrequencyControl,
   getSubmissionThreadPoolConfiguration,
-} from "../../../network/submissionRequest";
-import {SubmissionThreadPoolConfiguration} from "../../../models/submission";
-import RcQueueAnim from "rc-queue-anim";
-import CommonSettings from "./childCmp/CommonSettings";
-import DangerSettings from "./childCmp/DangerSettings";
-import {changeCheckCodeCondition, getCheckCodeCondition} from "../../../network/common";
+} from '../../../network/submissionRequest';
+import {SubmissionThreadPoolConfiguration} from '../../../models/submission';
+import RcQueueAnim from 'rc-queue-anim';
+import CommonSettings from './childCmp/CommonSettings';
+import DangerSettings from './childCmp/DangerSettings';
+import {changeCheckCodeCondition, getCheckCodeCondition} from '../../../network/common';
 
 interface SettingsProps {
 
@@ -66,7 +66,7 @@ const Settings: React.FunctionComponent<SettingsProps> = () => {
     setIsCheckCodeRequired(!isCheckCodeRequired);
     changeCheckCodeCondition()
       .then(() => {
-        message.success("修改成功");
+        message.success('修改成功');
       })
   }
 
@@ -80,10 +80,10 @@ const Settings: React.FunctionComponent<SettingsProps> = () => {
 
   return (
     <RcQueueAnim>
-      <div key={"settings"}>
-        <Card title={"系统设置"}>
+      <div key={'settings'}>
+        <Card title={'系统设置'}>
           <RcQueueAnim>
-            <div key={"common-settings"}>
+            <div key={'common-settings'}>
               <CommonSettings
                 submissionThreadPoolConfig={submissionThreadPoolConfig}
                 submissionFrequency={submissionFrequency}
@@ -92,7 +92,7 @@ const Settings: React.FunctionComponent<SettingsProps> = () => {
                 maxSubmissionSize={maxSubmissionSize}
                 onSubmissionSizeChange={(v) => setMaxSubmissionSize(v)}/>
             </div>
-            <div key={"danger-settings"}>
+            <div key={'danger-settings'}>
               <DangerSettings
                 isCheckCodeOpen={isCheckCodeRequired}
                 resetCheckCodeOpenCondition={() => onCheckCodeConditionChange()}/>

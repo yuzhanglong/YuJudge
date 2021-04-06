@@ -6,8 +6,8 @@
  * Email: yuzl1123@163.com
  */
 
-import {AxiosResponse} from "axios";
-import {SubmissionCountInfo} from "./submission";
+import {AxiosResponse} from 'axios';
+import {SubmissionCountInfo} from './submission';
 
 // 服务端基础响应内容
 export interface BaseResponse extends AxiosResponse {

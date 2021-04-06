@@ -6,13 +6,13 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {ScoreBoardItem, ScoreBoardSolutionInfo} from "../../models/submission";
-import {Table} from "antd";
-import {tenDecimalToTwentySixDecimal} from "../../utils/math";
-import {UserInfo} from "../../models/user";
-import classNames from "classnames";
-import style from "./scoreBoardTable.module.scss";
+import React from 'react';
+import {ScoreBoardItem, ScoreBoardSolutionInfo} from '../../models/submission';
+import {Table} from 'antd';
+import {tenDecimalToTwentySixDecimal} from '../../utils/math';
+import {UserInfo} from '../../models/user';
+import classNames from 'classnames';
+import style from './scoreBoardTable.module.scss';
 
 interface ScoreBoardTableProps {
   scoreBoardItems: ScoreBoardItem[];
@@ -36,7 +36,7 @@ const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) =
           value.tryAmount > 0 &&
           <div>
             <div className={style.problem_cell_time}>
-              {value.timeCost !== 0 ? value.timeCost : " "}
+              {value.timeCost !== 0 ? value.timeCost : ' '}
             </div>
             <div className={style.problem_cell_try_amount}>
               {getTryAmount(value.tryAmount)}
@@ -49,7 +49,7 @@ const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) =
 
   // 渲染尝试数目文字
   const getTryAmount = (amount: number) => {
-    return amount + (amount > 1 ? "tries" : "try");
+    return amount + (amount > 1 ? 'tries' : 'try');
   }
 
   // 小单元格被单击
@@ -73,8 +73,8 @@ const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) =
           className={style.score_board_table_cell}
           key={i}
           title={tenDecimalToTwentySixDecimal(i + 1)}
-          align={"center"}
-          dataIndex={["solutionInfo", i]}
+          align={'center'}
+          dataIndex={['solutionInfo', i]}
           render={renderRowInfo}
           width={70}/>
       );
@@ -97,36 +97,36 @@ const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) =
       <Table
         scroll={{x: 1000}}
         pagination={false}
-        size={"middle"}
+        size={'middle'}
         bordered
-        rowKey={"rank"}
+        rowKey={'rank'}
         dataSource={props.scoreBoardItems}>
         <Table.Column
-          title={"排名"}
-          align={"center"}
-          fixed={"left"}
+          title={'排名'}
+          align={'center'}
+          fixed={'left'}
           width={65}
           render={(value: any, record: any, index: number) => index + 1}/>
         <Table.Column
-          title={"用户/队伍"}
-          dataIndex={"teamInfo"}
+          title={'用户/队伍'}
+          dataIndex={'teamInfo'}
           render={renderTeamInfo}
-          align={"center"}
-          fixed={"left"}
+          align={'center'}
+          fixed={'left'}
           width={160}/>
         <Table.Column
-          title={"AC"}
-          dataIndex={"totalAcAmount"}
+          title={'AC'}
+          dataIndex={'totalAcAmount'}
           render={renderAcAmount}
-          align={"center"}
-          fixed={"left"}
+          align={'center'}
+          fixed={'left'}
           width={50}/>
         {props.scoreBoardItems.length > 0 && renderColumns()}
         <Table.Column
-          title={"罚时"}
-          dataIndex={"totalTimePenalty"}
-          align={"center"}
-          fixed={"right"}
+          title={'罚时'}
+          dataIndex={'totalTimePenalty'}
+          align={'center'}
+          fixed={'right'}
           width={80}/>
       </Table>
     </div>

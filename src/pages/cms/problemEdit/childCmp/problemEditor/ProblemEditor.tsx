@@ -1,11 +1,11 @@
-import React from "react";
-import {Card, Button} from "antd";
-import {Problem, ProblemTestCase} from "../../../../../models/problem";
-import LimitationForm from "./childCmp/LimitationForm";
-import BasicInfoForm from "./childCmp/BasicInfoForm";
-import DangerZoneForm from "./childCmp/DangerZoneForm";
-import TestCaseTable from "../../../../../components/testCaseTable/TestCaseTable";
-import style from "../../problemEdit.module.scss";
+import React from 'react';
+import {Card, Button} from 'antd';
+import {Problem, ProblemTestCase} from '../../../../../models/problem';
+import LimitationForm from './childCmp/LimitationForm';
+import BasicInfoForm from './childCmp/BasicInfoForm';
+import DangerZoneForm from './childCmp/DangerZoneForm';
+import TestCaseTable from '../../../../../components/testCaseTable/TestCaseTable';
+import style from '../../problemEdit.module.scss';
 
 
 interface ProblemEditorProps {
@@ -22,7 +22,7 @@ const ProblemEditor: React.FunctionComponent<ProblemEditorProps> = (props) => {
     const testCaseId = value.id;
     return (
       <div>
-        <Button type={"link"} danger onClick={() => {
+        <Button type={'link'} danger onClick={() => {
           onSolutionDelete(testCaseId)
         }}>
           删除
@@ -66,7 +66,7 @@ const ProblemEditor: React.FunctionComponent<ProblemEditorProps> = (props) => {
             测试点
           </div>
         } extra={
-        <Button type={"link"} onClick={props.onSolutionAdd}>
+        <Button type={'link'} onClick={props.onSolutionAdd}>
           添加测试点
         </Button>
       }>
@@ -76,7 +76,7 @@ const ProblemEditor: React.FunctionComponent<ProblemEditorProps> = (props) => {
           showDownLoadUrlColumn/>
       </Card>
       <Card
-        key={"cms_problem_edit_item"}
+        key={'cms_problem_edit_item'}
         className={style.cms_problem_edit_item}
         title={<div className={style.cms_problem_edit_item_title_danger}>危险项</div>}>
         <DangerZoneForm problem={props.problem}/>

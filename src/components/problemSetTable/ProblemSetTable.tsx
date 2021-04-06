@@ -6,16 +6,16 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {ProblemSet} from "../../models/problemSet";
-import {Button, Table} from "antd";
-import {TablePaginationConfig} from "antd/es/table";
-import {SINGLE_PAGE_SIZE_IN_PROBLEM_SET_MANAGE} from "../../config/config";
-import {SizeType} from "antd/lib/config-provider/SizeContext";
-import {timestampToDateTime} from "../../utils/dateTime";
-import {UserInfo} from "../../models/user";
-import {Link} from "react-router-dom";
-import {PROGRAM_LANGUAGE_NAME} from "../../common/programLanguage";
+import React from 'react';
+import {ProblemSet} from '../../models/problemSet';
+import {Button, Table} from 'antd';
+import {TablePaginationConfig} from 'antd/es/table';
+import {SINGLE_PAGE_SIZE_IN_PROBLEM_SET_MANAGE} from '../../config/config';
+import {SizeType} from 'antd/lib/config-provider/SizeContext';
+import {timestampToDateTime} from '../../utils/dateTime';
+import {UserInfo} from '../../models/user';
+import {Link} from 'react-router-dom';
+import {PROGRAM_LANGUAGE_NAME} from '../../common/programLanguage';
 
 interface ProblemSetTableProps {
   problemSets: ProblemSet[];
@@ -83,17 +83,17 @@ const ProblemSetTable: React.FunctionComponent<ProblemSetTableProps> = (props) =
   // 获取允许的编程语言信息
   const getAllowedLanguageInfo = (languages: string[]) => {
     if (languages) {
-      let res = "";
+      let res = '';
       const len = languages.length;
       for (let i = 0; i < len; i++) {
         res = res + PROGRAM_LANGUAGE_NAME[languages[i]];
         if (i < len - 1) {
-          res += " / ";
+          res += ' / ';
         }
       }
       return res;
     }
-    return "---";
+    return '---';
   }
 
   return (
@@ -101,50 +101,50 @@ const ProblemSetTable: React.FunctionComponent<ProblemSetTableProps> = (props) =
       <Table
         loading={props.isLoading}
         dataSource={props.problemSets}
-        rowKey={"id"}
+        rowKey={'id'}
         pagination={props.showPagination ? paginationProp : false}
         onChange={(e: TablePaginationConfig) => onPageChange(e)}
         size={props.tableSize}>
         <Table.Column
-          title={"编号"}
-          dataIndex={"id"}
-          key={"id"}/>
+          title={'编号'}
+          dataIndex={'id'}
+          key={'id'}/>
         <Table.Column
-          title={"题目集名称"}
-          key={"name"}
+          title={'题目集名称'}
+          key={'name'}
           render={renderProblemSetName}/>
         <Table.Column
-          title={"判题偏好"}
-          dataIndex={"judgePreference"}
-          key={"judgePreference"}/>
+          title={'判题偏好'}
+          dataIndex={'judgePreference'}
+          key={'judgePreference'}/>
         <Table.Column
-          title={"开始时间"}
-          dataIndex={"startTime"}
-          key={"startTime"}
+          title={'开始时间'}
+          dataIndex={'startTime'}
+          key={'startTime'}
           render={renderTime}/>
         <Table.Column
-          title={"截止时间"}
-          dataIndex={"deadline"}
-          key={"deadline"}
+          title={'截止时间'}
+          dataIndex={'deadline'}
+          key={'deadline'}
           render={renderTime}/>
         <Table.Column
-          title={"支持语言"}
-          dataIndex={"allowedLanguage"}
-          key={"allowedLanguage"}
+          title={'支持语言'}
+          dataIndex={'allowedLanguage'}
+          key={'allowedLanguage'}
           render={getAllowedLanguageInfo}/>
         <Table.Column
-          title={"创建者"}
-          dataIndex={"creator"}
-          key={"creator"}
+          title={'创建者'}
+          dataIndex={'creator'}
+          key={'creator'}
           render={renderCreator}/>
         {
           props.showOperations &&
           <Table.Column
-            title={"操作"}
-            key={"number"}
+            title={'操作'}
+            key={'number'}
             width={150}
             render={renderOperations}
-            align={"center"}/>
+            align={'center'}/>
         }
       </Table>
     </div>

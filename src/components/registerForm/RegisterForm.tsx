@@ -6,12 +6,12 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Button, Col, Form, Input, Row} from "antd";
-import {CheckCircleOutlined, LockOutlined, UserOutlined} from "@ant-design/icons";
-import classNames from "classnames";
-import style from "./registerForm.module.scss";
-import RcQueueAnim from "rc-queue-anim";
+import React from 'react';
+import {Button, Col, Form, Input, Row} from 'antd';
+import {CheckCircleOutlined, LockOutlined, UserOutlined} from '@ant-design/icons';
+import classNames from 'classnames';
+import style from './registerForm.module.scss';
+import RcQueueAnim from 'rc-queue-anim';
 
 interface registerFormProps {
   onConfirm?: (val: any) => void;
@@ -43,8 +43,8 @@ const RegisterForm: React.FunctionComponent<registerFormProps> = (props) => {
 
   // 验证两次密码输入是否相同
   const isPasswordSame = (): boolean => {
-    const p1 = form.getFieldValue("password");
-    const p2 = form.getFieldValue("passwordAgain");
+    const p1 = form.getFieldValue('password');
+    const p2 = form.getFieldValue('passwordAgain');
     return p1 === p2;
   }
 
@@ -58,12 +58,12 @@ const RegisterForm: React.FunctionComponent<registerFormProps> = (props) => {
 
   return (
     <RcQueueAnim>
-      <div key={"register-form"}>
+      <div key={'register-form'}>
         <Form
           className={className}
           layout="horizontal"
           form={form}
-          size={"large"}
+          size={'large'}
           onFinish={onRegisterConfirmed}>
           <Form.Item
             rules={[{required: props.validateRequired, message: '请输入用户名!'}]}
@@ -120,7 +120,7 @@ const RegisterForm: React.FunctionComponent<registerFormProps> = (props) => {
                 <Col span={9}>
                   {props.checkCode && <img
                     src={props.checkCode}
-                    alt={"checkCode"}
+                    alt={'checkCode'}
                     onClick={() => onCheckCodeClick()}/>}
                 </Col>
               </Row>

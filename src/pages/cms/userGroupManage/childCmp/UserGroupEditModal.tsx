@@ -6,9 +6,9 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect} from "react";
-import {Form, Input, Modal} from "antd";
-import {UserGroupInfo} from "../../../../models/UserGroup";
+import React, {useEffect} from 'react';
+import {Form, Input, Modal} from 'antd';
+import {UserGroupInfo} from '../../../../models/UserGroup';
 
 interface UserGroupEditModalProps {
   visible: boolean;
@@ -26,8 +26,8 @@ const UserGroupEditModal: React.FunctionComponent<UserGroupEditModalProps> = (pr
       form.setFieldsValue(props.dataToEdit);
     } else {
       const empty: UserGroupInfo = {
-        name: "",
-        description: "",
+        name: '',
+        description: '',
         id: 0
       }
       form.setFieldsValue(empty);
@@ -47,27 +47,27 @@ const UserGroupEditModal: React.FunctionComponent<UserGroupEditModalProps> = (pr
     <Modal
       forceRender
       maskClosable={false}
-      title={`${props.dataToEdit ? "编辑用户组" : "创建一个用户组"}`}
+      title={`${props.dataToEdit ? '编辑用户组' : '创建一个用户组'}`}
       visible={props.visible}
       onCancel={props.onCancel}
       onOk={onFormConfirm}>
       <Form form={form}>
         <Form.Item
           name="name"
-          label={"名称"}
+          label={'名称'}
           rules={[{
             required: true,
-            message: "请输入名称"
+            message: '请输入名称'
           }]}>
           <Input placeholder="输入用户组名称"/>
         </Form.Item>
         <Form.Item
           rules={[{
             required: true,
-            message: "请输入用户组描述"
+            message: '请输入用户组描述'
           }]}
           name="description"
-          label={"描述"}>
+          label={'描述'}>
           <Input placeholder="输入用户组描述"/>
         </Form.Item>
       </Form>

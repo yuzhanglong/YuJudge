@@ -6,13 +6,13 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useState} from "react";
-import ProblemTable from "../../../../components/problemTable/ProblemTable";
-import {Problem} from "../../../../models/problem";
-import {Button, Col, Input, message, Modal, Row} from "antd";
-import {updateProblemSetProblems} from "../../../../network/problemSetRequest";
-import {ExclamationCircleOutlined} from "@ant-design/icons";
-import {ADD_PROBLEM_MAX_SHOW} from "../../../../config/config";
+import React, {useState} from 'react';
+import ProblemTable from '../../../../components/problemTable/ProblemTable';
+import {Problem} from '../../../../models/problem';
+import {Button, Col, Input, message, Modal, Row} from 'antd';
+import {updateProblemSetProblems} from '../../../../network/problemSetRequest';
+import {ExclamationCircleOutlined} from '@ant-design/icons';
+import {ADD_PROBLEM_MAX_SHOW} from '../../../../config/config';
 
 interface AddProblemProps {
   problems: Problem[];
@@ -41,7 +41,7 @@ const AddProblem: React.FunctionComponent<AddProblemProps> = (props) => {
   const onAddConfirm = () => {
     updateProblemSetProblems(props.problemSetId, selectedRowIds)
       .then(() => {
-        message.success("添加成功");
+        message.success('添加成功');
         props.onAddSuccess();
       })
       .catch(() => {
@@ -91,13 +91,13 @@ const AddProblem: React.FunctionComponent<AddProblemProps> = (props) => {
   return (
     <Modal
       visible={props.visible}
-      title={"添加问题到题目集"}
+      title={'添加问题到题目集'}
       width={1000}
       footer={false}
       onCancel={props.onCancel}>
       <Row
-        align={"middle"}
-        justify={"space-between"}
+        align={'middle'}
+        justify={'space-between'}
         style={{marginBottom: 18}}>
         <Col>
           <Input.Search
@@ -108,7 +108,7 @@ const AddProblem: React.FunctionComponent<AddProblemProps> = (props) => {
         </Col>
         <Col>
           <Button
-            type={"primary"}
+            type={'primary'}
             onClick={() => onAddProblemConfirm()} disabled={!selectedRowIds.length}>
             添加选中项至题目集
           </Button>
@@ -116,7 +116,7 @@ const AddProblem: React.FunctionComponent<AddProblemProps> = (props) => {
       </Row>
       <ProblemTable
         onSelectionSelected={(val) => setSelectedRowIds(val)}
-        tableSize={"middle"}
+        tableSize={'middle'}
         onPageChange={onPaginationChange}
         totalPage={props.totalPage}
         isShowCheckBoxGroup={true}

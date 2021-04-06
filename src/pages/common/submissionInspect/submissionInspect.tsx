@@ -7,18 +7,18 @@
  */
 
 
-import React, {useEffect, useState} from "react";
-import {RouteComponentProps} from "react-router-dom";
-import SubmissionTable from "./childCmp/SubmissionTable";
-import SubmissionDetailModal from "./childCmp/SubmissionDetailModal";
-import {Submission} from "../../../models/submission";
-import {SUBMISSION_REQUEST_TASK_TIME, SUBMISSION_SINGLE_PAGE_SIZE} from "../../../config/config";
-import {getSubmissionById, getSubmissionByProblemId} from "../../../network/submissionRequest";
-import {message} from "antd";
-import {BaseResponse} from "../../../models/common";
-import {PROBLEM_SET_FORBIDDEN} from "../../../config/code";
-import {goToResult} from "../../../utils/route";
-import {ResultPageParam} from "../../../common/enumerations";
+import React, {useEffect, useState} from 'react';
+import {RouteComponentProps} from 'react-router-dom';
+import SubmissionTable from './childCmp/SubmissionTable';
+import SubmissionDetailModal from './childCmp/SubmissionDetailModal';
+import {Submission} from '../../../models/submission';
+import {SUBMISSION_REQUEST_TASK_TIME, SUBMISSION_SINGLE_PAGE_SIZE} from '../../../config/config';
+import {getSubmissionById, getSubmissionByProblemId} from '../../../network/submissionRequest';
+import {message} from 'antd';
+import {BaseResponse} from '../../../models/common';
+import {PROBLEM_SET_FORBIDDEN} from '../../../config/code';
+import {goToResult} from '../../../utils/route';
+import {ResultPageParam} from '../../../common/enumerations';
 
 interface SubmissionInspectProps {
 
@@ -70,7 +70,7 @@ const SubmissionInspect: React.FunctionComponent<SubmissionInspectProps & RouteC
         setSubmissionCount(res.data.total);
       })
       .catch(() => {
-        message.error("获取提交内容失败");
+        message.error('获取提交内容失败');
       })
   }
 
@@ -115,7 +115,7 @@ const SubmissionInspect: React.FunctionComponent<SubmissionInspectProps & RouteC
         isVisible={isSubmissionDetailVisible}
         onClose={() => setIsSubmissionIsVisible(false)}
         submission={activeSubmission}
-        problemName={""}/>
+        problemName={''}/>
     </div>
   )
 }

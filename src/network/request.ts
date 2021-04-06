@@ -7,7 +7,7 @@
  */
 
 import axios from 'axios';
-import {TIME_OUT, BASE_URL} from "../config/config";
+import {TIME_OUT, BASE_URL} from '../config/config';
 
 
 const request = axios.create({

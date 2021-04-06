@@ -6,10 +6,10 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {RouteComponentProps} from "react-router-dom";
-import {Empty} from "antd";
-import {EMPTY_IMAGE} from "../../../config/config";
+import React from 'react';
+import {RouteComponentProps} from 'react-router-dom';
+import {Empty} from 'antd';
+import {EMPTY_IMAGE} from '../../../config/config';
 
 interface SolutionProps {
 
@@ -20,7 +20,7 @@ const Solution: React.FunctionComponent<SolutionProps & RouteComponentProps> = (
     <div style={{
       height: 500
     }}>
-      <Empty description={"题解板块开发中"} image={EMPTY_IMAGE}/>
+      <Empty description={'题解板块开发中'} image={EMPTY_IMAGE}/>
     </div>
   )
 }

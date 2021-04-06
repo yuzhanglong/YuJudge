@@ -6,11 +6,11 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Button} from "antd";
-import style from "../landing.module.scss"
-import {GithubOutlined} from "@ant-design/icons";
-import mainPartImage from "../../../../assets/images/code-typing.svg"
+import React from 'react';
+import {Button} from 'antd';
+import style from '../landing.module.scss'
+import {GithubOutlined} from '@ant-design/icons';
+import mainPartImage from '../../../../assets/images/code-typing.svg'
 
 
 interface MainPartProps {
@@ -28,7 +28,7 @@ const MainPart: React.FunctionComponent<MainPartProps> = (props) => {
 
   // github被单击
   const onGithubClick = () => {
-    window.open("https://github.com/yuzhanglong/YuJudge");
+    window.open('https://github.com/yuzhanglong/YuJudge');
   }
 
   return (
@@ -69,7 +69,7 @@ const MainPart: React.FunctionComponent<MainPartProps> = (props) => {
         </div>
         <div>
           <img
-            alt={"codeTyping"}
+            alt={'codeTyping'}
             src={mainPartImage}
             className={style.main_part_illustration_image}/>
         </div>
@@ -79,8 +79,8 @@ const MainPart: React.FunctionComponent<MainPartProps> = (props) => {
 }
 
 MainPart.defaultProps = {
-  mainButtonText: "注册",
-  subButtonText: "登录"
+  mainButtonText: '注册',
+  subButtonText: '登录'
 }
 
 export default MainPart;

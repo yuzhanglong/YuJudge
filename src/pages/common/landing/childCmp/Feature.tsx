@@ -7,8 +7,8 @@
  */
 
 
-import React from "react";
-import style from "../landing.module.scss"
+import React from 'react';
+import style from '../landing.module.scss'
 
 interface FeatureProps {
 

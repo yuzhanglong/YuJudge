@@ -6,12 +6,12 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Button, Col, Form, Input, Row} from "antd";
-import {UserOutlined, LockOutlined, CheckCircleOutlined} from "@ant-design/icons";
-import classNames from "classnames";
-import style from "./loginForm.module.scss";
-import RcQueueAnim from "rc-queue-anim";
+import React from 'react';
+import {Button, Col, Form, Input, Row} from 'antd';
+import {UserOutlined, LockOutlined, CheckCircleOutlined} from '@ant-design/icons';
+import classNames from 'classnames';
+import style from './loginForm.module.scss';
+import RcQueueAnim from 'rc-queue-anim';
 
 interface LoginFormProps {
   onConfirm?: (val: any) => void;
@@ -43,11 +43,11 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = (props) => {
 
   return (
     <RcQueueAnim>
-      <div key={"login-form"}>
+      <div key={'login-form'}>
         <Form
           className={className}
           layout="horizontal"
-          form={form} size={"large"}
+          form={form} size={'large'}
           onFinish={onLoginConfirmed}>
 
           <Form.Item
@@ -84,7 +84,7 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = (props) => {
                 <Col span={9}>
                   {props.checkCode && <img
                     src={props.checkCode}
-                    alt={"checkCode"}
+                    alt={'checkCode'}
                     onClick={() => onCheckCodeClick()}/>}
                 </Col>
               </Row>
@@ -92,7 +92,7 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = (props) => {
           }
 
 
-          <div className={"check-code-image-wrap"} onClick={() => onCheckCodeClick()}>
+          <div className={'check-code-image-wrap'} onClick={() => onCheckCodeClick()}>
 
           </div>
 

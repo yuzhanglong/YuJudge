@@ -6,13 +6,13 @@
  * Email: yuzl1123@163.com
  */
 
-import request from "./interceptor";
-import {Submission} from "../models/submission";
+import request from './interceptor';
+import {Submission} from '../models/submission';
 
 // 提交代码
 export const submitCode = (submission: Submission) => {
   return request.post(
-    "/submission/submit_code",
+    '/submission/submit_code',
     submission,
     {
       headers: {
@@ -26,7 +26,7 @@ export const submitCode = (submission: Submission) => {
 // 通过problemId获取提交
 export const getSubmissionByProblemId = (start: number, count: number, problemId: number) => {
   return request.get(
-    "/submission/get_submissions",
+    '/submission/get_submissions',
     {
       params: {
         start: start,
@@ -41,7 +41,7 @@ export const getSubmissionByProblemId = (start: number, count: number, problemId
 // 获取某个提交的详细信息
 export const getSubmissionById = (submissionId: number) => {
   return request.get(
-    "/submission/get_submission_detail",
+    '/submission/get_submission_detail',
     {
       params: {
         submissionId: submissionId
@@ -53,7 +53,7 @@ export const getSubmissionById = (submissionId: number) => {
 // 获取某个时间区间内的提交统计
 export const getRecentSubmission = (begin: string, end: string, uid: number | null = null) => {
   return request.get(
-    "/submission/get_user_recent_submission",
+    '/submission/get_user_recent_submission',
     {
       params: {
         begin: begin,
@@ -67,7 +67,7 @@ export const getRecentSubmission = (begin: string, end: string, uid: number | nu
 // 用户判题结果统计
 export const getUserJudgeResultCount = (uid: number | null = null) => {
   return request.get(
-    "/submission/get_user_judge_result_count",
+    '/submission/get_user_judge_result_count',
     {
       params: {
         uid: uid
@@ -79,14 +79,14 @@ export const getUserJudgeResultCount = (uid: number | null = null) => {
 // 获取提交调度线程池相关配置
 export const getSubmissionThreadPoolConfiguration = () => {
   return request.get(
-    "/submission/thread_pool_config"
+    '/submission/thread_pool_config'
   )
 }
 
 //设置提交线程池最大工作数目
 export const setSubmissionThreadPoolMaxSize = (size: number) => {
   return request.put(
-    "/submission/thread_pool_max_working_size",
+    '/submission/thread_pool_max_working_size',
     {
       maxWorkingAmount: size
     }
@@ -96,7 +96,7 @@ export const setSubmissionThreadPoolMaxSize = (size: number) => {
 // 改变提交状态
 export const changeSubmissionCondition = (submissionId: number, condition: string) => {
   return request.put(
-    "/submission/condition",
+    '/submission/condition',
     {
       condition: condition,
       submissionId: submissionId
@@ -107,14 +107,14 @@ export const changeSubmissionCondition = (submissionId: number, condition: strin
 // 获取提交频率限制
 export const getSubmissionFrequencyControl = () => {
   return request.get(
-    "/submission/frequency_control"
+    '/submission/frequency_control'
   )
 }
 
 // 设置提交频率限制
 export const setSubmissionFrequencyControl = (frequency: number) => {
   return request.put(
-    "/submission/frequency_control",
+    '/submission/frequency_control',
     {
       frequency: frequency,
     },

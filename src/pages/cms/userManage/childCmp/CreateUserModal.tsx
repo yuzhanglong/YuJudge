@@ -6,8 +6,8 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Form, Input, Modal} from "antd";
+import React from 'react';
+import {Form, Input, Modal} from 'antd';
 
 interface CreateUserModalProps {
   isVisible: boolean;
@@ -31,20 +31,20 @@ const CreateUserModal: React.FunctionComponent<CreateUserModalProps> = (props) =
     <Modal title={'创建用户'} visible={props.isVisible} onCancel={() => props.onClose()} onOk={() => onCreateUser()}>
       <Form form={form}>
         <Form.Item
-          label={"用户名"}
+          label={'用户名'}
           name="nickname"
           rules={[{
             required: true,
-            message: "请输入用户名"
+            message: '请输入用户名'
           }]}>
           <Input/>
         </Form.Item>
         <Form.Item
-          label={"密码"}
+          label={'密码'}
           name="password"
           rules={[{
             required: true,
-            message: "请输入密码"
+            message: '请输入密码'
           }]}>
           <Input/>
         </Form.Item>

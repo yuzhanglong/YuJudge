@@ -7,9 +7,9 @@
  */
 
 
-import React from "react";
-import {JudgeHostCondition, JudgeHostInfo} from "../../models/judgeHost";
-import {Table, Tag} from "antd";
+import React from 'react';
+import {JudgeHostCondition, JudgeHostInfo} from '../../models/judgeHost';
+import {Table, Tag} from 'antd';
 
 interface JudgeHostTable {
   judgeHosts: JudgeHostInfo[];
@@ -41,7 +41,7 @@ const JudgeHostTable: React.FunctionComponent<JudgeHostTable> = (props) => {
   const renderCpuCostPercentage = (value: JudgeHostCondition) => {
     return (
       <div>
-        {value.cpuCostPercentage !== null ? value.cpuCostPercentage + "%" : "---"}
+        {value.cpuCostPercentage !== null ? value.cpuCostPercentage + '%' : '---'}
       </div>
     )
   }
@@ -50,7 +50,7 @@ const JudgeHostTable: React.FunctionComponent<JudgeHostTable> = (props) => {
   const renderMemoryCostPercentage = (value: JudgeHostCondition) => {
     return (
       <div>
-        {value.memoryCostPercentage !== null ? value.memoryCostPercentage + "%" : "---"}
+        {value.memoryCostPercentage !== null ? value.memoryCostPercentage + '%' : '---'}
       </div>
     )
   }
@@ -58,14 +58,14 @@ const JudgeHostTable: React.FunctionComponent<JudgeHostTable> = (props) => {
   // 渲染当前判题个数数量
   const renderWorkingAmount = (value: JudgeHostCondition) => {
     return (
-      <div>{value.workingAmount !== null ? value.workingAmount : "---"}</div>
+      <div>{value.workingAmount !== null ? value.workingAmount : '---'}</div>
     )
   }
 
   // 渲染cpu核心数
   const renderCpuCoreAmount = (value: JudgeHostCondition) => {
     return (
-      <div>{value.cpuCoreAmount !== null ? value.cpuCoreAmount : "---"}</div>
+      <div>{value.cpuCoreAmount !== null ? value.cpuCoreAmount : '---'}</div>
     )
   }
 
@@ -73,63 +73,63 @@ const JudgeHostTable: React.FunctionComponent<JudgeHostTable> = (props) => {
   // 获取判题机状态描述
   const getConditionDescription = (value: JudgeHostInfo) => {
     if (!value.connection) {
-      return "无连接";
+      return '无连接';
     }
-    return value?.active ? "运行中" : "已暂停";
+    return value?.active ? '运行中' : '已暂停';
   }
 
   // 获取判题机状态描述颜色
   const getConditionBadgeStatus = (value: JudgeHostInfo) => {
     if (!value.connection) {
-      return "red";
+      return 'red';
     }
-    return value?.active ? "green" : "yellow";
+    return value?.active ? 'green' : 'yellow';
   }
 
   return (
     <Table
       dataSource={props.judgeHosts}
-      rowKey={"id"}
+      rowKey={'id'}
       loading={props.isLoading}>
       <Table.Column
-        title={"状态"}
-        key={"active"}
+        title={'状态'}
+        key={'active'}
         render={renderCondition}
         width={100}/>
       <Table.Column
-        title={"名称"}
-        dataIndex={"name"}
-        align={"center"}
-        key={"name"}
+        title={'名称'}
+        dataIndex={'name'}
+        align={'center'}
+        key={'name'}
         width={250}/>
       <Table.Column
-        title={"cpu核心数"}
-        dataIndex={"condition"}
-        key={"cpu-core"}
-        align={"center"}
+        title={'cpu核心数'}
+        dataIndex={'condition'}
+        key={'cpu-core'}
+        align={'center'}
         render={renderCpuCoreAmount}/>
       <Table.Column
-        title={"当前判题个数"}
-        align={"center"}
-        dataIndex={"condition"}
-        key={"currentWorking"}
+        title={'当前判题个数'}
+        align={'center'}
+        dataIndex={'condition'}
+        key={'currentWorking'}
         render={renderWorkingAmount}/>
       <Table.Column
-        title={"cpu消耗"}
-        align={"center"}
-        dataIndex={"condition"}
-        key={"cpu"} render={renderCpuCostPercentage}/>
+        title={'cpu消耗'}
+        align={'center'}
+        dataIndex={'condition'}
+        key={'cpu'} render={renderCpuCostPercentage}/>
       <Table.Column
-        align={"center"}
-        title={"内存消耗"}
-        dataIndex={"condition"}
-        key={"memory"} render={renderMemoryCostPercentage}/>
+        align={'center'}
+        title={'内存消耗'}
+        dataIndex={'condition'}
+        key={'memory'} render={renderMemoryCostPercentage}/>
       {
         props.operations &&
         <Table.Column
-          align={"center"}
-          title={"操作"}
-          key={"operation"}
+          align={'center'}
+          title={'操作'}
+          key={'operation'}
           render={renderOperations}/>
       }
     </Table>

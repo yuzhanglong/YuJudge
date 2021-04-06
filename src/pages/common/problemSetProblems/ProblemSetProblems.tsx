@@ -7,19 +7,19 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect} from "react";
-import {UsePaginationState} from "../../../hooks/pagination";
-import {ProblemSetProblemPaginationRequest} from "../../../models/pagination";
-import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from "../../../config/config";
-import {getProblemSetProblems} from "../../../network/problemSetRequest";
-import {Button, Card, message} from "antd";
-import {RouteComponentProps} from "react-router-dom";
-import ProblemTable from "../../../components/problemTable/ProblemTable";
-import RcQueueAnim from "rc-queue-anim";
-import style from "./problemSetProblem.module.scss";
-import {BaseResponse} from "../../../models/common";
-import {goToResult} from "../../../utils/route";
-import {ResultPageParam} from "../../../common/enumerations";
+import React, {useEffect} from 'react';
+import {UsePaginationState} from '../../../hooks/pagination';
+import {ProblemSetProblemPaginationRequest} from '../../../models/pagination';
+import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from '../../../config/config';
+import {getProblemSetProblems} from '../../../network/problemSetRequest';
+import {Button, Card, message} from 'antd';
+import {RouteComponentProps} from 'react-router-dom';
+import ProblemTable from '../../../components/problemTable/ProblemTable';
+import RcQueueAnim from 'rc-queue-anim';
+import style from './problemSetProblem.module.scss';
+import {BaseResponse} from '../../../models/common';
+import {goToResult} from '../../../utils/route';
+import {ResultPageParam} from '../../../common/enumerations';
 
 interface ProblemSetProblemsProps {
 
@@ -58,11 +58,11 @@ const ProblemSetProblems: React.FunctionComponent<ProblemSetProblemsProps & Rout
 
   return (
     <RcQueueAnim>
-      <div className={style.problem_set_problem} key={"problem-set-home"}>
+      <div className={style.problem_set_problem} key={'problem-set-home'}>
         <div className={style.problem_set_problem_content}>
           <Card
-            title={"所有题目"}
-            headStyle={{textAlign: "center"}}>
+            title={'所有题目'}
+            headStyle={{textAlign: 'center'}}>
             <div className={style.problem_set_problem_body}>
               <ProblemTable
               isLoading={problemSetProblemPagination.isLoading}
@@ -74,7 +74,7 @@ const ProblemSetProblems: React.FunctionComponent<ProblemSetProblemsProps & Rout
               otherOperations={(content: any) => {
                 return (
                   <Button
-                    type={"link"}
+                    type={'link'}
                     onClick={() => onGotoProblemButtonClick(content)}>
                     前往
                   </Button>

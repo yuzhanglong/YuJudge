@@ -6,8 +6,8 @@
  * Email: yuzl1123@163.com
  */
 
-import React from "react";
-import {Form, Input, Modal} from "antd";
+import React from 'react';
+import {Form, Input, Modal} from 'antd';
 
 interface CreateProblemModalProps {
   visible: boolean;
@@ -27,16 +27,16 @@ const CreateProblemModal: React.FunctionComponent<CreateProblemModalProps> = (pr
 
   return (
     <Modal
-      title={"创建一个问题"}
+      title={'创建一个问题'}
       visible={props.visible}
       onCancel={() => props.onCancel()} onOk={() => onFormConfirm()}>
       <Form form={form}>
         <Form.Item
-          label={"名称"}
+          label={'名称'}
           name="name"
           rules={[{
             required: true,
-            message: "请输入名称"
+            message: '请输入名称'
           }]}>
           <Input/>
         </Form.Item>
