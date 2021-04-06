@@ -14,7 +14,7 @@ import { JUDGE_NUMBER_SETTINGS_RANGE } from '../../../../config/config'
 import { setSubmissionFrequencyControl, setSubmissionThreadPoolMaxSize } from '../../../../network/submissionRequest'
 import { SubmissionThreadPoolConfiguration } from '../../../../models/submission'
 import { languageChangeAction } from '../../../../store/action'
-import { useStore, useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { AppStore } from '../../../../store/reducer'
 
 interface CommonSettingsProps {
@@ -27,9 +27,7 @@ interface CommonSettingsProps {
 }
 
 const CommonSettings: React.FunctionComponent<CommonSettingsProps> = (props) => {
-  const store = useStore()
-  // @ts-ignore
-  const language = useSelector(state => state.language)
+  const language = useSelector<AppStore>(state => state.language)
   const dispatch = useDispatch()
 
   // 设置线程池配置
