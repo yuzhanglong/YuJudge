@@ -7,5 +7,15 @@
  */
 
 export interface Locale {
+  localName?: string
   settingPage?: any
+  current?: string
+  unlimited?: string
+  switch?: string
+  close?: string
+  confirm?: string
+  open?: string
+  judgeHost?: any
+  name?: string
+  condition?: string
 }
