@@ -6,21 +6,22 @@
  * Email: yuzl1123@163.com
  */
 
-import React from 'react';
-import {Card, Empty, Row} from 'antd';
-import style from '../profile.module.scss';
-import ColumnChart from '../../../../components/charts/ColumnChart';
-import {EMPTY_IMAGE} from '../../../../config/config';
-import {UserJudgeResultCount, UserSubmissionCount} from '../../../../models/submission';
-import JudgeResultCount from '../../../../components/judgeResultCount/JudgeResultCount';
+import React, { useContext } from 'react'
+import { Card, Empty, Row } from 'antd'
+import style from '../profile.module.scss'
+import ColumnChart from '../../../../components/charts/ColumnChart'
+import { EMPTY_IMAGE } from '../../../../config/config'
+import { UserJudgeResultCount, UserSubmissionCount } from '../../../../models/submission'
+import JudgeResultCount from '../../../../components/judgeResultCount/JudgeResultCount'
 import {
-  BulbOutlined, DashOutlined, FileTextOutlined, PieChartOutlined, SmileOutlined,
-} from '@ant-design/icons';
-import RcQueueAnim from 'rc-queue-anim';
-import CommonTitle from '../../../../components/commonTitle/CommonTitle';
-import {ProblemCountItem} from '../../../../models/problem';
-import ProblemItems from '../../../../components/userTag/childCmp/ProblemItems';
-import {generateUserSubmissionData} from '../../../../utils/chart';
+  BulbOutlined, DashOutlined, FileTextOutlined, PieChartOutlined, SmileOutlined
+} from '@ant-design/icons'
+import RcQueueAnim from 'rc-queue-anim'
+import CommonTitle from '../../../../components/commonTitle/CommonTitle'
+import { ProblemCountItem } from '../../../../models/problem'
+import ProblemItems from '../../../../components/userTag/childCmp/ProblemItems'
+import { generateUserSubmissionData } from '../../../../utils/chart'
+import { LocalContext } from '../../../../components/localContext/LocalContext'
 
 interface ProfileCountProps {
   recentSubmission: UserSubmissionCount[];
@@ -30,14 +31,17 @@ interface ProfileCountProps {
 }
 
 const ProfileCount: React.FunctionComponent<ProfileCountProps> = (props) => {
+  // local
+  const localContext = useContext(LocalContext)
+
   // 检测是否为空
   const checkRecentSubmissionIsEmpty = () => {
     for (let i = 0; i < props.recentSubmission.length; i++) {
       if (props.recentSubmission[i].totalAmount !== 0) {
-        return false;
+        return false
       }
     }
-    return true;
+    return true
   }
 
 
@@ -46,36 +50,37 @@ const ProfileCount: React.FunctionComponent<ProfileCountProps> = (props) => {
       <div key={'profile_group_item_1'}>
         <Row className={style.profile_group_item}>
           <Card
-            title={<CommonTitle title={'已通过'} icon={<SmileOutlined/>}/>}
+            title={
+              <CommonTitle title={localContext.profile.passed} icon={<SmileOutlined />} />}
             className={style.profile_user_have_pass}
             extra={
-              <DashOutlined/>
+              <DashOutlined />
             }>
             {
               props.acCount.length ?
-                <ProblemItems items={props.acCount}/> :
-                <Empty image={EMPTY_IMAGE}></Empty>
+                <ProblemItems items={props.acCount} /> :
+                <Empty image={EMPTY_IMAGE} />
             }
           </Card>
           <Card
-            title={<CommonTitle title={'尝试过'} icon={<BulbOutlined/>}/>}
+            title={<CommonTitle title={'尝试过'} icon={<BulbOutlined />} />}
             className={style.profile_user_have_tried}
             extra={
-              <DashOutlined/>
+              <DashOutlined />
             }>
             {props.triedCount.length ?
-              <ProblemItems items={props.triedCount}/> :
-              <Empty image={EMPTY_IMAGE}></Empty>}
+              <ProblemItems items={props.triedCount} /> :
+              <Empty image={EMPTY_IMAGE} />}
           </Card>
         </Row>
       </div>
       <div key={'profile_group_item_2'}>
         <Row>
           <Card
-            title={<CommonTitle title={'近期提交'} icon={<FileTextOutlined/>}/>}
+            title={<CommonTitle title={localContext.profile.recentSubmit} icon={<FileTextOutlined />} />}
             className={style.profile_recent_submission}
             extra={
-              <DashOutlined/>
+              <DashOutlined />
             }>
             {
               !checkRecentSubmissionIsEmpty() ?
@@ -85,19 +90,19 @@ const ProfileCount: React.FunctionComponent<ProfileCountProps> = (props) => {
                   stackField={'type'}
                   xKey={'date'}
                   yKey={'amount'}
-                  yKeyDesc={'提交数'}
-                  data={generateUserSubmissionData(props.recentSubmission)}/> :
-                <Empty image={EMPTY_IMAGE}/>
+                  yKeyDesc={localContext.profile.submissionAmount}
+                  data={generateUserSubmissionData(props.recentSubmission)} /> :
+                <Empty image={EMPTY_IMAGE} />
             }
           </Card>
           <Card
-            title={<CommonTitle title={'判题统计'} icon={<PieChartOutlined/>}/>}
+            title={<CommonTitle title={localContext.profile.judgeTotal} icon={<PieChartOutlined />} />}
             className={style.profile_recent_judge_result_count}
-            extra={<DashOutlined/>}>
+            extra={<DashOutlined />}>
             {
               props.userJudgeResultCount.length ?
-                <JudgeResultCount resultCounts={props.userJudgeResultCount}/> :
-                <Empty image={EMPTY_IMAGE}/>
+                <JudgeResultCount resultCounts={props.userJudgeResultCount} /> :
+                <Empty image={EMPTY_IMAGE} />
             }
           </Card>
         </Row>
@@ -106,4 +111,4 @@ const ProfileCount: React.FunctionComponent<ProfileCountProps> = (props) => {
   )
 }
 
-export default ProfileCount;
+export default ProfileCount

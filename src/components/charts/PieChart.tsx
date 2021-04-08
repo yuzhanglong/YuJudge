@@ -39,7 +39,7 @@ const PieChart: React.FunctionComponent<PieChartProps> = (props) => {
   }
 
   return (
-    <Pie {...config}></Pie>
+    <Pie {...config}/>
   )
 }
 

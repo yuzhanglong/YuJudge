@@ -30,6 +30,9 @@ export const zhCN: Locale = {
   save: '保存',
   and: '等',
   create: '创建',
+  go: '前往',
+  yes: '是',
+  no: '否',
   settingPage: {
     baseCard: '系统设置',
     commonZoneTitle: '一般项',
@@ -78,6 +81,8 @@ export const zhCN: Locale = {
     currentNoConnection: '该判题服务器无连接'
   },
   problemSet: {
+    base: '题目集',
+    basic: '题目集概况',
     baseCard: '😎 题目集管理',
     id: '题目集 ID',
     name: '题目集名称',
@@ -101,7 +106,14 @@ export const zhCN: Locale = {
     addProblem: '添加已有问题',
     ownProblem: '添加已有问题',
     editSuccess: '编辑成功',
-    removeSuccess: '移除成功'
+    removeSuccess: '移除成功',
+    forbidden: '该题目集禁止访问',
+    see: '查看问题',
+    action: '进行中',
+    started: '已开始',
+    wait: '未开始',
+    condition: '题目集状态',
+    isPublic: '是否公共题目集'
   },
   problemManage: {
     baseCard: '题目管理',
@@ -116,6 +128,8 @@ export const zhCN: Locale = {
     tag: '问题标签',
     edit: '编辑问题',
     timeLimit: '时间限制',
+    memoryLimit: '内存限制',
+    outputLimit: '输出限制',
     addProblem: '添加问题',
     addSuccess: '添加成功',
     desc: '内容描述',
@@ -124,7 +138,10 @@ export const zhCN: Locale = {
     addSelectedProblem: '添加选中的问题到题目集',
     problemWord: '问题关键词或id',
     isPublic: '是否公开',
-    languageSupport: '支持语言'
+    languageSupport: '支持语言',
+    submitSuccess: '提交成功',
+    problemNotExist: '这个问题不存在',
+    total: '所有题目'
   },
   user: {
     baseCard: '用户管理',
@@ -186,5 +203,51 @@ export const zhCN: Locale = {
     recentProblem: '最新问题',
     activeUser: '活跃用户',
     totalProblem: '问题总数'
+  },
+  basicResult: {
+    cannotFind: '找不到目标内容',
+    loginError: '登录信息已过期或无权限',
+    gotoLogin: '前往登录页',
+    goToHome: '返回首页',
+    backProblemSet: '返回题目集首页'
+  },
+  home: {
+    notice: '公告',
+    getNoticeError: '获取公告失败',
+    recentUpdate: '最近更新',
+    inputProblemNumber: '输入题目编号',
+    daily: '每日一句',
+    quickStart: '快速开始',
+    activeUser: '活跃用户',
+    loginSuccess: '登录成功',
+    registerSuccess: '注册成功，2秒后自动前往登录页面',
+    userLogin: '用户登录',
+    userRegister: '用户注册',
+    askRegister: '没有账号? 点我注册',
+    gotoLogin: '去登录'
+  },
+  languageTip: {
+    languageName: '语言名称',
+    compileScript: '编译脚本',
+    pleaseSelect: '请选择',
+    tip: '语言提示'
+  },
+  routeSelector: {
+    problem: '问题',
+    submitRecode: '提交记录',
+    solution: '题解'
+  },
+  count: {
+    analysis: '数据统计',
+    submitTrend: '提交趋势',
+    timeAxis: '时间轴'
+  },
+  profile: {
+    userHome: '个人中心',
+    passed: '已通过',
+    tried: '尝试过',
+    recentSubmit: '近期提交',
+    submissionAmount: '提交数',
+    judgeTotal: '判题统计'
   }
 } as any

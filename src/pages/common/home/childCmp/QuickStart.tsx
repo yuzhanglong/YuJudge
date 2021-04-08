@@ -6,24 +6,26 @@
  * Email: yuzl1123@163.com
  */
 
-import React from 'react';
-import {Input} from 'antd';
+import React, { useContext } from 'react'
+import { Input } from 'antd'
+import { LocalContext } from '../../../../components/localContext/LocalContext'
 
 interface QuickStartProps {
   onSearch: (value: string) => void;
 }
 
 const QuickStart: React.FunctionComponent<QuickStartProps> = (props) => {
-
+  // local
+  const localContext = useContext(LocalContext)
   return (
     <div>
       <Input.Search
         enterButton={'GO!'}
         onSearch={(value) => props.onSearch(value)}
-        placeholder="输入题目编号"
+        placeholder={localContext.home.inputProblemNumber}
       />
     </div>
   )
 }
 
-export default QuickStart;
+export default QuickStart
