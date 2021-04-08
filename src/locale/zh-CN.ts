@@ -33,6 +33,8 @@ export const zhCN: Locale = {
   go: '前往',
   yes: '是',
   no: '否',
+  submit: '提交',
+  clear: '清空',
   settingPage: {
     baseCard: '系统设置',
     commonZoneTitle: '一般项',
@@ -141,7 +143,10 @@ export const zhCN: Locale = {
     languageSupport: '支持语言',
     submitSuccess: '提交成功',
     problemNotExist: '这个问题不存在',
-    total: '所有题目'
+    total: '所有题目',
+    timeCost: '时间消耗',
+    memoryCost: '内存消耗',
+    testCase: '测试点'
   },
   user: {
     baseCard: '用户管理',
@@ -249,5 +254,31 @@ export const zhCN: Locale = {
     recentSubmit: '近期提交',
     submissionAmount: '提交数',
     judgeTotal: '判题统计'
+  },
+  scoreBoard: {
+    base: '记分板',
+    editSuccess: '修改成功',
+    downloadError: '下载失败',
+    submission: '提交',
+    submissionInfo: '提交信息',
+    result: '结果',
+    lan: '语言',
+    host: '评测机',
+    time: '提交时间',
+    editJudgeResult: '修改判题结果',
+    editWarn: '管理员可以修改本次判题结果，请谨慎处理',
+    oldRes: '原结果',
+    newRes: '修改为',
+    addTag: '添加一个标签',
+    rank: '排名',
+    team: '用户/队伍',
+    penalty: '罚时',
+    cannotSubmit: '该时间段无提交'
+  },
+  testCase: {
+    id: 'ID',
+    desc: '描述',
+    basicStdIn: '标准输入',
+    stdOut: '标准输出'
   }
 } as any

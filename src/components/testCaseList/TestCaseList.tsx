@@ -6,12 +6,13 @@
  * Email: yuzl1123@163.com
  */
 
-import React from 'react';
-import {JudgeResultForSingleTestCase} from '../../models/submission';
-import {Button, Col, Divider, Row} from 'antd';
-import ConditionTag from '../conditionTag/ConditionTag';
-import style from './testCaseList.module.scss';
-import {ClockCircleOutlined, CodeOutlined, DownloadOutlined} from '@ant-design/icons';
+import React, { useContext } from 'react'
+import { JudgeResultForSingleTestCase } from '../../models/submission'
+import { Button, Col, Divider, Row } from 'antd'
+import ConditionTag from '../conditionTag/ConditionTag'
+import style from './testCaseList.module.scss'
+import { ClockCircleOutlined, CodeOutlined, DownloadOutlined } from '@ant-design/icons'
+import { LocalContext } from '../localContext/LocalContext'
 
 interface TestCaseListProps {
   testCases: JudgeResultForSingleTestCase[];
@@ -19,6 +20,8 @@ interface TestCaseListProps {
 }
 
 const TestCaseList: React.FunctionComponent<TestCaseListProps> = (props) => {
+  // local
+  const localContext = useContext(LocalContext)
 
   // 渲染列表描述
   const renderListItemDescription = (testCase: JudgeResultForSingleTestCase) => {
@@ -28,10 +31,10 @@ const TestCaseList: React.FunctionComponent<TestCaseListProps> = (props) => {
           <Col style={{
             marginRight: 20
           }}>
-            <ClockCircleOutlined/> 时间消耗: {testCase.cpuTimeCost || testCase.realTimeCost} ms
+            <ClockCircleOutlined /> {localContext.problem.timeCost}: {testCase.cpuTimeCost || testCase.realTimeCost} ms
           </Col>
           <Col>
-            <CodeOutlined/> 内存消耗: {testCase.memoryCost} kb
+            <CodeOutlined /> {localContext.problem.memoryCost}: {testCase.memoryCost} kb
           </Col>
         </Row>
       </div>
@@ -41,7 +44,7 @@ const TestCaseList: React.FunctionComponent<TestCaseListProps> = (props) => {
   // 下载测试点
   const onSubmissionButtonClick = () => {
     if (props.onDownloadButtonClick) {
-      props.onDownloadButtonClick();
+      props.onDownloadButtonClick()
     }
   }
 
@@ -56,13 +59,13 @@ const TestCaseList: React.FunctionComponent<TestCaseListProps> = (props) => {
                   <ConditionTag
                     isEntire={false}
                     condition={item.message || ''}
-                    detail={null}/>
+                    detail={null} />
                 </Col>
                 <Col span={18}>
                   <Row>
                     <div
                       className={style.test_case_title}>
-                      {`测试点${index}`}
+                      {`${localContext.problem.testCase} ${index}`}
                     </div>
                   </Row>
                   <Row>
@@ -73,11 +76,11 @@ const TestCaseList: React.FunctionComponent<TestCaseListProps> = (props) => {
                   <Button
                     onClick={() => onSubmissionButtonClick()}
                     className={style.download_button}
-                    icon={<DownloadOutlined/>}
-                    size={'middle'}/>
+                    icon={<DownloadOutlined />}
+                    size={'middle'} />
                 </Col>
               </Row>
-              <Divider/>
+              <Divider />
             </div>
           )
         })
@@ -86,4 +89,4 @@ const TestCaseList: React.FunctionComponent<TestCaseListProps> = (props) => {
   )
 }
 
-export default TestCaseList;
+export default TestCaseList

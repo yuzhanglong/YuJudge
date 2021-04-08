@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react'
 import {Button} from 'antd';
+import { LocalContext } from '../localContext/LocalContext'
 
 interface SubmitToolBarProps {
   onSubmit?: () => void;
@@ -10,6 +11,9 @@ interface SubmitToolBarProps {
 
 
 const SubmitToolBar: React.FunctionComponent<SubmitToolBarProps> = (props) => {
+  // local
+  const localContext = useContext(LocalContext)
+
   return (
     <div style={{display: 'flex'}}>
       <div>
@@ -18,14 +22,14 @@ const SubmitToolBar: React.FunctionComponent<SubmitToolBarProps> = (props) => {
           style={{marginRight: 10}}
           onClick={props.onSubmit}
           disabled={!props.isButtonActive}>
-          提交
+          {localContext.submit}
         </Button>
       </div>
       <div>
         <Button
           onClick={props.onClear}
           disabled={!props.isButtonActive}>
-          清空
+          {localContext.clear}
         </Button>
       </div>
     </div>
