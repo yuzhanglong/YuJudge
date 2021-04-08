@@ -10,4 +10,4 @@
 import React from 'react'
 import { zhCN } from '../../locale'
 
-export const LocalContext = React.createContext(zhCN)
+export const LocalContext = React.createContext(zhCN as any)

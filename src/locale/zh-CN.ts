@@ -23,6 +23,7 @@ export const zhCN: Locale = {
   seeDetail: '查看详情',
   analysis: '数据统计',
   delete: '删除',
+  cancel: '取消',
   createTime: '创建时间',
   deadline: '截止时间',
   settingPage: {
@@ -52,7 +53,11 @@ export const zhCN: Locale = {
     close: '关闭这个判题服务器',
     closeDesc: '这个判题服务器将不再接受任何任务直到重新启动',
     delete: '删除这个判题服务器',
-    deleteDetail: '注意: 这个操作不可恢复'
+    deleteDetail: '注意: 这个操作不可恢复',
+    createSuccess: '创建成功',
+    running: '运行中',
+    noConnection: '无连接',
+    stopped: '已暂停'
   },
   problemSet: {
     id: '题目集 ID',
