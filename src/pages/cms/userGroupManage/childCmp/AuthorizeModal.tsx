@@ -7,12 +7,13 @@
  */
 
 
-import React, {useEffect, useState} from 'react';
-import {message, Modal, Transfer} from 'antd';
-import {PermissionInfo} from '../../../../models/permission';
-import {getPermissionByUserGroupId, updateUserGroupPermission} from '../../../../network/permissionRequest';
-import {TransferItem} from 'antd/es/transfer';
-import {BaseResponse} from '../../../../models/common';
+import React, { useContext, useEffect, useState } from 'react'
+import { message, Modal, Transfer } from 'antd'
+import { PermissionInfo } from '../../../../models/permission'
+import { getPermissionByUserGroupId, updateUserGroupPermission } from '../../../../network/permissionRequest'
+import { TransferItem } from 'antd/es/transfer'
+import { BaseResponse } from '../../../../models/common'
+import { LocalContext } from '../../../../components/localContext/LocalContext'
 
 interface AuthorizeModalProps {
   // 所有可供分配的permission
@@ -26,23 +27,25 @@ interface AuthorizeModalProps {
 }
 
 const AuthorizeModal: React.FunctionComponent<AuthorizeModalProps> = (props) => {
+  // local
+  const localContext = useContext(LocalContext)
 
   // 所有可供分配权限
-  const [totalPermission, setTotalPermissions] = useState<PermissionInfo[]>([]);
+  const [totalPermission, setTotalPermissions] = useState<PermissionInfo[]>([])
 
-  const [userGroupPermissionKeys, setUserGroupPermissionKeys] = useState<string[]>([]);
+  const [userGroupPermissionKeys, setUserGroupPermissionKeys] = useState<string[]>([])
 
   useEffect(() => {
     if (props.userGroupId) {
       getPermissionByUserGroupId(props.userGroupId)
         .then(res => {
-          initTransferRightData(res.data);
+          initTransferRightData(res.data)
         })
         .catch(() => {
-        });
+        })
     }
-    setTotalPermissions(props.totalPermissions);
-  }, [props.totalPermissions, props.userGroupId]);
+    setTotalPermissions(props.totalPermissions)
+  }, [props.totalPermissions, props.userGroupId])
 
   // 渲染左侧内容【即所有可分配的权限】
   const publishTransferLeftData = () => {
@@ -53,22 +56,22 @@ const AuthorizeModal: React.FunctionComponent<AuthorizeModalProps> = (props) => 
         key: res.id.toString(),
         title: res.name
       }
-      return item;
+      return item
     })
   }
 
   // 处理右侧内容
   const initTransferRightData = (permissions: PermissionInfo[]) => {
-    let tmp: string[] = [];
+    let tmp: string[] = []
     for (let i = 0; i < permissions.length; i++) {
-      tmp.push(permissions[i].id.toString());
+      tmp.push(permissions[i].id.toString())
     }
-    setUserGroupPermissionKeys(tmp);
+    setUserGroupPermissionKeys(tmp)
   }
 
   // 穿梭框内容被改变
   const onTransferChange = (targetKeys: string[]) => {
-    setUserGroupPermissionKeys(targetKeys);
+    setUserGroupPermissionKeys(targetKeys)
   }
 
   // 发送请求，更新权限
@@ -76,19 +79,19 @@ const AuthorizeModal: React.FunctionComponent<AuthorizeModalProps> = (props) => 
     if (props.userGroupId) {
       updateUserGroupPermission(props.userGroupId, userGroupPermissionKeys)
         .then(() => {
-          message.success('授权成功~');
-          props.onCancel();
+          message.success(localContext.userGroup.authSuccess)
+          props.onCancel()
         })
-        .catch((err:BaseResponse) => {
-          message.error(err.message);
-        });
+        .catch((err: BaseResponse) => {
+          message.error(err.message)
+        })
     }
   }
 
   return (
     <Modal
       width={800}
-      title={'用户组授权'}
+      title={localContext.userGroup.auth}
       destroyOnClose
       visible={props.visible}
       onCancel={props.onCancel}
@@ -98,16 +101,21 @@ const AuthorizeModal: React.FunctionComponent<AuthorizeModalProps> = (props) => 
       <Transfer
         listStyle={{
           width: 350,
-          height: 300,
+          height: 300
         }}
-        titles={['可供分配的权限', '已有权限']}
+        titles={
+          [
+            `${localContext.userGroup.authCanAllocate}`,
+            `${localContext.userGroup.haveAllocated}`
+          ]
+        }
         dataSource={publishTransferLeftData()}
         rowKey={data => data.key}
         render={item => (<div>【{item.title}】{item.description}</div>)}
         targetKeys={userGroupPermissionKeys}
-        onChange={onTransferChange}/>
+        onChange={onTransferChange} />
     </Modal>
   )
 }
 
-export default AuthorizeModal;
+export default AuthorizeModal

@@ -6,21 +6,25 @@
  * Email: yuzl1123@163.com
  */
 
-import React from 'react';
-import {Row, Select, Space} from 'antd';
-import {UserGroupInfo} from '../../../../models/UserGroup';
+import React, { useContext } from 'react'
+import { Row, Select, Space } from 'antd'
+import { UserGroupInfo } from '../../../../models/UserGroup'
+import { LocalContext } from '../../../../components/localContext/LocalContext'
 
 interface UserManageToolBarProps {
   onSelectorChange: (value: number) => void;
   selectorItems: UserGroupInfo[];
 }
 
-const UserManageToolBar: React.FunctionComponent<UserManageToolBarProps> = (props) => {
+const UserManageToolBar: React.FC<UserManageToolBarProps> = (props) => {
 
   // 选择器内容被改变
   const onSelectorChange = (value: number) => {
-    props.onSelectorChange(value);
+    props.onSelectorChange(value)
   }
+
+  // local
+  const localContext = useContext(LocalContext)
 
   // 渲染选择器
   const renderOptions = () => {
@@ -38,16 +42,16 @@ const UserManageToolBar: React.FunctionComponent<UserManageToolBarProps> = (prop
       <Space style={{
         paddingBottom: 20
       }}>
-        筛选用户类型:
+        {localContext.user.userTypes}
         <Select
           defaultValue={-1}
-          placeholder={'选择一个用户类型'}
+          placeholder={localContext.user.chooseUserType}
           style={{
             minWidth: 160
           }}
           onChange={onSelectorChange}>
           <Select.Option key={'all'} value={-1}>
-            所有用户
+            {localContext.user.totalUser}
           </Select.Option>
           {renderOptions()}
         </Select>
@@ -56,4 +60,4 @@ const UserManageToolBar: React.FunctionComponent<UserManageToolBarProps> = (prop
   )
 }
 
-export default UserManageToolBar;
+export default UserManageToolBar
