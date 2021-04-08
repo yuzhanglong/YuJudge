@@ -70,12 +70,14 @@ export const zhCN: Locale = {
   },
   problemManage: {
     baseCard: '题目管理',
-    createProblem: '创建题目'
+    createProblem: '创建一个问题',
+    inputName: '请输入名称'
   },
   problem: {
     id: '题目 ID',
     name: '问题名称',
-    tag: '问题标签'
+    tag: '问题标签',
+    edit:'编辑问题'
   },
   user: {
     name: '用户名',
