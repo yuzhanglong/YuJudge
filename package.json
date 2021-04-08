@@ -35,6 +35,7 @@
     "classnames": "^2.2.6",
     "codemirror": "^5.57.0",
     "compression-webpack-plugin": "^5.0.1",
+    "crypto-js": "^4.0.0",
     "css-loader": "3.4.2",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",

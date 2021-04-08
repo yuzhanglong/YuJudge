@@ -6,9 +6,7 @@
  * Email: yuzl1123@163.com
  */
 
-import { Locale } from './types'
-
-export const zhCN: Locale = {
+export const zhCN = {
   localName: 'zh-CN',
   current: '当前',
   unlimited: '无限制',
@@ -280,5 +278,21 @@ export const zhCN: Locale = {
     desc: '描述',
     basicStdIn: '标准输入',
     stdOut: '标准输出'
+  },
+  submissionInspect: {
+    cannotGetSubmission: '获取提交内容失败',
+    submitTime: '提交时间',
+    submitCondition: '状态',
+    submitCompiler: '编译器',
+    submitUser: '提交用户',
+    noOut: '编译器没有输出O(∩_∩)O~',
+    seeSubmission: '查看提交',
+    time: '提交时间',
+    stats: '判题状态',
+    preference: '判题偏好',
+    host: '判题机',
+    case: '测试点',
+    code: '用户代码',
+    out: '编译器输出'
   }
-} as any
+}

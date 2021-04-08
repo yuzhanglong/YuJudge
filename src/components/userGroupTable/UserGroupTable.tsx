@@ -6,9 +6,10 @@
  * Email: yuzl1123@163.com
  */
 
-import React from 'react';
-import {Table} from 'antd';
-import {UserGroupInfo} from '../../models/UserGroup';
+import React, { useContext } from 'react'
+import { Table } from 'antd'
+import { UserGroupInfo } from '../../models/UserGroup'
+import { LocalContext } from '../localContext/LocalContext'
 
 interface UserGroupTableProps {
   // 用户组信息列表
@@ -19,6 +20,9 @@ interface UserGroupTableProps {
 }
 
 const UserGroupTable: React.FunctionComponent<UserGroupTableProps> = (props) => {
+  // local
+  const localContext = useContext(LocalContext)
+
   // 渲染操作列
   const renderOperations = (content: any) => {
     return (
@@ -33,26 +37,26 @@ const UserGroupTable: React.FunctionComponent<UserGroupTableProps> = (props) => 
       dataSource={props.userGroups}
       rowKey={'id'}>
       <Table.Column
-        title={'名称'}
+        title={localContext.userGroup.name}
         key={'name'}
         dataIndex={'name'}
-        width={250}/>
+        width={250} />
       />
       <Table.Column
-        title={'描述'}
+        title={localContext.userGroup.desc}
         dataIndex={'description'}
-        key={'description'}/>
+        key={'description'} />
       />
       <Table.Column
-        title={'操作'}
+        title={localContext.operation}
         key={'description'}
         align={'center'}
         width={300}
         fixed={'right'}
-        render={renderOperations}/>
+        render={renderOperations} />
       />
     </Table>
   )
 }
 
-export default UserGroupTable;
+export default UserGroupTable
