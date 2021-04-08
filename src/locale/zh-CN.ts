@@ -33,6 +33,29 @@ export const zhCN = {
   no: '否',
   submit: '提交',
   clear: '清空',
+  header: {
+    home: '首页',
+    problem: '问题',
+    problemSet: '题目集',
+    preview: '概览',
+    total: '所有题目',
+    scoreBoard: '记分板',
+    analysis: '统计'
+  },
+  dashboardSide: {
+    base: '控制台',
+    settings: '设置',
+    judgeHosts: '判题机',
+    detail: '判题机详情',
+    userGroup: '用户&用户组',
+    problemAndProblemSet: '题目&题目集',
+    problemManager: '题目管理',
+    problemSetManage: '题目集管理',
+    problemEdit: '题目编辑',
+    problemSetEdit: '题目集编辑',
+    userManage: '用户管理',
+    userGroupManage: '用户组管理'
+  },
   settingPage: {
     baseCard: '系统设置',
     commonZoneTitle: '一般项',
@@ -83,7 +106,7 @@ export const zhCN = {
   problemSet: {
     base: '题目集',
     basic: '题目集概况',
-    baseCard: '😎 题目集管理',
+    baseCard: '题目集管理',
     id: '题目集 ID',
     name: '题目集名称',
     preference: '判题偏好',
@@ -294,5 +317,10 @@ export const zhCN = {
     case: '测试点',
     code: '用户代码',
     out: '编译器输出'
+  },
+  notice: {
+    title: '标题',
+    author: '作者',
+    releaseTime: '发布时间'
   }
 }

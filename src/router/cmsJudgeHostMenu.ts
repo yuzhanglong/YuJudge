@@ -11,7 +11,7 @@ import {MenuRouterConfig} from './config';
 export const JUDGE_HOST_MANAGE_MENU: MenuRouterConfig[] = [
   {
     key: '/cms/judge_hosts',
-    title: '判题机',
+    title: 'dashboardSide.judgeHosts',
     path: '/cms/judge_hosts',
     icon: 'CloudServerOutlined',
     component: 'JudgeHostManage',
@@ -20,7 +20,7 @@ export const JUDGE_HOST_MANAGE_MENU: MenuRouterConfig[] = [
   {
     key: '/cms/judge_hosts/inspect/:judgeHostId',
     component: 'JudgeHostInspect',
-    title: '判题机详情',
+    title: 'dashboardSide.detail',
     path: '/cms/judge_hosts/inspect/:judgeHostId',
     isShowInMenu: false
   },
