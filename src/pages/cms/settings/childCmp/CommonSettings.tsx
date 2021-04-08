@@ -37,7 +37,7 @@ const CommonSettings: React.FunctionComponent<CommonSettingsProps> = (props) => 
   const setSubmissionThreadPoolSize = (size: number) => {
     setSubmissionThreadPoolMaxSize(size)
       .then(() => {
-        message.success('设置成功')
+        message.success(localContext.settingPage.setSuccess)
         props.onThreadConfigChange()
       })
   }
@@ -59,7 +59,7 @@ const CommonSettings: React.FunctionComponent<CommonSettingsProps> = (props) => 
   const reSetSubmissionFrequencyControl = () => {
     setSubmissionFrequencyControl(props.submissionFrequency)
       .then(() => {
-        message.success('设置成功~')
+        message.success(localContext.settingPage.setSuccess)
       })
   }
 

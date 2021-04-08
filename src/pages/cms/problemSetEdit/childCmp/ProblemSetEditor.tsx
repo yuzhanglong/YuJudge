@@ -6,18 +6,19 @@
  * Email: yuzl1123@163.com
  */
 
-import React from 'react';
-import {Button, Card, message, Popconfirm as PopConfirm} from 'antd';
-import ProblemTable from '../../../../components/problemTable/ProblemTable';
-import {Problem} from '../../../../models/problem';
-import {RouteComponentProps} from 'react-router-dom';
-import EditorTip from '../../../../components/editorTip/editorTip';
-import BasicInfoEditor from './BasicInfoEditor';
-import {ProblemSet} from '../../../../models/problemSet';
-import {dateRangeMomentArrayToTimeStampArray} from '../../../../utils/dateTime';
-import {removeProblemSet, updateProblemSetBasicInfo} from '../../../../network/problemSetRequest';
-import RcQueueAnim from 'rc-queue-anim';
+import React, { useContext } from 'react'
+import { Button, Card, message, Popconfirm as PopConfirm } from 'antd'
+import ProblemTable from '../../../../components/problemTable/ProblemTable'
+import { Problem } from '../../../../models/problem'
+import { RouteComponentProps } from 'react-router-dom'
+import EditorTip from '../../../../components/editorTip/editorTip'
+import BasicInfoEditor from './BasicInfoEditor'
+import { ProblemSet } from '../../../../models/problemSet'
+import { dateRangeMomentArrayToTimeStampArray } from '../../../../utils/dateTime'
+import { removeProblemSet, updateProblemSetBasicInfo } from '../../../../network/problemSetRequest'
+import RcQueueAnim from 'rc-queue-anim'
 import style from '../problemSetEdit.module.scss'
+import { LocalContext } from '../../../../components/localContext/LocalContext'
 
 interface ProblemSetEditorProps {
   problems: Problem[];
@@ -28,7 +29,9 @@ interface ProblemSetEditorProps {
   onPageChange: (n: number) => void;
 }
 
-const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteComponentProps> = (props) => {
+const ProblemSetEditor: React.FC<ProblemSetEditorProps & RouteComponentProps> = (props) => {
+  // local
+  const localContext = useContext(LocalContext)
 
   // 跳转编辑界面
   const gotoEditProblem = (problemId: number) => {
@@ -37,14 +40,14 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
 
   // 移除按钮被点击
   const onRemoveButtonClick = (content: any) => {
-    const problemId = content.id;
-    props.onRemoveFormProblemSet(problemId);
+    const problemId = content.id
+    props.onRemoveFormProblemSet(problemId)
   }
 
   // 编辑确认
   const onEditConfirm = (formData: any) => {
     if (formData) {
-      const rangeTmp = dateRangeMomentArrayToTimeStampArray(formData.timeRange);
+      const rangeTmp = dateRangeMomentArrayToTimeStampArray(formData.timeRange)
       const problemSet: ProblemSet = {
         name: formData.name,
         description: formData.description,
@@ -56,7 +59,7 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
       }
       updateProblemSetBasicInfo(problemSet)
         .then(() => {
-          message.success('编辑成功');
+          message.success(localContext.problemSet.editSuccess)
         })
         .catch(() => {
         })
@@ -68,32 +71,40 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
     if (props.problemSet.id) {
       removeProblemSet(props.problemSet.id)
         .then(() => {
-          message.success('移除成功~');
-        });
-      props.history.replace('/cms/problem_manage/problem_sets');
+          message.success(localContext.problemSet.removeSuccess)
+        })
+      props.history.replace('/cms/problem_manage/problem_sets')
     }
   }
 
   return (
-    <Card title={'题目集编辑'}>
+    <Card title={localContext.problemSet.edit}>
       <RcQueueAnim>
         <div key={'problem-editor-basic-info'}>
           <Card
-            type="inner"
-            title={<div className={style.cms_problem_set_edit_item_title}>基本信息</div>}>
+            type='inner'
+            title={
+              <div className={style.cms_problem_set_edit_item_title}>
+                {localContext.problemSet.basicInfo}
+              </div>
+            }>
             <BasicInfoEditor
               problemSet={props.problemSet}
-              onEditConfirm={onEditConfirm}/>
+              onEditConfirm={onEditConfirm} />
           </Card>
         </div>
         <div key={'problem-editor-problems'}>
           <Card
-            type="inner"
-            style={{marginTop: 10}}
-            title={<div className={style.cms_problem_set_edit_item_title}>拥有的题目</div>}
+            type='inner'
+            style={{ marginTop: 10 }}
+            title={
+              <div className={style.cms_problem_set_edit_item_title}>
+                {localContext.problemSet.ownProblem}
+              </div>
+            }
             extra={
               <Button type={'link'} onClick={() => props.onProblemAdd()}>
-                添加已有问题
+                {localContext.problemSet.addProblem}
               </Button>
             }>
             <ProblemTable
@@ -104,35 +115,36 @@ const ProblemSetEditor: React.FunctionComponent<ProblemSetEditorProps & RouteCom
               onProblemEdit={gotoEditProblem}
               otherOperations={(content: any) => (
                 <PopConfirm
-                  title="你确定要从题目集中移除这个题目吗"
-                  okText="确定"
-                  cancelText="取消"
+                  title={localContext.problemSet.removeConfirm}
+                  okText={localContext.confirm}
+                  cancelText={localContext.cancel}
                   onConfirm={() => onRemoveButtonClick(content)}>
                   <Button type={'link'} danger>
-                    从题目集中移除
+                    {localContext.problemSet.removeFromProblemSet}
                   </Button>
                 </PopConfirm>
-              )}/>
+              )} />
           </Card>
         </div>
         <div key={'problem-editor-danger'}>
           <Card
-            type="inner"
-            style={{marginTop: 10}}
-            title={<div className={style.cms_problem_set_edit_item_title_danger}>危险项</div>}>
+            type='inner'
+            style={{ marginTop: 10 }}
+            title={<div className={style.cms_problem_set_edit_item_title_danger}>
+              {localContext.problemSet.danger}
+            </div>}>
             <EditorTip
-              title={'删除这个题目集'}
-              content={'此操作不可恢复，注意: 与它相关联的题目不会被删除'}>
+              title={localContext.problemSet.delete}
+              content={localContext.problemSet.deleteWarn}>
               <Button danger onClick={() => onRemoveProblemSetButtonClick()}>
-                删除
+                {localContext.delete}
               </Button>
             </EditorTip>
           </Card>
         </div>
-
       </RcQueueAnim>
     </Card>
   )
 }
 
-export default ProblemSetEditor;
+export default ProblemSetEditor

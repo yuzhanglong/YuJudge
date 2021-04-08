@@ -27,6 +27,8 @@ export const zhCN: Locale = {
   createTime: '创建时间',
   startTime: '开始时间',
   deadline: '截止时间',
+  save: '保存',
+  and: '等',
   create: '创建',
   settingPage: {
     baseCard: '系统设置',
@@ -40,7 +42,9 @@ export const zhCN: Locale = {
     checkCodeInfo: '开启/关闭验证码功能',
     checkCodeDetail: '如果关闭，网站的登录、注册验证码将失效',
     closeAll: '关闭所有判题服务',
-    closeAllInfo: '所有用户将无法提交代码至判题机'
+    closeAllInfo: '所有用户将无法提交代码至判题机',
+    setSuccess: '设置成功',
+    setFailed: '设置失败'
   },
   judgeHost: {
     baseCard: '全部判题机',
@@ -48,6 +52,7 @@ export const zhCN: Locale = {
     dangerZoneTitle: '危险项',
     cpuCoreAmount: 'cpu 核心数',
     currentJudgeAmount: '当前判题个数',
+    currentQueueSize: '当前排队数',
     cpuCost: 'cpu 消耗',
     memoryCost: '内存消耗',
     newJudgeHost: '新建判题机',
@@ -59,7 +64,18 @@ export const zhCN: Locale = {
     createSuccess: '创建成功',
     running: '运行中',
     noConnection: '无连接',
-    stopped: '已暂停'
+    stopped: '已暂停',
+    id: '编号',
+    address: '地址',
+    port: '端口号',
+    cpuCoreSize: 'cpu 核心数',
+    version: '判题机版本',
+    saveDir: '解决方案存放目录',
+    scriptSaveDir: '判题脚本存放目录',
+    connection: '连接状态',
+    connectSuccess: '连接成功',
+    connectFail: '连接失败',
+    currentNoConnection: '该判题服务器无连接'
   },
   problemSet: {
     baseCard: '😎 题目集管理',
@@ -75,7 +91,17 @@ export const zhCN: Locale = {
     fail: '创建题目集失败',
     search: '搜索题目集',
     setDate: '设置期限',
-    edit: '编辑题目集'
+    edit: '编辑题目集',
+    delete: '删除这个题目集',
+    deleteWarn: '此操作不可恢复，注意: 与它相关联的题目不会被删除',
+    removeFromProblemSet: '从题目集中移除',
+    removeConfirm: '你确定要从题目集中移除这个题目吗',
+    danger: '危险项',
+    basicInfo: '基本信息',
+    addProblem: '添加已有问题',
+    ownProblem: '添加已有问题',
+    editSuccess: '编辑成功',
+    removeSuccess: '移除成功'
   },
   problemManage: {
     baseCard: '题目管理',
@@ -83,11 +109,22 @@ export const zhCN: Locale = {
     inputName: '请输入名称'
   },
   problem: {
+    base: '题目',
     order: '序号',
     id: '题目 ID',
     name: '问题名称',
     tag: '问题标签',
-    edit: '编辑问题'
+    edit: '编辑问题',
+    timeLimit: '时间限制',
+    addProblem: '添加问题',
+    addSuccess: '添加成功',
+    desc: '内容描述',
+    willProblemAddToProblemSet: '以下题目将被添加至题目集:',
+    addProblemToProblemSet: '添加问题到题目集',
+    addSelectedProblem: '添加选中的问题到题目集',
+    problemWord: '问题关键词或id',
+    isPublic: '是否公开',
+    languageSupport: '支持语言'
   },
   user: {
     baseCard: '用户管理',
@@ -147,6 +184,7 @@ export const zhCN: Locale = {
     sevenDays: '近七日提交',
     tfHours: '全站24小时提交',
     recentProblem: '最新问题',
-    activeUser: '活跃用户'
+    activeUser: '活跃用户',
+    totalProblem: '问题总数'
   }
 } as any

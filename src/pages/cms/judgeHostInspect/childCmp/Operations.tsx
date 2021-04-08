@@ -58,7 +58,7 @@ const Operations: React.FunctionComponent<OperationsProps> = (props) => {
           {props.judgeHostInfo.active ? '关闭' : '开启'}
         </Button>
       </EditorTip>
-      <Divider></Divider>
+      <Divider/>
       <EditorTip title={'删除这个判题服务器'}
                  content={'注意: 这个操作不可恢复'}>
         <Button danger onClick={() => removeJudgeHost()}>删除</Button>
