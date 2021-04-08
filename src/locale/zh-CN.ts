@@ -25,7 +25,9 @@ export const zhCN: Locale = {
   delete: '删除',
   cancel: '取消',
   createTime: '创建时间',
+  startTime: '开始时间',
   deadline: '截止时间',
+  create: '创建',
   settingPage: {
     baseCard: '系统设置',
     commonZoneTitle: '一般项',
@@ -60,13 +62,20 @@ export const zhCN: Locale = {
     stopped: '已暂停'
   },
   problemSet: {
+    baseCard: '😎 题目集管理',
     id: '题目集 ID',
     name: '题目集名称',
     preference: '判题偏好',
     languageSupport: '支持语言',
     author: '创建者',
+    desc: '题目集描述',
     create: '创建题目集',
-    onlyShowActive: '只显示活跃题目集'
+    onlyShowActive: '只显示活跃题目集',
+    success: '创建题目集成功',
+    fail: '创建题目集失败',
+    search: '搜索题目集',
+    setDate: '设置期限',
+    edit: '编辑题目集'
   },
   problemManage: {
     baseCard: '题目管理',
@@ -74,10 +83,11 @@ export const zhCN: Locale = {
     inputName: '请输入名称'
   },
   problem: {
+    order: '序号',
     id: '题目 ID',
     name: '问题名称',
     tag: '问题标签',
-    edit:'编辑问题'
+    edit: '编辑问题'
   },
   user: {
     name: '用户名',

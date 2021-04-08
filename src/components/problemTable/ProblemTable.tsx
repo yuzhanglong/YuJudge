@@ -139,7 +139,8 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
       {
         props.isShowProblemOrder &&
         <Table.Column
-          title={'序号'} width={150}
+          title={localContext.problem.order}
+          width={150}
           render={renderProblemOrder} />
       }
       <Table.Column
