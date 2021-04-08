@@ -6,15 +6,16 @@
  * Email: yuzl1123@163.com
  */
 
-import React from 'react';
-import {UserInfo} from '../../models/user';
-import {Badge, Table, Tag} from 'antd';
-import {RankingColorEnum} from '../../common/enumerations';
-import {TablePaginationConfig} from 'antd/lib/table/interface';
-import {Pagination} from '../../models/pagination';
-import {UserGroupInfo} from '../../models/UserGroup';
-import {SizeType} from 'antd/lib/config-provider/SizeContext';
+import React, { useContext } from 'react'
+import { UserInfo } from '../../models/user'
+import { Badge, Table, Tag } from 'antd'
+import { RankingColorEnum } from '../../common/enumerations'
+import { TablePaginationConfig } from 'antd/lib/table/interface'
+import { Pagination } from '../../models/pagination'
+import { UserGroupInfo } from '../../models/UserGroup'
+import { SizeType } from 'antd/lib/config-provider/SizeContext'
 import style from './userTable.module.scss'
+import { LocalContext } from '../localContext/LocalContext'
 
 interface UserTableProps {
   userInfo: UserInfo[];
@@ -30,6 +31,8 @@ interface UserTableProps {
 }
 
 const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
+  // local
+  const localContext = useContext(LocalContext)
 
   // 渲染用户排名相关信息
   const renderUserRanking = (index: number) => {
@@ -40,7 +43,7 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
       <div>
         <Badge
           count={index + 1}
-          style={rankingStyle}/>
+          style={rankingStyle} />
       </div>
     )
   }
@@ -49,13 +52,13 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
   const getRanking = (index: number) => {
     switch (index) {
       case 1:
-        return RankingColorEnum.RANKING_FIRST;
+        return RankingColorEnum.RANKING_FIRST
       case 2:
-        return RankingColorEnum.RANKING_SECOND;
+        return RankingColorEnum.RANKING_SECOND
       case 3:
-        return RankingColorEnum.RANKING_THIRD;
+        return RankingColorEnum.RANKING_THIRD
       default:
-        return RankingColorEnum.RANKING_DEFAULT;
+        return RankingColorEnum.RANKING_DEFAULT
     }
   }
 
@@ -76,10 +79,10 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
 
   // 渲染身份信息
   const renderUserGroups = (content: UserGroupInfo[]) => {
-    if (!content || !content.length) return '无所在用户组';
+    if (!content || !content.length) return '无所在用户组'
     return content.map(res => {
       return (
-        <Tag color="geekblue" key={res.id}>
+        <Tag color='geekblue' key={res.id}>
           {res.description}
         </Tag>
       )
@@ -89,7 +92,7 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
   // 页码改变
   const onPageChange = (event: TablePaginationConfig) => {
     if (props.onPageChange && event.current) {
-      props.onPageChange(event.current);
+      props.onPageChange(event.current)
     }
   }
 
@@ -114,45 +117,45 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
       onChange={(e: TablePaginationConfig) => onPageChange(e)}>
       {
         props.showRanking && <Table.Column
-          title={'排名'}
-          render={(value: any, record: any, index: number) => renderUserRanking(index)}/>
+          title={localContext.user.rank}
+          render={(value: any, record: any, index: number) => renderUserRanking(index)} />
       }
       <Table.Column
-        title={'用户名'}
-        render={renderUserName}/>
+        title={localContext.user.name}
+        render={renderUserName} />
       {
         props.showScope &&
         <Table.Column
-          title={'所在用户组'}
+          title={localContext.user.group}
           dataIndex={'userGroups'}
-          render={renderUserGroups}/>
+          render={renderUserGroups} />
       }
       {
         props.showEmail &&
         <Table.Column
-          title={'邮箱'}
+          title={localContext.user.email}
           dataIndex={'email'}
-          render={(res) => res ? res : '未提供'}/>
+          render={(res) => res ? res : '未提供'} />
       }
       {
         props.showRanking &&
         <Table.Column
-          title={'提交数'}
-          dataIndex={'submissionAmount'}/>
+          title={localContext.user.submissionAmount}
+          dataIndex={'submissionAmount'} />
       }
       {
         props.showRanking &&
         <Table.Column
-          title={'AC数'}
-          dataIndex={'acAmount'}/>
+          title={localContext.user.acAmount}
+          dataIndex={'acAmount'} />
       }
       {
         props.operations &&
         <Table.Column
           width={300}
           align={'center'}
-          title={'操作'}
-          render={renderOperations}/>
+          title={localContext.user.operation}
+          render={renderOperations} />
       }
     </Table>
   )
@@ -167,4 +170,4 @@ UserTable.defaultProps = {
   userNameCanClick: false
 }
 
-export default UserTable;
+export default UserTable

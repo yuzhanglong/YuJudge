@@ -6,16 +6,17 @@
  * Email: yuzl1123@163.com
  */
 
-import React from 'react';
-import {ProblemSet} from '../../models/problemSet';
-import {Button, Table} from 'antd';
-import {TablePaginationConfig} from 'antd/es/table';
-import {SINGLE_PAGE_SIZE_IN_PROBLEM_SET_MANAGE} from '../../config/config';
-import {SizeType} from 'antd/lib/config-provider/SizeContext';
-import {timestampToDateTime} from '../../utils/dateTime';
-import {UserInfo} from '../../models/user';
-import {Link} from 'react-router-dom';
-import {PROGRAM_LANGUAGE_NAME} from '../../common/programLanguage';
+import React, { useContext } from 'react'
+import { ProblemSet } from '../../models/problemSet'
+import { Button, Table } from 'antd'
+import { TablePaginationConfig } from 'antd/es/table'
+import { SINGLE_PAGE_SIZE_IN_PROBLEM_SET_MANAGE } from '../../config/config'
+import { SizeType } from 'antd/lib/config-provider/SizeContext'
+import { timestampToDateTime } from '../../utils/dateTime'
+import { UserInfo } from '../../models/user'
+import { Link } from 'react-router-dom'
+import { PROGRAM_LANGUAGE_NAME } from '../../common/programLanguage'
+import { LocalContext } from '../localContext/LocalContext'
 
 interface ProblemSetTableProps {
   problemSets: ProblemSet[];
@@ -31,6 +32,9 @@ interface ProblemSetTableProps {
 }
 
 const ProblemSetTable: React.FunctionComponent<ProblemSetTableProps> = (props) => {
+  // local
+  const localContext = useContext(LocalContext)
+
   // 分页配置
   const paginationProp: TablePaginationConfig = {
     total: (props.totalPage || 1) * SINGLE_PAGE_SIZE_IN_PROBLEM_SET_MANAGE,
@@ -40,7 +44,7 @@ const ProblemSetTable: React.FunctionComponent<ProblemSetTableProps> = (props) =
   // 当页码改变时
   const onPageChange = (event: TablePaginationConfig) => {
     if (props.onPageChange && event.current) {
-      props.onPageChange(event.current);
+      props.onPageChange(event.current)
     }
   }
 
@@ -59,9 +63,9 @@ const ProblemSetTable: React.FunctionComponent<ProblemSetTableProps> = (props) =
     return (
       <div>
         <Button
-          type="link"
+          type='link'
           onClick={() => props.onEditButtonClick ? props.onEditButtonClick(content.id) : null}>
-          编辑题目集
+          {localContext.problemSet.edit}
         </Button>
         {props.otherOperations}
       </div>
@@ -83,17 +87,17 @@ const ProblemSetTable: React.FunctionComponent<ProblemSetTableProps> = (props) =
   // 获取允许的编程语言信息
   const getAllowedLanguageInfo = (languages: string[]) => {
     if (languages) {
-      let res = '';
-      const len = languages.length;
+      let res = ''
+      const len = languages.length
       for (let i = 0; i < len; i++) {
-        res = res + PROGRAM_LANGUAGE_NAME[languages[i]];
+        res = res + PROGRAM_LANGUAGE_NAME[languages[i]]
         if (i < len - 1) {
-          res += ' / ';
+          res += ' / '
         }
       }
-      return res;
+      return res
     }
-    return '---';
+    return '---'
   }
 
   return (
@@ -106,45 +110,45 @@ const ProblemSetTable: React.FunctionComponent<ProblemSetTableProps> = (props) =
         onChange={(e: TablePaginationConfig) => onPageChange(e)}
         size={props.tableSize}>
         <Table.Column
-          title={'编号'}
+          title={localContext.problemSet.id}
           dataIndex={'id'}
-          key={'id'}/>
+          key={'id'} />
         <Table.Column
-          title={'题目集名称'}
+          title={localContext.problemSet.name}
           key={'name'}
-          render={renderProblemSetName}/>
+          render={renderProblemSetName} />
         <Table.Column
-          title={'判题偏好'}
+          title={localContext.problemSet.preference}
           dataIndex={'judgePreference'}
-          key={'judgePreference'}/>
+          key={'judgePreference'} />
         <Table.Column
-          title={'开始时间'}
+          title={localContext.startTime}
           dataIndex={'startTime'}
           key={'startTime'}
-          render={renderTime}/>
+          render={renderTime} />
         <Table.Column
-          title={'截止时间'}
+          title={localContext.deadline}
           dataIndex={'deadline'}
           key={'deadline'}
-          render={renderTime}/>
+          render={renderTime} />
         <Table.Column
-          title={'支持语言'}
+          title={localContext.problemSet.languageSupport}
           dataIndex={'allowedLanguage'}
           key={'allowedLanguage'}
-          render={getAllowedLanguageInfo}/>
+          render={getAllowedLanguageInfo} />
         <Table.Column
-          title={'创建者'}
+          title={localContext.problemSet.author}
           dataIndex={'creator'}
           key={'creator'}
-          render={renderCreator}/>
+          render={renderCreator} />
         {
           props.showOperations &&
           <Table.Column
-            title={'操作'}
+            title={localContext.operation}
             key={'number'}
             width={150}
             render={renderOperations}
-            align={'center'}/>
+            align={'center'} />
         }
       </Table>
     </div>
@@ -159,4 +163,4 @@ ProblemSetTable.defaultProps = {
   allowTitleRoute: false
 }
 
-export default ProblemSetTable;
+export default ProblemSetTable

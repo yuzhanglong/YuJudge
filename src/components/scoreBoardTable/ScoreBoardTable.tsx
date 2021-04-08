@@ -6,13 +6,14 @@
  * Email: yuzl1123@163.com
  */
 
-import React from 'react';
-import {ScoreBoardItem, ScoreBoardSolutionInfo} from '../../models/submission';
-import {Table} from 'antd';
-import {tenDecimalToTwentySixDecimal} from '../../utils/math';
-import {UserInfo} from '../../models/user';
-import classNames from 'classnames';
-import style from './scoreBoardTable.module.scss';
+import React, { useContext } from 'react'
+import { ScoreBoardItem, ScoreBoardSolutionInfo } from '../../models/submission'
+import { Table } from 'antd'
+import { tenDecimalToTwentySixDecimal } from '../../utils/math'
+import { UserInfo } from '../../models/user'
+import classNames from 'classnames'
+import style from './scoreBoardTable.module.scss'
+import { LocalContext } from '../localContext/LocalContext'
 
 interface ScoreBoardTableProps {
   scoreBoardItems: ScoreBoardItem[];
@@ -29,7 +30,7 @@ const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) =
       [style.accept]: value.isAccepted,
       [style.wrong_answer]: !value.isAccepted && value.tryAmount > 0,
       [style.accept_first]: value.isFirstAc
-    });
+    })
     return (
       <div key={index} className={cellClassnames}>
         {
@@ -49,26 +50,26 @@ const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) =
 
   // 渲染尝试数目文字
   const getTryAmount = (amount: number) => {
-    return amount + (amount > 1 ? 'tries' : 'try');
+    return amount + (amount > 1 ? 'tries' : 'try')
   }
 
   // 小单元格被单击
   const onCellClick = (rowIndex: number | undefined, colIndex: number) => {
     if (rowIndex !== undefined) {
-      props.onCellClick(rowIndex, colIndex);
+      props.onCellClick(rowIndex, colIndex)
     }
   }
 
   // 渲染列
   const renderColumns = () => {
-    let res = [];
+    let res = []
     for (let i = 0; i < props.problemAmount; i++) {
       res.push(
         <Table.Column
           onCell={(record: any, rowIndex: number | undefined) => {
             return {
               onClick: () => onCellClick(rowIndex, i)
-            };
+            }
           }}
           className={style.score_board_table_cell}
           key={i}
@@ -76,10 +77,10 @@ const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) =
           align={'center'}
           dataIndex={['solutionInfo', i]}
           render={renderRowInfo}
-          width={70}/>
-      );
+          width={70} />
+      )
     }
-    return res;
+    return res
   }
 
   // 渲染队伍信息
@@ -92,42 +93,45 @@ const ScoreBoardTable: React.FunctionComponent<ScoreBoardTableProps> = (props) =
     return <div>{value}</div>
   }
 
+  // local
+  const localContext = useContext(LocalContext)
+
   return (
     <div className={style.score_board_table}>
       <Table
-        scroll={{x: 1000}}
+        scroll={{ x: 1000 }}
         pagination={false}
         size={'middle'}
         bordered
         rowKey={'rank'}
         dataSource={props.scoreBoardItems}>
         <Table.Column
-          title={'排名'}
+          title={localContext.scoreBoard.rank}
           align={'center'}
           fixed={'left'}
           width={65}
-          render={(value: any, record: any, index: number) => index + 1}/>
+          render={(value: any, record: any, index: number) => index + 1} />
         <Table.Column
-          title={'用户/队伍'}
+          title={localContext.scoreBoard.team}
           dataIndex={'teamInfo'}
           render={renderTeamInfo}
           align={'center'}
           fixed={'left'}
-          width={160}/>
+          width={160} />
         <Table.Column
           title={'AC'}
           dataIndex={'totalAcAmount'}
           render={renderAcAmount}
           align={'center'}
           fixed={'left'}
-          width={50}/>
+          width={50} />
         {props.scoreBoardItems.length > 0 && renderColumns()}
         <Table.Column
-          title={'罚时'}
+          title={localContext.scoreBoard.penalty}
           dataIndex={'totalTimePenalty'}
           align={'center'}
           fixed={'right'}
-          width={80}/>
+          width={80} />
       </Table>
     </div>
   )
@@ -137,4 +141,4 @@ ScoreBoardTable.defaultProps = {
   scoreBoardItems: []
 }
 
-export default ScoreBoardTable;
+export default ScoreBoardTable

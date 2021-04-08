@@ -6,29 +6,32 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect} from 'react';
-import ProblemSetTable from '../../../components/problemSetTable/ProblemSetTable';
-import {UsePaginationState} from '../../../hooks/pagination';
-import {getProblemSets} from '../../../network/problemSetRequest';
-import {PAGE_BEGIN} from '../../../config/config';
-import {ProblemSetPaginationRequest} from '../../../models/pagination';
-import {Card} from 'antd';
-import RcQueueAnim from 'rc-queue-anim';
+import React, { useContext, useEffect } from 'react'
+import ProblemSetTable from '../../../components/problemSetTable/ProblemSetTable'
+import { UsePaginationState } from '../../../hooks/pagination'
+import { getProblemSets } from '../../../network/problemSetRequest'
+import { PAGE_BEGIN } from '../../../config/config'
+import { ProblemSetPaginationRequest } from '../../../models/pagination'
+import { Card } from 'antd'
+import RcQueueAnim from 'rc-queue-anim'
 import style from './problemSets.module.scss'
+import { LocalContext } from '../../../components/localContext/LocalContext'
 
 interface ProblemSetsProps {
 
 }
 
 const ProblemSets: React.FunctionComponent<ProblemSetsProps> = () => {
+  // local
+  const localContext = useContext(LocalContext)
 
   // 题目集分页State
-  const problemSetsPaginationState = UsePaginationState<ProblemSetPaginationRequest>(PAGE_BEGIN - 1, getProblemSets);
+  const problemSetsPaginationState = UsePaginationState<ProblemSetPaginationRequest>(PAGE_BEGIN - 1, getProblemSets)
 
   useEffect(() => {
-    getAndSetProblemSetData();
+    getAndSetProblemSetData()
     // eslint-disable-next-line
-  }, []);
+  }, [])
 
   const getAndSetProblemSetData = () => {
     problemSetsPaginationState
@@ -39,7 +42,7 @@ const ProblemSets: React.FunctionComponent<ProblemSetsProps> = () => {
         start: 0
       })
       .catch((e) => {
-      });
+      })
   }
 
 
@@ -48,14 +51,14 @@ const ProblemSets: React.FunctionComponent<ProblemSetsProps> = () => {
       <div className={style.problem_sets} key={'problem-set-home'}>
         <div className={style.problems_content}>
           <Card
-            title={'题目集'}
-            headStyle={{textAlign: 'center'}}>
+            title={localContext.problemSet.base}
+            headStyle={{ textAlign: 'center' }}>
             <div className={style.problems_body}>
               <ProblemSetTable
                 allowTitleRoute
                 showOperations={false}
                 problemSets={problemSetsPaginationState.items}
-                isLoading={problemSetsPaginationState.isLoading}/>
+                isLoading={problemSetsPaginationState.isLoading} />
             </div>
           </Card>
         </div>
@@ -64,4 +67,4 @@ const ProblemSets: React.FunctionComponent<ProblemSetsProps> = () => {
   )
 }
 
-export default ProblemSets;
+export default ProblemSets

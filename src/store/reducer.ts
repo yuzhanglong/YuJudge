@@ -1,10 +1,20 @@
-const initialState = {
-  counter: 0
+import { SET_LANGUAGE } from './constants'
+
+export interface AppStore {
+  language: 'zh-CN' | 'en-US'
 }
 
-function reducer(state = initialState, action: { type: any; num: number; }) {
-  // TODO: 用户信息全局管理
-  return state;
+const initialState: AppStore = {
+  language: 'zh-CN'
 }
 
-export default reducer;
+function reducer(state = initialState, action: any) {
+  switch (action.type) {
+    case SET_LANGUAGE:
+      return { ...state, language: action.language }
+    default:
+      return state
+  }
+}
+
+export default reducer

@@ -10,7 +10,7 @@ import {MenuRouterConfig} from './config';
 
 export const CMS_USERS_MENU: MenuRouterConfig = {
   key: '/cms/users',
-  title: '用户&用户组',
+  title: 'dashboardSide.userGroup',
   path: '/cms/users',
   icon: 'UserOutlined',
   isShowInMenu: true,
@@ -18,14 +18,14 @@ export const CMS_USERS_MENU: MenuRouterConfig = {
     {
       key: '/cms/users/user_manage',
       component: 'UserManage',
-      title: '用户管理',
+      title: 'dashboardSide.userManage',
       path: '/cms/users/user_manage',
       isShowInMenu: true
     },
     {
       key: '/cms/users/user_group_manage',
       component: 'UserGroupManage',
-      title: '用户组管理',
+      title: 'dashboardSide.userGroupManage',
       path: '/cms/users/user_group_manage',
       isShowInMenu: true
     },

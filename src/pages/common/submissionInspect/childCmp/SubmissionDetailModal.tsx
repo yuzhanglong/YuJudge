@@ -7,12 +7,13 @@
  */
 
 
-import React from 'react';
-import {Modal, Descriptions, Input} from 'antd';
-import {SubmissionDetail} from '../../../../models/submission';
-import {timestampToDateTime} from '../../../../utils/dateTime';
-import ShowTestCase from '../../../../components/showTestCase/ShowTestCase';
-import style from '../submissionInspect.module.scss';
+import React, { useContext } from 'react'
+import { Modal, Descriptions, Input } from 'antd'
+import { SubmissionDetail } from '../../../../models/submission'
+import { timestampToDateTime } from '../../../../utils/dateTime'
+import ShowTestCase from '../../../../components/showTestCase/ShowTestCase'
+import style from '../submissionInspect.module.scss'
+import { LocalContext } from '../../../../components/localContext/LocalContext'
 
 interface SubmissionDetailModalProps {
   isVisible: boolean;
@@ -22,10 +23,13 @@ interface SubmissionDetailModalProps {
 }
 
 const SubmissionDetailModal: React.FunctionComponent<SubmissionDetailModalProps> = (props) => {
+  // local
+  const localContext = useContext(LocalContext)
+
 
   // 问题创建时间
   const renderCreateTime = (timeStamp: number | undefined) => {
-    if (timeStamp === undefined) return;
+    if (timeStamp === undefined) return
     return (
       <div>
         {timestampToDateTime(timeStamp)}
@@ -37,20 +41,20 @@ const SubmissionDetailModal: React.FunctionComponent<SubmissionDetailModalProps>
   const renderCompilerStdout = (submission: SubmissionDetail) => {
     // judgeResult不存在
     if (!submission.judgeResult) {
-      return;
+      return
     }
 
     // 遍历编译器输出数组
-    let compilerStdOut = '';
+    let compilerStdOut = ''
 
     // 没有输出，需要告知用户
     if (!submission.judgeResult.extraInfo.length) {
-      compilerStdOut = '编译器没有输出O(∩_∩)O~';
+      compilerStdOut = localContext.submissionInspect.noOut
     } else {
-      const size = submission.judgeResult.extraInfo.length;
+      const size = submission.judgeResult.extraInfo.length
       for (let i = 0; i < size; i++) {
-        const info = submission.judgeResult.extraInfo[i];
-        i === size - 1 ? (compilerStdOut += info) : (compilerStdOut += info + '\n');
+        const info = submission.judgeResult.extraInfo[i]
+        i === size - 1 ? (compilerStdOut += info) : (compilerStdOut += info + '\n')
       }
     }
 
@@ -70,47 +74,47 @@ const SubmissionDetailModal: React.FunctionComponent<SubmissionDetailModalProps>
     <div>
       <Modal
         destroyOnClose
-        title="查看提交"
+        title={localContext.submissionInspect.seeSubmission}
         visible={props.isVisible}
         onCancel={props.onClose}
         footer={null}
         width={950}>
         <Descriptions bordered column={2} size={'small'}>
-          <Descriptions.Item label="提交时间" span={1}>
+          <Descriptions.Item label={localContext.submissionInspect.submitTime} span={1}>
             {renderCreateTime(props.submission.createTime)}
           </Descriptions.Item>
-          <Descriptions.Item label="判题状态" span={1}>
+          <Descriptions.Item label={localContext.submissionInspect.stats} span={1}>
             {props.submission.judgeCondition}
           </Descriptions.Item>
-          <Descriptions.Item label="判题偏好" span={1}>
+          <Descriptions.Item label={localContext.submissionInspect.preference} span={1}>
             {props.submission.judgePreference}
           </Descriptions.Item>
-          <Descriptions.Item label="时间消耗" span={1}>
+          <Descriptions.Item label={localContext.problem.timeCost} span={1}>
             {props.submission.timeCost ? props.submission.timeCost : '--'} ms
           </Descriptions.Item>
-          <Descriptions.Item label="内存消耗" span={1}>
+          <Descriptions.Item label={localContext.problem.memoryCost} span={1}>
             {props.submission.memoryCost ? props.submission.memoryCost : '--'} kb
           </Descriptions.Item>
-          <Descriptions.Item label={'编译器'}
+          <Descriptions.Item label={localContext.submissionInspect.submitCompiler}
                              span={1}>
             {props.submission.language}
           </Descriptions.Item>
-          <Descriptions.Item label={'判题机'}
+          <Descriptions.Item label={localContext.submissionInspect.host}
                              span={2}>
             {props.submission.judgeHost?.name}
           </Descriptions.Item>
-          <Descriptions.Item label={'测试点'}
+          <Descriptions.Item label={localContext.submissionInspect.case}
                              span={2}>
             {props.submission.judgeResult.judgeResults &&
-            <ShowTestCase testCases={props.submission.judgeResult.judgeResults}/>}
+            <ShowTestCase testCases={props.submission.judgeResult.judgeResults} />}
           </Descriptions.Item>
-          <Descriptions.Item label={'用户代码'}
+          <Descriptions.Item label={localContext.submissionInspect.code}
                              span={2}>
             <Input.TextArea value={props.submission.codeContent} rows={15}>
 
             </Input.TextArea>
           </Descriptions.Item>
-          <Descriptions.Item label={'编译器输出'}
+          <Descriptions.Item label={localContext.submissionInspect.out}
                              span={2}>
             <div className={style.compiler_std_out_show}>
               {renderCompilerStdout(props.submission)}
@@ -138,4 +142,4 @@ SubmissionDetailModal.defaultProps = {
   }
 }
 
-export default SubmissionDetailModal;
+export default SubmissionDetailModal

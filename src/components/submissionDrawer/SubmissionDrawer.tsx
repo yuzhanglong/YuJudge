@@ -6,18 +6,19 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect, useState} from 'react';
-import {Button, Col, Divider, Drawer, message, Row, Select} from 'antd';
-import {ScoreBoardSolutionInfo, SubmissionDetail} from '../../models/submission';
-import {changeSubmissionCondition, getSubmissionById} from '../../network/submissionRequest';
-import DescriptionItem from '../descriptionItem/DescriptionItem';
-import style from './submissionDrawer.module.scss';
-import moment from 'moment';
-import {DEFAULT_DATE_TIME_FORMAT, JUDGE_RESULT_CHANGE_ALLOW_DATA} from '../../config/config';
-import EditorTip from '../editorTip/editorTip';
-import TestCaseList from '../testCaseList/TestCaseList';
-import {JUDGE_CONDITION_COLORS, JUDGE_CONDITION_TAG_NAMES_CHINESE} from '../../common/judgeCondition';
-import {downloadSubmissionFromJudgeHost} from '../../network/judgeHostRequest';
+import React, { useContext, useEffect, useState } from 'react'
+import { Button, Col, Divider, Drawer, message, Row, Select } from 'antd'
+import { ScoreBoardSolutionInfo, SubmissionDetail } from '../../models/submission'
+import { changeSubmissionCondition, getSubmissionById } from '../../network/submissionRequest'
+import DescriptionItem from '../descriptionItem/DescriptionItem'
+import style from './submissionDrawer.module.scss'
+import moment from 'moment'
+import { DEFAULT_DATE_TIME_FORMAT, JUDGE_RESULT_CHANGE_ALLOW_DATA } from '../../config/config'
+import EditorTip from '../editorTip/editorTip'
+import TestCaseList from '../testCaseList/TestCaseList'
+import { JUDGE_CONDITION_COLORS, JUDGE_CONDITION_TAG_NAMES_CHINESE } from '../../common/judgeCondition'
+import { downloadSubmissionFromJudgeHost } from '../../network/judgeHostRequest'
+import { LocalContext } from '../localContext/LocalContext'
 
 interface SubmissionDrawerProps {
   visible: boolean;
@@ -29,24 +30,27 @@ interface SubmissionDrawerProps {
 const SubmissionDrawer: React.FunctionComponent<SubmissionDrawerProps> = (props) => {
 
   // 提交细节内容
-  const [submissionDetail, setSubmissionDetail] = useState<SubmissionDetail>();
+  const [submissionDetail, setSubmissionDetail] = useState<SubmissionDetail>()
 
   // 操作窗口
-  const [showOperationModal, setShowOperationModal] = useState<boolean>(false);
+  const [showOperationModal, setShowOperationModal] = useState<boolean>(false)
 
   // 活跃的判题结果
-  const [activeJudgeCondition, setActiveJudgeCondition] = useState<string>();
+  const [activeJudgeCondition, setActiveJudgeCondition] = useState<string>()
+
+  // local
+  const localContext = useContext(LocalContext)
 
   useEffect(() => {
     if (props.activeCell?.submissionId) {
       getSubmissionById(props.activeCell.submissionId)
         .then(res => {
-          const detail: SubmissionDetail = res.data;
-          setSubmissionDetail(detail);
+          const detail: SubmissionDetail = res.data
+          setSubmissionDetail(detail)
           setActiveJudgeCondition(detail.judgeCondition)
         })
     }
-  }, [props.activeCell]);
+  }, [props.activeCell])
 
   // 渲染选择器
   const renderJudgeResultSelector = () => {
@@ -66,22 +70,22 @@ const SubmissionDrawer: React.FunctionComponent<SubmissionDrawerProps> = (props)
     if (submissionDetail && activeJudgeCondition && submissionDetail.id) {
       changeSubmissionCondition(submissionDetail.id, activeJudgeCondition)
         .then(() => {
-          message.success('修改成功~');
-          props.onClose();
-          setShowOperationModal(false);
-          props.onChangeSuccess();
+          message.success(localContext.scoreBoard.editSuccess)
+          props.onClose()
+          setShowOperationModal(false)
+          props.onChangeSuccess()
         })
     }
   }
 
   // 下载提交
   const downloadSubmission = () => {
-    const judgeHost = submissionDetail?.judgeHost?.id;
-    const idInJudgeHost = submissionDetail?.judgeResult.submissionId;
+    const judgeHost = submissionDetail?.judgeHost?.id
+    const idInJudgeHost = submissionDetail?.judgeResult.submissionId
     if (judgeHost && idInJudgeHost) {
       downloadSubmissionFromJudgeHost(judgeHost, idInJudgeHost)
         .catch(() => {
-          message.error('下载失败');
+          message.error(localContext.scoreBoard.downloadError)
         })
     }
   }
@@ -94,20 +98,20 @@ const SubmissionDrawer: React.FunctionComponent<SubmissionDrawerProps> = (props)
         <Drawer
           width={640}
           visible={props.visible}
-          title={`提交 #${props.activeCell.submissionId}`}
+          title={`${localContext.scoreBoard.submission} #${props.activeCell.submissionId}`}
           closable={false}
           onClose={() => props.onClose()}>
           <p className={style.drawer_item_title}>
-            提交信息
+            {localContext.scoreBoard.submissionInfo}
           </p>
           <Row>
             <Col span={12}>
               <DescriptionItem
-                title="结果"
+                title={localContext.scoreBoard.result}
                 content={
                   <div className={style.judge_condition_name}>
                     <div
-                      style={{color: submissionDetail.judgeCondition ? JUDGE_CONDITION_COLORS[submissionDetail.judgeCondition] : undefined}}>
+                      style={{ color: submissionDetail.judgeCondition ? JUDGE_CONDITION_COLORS[submissionDetail.judgeCondition] : undefined }}>
                       {submissionDetail.judgeCondition}
                     </div>
                   </div>
@@ -116,46 +120,48 @@ const SubmissionDrawer: React.FunctionComponent<SubmissionDrawerProps> = (props)
             </Col>
             <Col span={12}>
               <DescriptionItem
-                title="语言"
-                content={submissionDetail.language}/>
+                title={localContext.scoreBoard.lan}
+                content={submissionDetail.language} />
             </Col>
           </Row>
           <Row>
             <Col span={12}>
               <DescriptionItem
-                title="提交时间"
-                content={moment(submissionDetail.createTime).format(DEFAULT_DATE_TIME_FORMAT)}/>
+                title={localContext.scoreBoard.time}
+                content={moment(submissionDetail.createTime).format(DEFAULT_DATE_TIME_FORMAT)} />
             </Col>
             <Col span={12}>
               <DescriptionItem
-                title="评测机"
-                content={`${submissionDetail.judgeHost?.name}`}/>
+                title={localContext.scoreBoard.host}
+                content={`${submissionDetail.judgeHost?.name}`} />
             </Col>
           </Row>
-          <Divider/>
+          <Divider />
           <p className={style.drawer_item_title}>测试点</p>
           <TestCaseList
             testCases={submissionDetail.judgeResult.judgeResults}
-            onDownloadButtonClick={() => downloadSubmission()}/>
+            onDownloadButtonClick={() => downloadSubmission()} />
           <p className={style.drawer_item_title}>
-            操作
+            title={localContext.operation}
           </p>
-          <EditorTip title={'修改判题结果'} content={'管理员可以修改本次判题结果，请谨慎处理'}>
+          <EditorTip
+            title={localContext.scoreBoard.editJudgeResult}
+            content={localContext.scoreBoard.editWarn}>
             <Button danger onClick={() => setShowOperationModal(true)}>
-              修改
+              {localContext.edit}
             </Button>
           </EditorTip>
           <Drawer
             width={500}
             visible={showOperationModal}
-            title={'修改判题结果'}
+            title={localContext.scoreBoard.editJudgeResult}
             closable={false}
             onClose={() => setShowOperationModal(false)}>
             <div className={style.judge_condition_old}>
-              原结果: {JUDGE_CONDITION_TAG_NAMES_CHINESE[submissionDetail.judgeCondition || '']}
+              {localContext.scoreBoard.oldRes}: {JUDGE_CONDITION_TAG_NAMES_CHINESE[submissionDetail.judgeCondition || '']}
             </div>
             <div className={style.judge_condition_old}>
-              修改为: <Select
+              {localContext.scoreBoard.newRes}: <Select
               className={style.judge_condition_selector} value={activeJudgeCondition}
               onChange={(val: string) => setActiveJudgeCondition(val)}>
               {renderJudgeResultSelector()}
@@ -163,7 +169,7 @@ const SubmissionDrawer: React.FunctionComponent<SubmissionDrawerProps> = (props)
             </div>
             <div>
               <Button type={'primary'} onClick={() => resetCondition()}>
-                确定
+                {localContext.confirm}
               </Button>
             </div>
           </Drawer>
@@ -173,4 +179,4 @@ const SubmissionDrawer: React.FunctionComponent<SubmissionDrawerProps> = (props)
   )
 }
 
-export default SubmissionDrawer;
+export default SubmissionDrawer

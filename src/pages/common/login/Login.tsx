@@ -6,23 +6,26 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect, useState} from 'react';
-import {RouteComponentProps} from 'react-router-dom';
-import LoginForm from '../../../components/loginForm/LoginForm';
-import {getCheckCodeInfo, getUserInfo, login, register} from '../../../network/userRequest';
-import {CheckCodeData, LoginFormData, LoginResponseData, RegisterFormData} from '../../../models/user';
-import {BaseResponse} from '../../../models/common';
-import {Button, Card, Col, message, Row} from 'antd';
-import {getTokenFromStorage, saveUserInfo, setToken} from '../../../utils/dataPersistence';
-import RegisterForm from '../../../components/registerForm/RegisterForm';
-import style from './loginPage.module.scss';
+import React, { useContext, useEffect, useState } from 'react'
+import { RouteComponentProps } from 'react-router-dom'
+import LoginForm from '../../../components/loginForm/LoginForm'
+import { getCheckCodeInfo, getUserInfo, login, register } from '../../../network/userRequest'
+import { CheckCodeData, LoginFormData, LoginResponseData, RegisterFormData } from '../../../models/user'
+import { BaseResponse } from '../../../models/common'
+import { Button, Card, Col, message, Row } from 'antd'
+import { getTokenFromStorage, saveUserInfo, setToken } from '../../../utils/dataPersistence'
+import RegisterForm from '../../../components/registerForm/RegisterForm'
+import style from './loginPage.module.scss'
 import loginImage from '../../../assets/images/login.jpg'
+import { LocalContext } from '../../../components/localContext/LocalContext'
 
 interface LoginProps {
 
 }
 
 const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = (props) => {
+  // local
+  const localContext = useContext(LocalContext)
 
   // 涉及的表单
   enum formType {
@@ -31,25 +34,25 @@ const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = (props)
   }
 
   // 验证码相关信息
-  const [checkCodeInfo, setCheckCodeInfo] = useState<CheckCodeData>();
+  const [checkCodeInfo, setCheckCodeInfo] = useState<CheckCodeData>()
   // 活跃表单类型
-  const [activeForm, setActiveForm] = useState<formType>(formType.LOGIN);
+  const [activeForm, setActiveForm] = useState<formType>(formType.LOGIN)
 
 
   useEffect(() => {
     if (isUserLogin()) {
-      props.history.push('/common/home');
+      props.history.push('/common/home')
     } else {
-      getCheckCode();
+      getCheckCode()
     }
     // eslint-disable-next-line
-  }, []);
+  }, [])
 
   // 检测用户是否已经登录
   const isUserLogin = (): boolean => {
-    const token = getTokenFromStorage();
+    const token = getTokenFromStorage()
     // 在下个页面向服务器验证token的有效性，如果token无效则会返回
-    return !!token;
+    return !!token
   }
 
   // 执行登录操作
@@ -64,17 +67,17 @@ const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = (props)
     // 发送登录请求
     login(loginForm)
       .then((res) => {
-        const loginResponse: LoginResponseData = res.data;
-        setToken(loginResponse.accessToken);
-        return getUserInfo();
+        const loginResponse: LoginResponseData = res.data
+        setToken(loginResponse.accessToken)
+        return getUserInfo()
       })
       .then((res: BaseResponse) => {
-        message.success('登录成功～');
-        saveUserInfo(res.data);
-        props.history.replace('/common/home');
+        message.success(localContext.home.loginSuccess)
+        saveUserInfo(res.data)
+        props.history.replace('/common/home')
       })
       .catch((err: BaseResponse) => {
-        message.error(err.message);
+        message.error(err.message)
       })
   }
 
@@ -88,57 +91,57 @@ const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = (props)
     }
     register(registerForm)
       .then(() => {
-        message.success('注册成功，2秒后自动前往登录页面');
+        message.success(localContext.home.registerSuccess)
         setTimeout(() => {
-          setActiveForm(formType.LOGIN);
-        }, 2000);
+          setActiveForm(formType.LOGIN)
+        }, 2000)
       })
       .catch((err: BaseResponse) => {
-        message.error(err.message);
+        message.error(err.message)
       })
   }
 
   // 获取验证码信息
   const getCheckCode = () => {
     getCheckCodeInfo().then(res => {
-      const info: CheckCodeData = res.data;
-      setCheckCodeInfo(info);
+      const info: CheckCodeData = res.data
+      setCheckCodeInfo(info)
     })
   }
 
   // 更新验证码
   const resetCheckCode = () => {
-    getCheckCode();
+    getCheckCode()
   }
 
   // 用户点击了去注册（去注册），转到注册（登录）表单
   const showRegisterForm = () => {
-    setActiveForm(activeForm === formType.REGISTER ? formType.LOGIN : formType.REGISTER);
+    setActiveForm(activeForm === formType.REGISTER ? formType.LOGIN : formType.REGISTER)
     // 重置验证码
-    resetCheckCode();
+    resetCheckCode()
   }
 
   return (
     <div className={style.login_page}>
       <div className={style.login_page_mask}>
         <div className={style.login_card_wrap}>
-          <Card bodyStyle={{padding: 0}} className={style.login_card}>
+          <Card bodyStyle={{ padding: 0 }} className={style.login_card}>
             <Row>
               <Col>
                 <img
                   src={loginImage}
                   alt={'confirmation'}
-                  className={style.login_page_image}/>
+                  className={style.login_page_image} />
               </Col>
               <Col>
                 <div className={style.login_area}>
                   <div className={style.login_area_title}>
                     <div className={style.login_area_title_main}>
-                      {activeForm === formType.LOGIN ? '用户登录' : '用户注册'}
+                      {activeForm === formType.LOGIN ? localContext.home.userLogin : localContext.home.userRegister}
                     </div>
                     <div>
                       <Button type={'link'} onClick={() => showRegisterForm()}>
-                        {activeForm === formType.LOGIN ? '没有账号? 点我注册' : '去登录'}
+                        {activeForm === formType.LOGIN ? localContext.home.askRegister : localContext.home.gotoLogin}
                       </Button>
                     </div>
                   </div>
@@ -169,8 +172,7 @@ const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = (props)
         </div>
       </div>
     </div>
-
   )
 }
 
-export default Login;
+export default Login

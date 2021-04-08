@@ -6,17 +6,18 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect, useState} from 'react';
-import {Card, message} from 'antd';
+import React, { useContext, useEffect, useState } from 'react'
+import { Card, message } from 'antd'
 import {
   getSubmissionFrequencyControl,
-  getSubmissionThreadPoolConfiguration,
-} from '../../../network/submissionRequest';
-import {SubmissionThreadPoolConfiguration} from '../../../models/submission';
-import RcQueueAnim from 'rc-queue-anim';
-import CommonSettings from './childCmp/CommonSettings';
-import DangerSettings from './childCmp/DangerSettings';
-import {changeCheckCodeCondition, getCheckCodeCondition} from '../../../network/common';
+  getSubmissionThreadPoolConfiguration
+} from '../../../network/submissionRequest'
+import { SubmissionThreadPoolConfiguration } from '../../../models/submission'
+import RcQueueAnim from 'rc-queue-anim'
+import CommonSettings from './childCmp/CommonSettings'
+import DangerSettings from './childCmp/DangerSettings'
+import { changeCheckCodeCondition, getCheckCodeCondition } from '../../../network/common'
+import { LocalContext } from '../../../components/localContext/LocalContext'
 
 interface SettingsProps {
 
@@ -25,31 +26,33 @@ interface SettingsProps {
 const Settings: React.FunctionComponent<SettingsProps> = () => {
 
   // 提交线程池配置
-  const [submissionThreadPoolConfig, setSubmissionThreadPoolConfig] = useState<SubmissionThreadPoolConfiguration>();
+  const [submissionThreadPoolConfig, setSubmissionThreadPoolConfig] = useState<SubmissionThreadPoolConfiguration>()
 
   // 最大提交量
-  const [maxSubmissionSize, setMaxSubmissionSize] = useState<number>(0);
+  const [maxSubmissionSize, setMaxSubmissionSize] = useState<number>(0)
 
   // 提交间隔
-  const [submissionFrequency, setSubmissionFrequency] = useState(0);
+  const [submissionFrequency, setSubmissionFrequency] = useState(0)
 
   // 验证码需求
-  const [isCheckCodeRequired, setIsCheckCodeRequired] = useState<boolean>(false);
+  const [isCheckCodeRequired, setIsCheckCodeRequired] = useState<boolean>(false)
 
+  // local
+  const localContext = useContext(LocalContext)
 
   useEffect(() => {
-    getAndSetSubmissionThreadConfig();
-    getSubmissionFrequency();
-    getCheckCodeRequire();
-  }, []);
+    getAndSetSubmissionThreadConfig()
+    getSubmissionFrequency()
+    getCheckCodeRequire()
+  }, [])
 
   // 获取提交线程池配置
   const getAndSetSubmissionThreadConfig = () => {
     getSubmissionThreadPoolConfiguration()
       .then(res => {
-        const data: SubmissionThreadPoolConfiguration = res.data;
-        setSubmissionThreadPoolConfig(data);
-        setMaxSubmissionSize(data.maxPoolSize);
+        const data: SubmissionThreadPoolConfiguration = res.data
+        setSubmissionThreadPoolConfig(data)
+        setMaxSubmissionSize(data.maxPoolSize)
       })
   }
 
@@ -57,16 +60,16 @@ const Settings: React.FunctionComponent<SettingsProps> = () => {
   const getSubmissionFrequency = () => {
     getSubmissionFrequencyControl()
       .then(res => {
-        setSubmissionFrequency(res.data);
+        setSubmissionFrequency(res.data)
       })
   }
 
   // 验证码状态修改
   const onCheckCodeConditionChange = () => {
-    setIsCheckCodeRequired(!isCheckCodeRequired);
+    setIsCheckCodeRequired(!isCheckCodeRequired)
     changeCheckCodeCondition()
       .then(() => {
-        message.success('修改成功');
+        message.success('修改成功')
       })
   }
 
@@ -74,14 +77,14 @@ const Settings: React.FunctionComponent<SettingsProps> = () => {
   const getCheckCodeRequire = () => {
     getCheckCodeCondition()
       .then(res => {
-        setIsCheckCodeRequired(res.data);
+        setIsCheckCodeRequired(res.data)
       })
   }
 
   return (
     <RcQueueAnim>
       <div key={'settings'}>
-        <Card title={'系统设置'}>
+        <Card title={localContext.settingPage.baseCard}>
           <RcQueueAnim>
             <div key={'common-settings'}>
               <CommonSettings
@@ -90,12 +93,12 @@ const Settings: React.FunctionComponent<SettingsProps> = () => {
                 onThreadConfigChange={() => getAndSetSubmissionThreadConfig()}
                 onSubmissionFrequencyChange={(v) => setSubmissionFrequency(v)}
                 maxSubmissionSize={maxSubmissionSize}
-                onSubmissionSizeChange={(v) => setMaxSubmissionSize(v)}/>
+                onSubmissionSizeChange={(v) => setMaxSubmissionSize(v)} />
             </div>
             <div key={'danger-settings'}>
               <DangerSettings
                 isCheckCodeOpen={isCheckCodeRequired}
-                resetCheckCodeOpenCondition={() => onCheckCodeConditionChange()}/>
+                resetCheckCodeOpenCondition={() => onCheckCodeConditionChange()} />
             </div>
           </RcQueueAnim>
         </Card>
@@ -104,4 +107,4 @@ const Settings: React.FunctionComponent<SettingsProps> = () => {
   )
 }
 
-export default Settings;
+export default Settings

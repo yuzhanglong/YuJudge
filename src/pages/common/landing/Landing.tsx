@@ -7,15 +7,15 @@
  */
 
 
-import React from 'react';
-import {RouteComponentProps} from 'react-router-dom';
-import LandingHeader from './childCmp/LandingHeader';
-import MainPart from './childCmp/MainPart';
-import Feature from './childCmp/Feature';
-import Footer from './childCmp/LandingFooter';
-import style from './landing.module.scss';
-import {getTokenFromStorage} from '../../../utils/dataPersistence';
-import {message} from 'antd';
+import React from 'react'
+import { RouteComponentProps } from 'react-router-dom'
+import LandingHeader from './childCmp/LandingHeader'
+import MainPart from './childCmp/MainPart'
+import Feature from './childCmp/Feature'
+import Footer from './childCmp/LandingFooter'
+import style from './landing.module.scss'
+import { getTokenFromStorage } from '../../../utils/dataPersistence'
+import { message } from 'antd'
 
 interface LandingProps {
 
@@ -25,22 +25,22 @@ const Landing: React.FunctionComponent<LandingProps & RouteComponentProps> = (pr
   // 前往首页
   const goHome = () => {
     if (getTokenFromStorage() == null) {
-      message.info('请登录');
-      gotoRegister();
-      return;
+      message.info('请登录')
+      gotoRegister()
+      return
     }
-    props.history.push('/common/home');
-  };
+    props.history.push('/common/home')
+  }
 
   // 前往注册/登录
   const gotoRegister = () => {
-    props.history.push('/login');
-  };
+    props.history.push('/login')
+  }
   return (
     <div className={style.landing_page}>
       <div className={style.landing}>
         <div className={style.landing_item}>
-          <LandingHeader></LandingHeader>
+          <LandingHeader />
         </div>
         <div className={style.landing_item}>
           <MainPart
@@ -51,14 +51,14 @@ const Landing: React.FunctionComponent<LandingProps & RouteComponentProps> = (pr
           </MainPart>
         </div>
         <div className={style.landing_item}>
-          <Feature></Feature>
+          <Feature />
         </div>
         <div className={style.landing_item_footer}>
-          <Footer></Footer>
+          <Footer />
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Landing;
+export default Landing

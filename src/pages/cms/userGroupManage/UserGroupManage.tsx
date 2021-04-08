@@ -6,18 +6,19 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect, useState} from 'react';
-import {Button, Card, message, Modal} from 'antd';
-import UserGroupTable from '../../../components/userGroupTable/UserGroupTable';
-import {UserGroupInfo} from '../../../models/UserGroup';
-import {createUserGroup, deleteUserGroup, editUserGroup, getUserGroups} from '../../../network/userGroupRequest';
-import {ExclamationCircleOutlined, PlusOutlined} from '@ant-design/icons';
-import {BaseResponse} from '../../../models/common';
-import UserGroupEditModal from './childCmp/UserGroupEditModal';
-import {PermissionInfo} from '../../../models/permission';
-import {getPermissions} from '../../../network/permissionRequest';
-import AuthorizeModal from './childCmp/AuthorizeModal';
-import RcQueueAnim from 'rc-queue-anim';
+import React, { useContext, useEffect, useState } from 'react'
+import { Button, Card, message, Modal } from 'antd'
+import UserGroupTable from '../../../components/userGroupTable/UserGroupTable'
+import { UserGroupInfo } from '../../../models/UserGroup'
+import { createUserGroup, deleteUserGroup, editUserGroup, getUserGroups } from '../../../network/userGroupRequest'
+import { ExclamationCircleOutlined, PlusOutlined } from '@ant-design/icons'
+import { BaseResponse } from '../../../models/common'
+import UserGroupEditModal from './childCmp/UserGroupEditModal'
+import { PermissionInfo } from '../../../models/permission'
+import { getPermissions } from '../../../network/permissionRequest'
+import AuthorizeModal from './childCmp/AuthorizeModal'
+import RcQueueAnim from 'rc-queue-anim'
+import { LocalContext } from '../../../components/localContext/LocalContext'
 
 interface UserGroupManageProps {
 
@@ -25,33 +26,36 @@ interface UserGroupManageProps {
 
 const UserGroupManage: React.FunctionComponent<UserGroupManageProps> = () => {
   // 用户组信息
-  const [userGroups, setUserGroups] = useState<UserGroupInfo[]>([]);
+  const [userGroups, setUserGroups] = useState<UserGroupInfo[]>([])
 
   // 用户组表单是否可视
-  const [isUserGroupVisible, setIsUserGroupVisible] = useState<boolean>(false);
+  const [isUserGroupVisible, setIsUserGroupVisible] = useState<boolean>(false)
 
   // 欲编辑的用户组信息
-  const [userGroupInfoToEdit, setUserGroupInfoToEdit] = useState<UserGroupInfo | null>(null);
+  const [userGroupInfoToEdit, setUserGroupInfoToEdit] = useState<UserGroupInfo | null>(null)
 
   // 可供分配的权限
-  const [permissionToAllocate, setPermissionToAllocate] = useState<PermissionInfo[]>([]);
+  const [permissionToAllocate, setPermissionToAllocate] = useState<PermissionInfo[]>([])
 
   // 被选中的用户组
-  const [activeUserGroup, setActiveUserGroup] = useState<number | null>(null);
+  const [activeUserGroup, setActiveUserGroup] = useState<number | null>(null)
 
   // 是否开启权限分配modal
-  const [isPermissionModalVisible, setIsPermissionModalVisible] = useState<boolean>(false);
+  const [isPermissionModalVisible, setIsPermissionModalVisible] = useState<boolean>(false)
+
+  // local
+  const localContext = useContext(LocalContext)
 
   useEffect(() => {
-    getUserGroupInfo();
-    getPermissionInfo();
-  }, []);
+    getUserGroupInfo()
+    getPermissionInfo()
+  }, [])
 
   // 获取用户组信息
   const getUserGroupInfo = () => {
     getUserGroups()
       .then(res => {
-        setUserGroups(res.data);
+        setUserGroups(res.data)
       })
       .catch(() => {
       })
@@ -62,16 +66,16 @@ const UserGroupManage: React.FunctionComponent<UserGroupManageProps> = () => {
     return (
       <div>
         <Button type={'link'} onClick={() => onEditButtonClick(value)}>
-          编辑
+          {localContext.edit}
         </Button>
         <Button type={'link'} onClick={() => {
-          setActiveUserGroup(value.id);
-          setIsPermissionModalVisible(true);
+          setActiveUserGroup(value.id)
+          setIsPermissionModalVisible(true)
         }}>
-          授权
+          {localContext.userGroup.auth}
         </Button>
         <Button type={'link'} danger onClick={() => onUserGroupDelete(value)}>
-          删除
+          {localContext.delete}
         </Button>
       </div>
     )
@@ -80,17 +84,17 @@ const UserGroupManage: React.FunctionComponent<UserGroupManageProps> = () => {
   // 删除用户组
   const onUserGroupDelete = (value: UserGroupInfo) => {
     Modal.confirm({
-      title: '删除确认',
-      icon: <ExclamationCircleOutlined/>,
-      content: '您确定要移除这个用户组吗？',
+      title: localContext.userGroup.deleteConfirm,
+      icon: <ExclamationCircleOutlined />,
+      content: localContext.userGroup.deleteQuestion,
       onOk() {
         deleteUserGroup(value.id)
           .then(() => {
-            message.success('移除用户组成功~');
-            getUserGroupInfo();
+            message.success(localContext.userGroup.deleteSuccess)
+            getUserGroupInfo()
           })
           .catch((err: BaseResponse) => {
-            message.error(err.message);
+            message.error(err.message)
           })
       }
     })
@@ -102,46 +106,46 @@ const UserGroupManage: React.FunctionComponent<UserGroupManageProps> = () => {
       // 创建模式
       createUserGroup(res)
         .then(() => {
-          setIsUserGroupVisible(false);
-          getUserGroupInfo();
-          message.success('创建成功');
+          setIsUserGroupVisible(false)
+          getUserGroupInfo()
+          message.success(localContext.userGroup.createSuccess)
         })
         .catch((err: BaseResponse) => {
-          message.error(err.message);
+          message.error(err.message)
         })
     } else {
       // 编辑模式
       editUserGroup(userGroupInfoToEdit.id, res)
         .then(() => {
-          setIsUserGroupVisible(false);
-          getUserGroupInfo();
-          message.success('编辑成功');
+          setIsUserGroupVisible(false)
+          getUserGroupInfo()
+          message.success(localContext.userGroup.editSuccess)
           // 不要忘记重置回去=
-          setUserGroupInfoToEdit(null);
+          setUserGroupInfoToEdit(null)
         })
         .catch((err: BaseResponse) => {
-          message.error(err.message);
+          message.error(err.message)
         })
     }
   }
 
   // 编辑按钮被按下
   const onEditButtonClick = (res: UserGroupInfo) => {
-    setUserGroupInfoToEdit(res);
-    setIsUserGroupVisible(true);
+    setUserGroupInfoToEdit(res)
+    setIsUserGroupVisible(true)
   }
 
   // 编辑对话框被销毁
   const onEditFormDestroy = () => {
-    setIsUserGroupVisible(false);
-    setUserGroupInfoToEdit(null);
+    setIsUserGroupVisible(false)
+    setUserGroupInfoToEdit(null)
   }
 
   // 获取可供分配的权限
   const getPermissionInfo = () => {
     getPermissions()
       .then(res => {
-        setPermissionToAllocate(res.data);
+        setPermissionToAllocate(res.data)
       })
       .catch(() => {
       })
@@ -151,34 +155,34 @@ const UserGroupManage: React.FunctionComponent<UserGroupManageProps> = () => {
     <RcQueueAnim>
       <div key={'user_group'}>
         <Card
-          title={'用户组信息'}
+          title={localContext.userGroup.info}
           extra={
             <Button
               type={'primary'}
-              icon={<PlusOutlined/>}
+              icon={<PlusOutlined />}
               onClick={() => {
-                setIsUserGroupVisible(true);
+                setIsUserGroupVisible(true)
               }}>
-              创建用户组
+              {localContext.userGroup.create}
             </Button>
           }>
           <UserGroupTable
             userGroups={userGroups}
-            operations={renderOperations}/>
+            operations={renderOperations} />
           <UserGroupEditModal
             dataToEdit={userGroupInfoToEdit}
             onConfirm={(res: UserGroupInfo) => onCreateOrEditUserGroupConfirm(res)}
             visible={isUserGroupVisible}
-            onCancel={() => onEditFormDestroy()}/>
+            onCancel={() => onEditFormDestroy()} />
           <AuthorizeModal
             onCancel={() => setIsPermissionModalVisible(false)}
             totalPermissions={permissionToAllocate}
             userGroupId={activeUserGroup}
-            visible={isPermissionModalVisible}/>
+            visible={isPermissionModalVisible} />
         </Card>
       </div>
     </RcQueueAnim>
   )
 }
 
-export default UserGroupManage;
+export default UserGroupManage

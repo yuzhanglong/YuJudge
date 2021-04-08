@@ -6,10 +6,11 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect} from 'react';
-import {UserInfo} from '../../../../models/user';
-import {Form, Input, message, Modal} from 'antd';
-import {editUser} from '../../../../network/userRequest';
+import React, { useContext, useEffect } from 'react'
+import { UserInfo } from '../../../../models/user'
+import { Form, Input, message, Modal } from 'antd'
+import { editUser } from '../../../../network/userRequest'
+import { LocalContext } from '../../../../components/localContext/LocalContext'
 
 interface UserEditModalProps {
   userInfo?: UserInfo;
@@ -21,12 +22,12 @@ const UserEditModal: React.FunctionComponent<UserEditModalProps> = (props) => {
 
   useEffect(() => {
     if (props.userInfo) {
-      form.setFieldsValue(props.userInfo);
+      form.setFieldsValue(props.userInfo)
     }
     // eslint-disable-next-line
-  }, [props.userInfo]);
+  }, [props.userInfo])
 
-  const [form] = Form.useForm();
+  const [form] = Form.useForm()
 
 
   // 确认
@@ -36,39 +37,43 @@ const UserEditModal: React.FunctionComponent<UserEditModalProps> = (props) => {
         if (props.userInfo?.id) return editUser(props.userInfo.id, res.nickname, res.password)
       })
       .then(() => {
-        message.success('编辑成功');
-        props.onCancel();
-      });
+        message.success(localContext.user.editSuccess)
+        props.onCancel()
+      })
   }
+
+  // local
+  const localContext = useContext(LocalContext)
 
   return (
     <Modal
-      title={'编辑用户'}
+      title={localContext.user.edit}
       visible={props.visible}
       onCancel={() => props.onCancel()}
       onOk={() => onConfirm()}>
       <Form form={form}>
         <Form.Item
-          label={'用户名'}
-          name="nickname"
+          label={localContext.user.name}
+          name='nickname'
           rules={[{
             required: true,
-            message: '请输入用户名'
+            message: `${localContext.user.pleaseInputUser}`
           }]}>
-          <Input/>
+          <Input />
         </Form.Item>
         <Form.Item
-          label={'新密码'}
-          name="password"
+          label={localContext.user.newPassword}
+          name='password'
           rules={[{
             required: true,
-            message: '请输入密码'
+            message: localContext.user.pleaseInputPassword
           }]}>
-          <Input placeholder={'请输入新密码'}/>
+          <Input
+            placeholder={localContext.user.pleaseInputNewPassword} />
         </Form.Item>
       </Form>
     </Modal>
   )
 }
 
-export default UserEditModal;
+export default UserEditModal

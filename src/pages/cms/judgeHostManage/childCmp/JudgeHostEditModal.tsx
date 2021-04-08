@@ -6,11 +6,12 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useState} from 'react';
-import {Button, Form, Input, InputNumber, Modal, Select} from 'antd';
-import {isUrlValidated} from '../../../../utils/regex';
-import {JudgeHostRequest} from '../../../../models/judgeHost';
-import {JUDGE_HOST_DEFAULT_URL_SCHEME} from '../../../../config/config';
+import React, { useContext, useState } from 'react'
+import { Button, Form, Input, InputNumber, Modal, Select } from 'antd'
+import { isUrlValidated } from '../../../../utils/regex'
+import { JudgeHostRequest } from '../../../../models/judgeHost'
+import { JUDGE_HOST_DEFAULT_URL_SCHEME } from '../../../../config/config'
+import { LocalContext } from '../../../../components/localContext/LocalContext'
 
 interface JudgeHostFormProps {
   visible: boolean;
@@ -19,20 +20,22 @@ interface JudgeHostFormProps {
 }
 
 const JudgeHostEditModal: React.FunctionComponent<JudgeHostFormProps> = (props) => {
-  const [form] = Form.useForm();
-  const [urlScheme, setUrlScheme] = useState<string>(JUDGE_HOST_DEFAULT_URL_SCHEME);
+  const [form] = Form.useForm()
+  const [urlScheme, setUrlScheme] = useState<string>(JUDGE_HOST_DEFAULT_URL_SCHEME)
+  // local
+  const localContext = useContext(LocalContext)
 
   // 渲染Modal底部内容
   const renderFooter = () => {
     return (
       <div>
         <Button onClick={() => props.onCancel()}>
-          取消
+          {localContext.cancel}
         </Button>
         <Button
           type={'primary'}
           onClick={() => onFormConfirm()}>
-          确定
+          {localContext.confirm}
         </Button>
       </div>
     )
@@ -41,10 +44,10 @@ const JudgeHostEditModal: React.FunctionComponent<JudgeHostFormProps> = (props) 
   // url scheme选择器
   const urlSchemeSelector = (
     <Select defaultValue={urlScheme} onChange={(value: string) => setUrlScheme(value)}>
-      <Select.Option value="http">http://</Select.Option>
-      <Select.Option value="https">https://</Select.Option>
+      <Select.Option value='http'>http://</Select.Option>
+      <Select.Option value='https'>https://</Select.Option>
     </Select>
-  );
+  )
 
   // 表单确认
   const onFormConfirm = () => {
@@ -55,10 +58,10 @@ const JudgeHostEditModal: React.FunctionComponent<JudgeHostFormProps> = (props) 
           baseUrl: `${urlScheme}://${res.url}`,
           port: res.port
         }
-        props.onConfirm(tmp);
+        props.onConfirm(tmp)
       })
       .catch(() => {
-      });
+      })
   }
 
   return (
@@ -70,13 +73,13 @@ const JudgeHostEditModal: React.FunctionComponent<JudgeHostFormProps> = (props) 
       onCancel={props.onCancel}
       title={'判题机信息'} footer={renderFooter()}>
       <Form form={form}>
-        <Form.Item label={'名称'} name="name" rules={[{
+        <Form.Item label={'名称'} name='name' rules={[{
           required: true,
           message: '请输入名称'
         }]}>
-          <Input/>
+          <Input />
         </Form.Item>
-        <Form.Item label={'地址'} name="url" rules={[
+        <Form.Item label={'地址'} name='url' rules={[
           {
             required: true,
             message: '请输入地址'
@@ -84,19 +87,19 @@ const JudgeHostEditModal: React.FunctionComponent<JudgeHostFormProps> = (props) 
           {
             message: '无效的地址',
             validator: (rule, value) => {
-              return isUrlValidated(`${urlScheme}://${value}`) ? Promise.resolve() : Promise.reject('无效的ip地址');
+              return isUrlValidated(`${urlScheme}://${value}`) ? Promise.resolve() : Promise.reject('无效的ip地址')
             }
           }
         ]}>
-          <Input addonBefore={urlSchemeSelector}/>
+          <Input addonBefore={urlSchemeSelector} />
         </Form.Item>
         <Form.Item
           label={'端口'}
-          name="port"
+          name='port'
           rules={[
             {
               required: true,
-              message: '端口不得为空',
+              message: '端口不得为空'
             },
             {
               message: '请输入正确的端口, 介于0和65536之间',
@@ -105,11 +108,11 @@ const JudgeHostEditModal: React.FunctionComponent<JudgeHostFormProps> = (props) 
               min: 1
             }
           ]}>
-          <InputNumber/>
+          <InputNumber />
         </Form.Item>
       </Form>
     </Modal>
   )
 }
 
-export default JudgeHostEditModal;
+export default JudgeHostEditModal

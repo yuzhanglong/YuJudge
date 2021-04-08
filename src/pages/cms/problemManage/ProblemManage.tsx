@@ -7,29 +7,33 @@
  */
 
 
-import React, {useEffect, useState} from 'react';
-import ProblemTable from '../../../components/problemTable/ProblemTable';
-import {RouteComponentProps} from 'react-router-dom';
-import {createProblem, getProblems} from '../../../network/problemRequests';
-import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from '../../../config/config';
-import {UsePaginationState} from '../../../hooks/pagination';
-import {ProblemPaginationRequest} from '../../../models/pagination';
-import {Button, Card, message} from 'antd';
-import {PlusOutlined} from '@ant-design/icons';
-import CreateProblemModal from './childCmp/CreateProblemModal';
-import {BaseResponse} from '../../../models/common';
-import RcQueueAnim from 'rc-queue-anim';
+import React, { useContext, useEffect, useState } from 'react'
+import ProblemTable from '../../../components/problemTable/ProblemTable'
+import { RouteComponentProps } from 'react-router-dom'
+import { createProblem, getProblems } from '../../../network/problemRequests'
+import { PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE } from '../../../config/config'
+import { UsePaginationState } from '../../../hooks/pagination'
+import { ProblemPaginationRequest } from '../../../models/pagination'
+import { Button, Card, message } from 'antd'
+import { PlusOutlined } from '@ant-design/icons'
+import CreateProblemModal from './childCmp/CreateProblemModal'
+import { BaseResponse } from '../../../models/common'
+import RcQueueAnim from 'rc-queue-anim'
+import { LocalContext } from '../../../components/localContext/LocalContext'
 
 
 const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
   // 分页对象
-  const problemPagination = UsePaginationState<ProblemPaginationRequest>(PAGE_BEGIN - 1, getProblems);
+  const problemPagination = UsePaginationState<ProblemPaginationRequest>(PAGE_BEGIN - 1, getProblems)
 
   // 新建问题的对话框
-  const [createButtonModalVisible, setCreateButtonModalVisible] = useState(false);
+  const [createButtonModalVisible, setCreateButtonModalVisible] = useState(false)
+
+  // local
+  const localContext = useContext(LocalContext)
 
   useEffect(() => {
-    getProblemsData(0, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE, null);
+    getProblemsData(0, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE, null)
     // eslint-disable-next-line
   }, [])
 
@@ -44,16 +48,16 @@ const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
       start: start,
       count: count,
       search: search
-    };
+    }
     problemPagination.changeCurrentPage(params)
       .catch((err) => {
-        message.error(err.message);
-      });
+        message.error(err.message)
+      })
   }
 
   // 页码发生改变，请求新的数据
   const onPageChange = (page: number) => {
-    getProblemsData(page - 1, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE, null);
+    getProblemsData(page - 1, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE, null)
   }
 
   // 渲染创建功能按钮
@@ -62,8 +66,8 @@ const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
       <Button
         onClick={() => setCreateButtonModalVisible(true)}
         type={'primary'}
-        icon={<PlusOutlined/>}>
-        创建题目
+        icon={<PlusOutlined />}>
+        {localContext.problemManage.createProblem}
       </Button>
     )
   }
@@ -72,34 +76,35 @@ const ProblemManage: React.FunctionComponent<RouteComponentProps> = (props) => {
   const createProblemConfirm = (name: string) => {
     createProblem(name)
       .then(() => {
-        message.success('创建成功~');
-        setCreateButtonModalVisible(false);
-        getProblemsData(0, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE, null);
+        message.success(localContext.judgeHost.createSuccess)
+        setCreateButtonModalVisible(false)
+        getProblemsData(0, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE, null)
       })
       .catch((err: BaseResponse) => {
-        message.error(err.message);
-      });
+        message.error(err.message)
+      })
   }
 
   return (
     <RcQueueAnim>
       <div key={'problem_manage'}>
-        <Card title={'题目管理'} extra={renderCreateProblemButton()}>
+        <Card
+          title={localContext.problemManage.baseCard}
+          extra={renderCreateProblemButton()}>
           <CreateProblemModal
             onConfirm={(name) => createProblemConfirm(name)}
             visible={createButtonModalVisible}
-            onCancel={() => setCreateButtonModalVisible(false)}/>
+            onCancel={() => setCreateButtonModalVisible(false)} />
           <ProblemTable
             isShowProblemOrder={false}
             onProblemEdit={gotoEditProblem}
             problems={problemPagination.items}
             totalPage={problemPagination.paginationInfo.totalPage}
-            onPageChange={onPageChange}/>
+            onPageChange={onPageChange} />
         </Card>
       </div>
     </RcQueueAnim>
-
   )
 }
 
-export default ProblemManage;
+export default ProblemManage

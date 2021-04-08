@@ -6,14 +6,15 @@
  * Email: yuzl1123@163.com
  */
 
-import React from 'react';
-import {NoticeInfo} from '../../models/notice';
-import {Avatar, Col, Row, Table} from 'antd';
-import {timestampToDateTime} from '../../utils/dateTime';
-import style from './noticeTable.module.scss';
-import {NoticePriority} from '../../common/enumerations';
-import classNames from 'classnames';
-import {UserInfo} from '../../models/user';
+import React, { useContext } from 'react'
+import { NoticeInfo } from '../../models/notice'
+import { Avatar, Col, Row, Table } from 'antd'
+import { timestampToDateTime } from '../../utils/dateTime'
+import style from './noticeTable.module.scss'
+import { NoticePriority } from '../../common/enumerations'
+import classNames from 'classnames'
+import { UserInfo } from '../../models/user'
+import { LocalContext } from '../localContext/LocalContext'
 
 interface NoticeTableProps {
   // 所有公告
@@ -25,10 +26,11 @@ interface NoticeTableProps {
 }
 
 const NoticeTable: React.FunctionComponent<NoticeTableProps> = (props) => {
+  const localContext = useContext(LocalContext)
 
   // 渲染时间相关
   const renderTime = (timeStamp: number) => {
-    return (<div>{timestampToDateTime(timeStamp)}</div>);
+    return (<div>{timestampToDateTime(timeStamp)}</div>)
   }
 
   // 渲染公告标题
@@ -36,8 +38,8 @@ const NoticeTable: React.FunctionComponent<NoticeTableProps> = (props) => {
     // 区分类名
     const className = classNames([style.notice_table_title], {
       [style.notice_table_title_common]: notice.priority === NoticePriority.COMMON,
-      [style.notice_table_title_important]: notice.priority === NoticePriority.IMPORTANT,
-    });
+      [style.notice_table_title_important]: notice.priority === NoticePriority.IMPORTANT
+    })
     return (
       <div className={className} onClick={() => onNoticeTitleClick(notice)}>
         {notice.title}
@@ -48,13 +50,13 @@ const NoticeTable: React.FunctionComponent<NoticeTableProps> = (props) => {
   // 公告标题被单击
   const onNoticeTitleClick = (notice: NoticeInfo) => {
     if (props.onNoticeClick) {
-      props.onNoticeClick(notice);
+      props.onNoticeClick(notice)
     }
   }
 
   // 用户被单击
   const onUserClick = (uid: number) => {
-    window.reactRouter.push('/common/profile/' + uid);
+    window.reactRouter.push('/common/profile/' + uid)
   }
 
   // 渲染作者
@@ -71,7 +73,7 @@ const NoticeTable: React.FunctionComponent<NoticeTableProps> = (props) => {
           <Avatar
             size={'small'}
             src={user.avatar}
-            className={style.notice_table_avatar}/>
+            className={style.notice_table_avatar} />
         </Col>
       </Row>
     )
@@ -84,21 +86,21 @@ const NoticeTable: React.FunctionComponent<NoticeTableProps> = (props) => {
         rowKey={'id'}
         dataSource={props.notices}>
         <Table.Column
-          title={'标题'}
+          title={localContext.notice.title}
           key={'title'}
-          render={renderNoticeTitle}/>
+          render={renderNoticeTitle} />
         <Table.Column
-          title={'作者'}
+          title={localContext.notice.author}
           dataIndex={'creator'}
           key={'creator'}
-          render={renderCreator}/>
+          render={renderCreator} />
         <Table.Column
-          title={'发布时间'}
+          title={localContext.notice.releaseTime}
           dataIndex={'createTime'}
           key={'createTime'}
           fixed={'right'}
           width={200}
-          render={renderTime}/>
+          render={renderTime} />
       </Table>
     </div>
   )
@@ -110,4 +112,4 @@ NoticeTable.defaultProps = {
   notices: []
 }
 
-export default NoticeTable;
+export default NoticeTable

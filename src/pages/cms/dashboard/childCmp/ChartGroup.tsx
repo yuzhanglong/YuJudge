@@ -6,16 +6,17 @@
  * Email: yuzl1123@163.com
  */
 
-import React from 'react';
-import {Card, Col, Empty, Row} from 'antd';
-import {DashOutlined} from '@ant-design/icons';
-import ColumnChart from '../../../../components/charts/ColumnChart';
-import {UserInfo} from '../../../../models/user';
-import {SubmissionCountInfo, UserSubmissionCount} from '../../../../models/submission';
-import SubmissionCount from '../../../../components/submissionCount/SubmissionCount';
-import style from '../dashboard.module.scss';
-import {EMPTY_IMAGE} from '../../../../config/config';
-import {generateUserSubmissionData} from '../../../../utils/chart';
+import React, { useContext } from 'react'
+import { Card, Col, Empty, Row } from 'antd'
+import { DashOutlined } from '@ant-design/icons'
+import ColumnChart from '../../../../components/charts/ColumnChart'
+import { UserInfo } from '../../../../models/user'
+import { SubmissionCountInfo, UserSubmissionCount } from '../../../../models/submission'
+import SubmissionCount from '../../../../components/submissionCount/SubmissionCount'
+import style from '../dashboard.module.scss'
+import { EMPTY_IMAGE } from '../../../../config/config'
+import { generateUserSubmissionData } from '../../../../utils/chart'
+import { LocalContext } from '../../../../components/localContext/LocalContext'
 
 interface ChartGroupProps {
   recentSubmission: UserSubmissionCount[];
@@ -24,15 +25,17 @@ interface ChartGroupProps {
 }
 
 const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
+  // local
+  const localContext = useContext(LocalContext)
 
   // 检测是否为空
   const checkRecentSubmissionIsEmpty = () => {
     for (let i = 0; i < props.recentSubmission.length; i++) {
       if (props.recentSubmission[i].totalAmount !== 0) {
-        return false;
+        return false
       }
     }
-    return true;
+    return true
   }
 
 
@@ -42,10 +45,10 @@ const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
         <Col span={8}>
           <Card
             hoverable
-            type="inner"
-            title="近七日提交"
+            type='inner'
+            title={localContext.dashBoard.sevenDays}
             extra={
-              <DashOutlined/>
+              <DashOutlined />
             }>
             <div
               className={checkRecentSubmissionIsEmpty() ? style.dashboard_charts_item_empty : style.dashboard_charts_item}>
@@ -56,26 +59,26 @@ const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
                     stackField={'type'}
                     xKey={'date'}
                     yKey={'amount'}
-                    yKeyDesc={'提交数'}
-                    data={generateUserSubmissionData(props.recentSubmission)}/>
-                  : <Empty image={EMPTY_IMAGE} className={style.dashboard_charts_item_empty_image}/>
+                    yKeyDesc={localContext.dashBoard.submission}
+                    data={generateUserSubmissionData(props.recentSubmission)} />
+                  : <Empty image={EMPTY_IMAGE} className={style.dashboard_charts_item_empty_image} />
               }
             </div>
           </Card>
         </Col>
         <Col span={16}>
           <Card
-            type="inner"
-            title="全站24小时提交"
+            type='inner'
+            title={localContext.dashBoard.tfHours}
             hoverable
             extra={
-              <DashOutlined/>
+              <DashOutlined />
             }>
             <div className={style.dashboard_charts_item}>
               {
                 <SubmissionCount
                   submissionCounts={props.globalSubmissionCount}
-                  showPicker={false}/>
+                  showPicker={false} />
               }
             </div>
           </Card>
@@ -85,4 +88,4 @@ const ChartGroup: React.FunctionComponent<ChartGroupProps> = (props) => {
   )
 }
 
-export default ChartGroup;
+export default ChartGroup

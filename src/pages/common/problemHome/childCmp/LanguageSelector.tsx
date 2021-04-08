@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {Button, Select, Modal} from 'antd';
-import {InfoOutlined} from '@ant-design/icons';
-import LanguageTip from './LanguageTip';
-import {LanguageTypeEnum} from '../../../../common/enumerations';
-import {C_PLUS_PLUS_NICK_NAME} from '../../../../common/programLanguage';
+import React, { useContext, useEffect, useState } from 'react'
+import { Button, Select, Modal } from 'antd'
+import { InfoOutlined } from '@ant-design/icons'
+import LanguageTip from './LanguageTip'
+import { LanguageTypeEnum } from '../../../../common/enumerations'
+import { C_PLUS_PLUS_NICK_NAME } from '../../../../common/programLanguage'
+import { LocalContext } from '../../../../components/localContext/LocalContext'
 
 interface LanguageSelectorProps {
   allowedLanguage: string[];
@@ -11,30 +12,32 @@ interface LanguageSelectorProps {
 }
 
 const LanguageSelector: React.FunctionComponent<LanguageSelectorProps> = (props) => {
+  // local
+  const localContext = useContext(LocalContext)
 
   // 语言提示对话框是否可见
-  const [languageTipVisible, setLanguageTipVisible] = useState<boolean>(false);
+  const [languageTipVisible, setLanguageTipVisible] = useState<boolean>(false)
   // 支持的语言
-  const [languages, setLanguages] = useState<string[]>([]);
+  const [languages, setLanguages] = useState<string[]>([])
   // 当前选中的语言
-  const [currentLanguage, setCurrentLanguage] = useState<string | undefined>(undefined);
+  const [currentLanguage, setCurrentLanguage] = useState<string | undefined>(undefined)
 
 
   useEffect(() => {
-    setLanguages(props.allowedLanguage);
-    setCurrentLanguage(props.allowedLanguage.length ? props.allowedLanguage[0] : undefined);
-  }, [props.allowedLanguage]);
+    setLanguages(props.allowedLanguage)
+    setCurrentLanguage(props.allowedLanguage.length ? props.allowedLanguage[0] : undefined)
+  }, [props.allowedLanguage])
 
 
   // 语言提示按钮被按下
   const onLanguageSelectorTipButtonClick = () => {
-    setLanguageTipVisible(true);
+    setLanguageTipVisible(true)
   }
 
   // 选择器内容发生改变
   const onSelectorChange = (value: string) => {
-    props.onLanguageChange(value);
-    setCurrentLanguage(value);
+    props.onLanguageChange(value)
+    setCurrentLanguage(value)
   }
 
   // 渲染选择器组件
@@ -52,8 +55,8 @@ const LanguageSelector: React.FunctionComponent<LanguageSelectorProps> = (props)
 
   return (
     <div>
-      <Button shape="circle"
-              icon={<InfoOutlined/>}
+      <Button shape='circle'
+              icon={<InfoOutlined />}
               size={'small'}
               disabled={!currentLanguage}
               onClick={onLanguageSelectorTipButtonClick}>
@@ -64,19 +67,19 @@ const LanguageSelector: React.FunctionComponent<LanguageSelectorProps> = (props)
           paddingLeft: 10
         }}
         value={currentLanguage}
-        placeholder={'请选择'}
+        placeholder={localContext.languageTip.pleaseSelect}
         size={'small'} onChange={onSelectorChange}>
         {renderSelector(languages)}
       </Select>
       <Modal
-        title="语言提示"
+        title={localContext.languageTip.tip}
         visible={languageTipVisible}
         onCancel={() => setLanguageTipVisible(false)}
         footer={null}>
-        <LanguageTip language={currentLanguage}/>
+        <LanguageTip language={currentLanguage} />
       </Modal>
     </div>
   )
 }
 
-export default LanguageSelector;
+export default LanguageSelector

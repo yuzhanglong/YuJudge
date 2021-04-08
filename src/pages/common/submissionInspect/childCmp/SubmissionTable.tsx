@@ -6,17 +6,18 @@
  * Email: yuzl1123@163.com
  */
 
-import React from 'react';
-import {Table} from 'antd';
+import React, { useContext } from 'react'
+import { Table } from 'antd'
 
-import {timestampToDateTime} from '../../../../utils/dateTime';
-import {TablePaginationConfig} from 'antd/lib/table/interface';
-import {JudgeConditionEnum} from '../../../../common/enumerations';
-import {PROGRAM_LANGUAGE_NAME} from '../../../../common/programLanguage';
-import {SUBMISSION_SINGLE_PAGE_SIZE} from '../../../../config/config';
-import {Submission} from '../../../../models/submission';
-import ConditionTag from '../../../../components/conditionTag/ConditionTag';
-import {UserInfo} from '../../../../models/user';
+import { timestampToDateTime } from '../../../../utils/dateTime'
+import { TablePaginationConfig } from 'antd/lib/table/interface'
+import { JudgeConditionEnum } from '../../../../common/enumerations'
+import { PROGRAM_LANGUAGE_NAME } from '../../../../common/programLanguage'
+import { SUBMISSION_SINGLE_PAGE_SIZE } from '../../../../config/config'
+import { Submission } from '../../../../models/submission'
+import ConditionTag from '../../../../components/conditionTag/ConditionTag'
+import { UserInfo } from '../../../../models/user'
+import { LocalContext } from '../../../../components/localContext/LocalContext'
 
 
 interface SubmissionTableProps {
@@ -29,6 +30,8 @@ interface SubmissionTableProps {
 }
 
 const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) => {
+  // local
+  const localContext = useContext(LocalContext)
 
   // 问题创建时间
   const renderCreateTime = (timeStamp: number) => {
@@ -55,14 +58,14 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
   // 当用户刷新页码时
   const refreshPagination = (event: TablePaginationConfig) => {
     if (props.onPageChange) {
-      props.onPageChange(event.current ? event.current : 1);
+      props.onPageChange(event.current ? event.current : 1)
     }
   }
 
 
   // 展示编译器内容
   const renderCompilerContent = (content: string) => {
-    return (<div>{PROGRAM_LANGUAGE_NAME[content]}</div>);
+    return (<div>{PROGRAM_LANGUAGE_NAME[content]}</div>)
   }
 
   // 渲染判题结果标签
@@ -74,7 +77,7 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
         data => {
           props.onSubmissionTagClick && props.onSubmissionTagClick(data)
         }
-      }/>
+      } />
   }
 
   return (
@@ -82,7 +85,7 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
       loading={props.isLoading}
       dataSource={props.submissions}
       rowKey={'id'}
-      size="middle"
+      size='middle'
       pagination={{
         total: props.total,
         defaultPageSize: SUBMISSION_SINGLE_PAGE_SIZE,
@@ -91,41 +94,41 @@ const SubmissionTable: React.FunctionComponent<SubmissionTableProps> = (props) =
       }}
       onChange={refreshPagination}>
       <Table.Column
-        title={'提交时间'} align={'center'}
+        title={localContext.submissionInspect.submitTime} align={'center'}
         dataIndex={'createTime'}
         key={'createTime'}
         width={150}
-        render={renderCreateTime}/>
+        render={renderCreateTime} />
       <Table.Column
-        title={'状态'} align={'center'}
+        title={localContext.submissionInspect.submitCondition} align={'center'}
         dataIndex={'judgeCondition'}
         key={'judgeCondition'}
         width={150}
-        render={renderJudgeCondition}/>
+        render={renderJudgeCondition} />
       <Table.Column
-        title={'编译器'} align={'center'}
+        title={localContext.submissionInspect.submitCompiler} align={'center'}
         dataIndex={'language'}
         key={'language'}
         width={150}
-        render={renderCompilerContent}/>
+        render={renderCompilerContent} />
       <Table.Column
-        title={'时间消耗'} align={'center'}
+        title={localContext.judgeHost.timeCost} align={'center'}
         dataIndex={'timeCost'}
         key={'timeCost'}
         render={renderTimeCost}
-        width={150}/>
+        width={150} />
       <Table.Column
-        title={'内存消耗'} align={'center'}
+        title={localContext.judgeHost.memoryCost} align={'center'}
         dataIndex={'memoryCost'}
         key={'memoryCost'}
         width={150}
-        render={renderMemoryCost}/>
+        render={renderMemoryCost} />
       <Table.Column
-        title={'提交用户'} align={'center'}
+        title={localContext.submissionInspect.submitUser} align={'center'}
         dataIndex={'creator'}
         key={'creator'}
         width={150}
-        render={renderCreator}/>
+        render={renderCreator} />
     </Table>
   )
 }
@@ -134,4 +137,4 @@ SubmissionTable.defaultProps = {
   isLoading: false
 }
 
-export default SubmissionTable;
+export default SubmissionTable

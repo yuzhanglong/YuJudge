@@ -6,23 +6,24 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect, useState} from 'react';
-import {Button, Card, message, Modal} from 'antd';
-import UserTable from '../../../components/userTable/UserTable';
-import {allocateUserUserGroup, createUser, deleteUser, getUsers} from '../../../network/userRequest';
-import {UsePaginationState} from '../../../hooks/pagination';
-import {UsersPaginationRequest} from '../../../models/pagination';
-import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_USER_MANAGE} from '../../../config/config';
-import {UserInfo} from '../../../models/user';
-import {BaseResponse} from '../../../models/common';
-import {ExclamationCircleOutlined, PlusOutlined} from '@ant-design/icons';
-import UserManageToolBar from './childCmp/UserManageToolBar';
-import {UserGroupInfo} from '../../../models/UserGroup';
-import {getUserGroups} from '../../../network/userGroupRequest';
-import CreateUserModal from './childCmp/CreateUserModal';
-import AllocateUserGroupsModal from './childCmp/AllocateUserGroupsModal';
-import UserEditModal from './childCmp/UserEditModal';
-import RcQueueAnim from 'rc-queue-anim';
+import React, { useContext, useEffect, useState } from 'react'
+import { Button, Card, message, Modal } from 'antd'
+import UserTable from '../../../components/userTable/UserTable'
+import { allocateUserUserGroup, createUser, deleteUser, getUsers } from '../../../network/userRequest'
+import { UsePaginationState } from '../../../hooks/pagination'
+import { UsersPaginationRequest } from '../../../models/pagination'
+import { PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_USER_MANAGE } from '../../../config/config'
+import { UserInfo } from '../../../models/user'
+import { BaseResponse } from '../../../models/common'
+import { ExclamationCircleOutlined, PlusOutlined } from '@ant-design/icons'
+import UserManageToolBar from './childCmp/UserManageToolBar'
+import { UserGroupInfo } from '../../../models/UserGroup'
+import { getUserGroups } from '../../../network/userGroupRequest'
+import CreateUserModal from './childCmp/CreateUserModal'
+import AllocateUserGroupsModal from './childCmp/AllocateUserGroupsModal'
+import UserEditModal from './childCmp/UserEditModal'
+import RcQueueAnim from 'rc-queue-anim'
+import { LocalContext } from '../../../components/localContext/LocalContext'
 
 interface UserManageProps {
 
@@ -30,39 +31,42 @@ interface UserManageProps {
 
 const UserManage: React.FunctionComponent<UserManageProps> = () => {
   // 用户分页对象
-  const usersPaginationState = UsePaginationState<UsersPaginationRequest>(PAGE_BEGIN - 1, getUsers);
+  const usersPaginationState = UsePaginationState<UsersPaginationRequest>(PAGE_BEGIN - 1, getUsers)
 
   // 可供选择的用户组
-  const [userGroupItems, setUserGroupItems] = useState<UserGroupInfo[]>([]);
+  const [userGroupItems, setUserGroupItems] = useState<UserGroupInfo[]>([])
 
   // 当前用户组id
-  const [activeUserGroup, setActiveUserGroup] = useState<number | null>(null);
+  const [activeUserGroup, setActiveUserGroup] = useState<number | null>(null)
 
   // 创建用户对话框
-  const [isCreateUserModalVisible, setIsCreateUserModalVisible] = useState<boolean>(false);
+  const [isCreateUserModalVisible, setIsCreateUserModalVisible] = useState<boolean>(false)
 
   // 当前选中用户
-  const [activeUser, setActiveUser] = useState<UserInfo | null>(null);
+  const [activeUser, setActiveUser] = useState<UserInfo | null>(null)
 
   // 待编辑用户
-  const [userToEdit, setUserToEdit] = useState<UserInfo | null>();
+  const [userToEdit, setUserToEdit] = useState<UserInfo | null>()
+
+  // local
+  const localContext = useContext(LocalContext)
 
 
   useEffect(() => {
-    getUserInfo(PAGE_BEGIN - 1, activeUserGroup);
-    getAndSetUserGroup();
+    getUserInfo(PAGE_BEGIN - 1, activeUserGroup)
+    getAndSetUserGroup()
     // eslint-disable-next-line
-  }, []);
+  }, [])
 
   // 获取可供选择的用户组
   const getAndSetUserGroup = () => {
     getUserGroups()
       .then(res => {
-        setUserGroupItems(res.data);
+        setUserGroupItems(res.data)
       })
       .catch((e) => {
 
-      });
+      })
   }
 
   // 获取用户信息
@@ -71,12 +75,12 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
       start: start,
       count: SINGLE_PAGE_SIZE_IN_USER_MANAGE,
       group: group
-    };
+    }
 
     usersPaginationState.changeCurrentPage(requestBody)
       .catch((err: BaseResponse) => {
 
-      });
+      })
   }
 
   // 渲染表单操作项目
@@ -84,13 +88,13 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
     return (
       <div>
         <Button type={'link'} onClick={() => setActiveUser(content)}>
-          分配用户组
+          {localContext.user.allocateGroup}
         </Button>
         <Button type={'link'} onClick={() => setUserToEdit(content)}>
-          编辑
+          {localContext.user.edit}
         </Button>
         <Button type={'link'} danger onClick={() => onUserRemoveButtonClick(content)}>
-          删除
+          {localContext.user.delete}
         </Button>
       </div>
     )
@@ -98,19 +102,19 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
 
   // 用户删除按钮被单击
   const onUserRemoveButtonClick = (content: UserInfo) => {
-    const userId = content.id;
+    const userId = content.id
     Modal.confirm({
-      title: '删除确认',
-      icon: <ExclamationCircleOutlined/>,
+      title: `${localContext.confirm}`,
+      icon: <ExclamationCircleOutlined />,
       content: '您确定要删除这个用户吗？',
       onOk() {
         deleteUser(userId)
           .then(() => {
-            message.success('移除用户成功~');
-            getUserInfo(PAGE_BEGIN - 1, activeUserGroup);
+            message.success('移除用户成功~')
+            getUserInfo(PAGE_BEGIN - 1, activeUserGroup)
           })
           .catch((err: BaseResponse) => {
-            message.error(err.message);
+            message.error(err.message)
           })
       }
     })
@@ -122,27 +126,27 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
       <Button
         onClick={() => setIsCreateUserModalVisible(true)}
         type={'primary'}
-        icon={<PlusOutlined/>}>
-        创建用户
+        icon={<PlusOutlined />}>
+        {localContext.user.create}
       </Button>
     )
   }
 
   // 创建用户按钮被单击
   const onSelectorChange = (data: number) => {
-    setActiveUserGroup(data < 0 ? null : data);
-    getUserInfo(PAGE_BEGIN - 1, data < 0 ? null : data);
+    setActiveUserGroup(data < 0 ? null : data)
+    getUserInfo(PAGE_BEGIN - 1, data < 0 ? null : data)
   }
 
   // 创建用户
   const createUserConfirm = (n: string, p: string) => {
     createUser(n, p)
       .then(() => {
-        message.success('创建用户成功');
-        getUserInfo(PAGE_BEGIN - 1, activeUserGroup);
+        message.success(`${localContext.user.createSuccess}`)
+        getUserInfo(PAGE_BEGIN - 1, activeUserGroup)
       })
       .catch((err: BaseResponse) => {
-        message.error(err.message);
+        message.error(err.message)
       })
   }
 
@@ -151,23 +155,25 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
     if (activeUser) {
       allocateUserUserGroup(activeUser.id, userGroupsIds)
         .then(() => {
-          message.success('分配成功~');
-          setActiveUser(null);
-          getUserInfo(PAGE_BEGIN - 1, activeUserGroup);
+          message.success(`${localContext.user.allocateSuccess}`)
+          setActiveUser(null)
+          getUserInfo(PAGE_BEGIN - 1, activeUserGroup)
         })
         .catch(() => {
-          message.error('分配失败');
-        });
+          message.error(`${localContext.user.allocateFail}`)
+        })
     }
   }
 
   return (
     <RcQueueAnim>
       <div key={'user_manage'}>
-        <Card title={'用户管理'} extra={renderAddUserButton()}>
+        <Card
+          title={localContext.user.baseCard}
+          extra={renderAddUserButton()}>
           <UserManageToolBar
             onSelectorChange={onSelectorChange}
-            selectorItems={userGroupItems}/>
+            selectorItems={userGroupItems} />
           <UserTable
             onPageChange={(page: number) => getUserInfo(page - 1, activeUserGroup)}
             showScope
@@ -176,11 +182,11 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
             pagination={usersPaginationState.paginationInfo}
             userInfo={usersPaginationState.items}
             showRanking={false}
-            operations={renderUserOperations}/>
+            operations={renderUserOperations} />
           <CreateUserModal
             isVisible={isCreateUserModalVisible}
             onClose={() => setIsCreateUserModalVisible(false)}
-            onCreateConfirm={createUserConfirm}/>
+            onCreateConfirm={createUserConfirm} />
           {
             activeUser &&
             <AllocateUserGroupsModal
@@ -188,14 +194,14 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
               onCancel={() => setActiveUser(null)}
               isVisible={true}
               userInfo={activeUser}
-              totalUserGroups={userGroupItems}/>
+              totalUserGroups={userGroupItems} />
           }
           {
             userToEdit &&
             <UserEditModal
               visible
               onCancel={() => setUserToEdit(null)}
-              userInfo={userToEdit}/>
+              userInfo={userToEdit} />
           }
         </Card>
       </div>
@@ -203,4 +209,4 @@ const UserManage: React.FunctionComponent<UserManageProps> = () => {
   )
 }
 
-export default UserManage;
+export default UserManage

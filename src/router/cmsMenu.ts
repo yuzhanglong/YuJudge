@@ -16,7 +16,7 @@ export const CMS_MENUS: MenuRouterConfig[] = [
   {
     key: '/cms',
     component: 'Dashboard',
-    title: '控制台',
+    title: 'dashboardSide.base',
     path: '/cms',
     icon: 'DashboardOutlined',
     isShowInMenu: true
@@ -26,7 +26,7 @@ export const CMS_MENUS: MenuRouterConfig[] = [
   ...JUDGE_HOST_MANAGE_MENU,
   {
     key: '/cms/settings',
-    title: '设置',
+    title: 'dashboardSide.settings',
     path: '/cms/settings',
     icon: 'SettingOutlined',
     isShowInMenu: true,

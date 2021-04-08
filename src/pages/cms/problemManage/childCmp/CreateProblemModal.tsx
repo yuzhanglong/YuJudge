@@ -6,8 +6,9 @@
  * Email: yuzl1123@163.com
  */
 
-import React from 'react';
-import {Form, Input, Modal} from 'antd';
+import React, { useContext } from 'react'
+import { Form, Input, Modal } from 'antd'
+import { LocalContext } from '../../../../components/localContext/LocalContext'
 
 interface CreateProblemModalProps {
   visible: boolean;
@@ -16,33 +17,36 @@ interface CreateProblemModalProps {
 }
 
 const CreateProblemModal: React.FunctionComponent<CreateProblemModalProps> = (props) => {
-  const [form] = Form.useForm();
+  const [form] = Form.useForm()
+
+  // local
+  const localContext = useContext(LocalContext)
 
   const onFormConfirm = () => {
     form.validateFields()
       .then(res => {
-        props.onConfirm(res.name);
+        props.onConfirm(res.name)
       })
   }
 
   return (
     <Modal
-      title={'创建一个问题'}
+      title={localContext.problemManage.createProblem}
       visible={props.visible}
       onCancel={() => props.onCancel()} onOk={() => onFormConfirm()}>
       <Form form={form}>
         <Form.Item
-          label={'名称'}
-          name="name"
+          label={localContext.name}
+          name='name'
           rules={[{
             required: true,
-            message: '请输入名称'
+            message: `${localContext.problemManage.inputName}`
           }]}>
-          <Input/>
+          <Input />
         </Form.Item>
       </Form>
     </Modal>
   )
 }
 
-export default CreateProblemModal;
+export default CreateProblemModal

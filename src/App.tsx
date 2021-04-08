@@ -7,28 +7,35 @@
  */
 
 
-import React, {Suspense} from 'react';
-import {RouteComponentProps, withRouter} from 'react-router-dom';
-import zhCN from 'antd/es/locale/zh_CN';
-import {ConfigProvider} from 'antd';
-import MyRouter from './router/MyRouter';
-import {Provider} from 'react-redux';
-import store from './store'
+import React, { Suspense } from 'react'
+import { RouteComponentProps, withRouter } from 'react-router-dom'
+import antd_zh_CN from 'antd/es/locale/zh_CN'
+import antd_en_US from 'antd/es/locale/en_US'
+import { ConfigProvider } from 'antd'
+import MyRouter from './router/MyRouter'
+import { useSelector } from 'react-redux'
+import { AppStore } from './store/reducer'
+import { LocalContext } from './components/localContext/LocalContext'
+import { zhCN, enUS } from './locale'
+
 
 const App: React.FunctionComponent<RouteComponentProps> = (props) => {
   // 挂载全局路由
-  window.reactRouter = props.history;
+  window.reactRouter = props.history
+
+  const language = useSelector<AppStore>(state => state.language)
+
   return (
-    <ConfigProvider locale={zhCN}>
-      <div className="App">
-        <Provider store={store}>
+    <ConfigProvider locale={language === 'zh-CN' ? antd_zh_CN : antd_en_US}>
+      <LocalContext.Provider value={language === 'zh-CN' ? zhCN : enUS}>
+        <div className='App'>
           <Suspense fallback={null}>
-            <MyRouter></MyRouter>
+            <MyRouter />
           </Suspense>
-        </Provider>
-      </div>
+        </div>
+      </LocalContext.Provider>
     </ConfigProvider>
-  );
+  )
 }
 
-export default withRouter(App);
+export default withRouter(App)

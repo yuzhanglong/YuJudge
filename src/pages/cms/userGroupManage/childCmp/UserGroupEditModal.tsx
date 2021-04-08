@@ -6,9 +6,10 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect} from 'react';
-import {Form, Input, Modal} from 'antd';
-import {UserGroupInfo} from '../../../../models/UserGroup';
+import React, { useContext, useEffect } from 'react'
+import { Form, Input, Modal } from 'antd'
+import { UserGroupInfo } from '../../../../models/UserGroup'
+import { LocalContext } from '../../../../components/localContext/LocalContext'
 
 interface UserGroupEditModalProps {
   visible: boolean;
@@ -18,26 +19,30 @@ interface UserGroupEditModalProps {
 }
 
 const UserGroupEditModal: React.FunctionComponent<UserGroupEditModalProps> = (props) => {
-  const [form] = Form.useForm();
+  const [form] = Form.useForm()
+
+  // local
+  const localContext = useContext(LocalContext)
+
 
   // 如果传值进来，则必然是编辑模式，需要初始化表单填充
   useEffect(() => {
     if (props.dataToEdit) {
-      form.setFieldsValue(props.dataToEdit);
+      form.setFieldsValue(props.dataToEdit)
     } else {
       const empty: UserGroupInfo = {
         name: '',
         description: '',
         id: 0
       }
-      form.setFieldsValue(empty);
+      form.setFieldsValue(empty)
     }
   }, [form, props.dataToEdit])
 
   const onFormConfirm = () => {
     form.validateFields()
       .then((res: any) => {
-        props.onConfirm(res);
+        props.onConfirm(res)
       })
       .catch(() => {
       })
@@ -47,32 +52,32 @@ const UserGroupEditModal: React.FunctionComponent<UserGroupEditModalProps> = (pr
     <Modal
       forceRender
       maskClosable={false}
-      title={`${props.dataToEdit ? '编辑用户组' : '创建一个用户组'}`}
+      title={`${props.dataToEdit ? localContext.userGroup.edit : localContext.userGroup.create}`}
       visible={props.visible}
       onCancel={props.onCancel}
       onOk={onFormConfirm}>
       <Form form={form}>
         <Form.Item
-          name="name"
-          label={'名称'}
+          name='name'
+          label={localContext.userGroup.name}
           rules={[{
             required: true,
-            message: '请输入名称'
+            message: localContext.userGroup.pleaseInputName
           }]}>
-          <Input placeholder="输入用户组名称"/>
+          <Input placeholder={localContext.userGroup.pleaseInputGroupName} />
         </Form.Item>
         <Form.Item
           rules={[{
             required: true,
-            message: '请输入用户组描述'
+            message: localContext.userGroup.pleaseInputDesc
           }]}
-          name="description"
-          label={'描述'}>
-          <Input placeholder="输入用户组描述"/>
+          name='description'
+          label={localContext.userGroup.desc}>
+          <Input placeholder={localContext.userGroup.pleaseInputDesc} />
         </Form.Item>
       </Form>
     </Modal>
   )
 }
 
-export default UserGroupEditModal;
+export default UserGroupEditModal

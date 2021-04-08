@@ -6,13 +6,14 @@
  * Email: yuzl1123@163.com
  */
 
-import React from 'react';
+import React, { useContext } from 'react'
 import {DashOutlined} from '@ant-design/icons';
 import {Card, Col, Row} from 'antd';
 import {Problem} from '../../../../models/problem';
 import ProblemTable from '../../../../components/problemTable/ProblemTable';
 import UserTable from '../../../../components/userTable/UserTable';
 import {UserInfo} from '../../../../models/user';
+import { LocalContext } from '../../../../components/localContext/LocalContext'
 
 interface DashboardTableGroupProps {
   problems: Problem[];
@@ -20,13 +21,16 @@ interface DashboardTableGroupProps {
 }
 
 const TableGroup: React.FunctionComponent<DashboardTableGroupProps> = (props) => {
+  // local
+  const localContext = useContext(LocalContext)
+
   return (
     <div>
       <Row gutter={25}>
         <Col span={16}>
           <Card
             type="inner"
-            title="最新问题"
+            title={localContext.dashBoard.recentProblem}
             hoverable
             extra={
               <DashOutlined/>
@@ -46,7 +50,7 @@ const TableGroup: React.FunctionComponent<DashboardTableGroupProps> = (props) =>
           <Card
             hoverable
             type="inner"
-            title="活跃用户"
+            title={localContext.dashBoard.activeUser}
             extra={
               <DashOutlined/>
             }>

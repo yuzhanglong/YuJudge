@@ -7,14 +7,15 @@
  */
 
 
-import React, {useState} from 'react';
-import {timestampToDateTime} from '../../utils/dateTime';
-import {Button, Table, Tag} from 'antd';
-import {Problem} from '../../models/problem';
-import {PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE} from '../../config/config';
-import {TablePaginationConfig} from 'antd/lib/table/interface';
-import {SizeType} from 'antd/lib/config-provider/SizeContext';
-import {tenDecimalToTwentySixDecimal} from '../../utils/math';
+import React, { useContext, useState } from 'react'
+import { timestampToDateTime } from '../../utils/dateTime'
+import { Button, Table, Tag } from 'antd'
+import { Problem } from '../../models/problem'
+import { PAGE_BEGIN, SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE } from '../../config/config'
+import { TablePaginationConfig } from 'antd/lib/table/interface'
+import { SizeType } from 'antd/lib/config-provider/SizeContext'
+import { tenDecimalToTwentySixDecimal } from '../../utils/math'
+import { LocalContext } from '../localContext/LocalContext'
 
 interface ProblemTableProps {
   isShowCreateTime?: boolean;
@@ -36,7 +37,10 @@ interface ProblemTableProps {
 
 
 const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
-  const [currentPage, setCurrentPage] = useState<number>(PAGE_BEGIN - 1);
+  const [currentPage, setCurrentPage] = useState<number>(PAGE_BEGIN - 1)
+  // local
+  const localContext = useContext(LocalContext)
+
 
   // 问题创建时间
   const renderCreateTime = (timeStamp: number) => {
@@ -61,7 +65,7 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
               <Tag color={tag === '入门' ? 'purple' : 'geekblue'} key={tag}>
                 {tag}
               </Tag>
-            );
+            )
           })
         }
       </div>
@@ -70,10 +74,10 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
 
   // 编辑按钮被按下
   const onEditButtonClick = (content: Problem) => {
-    const problemId = content.id;
+    const problemId = content.id
     if (props.onProblemEdit) {
       if (problemId != null) {
-        props.onProblemEdit(problemId);
+        props.onProblemEdit(problemId)
       }
     }
   }
@@ -84,9 +88,9 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
       <div>
         {
           props.showEditButton && <Button
-            type="link"
+            type='link'
             onClick={() => onEditButtonClick(content)}>
-            编辑问题
+            {localContext.problem.edit}
           </Button>}
         {
           props.otherOperations &&
@@ -99,8 +103,8 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
   // 当页码改变时
   const onPageChange = (event: TablePaginationConfig) => {
     if (props.onPageChange && event.current) {
-      setCurrentPage(event.current - 1);
-      props.onPageChange(event.current);
+      setCurrentPage(event.current - 1)
+      props.onPageChange(event.current)
     }
   }
 
@@ -108,14 +112,14 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
   const rowSelection = {
     onChange: (selectedRowKeys: any) => {
       if (props.onSelectionSelected) {
-        props.onSelectionSelected(selectedRowKeys);
+        props.onSelectionSelected(selectedRowKeys)
       }
-    },
-  };
+    }
+  }
 
   // 渲染题号(order)
   const renderProblemOrder = (value: any, record: any, index: number) => {
-    const finalIndex = (currentPage * SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE) + (index + 1);
+    const finalIndex = (currentPage * SINGLE_PAGE_SIZE_IN_PROBLEM_MANAGE) + (index + 1)
     return <div>{tenDecimalToTwentySixDecimal(finalIndex)}</div>
   }
 
@@ -130,43 +134,44 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
       rowSelection={
         props.isShowCheckBoxGroup ? {
           type: 'checkbox',
-          ...rowSelection,
+          ...rowSelection
         } : undefined}>
       {
         props.isShowProblemOrder &&
         <Table.Column
-          title={'序号'} width={150}
-          render={renderProblemOrder}/>
+          title={localContext.problem.order}
+          width={150}
+          render={renderProblemOrder} />
       }
       <Table.Column
-        title={'题目ID'} dataIndex={'id'}
-        key={'number'} width={150}/>
+        title={localContext.problem.id} dataIndex={'id'}
+        key={'number'} width={150} />
       <Table.Column
-        title={'问题名称'}
+        title={localContext.problem.name}
         dataIndex={'name'}
         key={'name'}
-        width={150}/>
+        width={150} />
       {props.isShowTags &&
       <Table.Column
-        title={'标签'}
+        title={localContext.problem.tag}
         dataIndex={'characterTags'}
         key={'标签'}
         width={250}
-        render={(value: any) => renderTags(value)}/>}
+        render={(value: any) => renderTags(value)} />}
       {props.isShowCreateTime &&
       <Table.Column
-        title={'创建时间'}
+        title={localContext.createTime}
         dataIndex={'createTime'}
         key={'创建时间'}
         width={180}
-        render={renderCreateTime}/>}
+        render={renderCreateTime} />}
       {props.isShowOperations &&
       <Table.Column
-        title={'操作'}
+        title={localContext.operation}
         key={'操作'}
         width={150}
         render={renderOperations}
-        align={'center'}/>}
+        align={'center'} />}
     </Table>
   )
 }
@@ -184,4 +189,4 @@ ProblemTable.defaultProps = {
   showEditButton: true
 }
 
-export default ProblemTable;
+export default ProblemTable

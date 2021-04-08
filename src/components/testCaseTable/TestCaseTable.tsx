@@ -6,11 +6,12 @@
  * Email: yuzl1123@163.com
  */
 
-import React from 'react';
-import {Button, Table} from 'antd';
-import {ProblemTestCase} from '../../models/problem';
-import {DownloadOutlined} from '@ant-design/icons';
-import {getUrlPostfix} from '../../utils/string';
+import React, { useContext } from 'react'
+import { Button, Table } from 'antd'
+import { ProblemTestCase } from '../../models/problem'
+import { DownloadOutlined } from '@ant-design/icons'
+import { getUrlPostfix } from '../../utils/string'
+import { LocalContext } from '../localContext/LocalContext'
 
 interface TestCaseTableProps {
   testCases: ProblemTestCase[];
@@ -19,6 +20,8 @@ interface TestCaseTableProps {
 }
 
 const TestCaseTable: React.FunctionComponent<TestCaseTableProps> = (props) => {
+  // local
+  const localContext = useContext(LocalContext)
 
   // 渲染操作相关
   const renderOperations = (content: any) => {
@@ -35,11 +38,11 @@ const TestCaseTable: React.FunctionComponent<TestCaseTableProps> = (props) => {
       <div>
         {getUrlPostfix(url)}
         <Button
-          icon={<DownloadOutlined/>}
+          icon={<DownloadOutlined />}
           style={{
             marginLeft: 15
           }} size={'small'}
-          onClick={() => onEditButtonClick(url)}/>
+          onClick={() => onEditButtonClick(url)} />
 
       </div>
     )
@@ -47,7 +50,7 @@ const TestCaseTable: React.FunctionComponent<TestCaseTableProps> = (props) => {
 
   // 测试点下载按钮被按下
   const onEditButtonClick = (url: string) => {
-    window.open(url);
+    window.open(url)
   }
 
   return (
@@ -56,31 +59,31 @@ const TestCaseTable: React.FunctionComponent<TestCaseTableProps> = (props) => {
       dataSource={props.testCases}
       rowKey={'id'}>
       <Table.Column
-        title={'编号'}
+        title={localContext.testCase.id}
         render={((value, record, index) => (index + 1))}
       />
       <Table.Column
-        title={'描述'}
+        title={localContext.testCase.desc}
         dataIndex={'description'}
       />
       {props.showDownLoadUrlColumn &&
       <Table.Column
-        title={'标准输入'}
+        title={localContext.testCase.basicStdIn}
         dataIndex={'stdIn'}
         render={renderTestCaseDownLoad}
       />}
       {props.showDownLoadUrlColumn &&
       <Table.Column
-        title={'标准输出'}
+        title={localContext.testCase.stdOut}
         dataIndex={'expectedStdOut'}
         render={renderTestCaseDownLoad}
       />}
       <Table.Column
-        title={'操作'}
+        title={localContext.operation}
         key={'number'}
         width={150}
         render={renderOperations}
-        align={'center'}/>
+        align={'center'} />
       />
     </Table>
   )
@@ -89,4 +92,4 @@ TestCaseTable.defaultProps = {
   showDownLoadUrlColumn: false
 }
 
-export default TestCaseTable;
+export default TestCaseTable

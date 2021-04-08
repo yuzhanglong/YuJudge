@@ -6,53 +6,57 @@
  * Email: yuzl1123@163.com
  */
 
-import React, {useEffect, useState} from 'react';
-import {Card, Empty} from 'antd';
-import {RouteComponentProps} from 'react-router-dom';
-import {getProblemSetScoreBoard} from '../../../network/problemSetRequest';
-import {ScoreBoardInfo, ScoreBoardSolutionInfo} from '../../../models/submission';
-import ScoreBoardTable from '../../../components/scoreBoardTable/ScoreBoardTable';
+import React, { useContext, useEffect, useState } from 'react'
+import { Card, Empty } from 'antd'
+import { RouteComponentProps } from 'react-router-dom'
+import { getProblemSetScoreBoard } from '../../../network/problemSetRequest'
+import { ScoreBoardInfo, ScoreBoardSolutionInfo } from '../../../models/submission'
+import ScoreBoardTable from '../../../components/scoreBoardTable/ScoreBoardTable'
 import style from './scoreBoard.module.scss'
-import {BaseResponse} from '../../../models/common';
-import {PROBLEM_SET_FORBIDDEN} from '../../../config/code';
-import {goToResult} from '../../../utils/route';
-import {ResultPageParam} from '../../../common/enumerations';
-import RcQueueAnim from 'rc-queue-anim';
-import {EMPTY_IMAGE} from '../../../config/config';
-import SubmissionDrawer from '../../../components/submissionDrawer/SubmissionDrawer';
+import { BaseResponse } from '../../../models/common'
+import { PROBLEM_SET_FORBIDDEN } from '../../../config/code'
+import { goToResult } from '../../../utils/route'
+import { ResultPageParam } from '../../../common/enumerations'
+import RcQueueAnim from 'rc-queue-anim'
+import { EMPTY_IMAGE } from '../../../config/config'
+import SubmissionDrawer from '../../../components/submissionDrawer/SubmissionDrawer'
+import { LocalContext } from '../../../components/localContext/LocalContext'
 
 interface ScoreBoardProps {
 
 }
 
 const ScoreBoard: React.FunctionComponent<ScoreBoardProps & RouteComponentProps> = (props) => {
-  const params: any = props.match.params;
+  const params: any = props.match.params
+
+  // local
+  const localContext = useContext(LocalContext)
 
   useEffect(() => {
-    getScoreBoardInfo(params.problemSetId);
-  }, [params.problemSetId]);
+    getScoreBoardInfo(params.problemSetId)
+  }, [params.problemSetId])
 
   // 记分板数据
-  const [scoreBoardInfo, setScoreBoardInfo] = useState<ScoreBoardInfo>();
+  const [scoreBoardInfo, setScoreBoardInfo] = useState<ScoreBoardInfo>()
 
   // 提交抽屉是否可视
-  const [submissionDrawerVisible, setSubmissionDrawerVisible] = useState<boolean>(false);
+  const [submissionDrawerVisible, setSubmissionDrawerVisible] = useState<boolean>(false)
 
   // 活跃的表格
-  const [activeCell, setActiveCell] = useState<ScoreBoardSolutionInfo>();
+  const [activeCell, setActiveCell] = useState<ScoreBoardSolutionInfo>()
 
 
   // 获取记分板数据
   const getScoreBoardInfo = (problemSetId: number) => {
     getProblemSetScoreBoard(problemSetId)
       .then(res => {
-        setScoreBoardInfo(res.data);
+        setScoreBoardInfo(res.data)
       })
       .catch((err: BaseResponse) => {
         if (err.code === PROBLEM_SET_FORBIDDEN) {
-          goToResult(ResultPageParam.PROBLEM_SET_FORBIDDEN);
+          goToResult(ResultPageParam.PROBLEM_SET_FORBIDDEN)
         } else {
-          goToResult(ResultPageParam.NOT_FOUND);
+          goToResult(ResultPageParam.NOT_FOUND)
         }
       })
   }
@@ -60,10 +64,10 @@ const ScoreBoard: React.FunctionComponent<ScoreBoardProps & RouteComponentProps>
   // 某个小格子被单击
   const onCellClick = (rowIndex: number, colIndex: number) => {
     if (scoreBoardInfo) {
-      const solutions = scoreBoardInfo.participants[rowIndex].solutionInfo[colIndex];
+      const solutions = scoreBoardInfo.participants[rowIndex].solutionInfo[colIndex]
       if (solutions.submissionId !== -1) {
-        setSubmissionDrawerVisible(true);
-        setActiveCell(solutions);
+        setSubmissionDrawerVisible(true)
+        setActiveCell(solutions)
       }
     }
   }
@@ -73,8 +77,8 @@ const ScoreBoard: React.FunctionComponent<ScoreBoardProps & RouteComponentProps>
       <div className={style.score_board} key={'score_board'}>
         <div className={style.score_board_content}>
           <Card
-            title={'记分板'}
-            headStyle={{textAlign: 'center'}}>
+            title={localContext.scoreBoard.base}
+            headStyle={{ textAlign: 'center' }}>
             <div className={style.score_board_body}>
               {
                 scoreBoardInfo ?
@@ -84,7 +88,7 @@ const ScoreBoard: React.FunctionComponent<ScoreBoardProps & RouteComponentProps>
                     }}
                     scoreBoardItems={scoreBoardInfo.participants}
                     problemAmount={scoreBoardInfo.problemAmount}>
-                  </ScoreBoardTable> : <Empty image={EMPTY_IMAGE}/>
+                  </ScoreBoardTable> : <Empty image={EMPTY_IMAGE} />
               }
             </div>
           </Card>
@@ -93,10 +97,10 @@ const ScoreBoard: React.FunctionComponent<ScoreBoardProps & RouteComponentProps>
           onChangeSuccess={() => getScoreBoardInfo(params.problemSetId)}
           activeCell={activeCell}
           visible={submissionDrawerVisible}
-          onClose={() => setSubmissionDrawerVisible(false)}/>
+          onClose={() => setSubmissionDrawerVisible(false)} />
       </div>
     </RcQueueAnim>
   )
 }
 
-export default ScoreBoard;
+export default ScoreBoard

@@ -7,7 +7,7 @@
  */
 
 
-import React, {useEffect, useState} from 'react';
+import React, { useContext, useEffect, useState } from 'react'
 import {RouteComponentProps} from 'react-router-dom';
 import SubmissionTable from './childCmp/SubmissionTable';
 import SubmissionDetailModal from './childCmp/SubmissionDetailModal';
@@ -19,6 +19,7 @@ import {BaseResponse} from '../../../models/common';
 import {PROBLEM_SET_FORBIDDEN} from '../../../config/code';
 import {goToResult} from '../../../utils/route';
 import {ResultPageParam} from '../../../common/enumerations';
+import { LocalContext } from '../../../components/localContext/LocalContext'
 
 interface SubmissionInspectProps {
 
@@ -45,6 +46,9 @@ const SubmissionInspect: React.FunctionComponent<SubmissionInspectProps & RouteC
   // 选中的提交细节内容
   const [activeSubmission, setActiveSubmission] = useState();
 
+  // local
+  const localContext = useContext(LocalContext)
+
   // 管理轮询任务
   useEffect(() => {
     const id = setInterval(() => {
@@ -55,11 +59,13 @@ const SubmissionInspect: React.FunctionComponent<SubmissionInspectProps & RouteC
       // 否则组件销毁再来执行clearInterval会造成id为undefined的情况
       clearInterval(id);
     }
+    // eslint-disable-next-line
   }, [activePage, problemId]);
 
 
   useEffect(() => {
     getProblemSubmission(problemId, activePage);
+    // eslint-disable-next-line
   }, [activePage, problemId]);
 
   // 分页获取当前问题下的所有提交
@@ -70,7 +76,7 @@ const SubmissionInspect: React.FunctionComponent<SubmissionInspectProps & RouteC
         setSubmissionCount(res.data.total);
       })
       .catch(() => {
-        message.error('获取提交内容失败');
+        message.error(localContext.submissionInspect.cannotGetSubmission);
       })
   }
 

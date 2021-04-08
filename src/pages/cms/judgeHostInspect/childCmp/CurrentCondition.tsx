@@ -6,34 +6,38 @@
  * Email: yuzl1123@163.com
  */
 
-import React from 'react';
-import {Descriptions} from 'antd';
-import {JudgeHostInfo} from '../../../../models/judgeHost';
+import React, { useContext } from 'react'
+import { Descriptions } from 'antd'
+import { JudgeHostInfo } from '../../../../models/judgeHost'
+import { LocalContext } from '../../../../components/localContext/LocalContext'
 
 interface CurrentConditionProps {
   judgeHostInfo: JudgeHostInfo;
 }
 
-const CurrentCondition: React.FunctionComponent<CurrentConditionProps> = (props) => {
+const CurrentCondition: React.FC<CurrentConditionProps> = (props) => {
+  // local
+  const localContext = useContext(LocalContext)
+
   return (
     <Descriptions bordered>
-      <Descriptions.Item label="连接状态">
-        {props.judgeHostInfo.condition ? '连接成功' : '连接失败'}
+      <Descriptions.Item label={localContext.problem.connection}>
+        {props.judgeHostInfo.condition ? localContext.problem.connectSuccess : localContext.problem.connectFail}
       </Descriptions.Item>
-      <Descriptions.Item label="CPU占用">
+      <Descriptions.Item label={localContext.problem.cpuCost}>
         {props.judgeHostInfo.condition.cpuCostPercentage + '%'}
       </Descriptions.Item>
-      <Descriptions.Item label="内存占用">
+      <Descriptions.Item label={localContext.problem.memoryCost}>
         {props.judgeHostInfo.condition.memoryCostPercentage + '%'}
       </Descriptions.Item>
-      <Descriptions.Item label="当前判题数">
+      <Descriptions.Item label={localContext.problem.currentJudgeAmount}>
         {props.judgeHostInfo.condition.workingAmount}
       </Descriptions.Item>
-      <Descriptions.Item label="当前排队数">
+      <Descriptions.Item label={localContext.problem.currentQueueSize}>
         {props.judgeHostInfo.condition.queueAmount}
       </Descriptions.Item>
     </Descriptions>
   )
 }
 
-export default CurrentCondition;
+export default CurrentCondition
