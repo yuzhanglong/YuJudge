@@ -3,22 +3,22 @@ module.exports = {
     {
       type: 'category',
       label: '介绍',
-      items: ["quickStart", "submission", "upload", "configuration", "moreServer", "additions"],
+      items: ['quickStart', 'submission', 'upload', 'configuration', 'moreServer', 'additions'],
     },
     {
       type: 'category',
       label: '前端(Web)',
-      items: ["frontend"],
+      items: ['frontend'],
     },
     {
       type: 'category',
       label: '服务端(JudgeServer)',
-      items: ["judgeServerApi", "judgeServerDevelop"],
+      items: ['judgeServerApi', 'judgeServerDevelop'],
     },
     {
       type: 'category',
       label: '判题服务器(JudgeHost)',
-      items: ["judgeHostApi", "judgeHostDevelop"],
+      items: ['judgeHostApi', 'judgeHostDevelop'],
     }
   ],
 };

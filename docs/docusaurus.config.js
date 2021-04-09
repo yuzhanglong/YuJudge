@@ -81,7 +81,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Code By YuZhangLong. Built with Docusaurus.`,
+      copyright: 'Code By YuZhangLong. Built with Docusaurus.',
     },
   },
   presets: [
@@ -92,7 +92,7 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl: 'https://github.com/yuzhanglong/YuJudge/blob/master/docs',
-          routeBasePath: "/"
+          routeBasePath: '/'
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

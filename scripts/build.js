@@ -134,8 +134,8 @@ function initBaseUrl() {
   const isNeedResetBaseUrl = process.argv && process.argv.length === 3;
   if (isNeedResetBaseUrl) {
     // 设置了远程路径，我们设置之，以供后面的webpack生成正确的html模板文件
-    if (!process.argv[2].endsWith("/")) {
-      process.argv[2] += "/";
+    if (!process.argv[2].endsWith('/')) {
+      process.argv[2] += '/';
     }
     process.env.PUBLIC_URL = process.argv[2];
   }
