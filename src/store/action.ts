@@ -9,6 +9,7 @@
 import { SET_LANGUAGE } from './constants'
 
 export const languageChangeAction = (language: string) => {
+  window.localStorage.setItem('LANGUAGE', language)
   return {
     type: SET_LANGUAGE,
     language: language

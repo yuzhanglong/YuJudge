@@ -63,7 +63,7 @@ const ProfileCount: React.FunctionComponent<ProfileCountProps> = (props) => {
             }
           </Card>
           <Card
-            title={<CommonTitle title={'尝试过'} icon={<BulbOutlined />} />}
+            title={<CommonTitle title={localContext.profile.tried} icon={<BulbOutlined />} />}
             className={style.profile_user_have_tried}
             extra={
               <DashOutlined />

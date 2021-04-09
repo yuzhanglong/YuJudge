@@ -7,16 +7,17 @@
  */
 
 
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 import antd_zh_CN from 'antd/es/locale/zh_CN'
 import antd_en_US from 'antd/es/locale/en_US'
 import { ConfigProvider } from 'antd'
 import MyRouter from './router/MyRouter'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { AppStore } from './store/reducer'
 import { LocalContext } from './components/localContext/LocalContext'
 import { zhCN, enUS } from './locale'
+import { languageChangeAction } from './store/action'
 
 
 const App: React.FunctionComponent<RouteComponentProps> = (props) => {
@@ -24,6 +25,14 @@ const App: React.FunctionComponent<RouteComponentProps> = (props) => {
   window.reactRouter = props.history
 
   const language = useSelector<AppStore>(state => state.language)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const lan = window.localStorage.getItem('LANGUAGE')
+    dispatch(languageChangeAction(lan || 'zh-CN'))
+    // eslint-disable-next-line
+  }, [])
 
   return (
     <ConfigProvider locale={language === 'zh-CN' ? antd_zh_CN : antd_en_US}>

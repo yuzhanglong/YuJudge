@@ -6,21 +6,25 @@
  * Email: yuzl1123@163.com
  */
 
-import React from 'react';
-import {Avatar, Card, Row} from 'antd';
-import {UserInfo} from '../../models/user';
+import React, { useContext } from 'react'
+import { Avatar, Card, Row } from 'antd'
+import { UserInfo } from '../../models/user'
 import style from './userCard.module.scss'
+import { LocalContext } from '../localContext/LocalContext'
 
 interface userCardProps {
   userInfo: UserInfo;
   height?: any;
 }
 
-const UserCard: React.FunctionComponent<userCardProps> = (props) => {
+const UserCard: React.FC<userCardProps> = (props) => {
+  // local
+  const localContext = useContext(LocalContext)
+
   return (
     <Card className={style.user_card}>
       <div className={style.user_card_body}>
-        <Avatar src={props.userInfo.avatar} className={style.user_avatar}/>
+        <Avatar src={props.userInfo.avatar} className={style.user_avatar} />
         <div className={style.user_nickname}>
           {props.userInfo.nickname}
         </div>
@@ -31,7 +35,7 @@ const UserCard: React.FunctionComponent<userCardProps> = (props) => {
         <div className={style.user_card_count}>
           <Row justify={'space-between'}>
             <div>
-              提交数目
+              {localContext.user.submissionAmount}
             </div>
             <div>
               {props.userInfo.submissionAmount}
@@ -39,7 +43,7 @@ const UserCard: React.FunctionComponent<userCardProps> = (props) => {
           </Row>
           <Row justify={'space-between'}>
             <div>
-              AC数目
+              {localContext.user.acAmount}
             </div>
             <div>
               {props.userInfo.acAmount}
@@ -47,7 +51,7 @@ const UserCard: React.FunctionComponent<userCardProps> = (props) => {
           </Row>
           <Row justify={'space-between'}>
             <div>
-              通过率
+              {localContext.user.passPercent}
             </div>
             <div>
               {
@@ -62,4 +66,4 @@ const UserCard: React.FunctionComponent<userCardProps> = (props) => {
   )
 }
 
-export default UserCard;
+export default UserCard

@@ -7,13 +7,14 @@
  */
 
 
-import React from 'react'
+import React, { useContext } from 'react'
 import style from '../userTag.module.scss'
 import { Menu, message } from 'antd'
 import { clearStorage } from '../../../utils/dataPersistence'
 import { useDispatch, useSelector } from 'react-redux'
 import { languageChangeAction } from '../../../store/action'
 import { AppStore } from '../../../store/reducer'
+import { LocalContext } from '../../localContext/LocalContext'
 
 interface UserTagMenuProps {
   menuHeight: number;
@@ -24,11 +25,14 @@ const UserTagMenu: React.FunctionComponent<UserTagMenuProps> = (props) => {
   const language = useSelector<AppStore>(state => state.language)
   const dispatch = useDispatch()
 
+  // local
+  const localContext = useContext(LocalContext)
+
   // 注销标签被单击
   const onLogOut = () => {
     clearStorage()
     window.reactRouter.replace('/')
-    message.success('您已成功退出')
+    message.success(localContext.tagMenu.logSuccess)
   }
 
   // 个人信息标签被单击
@@ -54,25 +58,25 @@ const UserTagMenu: React.FunctionComponent<UserTagMenuProps> = (props) => {
     <Menu className={style.user_tag_drop_down_menu} style={{ marginTop: props.menuHeight }}>
       <Menu.Item>
         <div onClick={() => onLanguageChange()}>
-          语言：{language === 'zh-CN' ? '中文' : 'English'}
+          {localContext.tagMenu.lan}：{language === 'zh-CN' ? '中文' : 'English'}
         </div>
       </Menu.Item>
       <Menu.Item>
         <div onClick={() => onSeeProfile()}>
-          个人信息
+          {localContext.tagMenu.userInfo}
         </div>
       </Menu.Item>
       {
         props.showGotoCms &&
         <Menu.Item>
           <div onClick={() => gotoCms()}>
-            后台管理
+            {localContext.tagMenu.cms}
           </div>
         </Menu.Item>
       }
       <Menu.Item>
         <div onClick={() => onLogOut()}>
-          注销
+          {localContext.tagMenu.logout}
         </div>
       </Menu.Item>
     </Menu>

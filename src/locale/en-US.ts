@@ -198,7 +198,8 @@ export const enUS = {
     'password': 'password',
     'newPassword': 'The new password',
     'pleaseInputPassword': 'Please enter your password.',
-    'pleaseInputNewPassword': 'Please enter a new password'
+    'pleaseInputNewPassword': 'Please enter a new password',
+    'passPercent': 'Pass rate'
   },
   'userGroup': {
     'name': 'The name of the',
@@ -258,16 +259,8 @@ export const enUS = {
     'pleaseSelect': 'Please select a',
     'tip': 'Language tips'
   },
-  'routeSelector': {
-    'problem': 'The problem',
-    'submitRecode': 'Submit the record',
-    'solution': 'Answer key'
-  },
-  'count': {
-    'analysis': 'Data statistics',
-    'submitTrend': 'Submit the trend',
-    'timeAxis': 'The timeline'
-  },
+  'routeSelector': { 'problem': 'The problem', 'submitRecode': 'Submit the record', 'solution': 'Answer key' },
+  'count': { 'analysis': 'Data statistics', 'submitTrend': 'Submit the trend', 'timeAxis': 'The timeline' },
   'profile': {
     'userHome': 'Personal center',
     'passed': 'Have been through',
@@ -296,12 +289,7 @@ export const enUS = {
     'penalty': 'When punishment',
     'cannotSubmit': 'No submissions for this time period'
   },
-  'testCase': {
-    'id': 'ID',
-    'desc': 'describe',
-    'basicStdIn': 'The standard input',
-    'stdOut': 'The standard output'
-  },
+  'testCase': { 'id': 'ID', 'desc': 'describe', 'basicStdIn': 'The standard input', 'stdOut': 'The standard output' },
   'submissionInspect': {
     'cannotGetSubmission': 'Failed to get the submitted content',
     'submitTime': 'Submit time',
@@ -318,9 +306,12 @@ export const enUS = {
     'code': 'The user code',
     'out': 'Compiler output'
   },
-  'notice': {
-    'title': 'The title',
-    'author': 'The author',
-    'releaseTime': 'Release time'
+  'notice': { 'title': 'The title', 'author': 'The author', 'releaseTime': 'Release time' },
+  'tagMenu': {
+    'userInfo': 'Personal information',
+    'cms': 'Background management',
+    'logout': 'The cancellation',
+    'lan': 'language',
+    'logSuccess': 'You have successfully exited'
   }
 }

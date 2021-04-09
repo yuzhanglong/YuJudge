@@ -198,7 +198,8 @@ export const zhCN = {
     password: '密码',
     newPassword: '新密码',
     pleaseInputPassword: '请输入密码',
-    pleaseInputNewPassword: '请输入新密码'
+    pleaseInputNewPassword: '请输入新密码',
+    passPercent: '通过率'
   },
   userGroup: {
     name: '名称',
@@ -322,5 +323,12 @@ export const zhCN = {
     title: '标题',
     author: '作者',
     releaseTime: '发布时间'
+  },
+  tagMenu: {
+    userInfo: '个人信息',
+    cms: '后台管理',
+    logout: '注销',
+    lan: '语言',
+    logSuccess: '您已成功退出'
   }
 }
