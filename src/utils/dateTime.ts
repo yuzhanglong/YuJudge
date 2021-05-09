@@ -10,8 +10,8 @@ import moment from 'moment';
 import {Moment} from 'moment';
 
 export const timestampToDateTime = (timestamp: number): string => {
-  let time = new Date(timestamp);
-  return time.toLocaleString();
+  const m = moment(timestamp);
+  return m.format('MMMM Do YYYY, h:mm:ss');
 }
 
 // 传入一个开始时间和一个结束时间，转化为一个moment对象数组，用来适配antd的rangePicker
