@@ -53,7 +53,7 @@ const RegisterForm: React.FunctionComponent<registerFormProps> = (props) => {
     if (isPasswordSame()) {
       return Promise.resolve();
     }
-    return Promise.reject('两次密码输入不相同');
+    return Promise.reject('Two password entries are not the same');
   }
 
   return (
@@ -66,30 +66,30 @@ const RegisterForm: React.FunctionComponent<registerFormProps> = (props) => {
           size={'large'}
           onFinish={onRegisterConfirmed}>
           <Form.Item
-            rules={[{required: props.validateRequired, message: '请输入用户名!'}]}
+            rules={[{required: props.validateRequired, message: 'please input user name'}]}
             name="nickname">
             <Input
               prefix={<UserOutlined/>}
-              placeholder="请输入用户名"/>
+              placeholder="please enter user name"/>
           </Form.Item>
 
           <Form.Item
-            rules={[{required: props.validateRequired, message: '请输入密码!'}]}
+            rules={[{required: props.validateRequired, message: 'please input password'}]}
             name="password">
             <Input
               prefix={<LockOutlined/>}
               type="password"
-              placeholder="请输入密码"
+              placeholder="Please enter the password"
             />
           </Form.Item>
 
           <Form.Item
             rules={
               [
-                {required: props.validateRequired, message: '请重复输入一遍密码!'},
+                {required: props.validateRequired, message: 'please enter the password again!'},
                 {
                   required: true,
-                  message: '两次密码输入不相同!',
+                  message: 'Two password entries are not the same!',
                   validator: samePasswordValidator
                 }
               ]
@@ -98,7 +98,7 @@ const RegisterForm: React.FunctionComponent<registerFormProps> = (props) => {
             <Input
               prefix={<LockOutlined/>}
               type="password"
-              placeholder="请重复输入密码"
+              placeholder="Please re-enter the password"
             />
           </Form.Item>
 
@@ -109,11 +109,11 @@ const RegisterForm: React.FunctionComponent<registerFormProps> = (props) => {
                 <Col span={15}>
                   <Form.Item
                     className={style.check_code_form_item}
-                    rules={[{required: props.validateRequired, message: '请输入验证码!'}]}
+                    rules={[{required: props.validateRequired, message: 'please enter verification code!'}]}
                     name="checkCodeContent">
                     <Input
                       prefix={<CheckCircleOutlined/>}
-                      placeholder="请输入验证码"
+                      placeholder="please enter verification code"
                     />
                   </Form.Item>
                 </Col>
@@ -134,7 +134,7 @@ const RegisterForm: React.FunctionComponent<registerFormProps> = (props) => {
                 type="primary"
                 htmlType="submit"
                 className={style.register_form_button}>
-                注册
+                register
               </Button>
             )}
           </Form.Item>

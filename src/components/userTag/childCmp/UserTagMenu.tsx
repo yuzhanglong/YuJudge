@@ -30,7 +30,7 @@ const UserTagMenu: React.FunctionComponent<UserTagMenuProps> = (props) => {
 
   // 注销标签被单击
   const onLogOut = () => {
-    clearStorage()
+    clearStorage('token')
     window.reactRouter.replace('/')
     message.success(localContext.tagMenu.logSuccess)
   }

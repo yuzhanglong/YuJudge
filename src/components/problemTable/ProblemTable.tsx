@@ -55,7 +55,7 @@ const ProblemTable: React.FunctionComponent<ProblemTableProps> = (props) => {
 
   // 渲染标签
   const renderTags = (tags: string[]) => {
-    if (tags == null || !tags.length) return <div>此题目没有标签</div>
+    if (tags == null || !tags.length) return <div>No Tags</div>
     return (
       <div>
         {

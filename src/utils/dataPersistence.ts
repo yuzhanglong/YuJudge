@@ -7,43 +7,47 @@
  */
 
 
-import {TOKEN_KEY, USER_INFO_KEY} from '../config/config';
-import {UserInfo} from '../models/user';
+import { TOKEN_KEY, USER_INFO_KEY } from '../config/config'
+import { UserInfo } from '../models/user'
 
 
 // 清空localstorage
-export const clearStorage = () => {
-  window.localStorage.clear();
+export const clearStorage = (item?: string) => {
+  if (!item) {
+    window.localStorage.clear()
+  } else {
+    window.localStorage.removeItem(item)
+  }
 }
 
 // 保存用户代码，其中key为problem对应的id，value为代码内容
 export const saveCode = (problemId: string, code: string) => {
-  window.localStorage.setItem(problemId, code);
+  window.localStorage.setItem(problemId, code)
 }
 
 // 通过problemId，获取用户保存的代码
 export const getCodeFromStorage = (problemId: string): string | null => {
-  return window.localStorage.getItem(problemId);
+  return window.localStorage.getItem(problemId)
 }
 
 // 存储token
 export const setToken = (token: string) => {
-  window.localStorage.setItem(TOKEN_KEY, token);
+  window.localStorage.setItem(TOKEN_KEY, token)
 }
 
 // 获取token
 export const getTokenFromStorage = () => {
-  return window.localStorage.getItem(TOKEN_KEY);
+  return window.localStorage.getItem(TOKEN_KEY)
 }
 
 // 保存用户信息，一般在用户登录之后
 export const saveUserInfo = (userInfo: UserInfo) => {
-  const jsonData = JSON.stringify(userInfo);
-  window.localStorage.setItem(USER_INFO_KEY, jsonData);
+  const jsonData = JSON.stringify(userInfo)
+  window.localStorage.setItem(USER_INFO_KEY, jsonData)
 }
 
 // 获取用户信息
 export const getUserInfoFromStorage = (): UserInfo | null => {
-  const data = window.localStorage.getItem(USER_INFO_KEY);
-  return data ? JSON.parse(data) : null;
+  const data = window.localStorage.getItem(USER_INFO_KEY)
+  return data ? JSON.parse(data) : null
 }

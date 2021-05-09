@@ -51,20 +51,20 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = (props) => {
           onFinish={onLoginConfirmed}>
 
           <Form.Item
-            rules={[{required: props.validateRequired, message: '请输入用户名!'}]}
+            rules={[{required: props.validateRequired, message: 'please enter user name!'}]}
             name="nickname">
             <Input
               prefix={<UserOutlined/>}
-              placeholder="请输入用户名"/>
+              placeholder="please enter user name"/>
           </Form.Item>
 
           <Form.Item
-            rules={[{required: props.validateRequired, message: '请输入密码!'}]}
+            rules={[{required: props.validateRequired, message: 'please enter the password!'}]}
             name="password">
             <Input
               prefix={<LockOutlined/>}
               type="password"
-              placeholder="请输入密码"
+              placeholder="Please enter the password"
             />
           </Form.Item>
 
@@ -74,11 +74,11 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = (props) => {
                 <Col span={14}>
                   <Form.Item
                     className={style.check_code_form_item}
-                    rules={[{required: props.validateRequired, message: '请输入验证码!'}]}
+                    rules={[{required: props.validateRequired, message: 'please enter verification code!'}]}
                     name="checkCodeContent">
                     <Input
                       prefix={<CheckCircleOutlined/>}
-                      placeholder="请输入验证码"/>
+                      placeholder="enter verification code"/>
                   </Form.Item>
                 </Col>
                 <Col span={9}>
@@ -103,7 +103,7 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = (props) => {
                 type="primary"
                 htmlType="submit"
                 className={style.login_form_button}>
-                登录
+                log in
               </Button>
             )}
           </Form.Item>

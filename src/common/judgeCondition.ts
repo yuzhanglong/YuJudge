@@ -40,15 +40,15 @@ export const JUDGE_CONDITION_TAG_NAMES: { [key: string]: string; } = {
 
 
 export const JUDGE_CONDITION_TAG_NAMES_CHINESE: { [key: string]: string; } = {
-  [JudgeConditionEnum.ACCEPT]: '答案正确',
-  [JudgeConditionEnum.COMPILE_ERROR]: '编译错误',
-  [JudgeConditionEnum.WRONG_ANSWER]: '答案错误',
-  [JudgeConditionEnum.MEMORY_LIMIT_EXCEED]: '内存超限',
-  [JudgeConditionEnum.TIME_LIMIT_EXCEEDED]: '时间超限',
-  [JudgeConditionEnum.SEGMENTATION_FAULT]: '段错误',
-  [JudgeConditionEnum.RUNTIME_ERROR]: '运行错误',
-  [JudgeConditionEnum.UNKNOWN_ERROR]: '未知错误',
-  [JudgeConditionEnum.OUTPUT_LIMIT_EXCEED]: '输出超限'
+  [JudgeConditionEnum.ACCEPT]: 'accept',
+  [JudgeConditionEnum.COMPILE_ERROR]: 'compile error',
+  [JudgeConditionEnum.WRONG_ANSWER]: 'wrong answer',
+  [JudgeConditionEnum.MEMORY_LIMIT_EXCEED]: 'memory exceed',
+  [JudgeConditionEnum.TIME_LIMIT_EXCEEDED]: 'time exceed',
+  [JudgeConditionEnum.SEGMENTATION_FAULT]: 'segmentation fault',
+  [JudgeConditionEnum.RUNTIME_ERROR]: 'runtime error',
+  [JudgeConditionEnum.UNKNOWN_ERROR]: 'unknown error',
+  [JudgeConditionEnum.OUTPUT_LIMIT_EXCEED]: 'output error'
 }
 
 
