@@ -21,12 +21,12 @@ jobs:
 
       - name: Upload project to CDN
         run: |
-          node scripts/upload.js ${{secrets.ACCESS_KEY}} ${{secrets.SECRET_KEY}}
+          node scripts/upload.js ${{ secrets.QINIU_ACCESS_KEY }} ${{ secrets.QINIU_SECRET_KEY }}
 
       - name: Deploy by ssh
         uses: easingthemes/ssh-deploy@v2.1.5
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_ACCESS_TOKEN }}
           ARGS: "-avz --delete"
           SOURCE: "./build"
           REMOTE_HOST: "47.99.245.139"

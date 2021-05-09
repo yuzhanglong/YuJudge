@@ -23,7 +23,7 @@ jobs:
       - name: Deploy by ssh
         uses: easingthemes/ssh-deploy@v2.1.5
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_ACCESS_TOKEN }}
           ARGS: "-avz --delete"
           SOURCE: "./docs/build/"
           REMOTE_HOST: "47.106.202.255"
