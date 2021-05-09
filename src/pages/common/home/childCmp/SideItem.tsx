@@ -35,7 +35,7 @@ const SideItem: React.FunctionComponent<SideItemProps> = (props) => {
     <RcQueueAnim>
       <div key={'home_content_side_item1'}>
         <Card title={localContext.home.daily} className={style.home_content_side_item}>
-          <Meta title={props.dailyWord?.title} description={props.dailyWord?.content} />
+          <Meta title={props.dailyWord?.title} />
         </Card>
       </div>
       <div key={'home_content_side_item2'}>

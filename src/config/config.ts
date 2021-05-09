@@ -13,8 +13,8 @@ import {JudgeConditionEnum, LanguageTypeEnum} from '../common/enumerations';
 // logo 路径
 export const LOGOS = {
     COMMON: '/logo/logo.svg',
-    WITH_TEXT: '/logo/logo-text.svg',
-    WITH_TEXT_AND_VERSION: '/logo/logo-text-with-version.svg'
+    WITH_TEXT: '/logo/logo.svg',
+    WITH_TEXT_AND_VERSION: '/logo/logo.svg'
 }
 
 

@@ -48,7 +48,7 @@ const CommonMenu: React.FunctionComponent<CommonMenuProps & RouteComponentProps>
       <Col span={24}>
         <Menu mode='horizontal' selectedKeys={[props.location.pathname]}>
           <Menu.Item className={style.logo_wrap} onClick={() => props.history.push('/')}>
-            <img src={LOGOS.WITH_TEXT} alt={'logo'} width={120} />
+            <img src={LOGOS.WITH_TEXT} alt={'logo'} width={40} />
           </Menu.Item>
           <Menu.Item key='/common/home' icon={<HomeOutlined />}>
             <Link to={'/common/home'}>
