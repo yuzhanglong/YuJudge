@@ -541,8 +541,8 @@ module.exports = function(webpackEnv) {
         minRatio: 0.8
       }),
 
-      // 打包数据分析插件
-      isEnvProduction && new BundleAnalyzerPlugin({ analyzerPort: 3102 }),
+      // 打包数据分析插件, 开发环境启用
+      !isEnvProduction && new BundleAnalyzerPlugin({ analyzerPort: 3102 }),
 
       // 生成一个带有<script>注入的`index.html`文件。
       new HtmlWebpackPlugin(
