@@ -7,7 +7,7 @@
  */
 
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import LandingHeader from './childCmp/LandingHeader'
 import MainPart from './childCmp/MainPart'
@@ -22,6 +22,9 @@ interface LandingProps {
 }
 
 const Landing: React.FunctionComponent<LandingProps & RouteComponentProps> = (props) => {
+  useEffect(() => {
+    props.history.push('/login')
+  }, []);
   // 前往首页
   const goHome = () => {
     if (getTokenFromStorage() == null) {
