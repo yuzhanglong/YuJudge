@@ -80,7 +80,7 @@ const ProblemSetProblems: React.FunctionComponent<ProblemSetProblemsProps & Rout
                     <Button
                       type={'link'}
                       onClick={() => onGotoProblemButtonClick(content)}>
-                      title={localContext.go}
+                      {localContext.go}
                     </Button>
                   )
                 }}>

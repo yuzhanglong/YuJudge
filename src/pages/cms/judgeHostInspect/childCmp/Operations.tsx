@@ -26,19 +26,19 @@ const Operations: React.FunctionComponent<OperationsProps> = (props) => {
     resetJudgeHostCondition(props.judgeHostInfo.id)
       .then(() => {
         props.onReset();
-        message.success('修改判题机状态成功');
+        message.success('Successfully modify the state of the judging machine');
       })
   }
 
   // 移除判题机
   const removeJudgeHost = () => {
     Modal.confirm({
-      title: '删除确认',
+      title: 'Delete confirmation',
       icon: <ExclamationCircleOutlined/>,
-      content: '您确定要删除这个判题机吗？',
+      content: 'Are you sure you want to delete this test machine？',
       onOk() {
         deleteJudgeHost(props.judgeHostInfo.id).then(() => {
-          message.success('删除成功');
+          message.success('successfully deleted');
           // 路由回切
           window.reactRouter.replace('/cms/judge_hosts');
         })
@@ -49,19 +49,19 @@ const Operations: React.FunctionComponent<OperationsProps> = (props) => {
   return (
     <div>
       <EditorTip
-        title={`${props.judgeHostInfo.active ? '关闭' : '打开'}这个判题服务器`}
-        content={`${props.judgeHostInfo.active ? '这个判题服务器将不再接受任何任务直到重新启动' : '允许判题服务器接受任务'}`}>
+        title={`${props.judgeHostInfo.active ? 'close' : 'open'}The question server`}
+        content={`${props.judgeHostInfo.active ? 'This judgement server will no longer accept any tasks until restarted' : 'Allow the judgement server to accept tasks'}`}>
         <Button
           type={!props.judgeHostInfo.active ? 'primary' : 'default'}
           danger={props.judgeHostInfo.active}
           onClick={() => resetJudgeHost()}>
-          {props.judgeHostInfo.active ? '关闭' : '开启'}
+          {props.judgeHostInfo.active ? 'close' : 'turn on'}
         </Button>
       </EditorTip>
       <Divider/>
-      <EditorTip title={'删除这个判题服务器'}
-                 content={'注意: 这个操作不可恢复'}>
-        <Button danger onClick={() => removeJudgeHost()}>删除</Button>
+      <EditorTip title={'Delete this judgement server'}
+                 content={'Note: This operation cannot be restored'}>
+        <Button danger onClick={() => removeJudgeHost()}>delete</Button>
       </EditorTip>
     </div>
   )

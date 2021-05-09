@@ -71,21 +71,21 @@ const JudgeHostEditModal: React.FunctionComponent<JudgeHostFormProps> = (props) 
       maskClosable={false}
       destroyOnClose
       onCancel={props.onCancel}
-      title={'判题机信息'} footer={renderFooter()}>
+      title={'Judging machine information'} footer={renderFooter()}>
       <Form form={form}>
-        <Form.Item label={'名称'} name='name' rules={[{
+        <Form.Item label={'name'} name='name' rules={[{
           required: true,
-          message: '请输入名称'
+          message: 'Please enter a name'
         }]}>
           <Input />
         </Form.Item>
-        <Form.Item label={'地址'} name='url' rules={[
+        <Form.Item label={'address'} name='url' rules={[
           {
             required: true,
-            message: '请输入地址'
+            message: 'please enter the address'
           },
           {
-            message: '无效的地址',
+            message: 'Invalid address',
             validator: (rule, value) => {
               return isUrlValidated(`${urlScheme}://${value}`) ? Promise.resolve() : Promise.reject('无效的ip地址')
             }
@@ -94,15 +94,15 @@ const JudgeHostEditModal: React.FunctionComponent<JudgeHostFormProps> = (props) 
           <Input addonBefore={urlSchemeSelector} />
         </Form.Item>
         <Form.Item
-          label={'端口'}
+          label={'port'}
           name='port'
           rules={[
             {
               required: true,
-              message: '端口不得为空'
+              message: 'Port must not be empty'
             },
             {
-              message: '请输入正确的端口, 介于0和65536之间',
+              message: 'Please enter the correct port, between 0 and 65536',
               type: 'number',
               max: 65535,
               min: 1

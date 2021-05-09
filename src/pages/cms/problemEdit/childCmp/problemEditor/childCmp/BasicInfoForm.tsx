@@ -74,11 +74,11 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
           layout={'vertical'}
           form={form}>
           <Form.Item
-            label="题目名称"
+            label="Title"
             name={'name'}>
             <Input/>
           </Form.Item>
-          <Form.Item label="题目标签">
+          <Form.Item label="Topic Label">
             <TagGroup
               initTags={currentTags}
               onTagAdd={(e: string[]) => {
@@ -98,7 +98,7 @@ const BasicInfoForm: React.FunctionComponent<BasicInfoFormProps> = (props) => {
           marginTop: 20
         }}
         onClick={() => onSaveButtonClick()}>
-        保存修改
+        Save changes
       </Button>
     </div>
   );

@@ -28,7 +28,7 @@ export const enUS = {
   'save': 'save',
   'and': 'Etc.',
   'create': 'create',
-  'go': 'To travel to',
+  'go': 'detailed',
   'yes': 'is',
   'no': 'no',
   'submit': 'submit',
@@ -44,7 +44,7 @@ export const enUS = {
   },
   'dashboardSide': {
     'base': 'The console',
-    'settings': 'Set up the',
+    'settings': 'Settings',
     'judgeHosts': 'Sentenced to problem machine',
     'detail': 'Details of the test machine',
     'userGroup': 'Users & user groups',

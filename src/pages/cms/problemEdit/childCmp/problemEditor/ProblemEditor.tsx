@@ -39,12 +39,12 @@ const ProblemEditor: React.FunctionComponent<ProblemEditorProps> = (props) => {
   }
 
   return (
-    <Card title="问题编辑">
+    <Card title="QuestionEdit">
       <Card
         className={style.cms_problem_edit_item}
         title={
           <div className={style.cms_problem_edit_item_title}>
-            基本信息
+            basicInformation
           </div>
         }>
         <BasicInfoForm problem={props.problem}/>
@@ -54,7 +54,7 @@ const ProblemEditor: React.FunctionComponent<ProblemEditorProps> = (props) => {
         className={style.cms_problem_edit_item}
         title={
           <div className={style.cms_problem_edit_item_title}>
-            提交限制
+            SubmissionLimit
           </div>
         }>
         <LimitationForm problem={props.problem}/>
@@ -63,11 +63,11 @@ const ProblemEditor: React.FunctionComponent<ProblemEditorProps> = (props) => {
         className={style.cms_problem_edit_item}
         title={
           <div className={style.cms_problem_edit_item_title}>
-            测试点
+            testCases
           </div>
         } extra={
         <Button type={'link'} onClick={props.onSolutionAdd}>
-          添加测试点
+          AddTestCases
         </Button>
       }>
         <TestCaseTable
@@ -78,7 +78,7 @@ const ProblemEditor: React.FunctionComponent<ProblemEditorProps> = (props) => {
       <Card
         key={'cms_problem_edit_item'}
         className={style.cms_problem_edit_item}
-        title={<div className={style.cms_problem_edit_item_title_danger}>危险项</div>}>
+        title={<div className={style.cms_problem_edit_item_title_danger}>Dangerous</div>}>
         <DangerZoneForm problem={props.problem}/>
       </Card>
     </Card>

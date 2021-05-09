@@ -14,14 +14,14 @@ const DangerZoneForm: React.FunctionComponent<DangerZoneFormProps> = (props) => 
   // 删除按钮被按下
   const onProblemDelete = () => {
     Modal.confirm({
-      title: '删除确认',
+      title: 'Delete confirmation',
       icon: <ExclamationCircleOutlined/>,
-      content: '您确定要删除这个问题吗？',
+      content: 'Are you sure you want to delete this question？',
       onOk() {
         if (props.problem.id) {
           deleteProblem(props.problem.id)
             .then(() => {
-              message.success('删除成功~');
+              message.success('successfully deleted~');
               window.reactRouter.replace('/cms/problem_manage');
             })
         }
@@ -31,21 +31,21 @@ const DangerZoneForm: React.FunctionComponent<DangerZoneFormProps> = (props) => 
 
   return (
     <div>
-      <EditorTip title={'清空所有提交数据'}
-                 content={'删除这个问题下的所有提交数据，同时清空AC率等统计信息'}>
+      <EditorTip title={'Clear all submitted data'}
+                 content={'Delete all submitted data under this question, and clear statistics such as AC rate at the same time'}>
         <Button danger disabled>
-          清空
+          empty
         </Button>
       </EditorTip>
       <Divider/>
-      <EditorTip title={'删除这个问题'}
-                 content={'所有的题目信息/提交统计都会丢失，这个操作不可恢复'}>
+      <EditorTip title={'Delete this question'}
+                 content={'All topic information submission statistics will be lost, this operation cannot be restored'}>
         <Button
           danger
           onClick={() => {
             onProblemDelete();
           }}>
-          删除
+          delete
         </Button>
       </EditorTip>
     </div>

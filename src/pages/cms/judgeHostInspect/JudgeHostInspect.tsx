@@ -66,7 +66,7 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
 
   // 获取判题机状态描述
   const getConditionDescription = () => {
-    return judgeHostInfo?.active ? '运行中' : '已暂停';
+    return judgeHostInfo?.active ? 'running' : 'paused';
   }
 
   // 获取判题机状态描述颜色
@@ -98,31 +98,31 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
       <RcQueueAnim>
         <div key={'BasicResult'}>
           <Card
-            title={<div className={style.judge_host_edit_item_title}>基本信息</div>}
+            title={<div className={style.judge_host_edit_item_title}>BasicInformation</div>}
             className={style.judge_host_inspect_item}>
             {
               judgeHostInfo && judgeHostInfo.condition.version ?
                 <BasicInfo judgeHostInfo={judgeHostInfo}/> :
-                <Empty image={EMPTY_IMAGE} description={'该判题服务器无连接'}/>
+                <Empty image={EMPTY_IMAGE} description={'No connection to the judgment server'}/>
             }
           </Card>
         </div>
         <div key={'current-condition'}>
           <Card
-            title={<div className={style.judge_host_edit_item_title}>实时状态</div>}
+            title={<div className={style.judge_host_edit_item_title}>real time status</div>}
             style={{
               marginBottom: 20
             }}>
             {
               judgeHostInfo && judgeHostInfo.condition.version ?
                 <CurrentCondition judgeHostInfo={judgeHostInfo}/> :
-                <Empty image={EMPTY_IMAGE} description={'该判题服务器无连接'}/>
+                <Empty image={EMPTY_IMAGE} description={'No connection to the judgment server'}/>
             }
           </Card>
         </div>
         <div key={'data'}>
           <Card
-            title={<div className={style.judge_host_edit_item_title}>数据统计</div>}
+            title={<div className={style.judge_host_edit_item_title}>statistics</div>}
             className={style.judge_host_inspect_item}>
             <SubmissionCount
               submissionCounts={judgeHostSubmissionCounts}
@@ -131,11 +131,11 @@ const JudgeHostInspect: React.FunctionComponent<JudgeHostInspectProps & RouteCom
           </Card>
         </div>
         <div key={'operations'}>
-          <Card title={<div className={style.judge_host_edit_item_title}>操作</div>}>
+          <Card title={<div className={style.judge_host_edit_item_title}>operating</div>}>
             {
               judgeHostInfo ?
                 <Operations judgeHostInfo={judgeHostInfo} onReset={() => getJudgeHostInfo(judgeHostId)}/> :
-                <Empty image={EMPTY_IMAGE} description={'该判题服务器无连接'}/>
+                <Empty image={EMPTY_IMAGE} description={'No connection to the judgment server'}/>
             }
           </Card>
         </div>
