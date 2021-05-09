@@ -231,9 +231,6 @@ xxxPagination.paginationInfo // 对象，包括以下内容：
 ```
 
 
-
-
-
 ## 调试与部署
 
 项目打包基于**webpack**，当前分支已经运行了`yarn eject`，webpack 配置需要开发者自行管理。
@@ -241,6 +238,13 @@ xxxPagination.paginationInfo // 对象，包括以下内容：
 webpack 配置文件位于`config/webpack`目录之下。
 
 yarn 脚本文件位于`script`目录之下。
+
+
+### 安装依赖
+
+```shell
+yarn install
+```
 
 ### 开发环境运行
 
