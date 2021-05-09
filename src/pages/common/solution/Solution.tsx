@@ -20,7 +20,7 @@ const Solution: React.FunctionComponent<SolutionProps & RouteComponentProps> = (
     <div style={{
       height: 500
     }}>
-      <Empty description={'题解板块开发中'} image={EMPTY_IMAGE}/>
+      <Empty description={'under development...'} image={EMPTY_IMAGE}/>
     </div>
   )
 }

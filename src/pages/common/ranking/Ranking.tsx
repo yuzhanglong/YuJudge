@@ -15,7 +15,7 @@ interface RankingProps {
 const Ranking: React.FunctionComponent<RankingProps> = () => {
   return (
     <Card>
-      <Empty description={'排名板块开发中....'}/>
+      <Empty description={'under development...'}/>
     </Card>
   )
 }

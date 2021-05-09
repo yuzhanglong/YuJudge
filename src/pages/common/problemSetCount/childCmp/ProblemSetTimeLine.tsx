@@ -77,10 +77,10 @@ const ProblemSetTimeLine: React.FunctionComponent<ProblemSetTimeLineProps> = (pr
               </div>
             </div>
             <div className={style.time_line_description_content}>
-              通过【<span className={style.time_line_description_link}
+              pass【<span className={style.time_line_description_link}
                        onClick={() => onProblemIndexClick(res.problemId)}>
               {tenDecimalToTwentySixDecimal(res.problemIndex + 1)}
-            </span>】题
+            </span>】
             </div>
           </div>
         </Timeline.Item>
