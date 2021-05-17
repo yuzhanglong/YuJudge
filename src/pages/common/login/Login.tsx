@@ -16,7 +16,6 @@ import { Button, Card, Col, message, Row } from 'antd'
 import { getTokenFromStorage, saveUserInfo, setToken } from '../../../utils/dataPersistence'
 import RegisterForm from '../../../components/registerForm/RegisterForm'
 import style from './loginPage.module.scss'
-import loginImage from '../../../assets/images/login.jpg'
 import { LocalContext } from '../../../components/localContext/LocalContext'
 
 interface LoginProps {
@@ -129,7 +128,7 @@ const Login: React.FunctionComponent<LoginProps & RouteComponentProps> = (props)
             <Row>
               <Col>
                 <img
-                  src={loginImage}
+                  src={'http://cdn.yuzzl.top/blog/20210517230424.png'}
                   alt={'confirmation'}
                   className={style.login_page_image} />
               </Col>
