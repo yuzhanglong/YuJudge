@@ -14,7 +14,6 @@ import { TablePaginationConfig } from 'antd/lib/table/interface'
 import { Pagination } from '../../models/pagination'
 import { UserGroupInfo } from '../../models/UserGroup'
 import { SizeType } from 'antd/lib/config-provider/SizeContext'
-import style from './userTable.module.scss'
 import { LocalContext } from '../localContext/LocalContext'
 
 interface UserTableProps {
@@ -99,11 +98,11 @@ const UserTable: React.FunctionComponent<UserTableProps> = (props) => {
   // 渲染用户名
   const renderUserName = (userInfo: UserInfo) => {
     return props.userNameCanClick ?
-      <a className={style.user_name} onClick={() => {
+      <a onClick={() => {
         window.reactRouter.push('/common/profile/' + userInfo.id)
       }}>
         {userInfo.nickname}
-      </a> : <div className={style.user_name}>
+      </a> : <div>
         {userInfo.nickname}
       </div>
   }
