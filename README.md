@@ -5,6 +5,7 @@
 </p>
 
 <p align="center">
+  下面的链接无效了（手头没服务器），文档在当前仓库的 docs 目录下
   <a href="#快速上手">快速上手</a>&nbsp;|&nbsp;<a href="#调试与部署">调试与部署</a>&nbsp;|&nbsp;<a href="#版本日志">版本日志</a>
 </p>
 
