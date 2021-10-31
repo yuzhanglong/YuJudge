@@ -26,7 +26,7 @@
 [测试网站](http://oj.yuzzl.top/)
 [CodeSandbox(可修改代码实时预览)](https://codesandbox.io/s/adoring-blackburn-ru7kr)
 
-###  调试与部署
+### 调试与部署
 
 项目打包基于**webpack**，当前分支已经运行了`yarn eject`，webpack配置需要开发者自行管理。
 
@@ -109,6 +109,12 @@ yarn buildWithPrefix
 yarn upload
 ```
 所有css、js等静态文件会被**自动上传至七牛服务器**，你只需要将**index.html**、一些图标文件传上服务器进行托管即可。
+
+
+### 它是如何工作的？
+
+请参考[这篇文章](https://www.zhihu.com/question/20343652/answer/1327243865)
+
 
 
 ### 版本日志
