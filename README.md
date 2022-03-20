@@ -18,8 +18,7 @@
 
 ### 快速上手
 
-下面的链接无效了（手头没服务器），文档在当前仓库的 docs 目录下
-[点击访问](http://docs.yuzzl.top/)
+[点击访问](https://yu-judge.vercel.app/)
 
 ### 在线DEMO
 
